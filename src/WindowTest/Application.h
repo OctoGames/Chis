@@ -8,6 +8,8 @@
 #include <OgreViewport.h>
 #include <OgreFileSystemLayer.h>
 #include <string>
+#include <fstream>
+#include <iostream>
 
 class Application
 {
@@ -26,8 +28,15 @@ private:
 
 	Ogre::Viewport* viewport;
 
+	void readDataFromFile();
+	std::string readString(std::string s);
+
+	bool fullScreen_;
+	int winWidth_;
+	int winHeight_;
+
 public:
-	Application(std::string appName);
+	Application(std::string appname);
 	~Application();
 };
 
