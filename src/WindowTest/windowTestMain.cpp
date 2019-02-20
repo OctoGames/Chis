@@ -5,14 +5,9 @@ int main()
 {
 	std::string appName = "CHIS";
 
-
 	Application* chisApp = new Application(appName);
 
-	// main loop
-	//while (true)
-	//{
+	delete chisApp;
 
-	//}
-	system("pause");
 	return 0;
 }

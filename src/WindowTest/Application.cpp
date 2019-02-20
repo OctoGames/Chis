@@ -6,17 +6,67 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 #if _DEBUG
 	mResourcesCfg = "resources_d.cfg";
 	mPluginsCfg = "plugins_d.cfg";
-	mRoot = new Ogre::Root(mPluginsCfg);
-	mRoot->loadPlugin("RenderSystem_GL_d");
 #else
 	mResourcesCfg = "resources.cfg";
 	mPluginsCfg = "plugins.cfg";
-	mRoot = new Ogre::Root(mPluginsCfg);
-	mRoot->loadPlugin("RenderSystem_GL");
 #endif
 
-	readDataFromFile();
+	//mRoot = new Ogre::Root(mPluginsCfg);
+	mFSLayer = new Ogre::FileSystemLayer(appName);
 
+	//Load all needed plugins and initialize the root
+	loadPluggins();
+
+	readDataFromFile(); //reads all the data needed to create the window
+
+	//Create the window
+	setWindow();
+
+	//SceneManager
+	sManager = mRoot->createSceneManager();
+
+	//Initialize the mainCamera
+	initCamera();
+
+	//Init Lights
+	initLights();
+
+	//SetUp and Load all resources from config file if there's no problem on load
+	setUpResources();
+	loadResources();
+
+	//We create here an entity to check everything is ok
+	createEntity();
+
+	//Start the rendering loop
+	mRoot->startRendering();
+}
+
+Application::~Application()
+{
+	delete mRoot;
+
+	delete mWindow;
+
+	delete sManager;
+
+	delete viewport;
+
+	delete mainCamera;
+}
+
+//Load all needed plugins and initialize the root
+void Application::loadPluggins()
+{
+	Ogre::String pluginsPath;
+	pluginsPath = mFSLayer->getConfigFilePath("plugins.cfg");
+
+	mRoot = new Ogre::Root(pluginsPath);
+}
+
+void Application::setWindow()
+{
+	//Only one available render system on our proyect
 	mRoot->setRenderSystem(*(mRoot->getAvailableRenderers().begin()));
 	mRoot->initialise(false);
 
@@ -27,22 +77,38 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 	mWindow->setAutoUpdated(true);
 	mWindow->setDeactivateOnFocusChange(false);
 
-	if(fullScreen_)
-		mWindow->setFullscreen(true, 1920, 1080);
-
-	//SceneManager
-	sManager = mRoot->createSceneManager();
-
-	// viewport and camera
-	Ogre::Camera *mainCamera = sManager->createCamera("mainCamera");
-	Ogre::Viewport *viewport = mWindow->addViewport(mainCamera);
-	viewport->setClearEveryFrame(true);
+	if (fullScreen_)
+		mWindow->setFullscreen(true, winWidth_, winHeight_);
 }
 
-
-Application::~Application()
+void Application::initCamera()
 {
-	delete mRoot;
+	// viewport and camera
+	mainCamera = sManager->createCamera("mainCamera");
+	mainCamera->setNearClipDistance(1);
+	mainCamera->setFarClipDistance(10000);
+	mainCamera->setAutoAspectRatio(true);
+
+	mCamNode = sManager->getRootSceneNode()->createChildSceneNode("nCam");
+	mCamNode->attachObject(mainCamera);
+
+	mCamNode->setPosition(0, 0, 1000);
+	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+
+	viewport = mWindow->addViewport(mainCamera);
+
+}
+
+void Application::initLights()
+{
+	// without light we would just get a black screen 
+	Ogre::Light* luz = sManager->createLight("Luz");
+	luz->setType(Ogre::Light::LT_DIRECTIONAL);
+	luz->setDiffuseColour(0.75, 0.75, 0.75);
+
+	mLightNode = mCamNode->createChildSceneNode("nLuz");
+	mLightNode->attachObject(luz);
+	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
 }
 
 //Reads the data from a .config file given to setUp the screen
@@ -93,3 +159,60 @@ std::string Application::readString(std::string s)
 	return auxString;
 }
 
+//this method parses the resources.cfg file how? not 100% sure but it works fine
+void Application::setUpResources()
+{
+	resourcesPath = mFSLayer->getConfigFilePath("resources.cfg");
+	Ogre::ConfigFile cf;
+
+	if (Ogre::FileSystemLayer::fileExists(resourcesPath))
+	{	
+		cf.load(resourcesPath);
+	}
+
+	Ogre::String sec, type, arch;
+	// go through all specified resource groups
+	Ogre::ConfigFile::SettingsBySection_::const_iterator seci;
+	for (seci = cf.getSettingsBySection().begin(); seci != cf.getSettingsBySection().end(); ++seci)
+	{
+		sec = seci->first;
+		const Ogre::ConfigFile::SettingsMultiMap& settings = seci->second;
+		Ogre::ConfigFile::SettingsMultiMap::const_iterator i;
+
+		// go through all resource paths
+		for (i = settings.begin(); i != settings.end(); i++)
+		{
+			type = i->first;
+			arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
+		}
+	}
+
+	sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+	const Ogre::ResourceGroupManager::LocationList genLocs = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList(sec);
+
+	OgreAssert(!genLocs.empty(), ("Resource Group '" + sec + "' must contain at least one entry").c_str());
+
+	arch = genLocs.front().archive->getName();
+	type = genLocs.front().archive->getType();
+}
+
+void Application::loadResources()
+{
+	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+}
+
+//Here we create a simple entity to see everything above works fine
+void Application::createEntity()
+{
+	Ogre::SceneNode* robotNode = sManager->getRootSceneNode()->createChildSceneNode("mytoy");
+
+	ent = sManager->createEntity("fish.mesh");
+
+	robotNode->attachObject(ent);
+	
+	robotNode->setPosition(0, 0, 0);
+	robotNode->setScale(30, 30, 30);
+	//robotNode->yaw(Ogre::Degree(-90));
+	robotNode->setVisible(true);
+}
