@@ -115,7 +115,7 @@ void Application::initLights()
 void Application::readDataFromFile()
 {
 	std::ifstream configFile;
-	configFile.open("../../bin/Configuration.config");
+	configFile.open("Configuration.config");
 	
 	std::string line;
 
