@@ -115,7 +115,11 @@ void Application::initLights()
 void Application::readDataFromFile()
 {
 	std::ifstream configFile;
-	configFile.open("Configuration.config");
+
+	std::string configFilePath = mFSLayer->getConfigFilePath("plugins.cfg");
+	configFilePath.erase(configFilePath.find_last_of("\\") + 1, configFilePath.size() - 1);
+
+	configFile.open(configFilePath + "Configuration.config");
 	
 	std::string line;
 
