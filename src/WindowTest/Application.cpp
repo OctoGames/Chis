@@ -226,4 +226,7 @@ void Application::createEntity()
 	robotNode->setScale(30, 30, 30);
 	//robotNode->yaw(Ogre::Degree(-90));
 	robotNode->setVisible(true);
+
+	sManager->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50),
+		"skyPlane", 1, 1, true, 1.0, 100, 100);
 }
