@@ -187,7 +187,14 @@ void Application::setUpResources()
 		for (i = settings.begin(); i != settings.end(); i++)
 		{
 			type = i->first;
-			arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
+
+			//Added the whole route to fix the problem with other computers route
+			std::string auxPath = resourcesPath;
+			//We take the resources path and delete the finel path
+			auxPath.erase(auxPath.find_last_of("\\") + 1, auxPath.size() - 1);
+
+			//then, to taht last path, we add the one where resources will be located
+			arch = auxPath + Ogre::FileSystemLayer::resolveBundlePath(i->second);
 			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
 		}
 	}
