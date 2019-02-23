@@ -140,7 +140,7 @@ void Application::createWindow(const Ogre::String & windowName)
 void Application::setWindowGrab(bool grab)
 {
 	SDL_SetWindowGrab(mWindow.native, SDL_bool(grab));
-	SDL_ShowCursor(grab);
+	SDL_ShowCursor(false);
 }
 
 void Application::locateResources()

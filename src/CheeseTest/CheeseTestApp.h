@@ -34,7 +34,9 @@ protected:
 	Ogre::SceneNode* mCamNode;
 	Ogre::SceneNode* mLightNode;
 	Ogre::SceneNode* mLightNode2;
-	Ogre::SceneNode* mSinbadNode;
+	Ogre::SceneNode* mMouseNode;
+	Ogre::SceneNode* mGunNode;
+	Ogre::SceneNode* mGroundNode;
 };
 
 #endif

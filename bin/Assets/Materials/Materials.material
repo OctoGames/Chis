@@ -1,58 +1,197 @@
-material Examples/Robot{
-technique {
-pass { // first pass
-diffuse 2 2 2
-ambient 0.5 0.5 0.5
-specular 0.8 0.8 0.8 68
-texture_unit {
-texture cheker.jpg
-colour_op modulate
-}
-}
-}
-technique {
-pass {
-diffuse 0.5 0.5 0.5
-}
-}
+material Examples/Robot {
+	technique 
+	{
+		pass
+		{ 	
+			// first pass
+			diffuse 2 2 2
+			ambient 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 68
+
+			texture_unit 
+			{
+				texture cheker.jpg
+				colour_op modulate
+			}
+		}
+	}
+
+	technique 
+	{
+		pass
+		{
+			diffuse 0.5 0.5 0.5
+		}
+	}
 }
 
-material Examples/Fish{
-technique {
-pass { // first pass
-diffuse 2 2 2
-ambient 0.5 0.5 0.5
-specular 0.8 0.8 0.8 68
-texture_unit {
-texture Water.jpg
-scroll_anim 0.1 0.0
-colour_op modulate
-}
-}
-}
-technique {
-pass {
-diffuse 0.5 0.5 0.5
-}
-}
+material Examples/Fish
+{
+	technique
+	{
+		pass
+		{
+			// first pass
+			diffuse 2 2 2
+			ambient 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 68
+
+			texture_unit 
+			{
+				texture Water.jpg
+				scroll_anim 0.1 0.0
+				colour_op modulate
+			}
+		}
+	}
+	
+	technique 
+	{
+		pass
+		{
+			diffuse 0.5 0.5 0.5
+		}
+	}
 }
 
-material skyPlane{
-technique {
-pass { // first pass
-diffuse 2 2 2
-ambient 0.5 0.5 0.5
-specular 0.8 0.8 0.8 68
-texture_unit {
-texture clouds.jpg
-scroll_anim 0.1 0.0
-colour_op modulate
+material skyPlane
+{
+	technique 
+	{
+		pass 
+		{ 
+			// first pass
+			diffuse 2 2 2
+			ambient 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 68
+
+			texture_unit 
+			{
+				texture clouds.jpg
+				scroll_anim 0.1 0.0
+				colour_op modulate
+			}
+		}
+	}
+
+	technique 
+	{
+		pass	
+		{
+			diffuse 0.5 0.5 0.5
+		}
+	}
 }
+
+material mouse_mat 
+{
+    receive_shadows on
+
+    technique 
+    {
+        pass 
+        {
+            lighting on
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+            
+            alpha_to_coverage off 
+            colour_write on 
+            cull_hardware clockwise 
+            depth_check on 
+            depth_func less_equal 
+            depth_write on 
+            illumination_stage  
+            light_clip_planes off 
+            light_scissor off 
+            normalise_normals off 
+            polygon_mode solid 
+            scene_blend one zero 
+            scene_blend_op add 
+            shading gouraud 
+            transparent_sorting on 
+
+            texture_unit  
+            {
+                texture mouse_tex1.png 
+                tex_address_mode wrap 
+                scale 1.0 1.0 
+                colour_op modulate 
+            }
+
+            texture_unit  
+            {
+                texture mouse_tex2.png 
+                tex_address_mode wrap 
+                scale 1.0 1.0 
+                colour_op modulate 
+            }
+        }
+    }
 }
+
+material gun_mat 
+{
+    receive_shadows on
+    technique 
+    {
+        pass 
+        {
+            lighting on
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+            
+            alpha_to_coverage off 
+            colour_write on 
+            cull_hardware clockwise 
+            depth_check on 
+            depth_func less_equal 
+            depth_write on 
+            illumination_stage  
+            light_clip_planes off 
+            light_scissor off 
+            normalise_normals off 
+            polygon_mode solid 
+            scene_blend one zero 
+            scene_blend_op add 
+            shading gouraud 
+            transparent_sorting on 
+
+            texture_unit  
+            {
+                texture gun_tex1.png 
+                tex_address_mode wrap 
+                scale 1.0 1.0 
+                colour_op modulate 
+            }
+
+            texture_unit  
+            {
+                texture gun_tex2.png 
+                tex_address_mode wrap 
+                scale 1.0 1.0 
+                colour_op modulate 
+            }
+        }
+    }
 }
-technique {
-pass {
-diffuse 0.5 0.5 0.5
-}
-}
+
+material ground_mat
+{
+	technique 
+	{
+		pass 
+		{ 
+
+			texture_unit 
+			{
+				texture ground.jpg
+				colour_op modulate
+			}
+		}
+	}
 }
