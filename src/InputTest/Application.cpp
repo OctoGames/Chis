@@ -35,24 +35,37 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 	setUpResources();
 	loadResources();
 
+	//Initialize SDL
+	SDL_Init(SDL_INIT_VIDEO);
+
+	unsigned long hWnd = 0;
+
+	//Get Ogre window attributes
+	mWindow->getCustomAttribute("WINDOW", &hWnd);
+
+	//Create a SDL window based on thos attributes to detect input
+	SDL_CreateWindowFrom((void*)hWnd);
+	
 	//We create here an entity to check everything is ok
 	createEntity();
-
-	//Start the rendering loop
-	mRoot->startRendering();
 }
 
 Application::~Application()
 {
-	delete mRoot;
+	//delete mRoot;
 
-	delete mWindow;
+	//delete mWindow;
 
-	delete sManager;
+	//delete sManager;
 
-	delete viewport;
+	//delete viewport;
 
-	delete mainCamera;
+	//delete mainCamera;
+}
+
+void Application::render()
+{
+	mRoot->renderOneFrame();
 }
 
 //Load all needed plugins and initialize the root
@@ -255,4 +268,29 @@ void Application::createEntity()
 
 	sManager->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50),
 		"skyPlane", 1, 1, true, 1.0, 100, 100);
+}
+
+//This method will handle the input from SDL and return the event taken
+SDL_Event Application::handleInput()
+{
+	SDL_Event event;
+
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_KEYDOWN)
+		{
+			if (event.key.keysym.sym == SDLK_UP)
+			{
+				std::cout << "------------------------------" << std::endl;
+			}
+			else if (event.key.keysym.sym == SDLK_ESCAPE)
+			{
+				event.type = SDL_QUIT;
+				
+			}
+		}
+	}
+
+	return event;
+
 }

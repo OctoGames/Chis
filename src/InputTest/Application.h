@@ -16,6 +16,11 @@
 #include <OgreMeshManager.h>
 #include <OgreFrameListener.h>
 
+//SDL includes
+#include <SDL.h>
+#include <SDL_video.h>
+#include <SDL_syswm.h>
+
 class Application
 {
 
@@ -75,6 +80,9 @@ private:
 	Ogre::Entity* ent;
 
 public:
+
+	void render();
+	SDL_Event handleInput();
 	Application(std::string appname);
 	~Application();
 };
