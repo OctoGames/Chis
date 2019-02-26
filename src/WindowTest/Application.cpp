@@ -114,33 +114,59 @@ void Application::initLights()
 //Reads the data from a .config file given to setUp the screen
 void Application::readDataFromFile()
 {
-	std::ifstream configFile;
 
 	std::string configFilePath = mFSLayer->getConfigFilePath("plugins.cfg");
 	configFilePath.erase(configFilePath.find_last_of("\\") + 1, configFilePath.size() - 1);
 
-	configFile.open(configFilePath + "Configuration.config");
-	
+	//Read the information to FullScreen
 	std::string line;
+	std::string fullScreen;
 
-	//read data to fullScreen Mode
-	getline(configFile, line);
-	std::string fullScreen = readString(line);
+	line = findConfig("FULLSCREEN", configFilePath);
+
+	fullScreen = readString(line);
 
 	if (fullScreen == "TRUE")
 		fullScreen_ = true;
 	
 	//Read data config to screen width
-	getline(configFile, line);
+	line = findConfig("WIDTH", configFilePath);
 	std::string auxString = readString(line);
 	winWidth_ = std::stoi(auxString);
 
 	//Read data config to screen height
-	getline(configFile, line);
+	line = findConfig("HEIGHT", configFilePath);
 	auxString = readString(line);
 	winHeight_ = std::stoi(auxString);
+}
+
+std::string Application::findConfig(std::string config, std::string configFilePath)
+{
+	std::ifstream configFile;
+
+	configFile.open(configFilePath + "Configuration.config");
+
+	std::string auxString;
+	std::string line;
+	bool found = false;
+
+	while (!configFile.eof() && !found)
+	{
+		//read data to fullScreen Mode
+		std::getline(configFile, line);
+
+		auxString = line;
+
+		if (auxString.erase(auxString.find_last_of("="), auxString.size() - 1) == config)
+		{
+			found = true;
+		}
+
+	}
 
 	configFile.close();
+
+	return line;
 }
 
 //Read the string until find = sing. Then takes the whole right part and returns it

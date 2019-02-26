@@ -57,6 +57,7 @@ private:
 	void readDataFromFile();
 	//this one recieves a string and takes the whole right part after the first "=" sing
 	std::string readString(std::string s);
+	std::string findConfig(std::string config, std::string configFilePath);
 
 	//Scene nodes to the camera and lights
 	Ogre::SceneNode* mCamNode = nullptr;
