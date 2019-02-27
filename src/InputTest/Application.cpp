@@ -25,12 +25,6 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 	//SceneManager
 	sManager = mRoot->createSceneManager();
 
-	//Initialize the mainCamera
-	initCamera();
-
-	//Init Lights
-	initLights();
-
 	//SetUp and Load all resources from config file if there's no problem on load
 	setUpResources();
 	loadResources();
@@ -46,8 +40,16 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 	//Create a SDL window based on thos attributes to detect input
 	SDL_CreateWindowFrom((void*)hWnd);
 	
-	//We create here an entity to check everything is ok
+	//After we create the SDL window, we set the Ogre window mode to fullscreen if required to solve blackscreen bug
+	if (fullScreen_)
+		mWindow->setFullscreen(true, winWidth_, winHeight_);
+
+
+	//We create here an entity to check everything is ok (It also initialized the camera)
 	createEntity();
+
+	//Init Lights
+	initLights();
 }
 
 Application::~Application()
@@ -89,11 +91,9 @@ void Application::setWindow()
 	mWindow->setActive(true);
 	mWindow->setAutoUpdated(true);
 	mWindow->setDeactivateOnFocusChange(false);
-
-	if (fullScreen_)
-		mWindow->setFullscreen(true, winWidth_, winHeight_);
 }
 
+//Initialize the main camera being a child of the main character
 void Application::initCamera()
 {
 	// viewport and camera
@@ -102,10 +102,11 @@ void Application::initCamera()
 	mainCamera->setFarClipDistance(10000);
 	mainCamera->setAutoAspectRatio(true);
 
-	mCamNode = sManager->getRootSceneNode()->createChildSceneNode("nCam");
+	mCamNode = mainCharacter->getMainCharacterNode()->createChildSceneNode("ncam");   //sManager->getRootSceneNode()->getChild("mainCharacter")->createChild("nCam");
+	//mCamNode = sManager->getRootSceneNode()->createChildSceneNode("nCam");
 	mCamNode->attachObject(mainCamera);
 
-	mCamNode->setPosition(0, 0, 1000);
+	//mCamNode->setPosition(0, 0, 0);
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	viewport = mWindow->addViewport(mainCamera);
@@ -121,7 +122,7 @@ void Application::initLights()
 
 	mLightNode = mCamNode->createChildSceneNode("nLuz");
 	mLightNode->attachObject(luz);
-	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
+	mLightNode->setDirection(Ogre::Vector3(0, -1, -1));
 }
 
 //Reads the data from a .config file given to setUp the screen
@@ -255,19 +256,47 @@ void Application::loadResources()
 //Here we create a simple entity to see everything above works fine
 void Application::createEntity()
 {
-	Ogre::SceneNode* robotNode = sManager->getRootSceneNode()->createChildSceneNode("mytoy");
+	mainCharacter = new MainCharacter(sManager);
 
-	ent = sManager->createEntity("fish.mesh");
+	//Create Ground
+	Ogre::MeshManager::getSingleton().createPlane("GroundPlane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+		Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), 10000, 10000, 100, 80, true, 1, 10.0, 10.0, (Ogre::Vector3::NEGATIVE_UNIT_Z));
 
-	robotNode->attachObject(ent);
-	
-	robotNode->setPosition(0, 0, 0);
-	robotNode->setScale(30, 30, 30);
-	//robotNode->yaw(Ogre::Degree(-90));
-	robotNode->setVisible(true);
+	Ogre::Entity* ground_ent = sManager->createEntity("GroundPlane");
+	ground_ent->setMaterialName("ground_mat");
+
+	mGroundNode = sManager->getRootSceneNode()->createChildSceneNode("nGround");
+	mGroundNode->attachObject(ground_ent);
 
 	sManager->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50),
 		"skyPlane", 1, 1, true, 1.0, 100, 100);
+
+	initCamera();
+
+	Ogre::SceneNode* gunNode = mCamNode->createChildSceneNode("gun");
+
+	Ogre::Entity* gunent = sManager->createEntity("fish.mesh");
+
+	gunNode->attachObject(gunent);
+
+	gunNode->setPosition(30, -20, -100);
+	gunNode->setScale(10, 10, 10);
+	gunNode->yaw(Ogre::Degree(-90));
+	gunNode->setVisible(true);
+
+
+	Ogre::SceneNode* mouseNode = sManager->getRootSceneNode()->createChildSceneNode("mouse");
+
+	Ogre::Entity* mouseent = sManager->createEntity("mouse.mesh");
+	mouseent->setMaterialName("mouse_mat");
+
+	mouseNode->attachObject(mouseent);
+
+	mouseNode->setPosition(0, 20, 0);
+	mouseNode->setScale(30, 30, 30);
+	//mouseNode->yaw(Ogre::Degree(-90));
+	mouseNode->setVisible(true);
+
 }
 
 //This method will handle the input from SDL and return the event taken
@@ -279,10 +308,30 @@ SDL_Event Application::handleInput()
 	{
 		if (event.type == SDL_KEYDOWN)
 		{
-			if (event.key.keysym.sym == SDLK_UP)
+			if (event.key.keysym.sym == SDLK_w)
 			{
-				std::cout << "------------------------------" << std::endl;
+				mainCharacter->getMainCharacterNode()->translate(0, 0, -50, Ogre::Node::TS_LOCAL);
+				std::cout << "Moving Forward" << std::endl;
 			}
+
+			else if (event.key.keysym.sym == SDLK_s)
+			{
+				mainCharacter->getMainCharacterNode()->translate(0, 0, 50, Ogre::Node::TS_LOCAL);
+				std::cout << "Moving Backwards" << std::endl;
+			}
+
+			else if (event.key.keysym.sym == SDLK_a)
+			{
+				mainCharacter->getMainCharacterNode()->translate(-50, 0, 0, Ogre::Node::TS_LOCAL);
+				std::cout << "Moving Left" << std::endl;
+			}
+
+			else if (event.key.keysym.sym == SDLK_d)
+			{
+				mainCharacter->getMainCharacterNode()->translate(50, 0, 0, Ogre::Node::TS_LOCAL);
+				std::cout << "Moving Right" << std::endl;
+			}
+
 			else if (event.key.keysym.sym == SDLK_ESCAPE)
 			{
 				event.type = SDL_QUIT;

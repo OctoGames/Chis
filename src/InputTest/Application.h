@@ -14,12 +14,19 @@
 #include <OgreEntity.h>
 #include <OgreSceneNode.h>
 #include <OgreMeshManager.h>
-#include <OgreFrameListener.h>
 
 //SDL includes
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
+
+//Garbage collector
+#include "CheckML.h"
+
+//For test
+#include "MainCharacter.h"
+
+
 
 class Application
 {
@@ -66,6 +73,12 @@ private:
 	Ogre::SceneNode* mCamNode = nullptr;
 	Ogre::SceneNode* mLightNode = nullptr;
 
+	//Ground node
+	Ogre::SceneNode* mGroundNode;
+
+	//Character node
+	MainCharacter* mainCharacter;
+
 	//Variables to control screen needs
 	bool fullScreen_;
 	int winWidth_;
@@ -77,8 +90,6 @@ private:
 
 	//This method and variable are just a test to see everything works fine
 	void createEntity();
-	Ogre::Entity* ent;
-
 public:
 
 	void render();
