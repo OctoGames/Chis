@@ -1,7 +1,8 @@
 #include "component.h"
 
-Component::Component(bool enabled) :
-	first_enabled_(true)
+Component::Component(GameObject* container, bool enabled) :
+	first_enabled_(true),
+	container_(container)
 {
 	setEnabled(enabled);
 }

@@ -6,7 +6,7 @@
 class Component
 {
 public:
-	Component(bool enabled = true);
+	Component(GameObject* container, bool enabled = true);
 	virtual ~Component();
 
 	virtual std::string getName() const = 0;

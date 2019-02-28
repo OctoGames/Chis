@@ -10,11 +10,12 @@
 class EntityComponentManager
 {
 public:
-	EntityComponentManager* Instance();
+	static EntityComponentManager* Instance();
 
 	void addComponent(Component* component)
 	{
 		components_.push_back(component);
+		containers_[component->gameObject()->getGameObjectID()].push_back(component);
 	}
 
 	void addGameObject(GameObject* game_object)
@@ -53,7 +54,8 @@ public:
 	}
 
 private:
-	EntityComponentManager();
+	EntityComponentManager() {}
+	~EntityComponentManager() {};
 
 	static EntityComponentManager* instance_;
 
