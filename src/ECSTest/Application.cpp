@@ -181,7 +181,7 @@ std::string Application::findConfig(std::string config, std::string configFilePa
 	return line;
 }
 
-//Read the string until find = sing. Then takes the whole right part and returns it
+//Read the string until find = sign. Then takes the whole right part and returns it
 std::string Application::readString(std::string s)
 {
 	int i = 0;
@@ -249,22 +249,6 @@ void Application::setUpResources()
 void Application::loadResources()
 {
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-}
-
-//Here we create a simple entity to see everything above works fine
-void Application::createEntity()
-{
-	Ogre::SceneNode* mouseNode = sManager->getRootSceneNode()->createChildSceneNode("mouse");
-
-	Ogre::Entity* mouseent = sManager->createEntity("mouse.mesh");
-	mouseent->setMaterialName("mouse_mat");
-
-	mouseNode->attachObject(mouseent);
-
-	mouseNode->setPosition(0, 20, 0);
-	mouseNode->setScale(30, 30, 30);
-	//mouseNode->yaw(Ogre::Degree(-90));
-	mouseNode->setVisible(true);
 }
 
 Application * Application::Instance()
