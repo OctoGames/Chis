@@ -1,6 +1,8 @@
 
 .vs/
 
+bin/*.lib
+
 *.dll
 *.exe
 *.log
@@ -15,4 +17,3 @@ obj/
 
 Dependencies/CMake/
 
-bin/EntityComponentSystem\.lib
