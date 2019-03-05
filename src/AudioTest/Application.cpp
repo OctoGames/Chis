@@ -325,7 +325,9 @@ void Application::soundInit()
 	result = system->init(128, FMOD_INIT_NORMAL, 0); // Initialize FMOD
 	ERRCHECK(result);
 
-	result = system->createSound("MusicaFondo.wav", FMOD_DEFAULT, 0, &sound1);
+	std::string p = "MusicaFondo.wav";
+	p = PATH_ + p;
+	result = system->createSound(p.c_str(), FMOD_DEFAULT, 0, &sound1);
 	result = system->playSound(sound1, 0, false, &channel);
 	result = channel->setVolume(10.7f);
 }

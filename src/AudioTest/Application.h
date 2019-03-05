@@ -93,6 +93,7 @@ private:
 	int winHeight_;
 
 	//Sound variables 
+	const char* PATH_ = "Assets/Sounds/";
 	FMOD_RESULT result;
 	FMOD::System *system = NULL;
 	Sound *sound1;
