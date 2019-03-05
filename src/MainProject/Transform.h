@@ -14,7 +14,7 @@ public:
 	inline void setScale(float x, float y, float z) { node_->setScale(x, y, z); }
 	//setVisible
 
-	void attachEntity(Ogre::Entity* entity) { node_->attachObject(entity); }
+	void attachEntity(Ogre::MovableObject* entity) { node_->attachObject(entity); }
 
 private:
 	static std::string name_;

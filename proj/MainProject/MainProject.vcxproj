@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\MainProject\Application.cpp" />
+    <ClCompile Include="..\..\src\MainProject\Camera.cpp" />
     <ClCompile Include="..\..\src\MainProject\ECSTestMain.cpp" />
+    <ClCompile Include="..\..\src\MainProject\Light.cpp" />
     <ClCompile Include="..\..\src\MainProject\MainCharacter.cpp" />
     <ClCompile Include="..\..\src\MainProject\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\MainProject\OgreSystem.cpp" />
@@ -28,6 +30,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\MainProject\Application.h" />
+    <ClInclude Include="..\..\src\MainProject\Camera.h" />
+    <ClInclude Include="..\..\src\MainProject\Light.h" />
     <ClInclude Include="..\..\src\MainProject\MainCharacter.h" />
     <ClInclude Include="..\..\src\MainProject\MeshRenderer.h" />
     <ClInclude Include="..\..\src\MainProject\OgreSystem.h" />

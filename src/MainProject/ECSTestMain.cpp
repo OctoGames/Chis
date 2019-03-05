@@ -5,6 +5,9 @@
 #include <string>
 #include <SDL.h>
 
+#include "Camera.h"
+#include "Light.h"
+
 //Garbage collector
 #include "CheckML.h"
 
@@ -27,8 +30,40 @@ int main(int argc, char* argv[])
 	// Define the Renderer component
 	MeshRenderer* mouseRenderer_ = new MeshRenderer(mouse, "mouse.mesh");
 	EntityComponentManager::Instance()->addComponent(mouseRenderer_);
-
+	
 	mouseRenderer_->setMaterialName("mouse_mat");
+
+
+	//------------------MAIN CAMERA------------------//
+
+	//Create main Camera
+	GameObject* cam = new GameObject("camera", "cam");
+	Transform* cameraTransform = new Transform(cam);
+	// Add the GO to the maps
+	EntityComponentManager::Instance()->addComponent(cameraTransform);
+	EntityComponentManager::Instance()->addGameObjectWithTag(cam, cam->getTag());
+
+	Camera* mainCamera = new Camera(cam, true);
+
+	EntityComponentManager::Instance()->addComponent(mainCamera);
+
+	cameraTransform->setPosition(0, 0, 200);
+
+	//----------------LIGHTS----------------------//
+	//Create main Camera
+	GameObject* mainLight = new GameObject("light", "mainLight");
+	Transform* mainLightTransform = new Transform(mainLight);
+
+	// Add the GO to the maps
+	EntityComponentManager::Instance()->addComponent(mainLightTransform);
+	EntityComponentManager::Instance()->addGameObjectWithTag(mainLight, mainLight->getTag());
+
+	Light* mainLight_ = new Light(mainLight, true);
+
+	EntityComponentManager::Instance()->addComponent(mainLight_);
+
+	mainLightTransform->setPosition(0, 0, 20);
+
 
 	while (true)
 	{

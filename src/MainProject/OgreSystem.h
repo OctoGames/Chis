@@ -28,6 +28,7 @@ public:
 
 	inline Ogre::Root* getRoot() { return mRoot; };
 	inline Ogre::SceneManager* getSceneManager() { return sManager; };
+	inline Ogre::RenderWindow* getWindow() { return mWindow; };
 
 private:
 	std::string appName_; //Application name
