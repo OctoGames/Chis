@@ -20,19 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\MainProject\Application.cpp" />
+    <ClCompile Include="..\..\src\MainProject\AudioSource.cpp" />
     <ClCompile Include="..\..\src\MainProject\Camera.cpp" />
-    <ClCompile Include="..\..\src\MainProject\ECSTestMain.cpp" />
+    <ClCompile Include="..\..\src\MainProject\Main.cpp" />
     <ClCompile Include="..\..\src\MainProject\Light.cpp" />
-    <ClCompile Include="..\..\src\MainProject\MainCharacter.cpp" />
     <ClCompile Include="..\..\src\MainProject\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\MainProject\OgreSystem.cpp" />
     <ClCompile Include="..\..\src\MainProject\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\MainProject\Application.h" />
+    <ClInclude Include="..\..\src\MainProject\AudioSource.h" />
     <ClInclude Include="..\..\src\MainProject\Camera.h" />
     <ClInclude Include="..\..\src\MainProject\Light.h" />
-    <ClInclude Include="..\..\src\MainProject\MainCharacter.h" />
     <ClInclude Include="..\..\src\MainProject\MeshRenderer.h" />
     <ClInclude Include="..\..\src\MainProject\OgreSystem.h" />
     <ClInclude Include="..\..\src\MainProject\Transform.h" />
@@ -94,8 +94,8 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src;$(SolutionDir)src\AudioSystem;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\FMOD\fsbank\lib;$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\FMOD\studio\lib;$(SolutionDir)bin;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -104,8 +104,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src;$(SolutionDir)src\AudioSystem;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\FMOD\fsbank\lib;$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\FMOD\studio\lib;$(SolutionDir)bin;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -123,7 +123,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;EntityComponentSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodL_vc.lib;AudioSystem_d.lib;EntityComponentSystem_d.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -158,7 +158,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain.lib;SDL2.lib;SDL2main.lib;EntityComponentSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AudioSystem.lib;fmod_vc.lib;EntityComponentSystem.lib;SDL2.lib;SDL2main.lib;OgreMain.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

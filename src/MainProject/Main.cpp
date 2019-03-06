@@ -1,12 +1,12 @@
+#include <string>
+
 #include "Application.h"
 #include "entitycomponentmanager.h"
 #include "Transform.h"
 #include "MeshRenderer.h"
-#include <string>
-#include <SDL.h>
-
 #include "Camera.h"
 #include "Light.h"
+#include "AudioSource.h"
 
 //Garbage collector
 #include "CheckML.h"
@@ -49,8 +49,12 @@ int main(int argc, char* argv[])
 
 	cameraTransform->setPosition(0, 0, 200);
 
-	//----------------LIGHTS----------------------//
-	//Create main Camera
+	AudioSource* bgMusic = new AudioSource(cam, "MouseMusic", "22-The Mouse's House.mp3");
+	EntityComponentManager::Instance()->addComponent(bgMusic);
+	bgMusic->play();
+
+	//------------------LIGHTS-----------------------//
+	//Create main Light
 	GameObject* mainLight = new GameObject("light", "mainLight");
 	Transform* mainLightTransform = new Transform(mainLight);
 
@@ -65,14 +69,12 @@ int main(int argc, char* argv[])
 	mainLightTransform->setPosition(0, 0, 20);
 
 
-	while (true)
+	while (Application::Instance()->handleInput().type != SDL_QUIT)
 	{
-		//If the application input is Close, we'll quit
-		if (Application::Instance()->handleInput().type == SDL_QUIT)
-		{
-			break;
-		}
+		EntityComponentManager::Instance()->tick();
+		AudioSystem::Instance()->update();
 		Application::Instance()->render();
+
 	}
 
 	SDL_Quit(); //Make sure we destroy SDL window

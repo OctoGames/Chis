@@ -20,18 +20,13 @@
 #include <SDL_video.h>
 #include <SDL_syswm.h>
 
-//FMOD includes
-#include <fmod.hpp>
-#include <fmod_errors.h>
-
-using namespace FMOD;
 #include <string>
 
 //Garbage collector
 #include "CheckML.h"
 
 //For test
-#include "MainCharacter.h"
+#include "AudioSystem.h"
 
 
 class Application
@@ -82,9 +77,6 @@ private:
 	//Ground node
 	Ogre::SceneNode* mGroundNode;
 
-	//Character node
-	MainCharacter* mainCharacter;
-
 
 
 	//Variables to control screen needs
@@ -94,10 +86,11 @@ private:
 
 	//Sound variables 
 	const char* PATH_ = "Assets/Sounds/";
-	FMOD_RESULT result;
-	FMOD::System *system = NULL;
-	Sound *sound1;
-	Channel *channel;
+	FMOD::Channel *channel;
+
+	//Initializing and error check - FMOD
+	void soundInit();
+	void ERRCHECK(FMOD_RESULT result);
 
 
 	//Methods to load and set resources 
@@ -106,11 +99,6 @@ private:
 
 	//This method and variable are just a test to see everything works fine
 	void createEntity();
-
-
-	//Initializing and error check - FMOD
-	void soundInit();
-	void ERRCHECK(FMOD_RESULT result);
 
 public:
 

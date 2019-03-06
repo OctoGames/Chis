@@ -3,6 +3,7 @@
 #include <iostream>
 
 //Ogre dependencies
+#include "Ogre.h"
 #include "OgreRoot.h"
 #include <OgreConfigFile.h>
 #include "OgreRenderWindow.h"

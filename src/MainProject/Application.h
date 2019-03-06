@@ -1,7 +1,6 @@
 #pragma once
 
 //Ogre includes
-#include "Ogre.h"
 #include "OgreSystem.h"
 
 //SDL includes

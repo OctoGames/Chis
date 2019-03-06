@@ -1,59 +1,75 @@
 #include "AudioSystem.h"
+
 AudioSystem* AudioSystem::instance_ = nullptr;
 
-void AudioSystem::ERRCHECK(FMOD_RESULT result) //Checks if there is any error
+AudioSystem::AudioSystem()
 {
-	if (result != FMOD_OK) {
-		std::cout << FMOD_ErrorString(result) << std::endl;
-		// printf("FMOD error %d - %s", result, FMOD_ErrorString(result));
-		exit(-1);
-	}
+	result_ = FMOD::System_Create(&system_);
+	ERRCHECK(result_);
+
+	result_ = system_->init(128, FMOD_INIT_NORMAL, 0);
+	ERRCHECK(result_);
 }
 
-void AudioSystem::init()
+AudioSystem* AudioSystem::Instance() 
 {
-	FMOD::System_Create;
-	result = FMOD::System_Create(&system);      // Create the main system object.
-	ERRCHECK(result);
-
-
-	result = system->init(128, FMOD_INIT_NORMAL, 0); // Initialize FMOD
-	ERRCHECK(result);
-}
-
-AudioSystem* AudioSystem::Instance() {
 	if (instance_ == nullptr) {
 		instance_ = new AudioSystem();
 	}
 	return instance_;
 }
 
-void AudioSystem::addSound(const std::string& audioId, const std::string& filename) {
-	std::string route = audioId;
-	route = PATH_ + route;
-	result = system->createSound(route.c_str(), FMOD_DEFAULT, 0, &sounds_[audioId]);
+void AudioSystem::ERRCHECK(FMOD_RESULT result)
+{
+	if (result != FMOD_OK) 
+	{
+		printf("FMOD error %d - %s", result, FMOD_ErrorString(result));
+	}
 }
 
-
-void AudioSystem::update() {
-	result = system->update();
+void AudioSystem::addSound(const std::string& audioId, const std::string& filename) 
+{
+	std::string filepath = PATH_ + filename;
+	result_ = system_->createSound(filepath.c_str(), FMOD_DEFAULT, 0, &sounds_[audioId]);
+	ERRCHECK(result_);
 }
 
-void AudioSystem::play(std::string audioId, FMOD::Channel* channel, float volume, float pitch) {
-	system->playSound(sounds_[audioId], 0, false, &channel);
-	channel->setVolume(volume);
-	channel->setPitch(pitch);
+void AudioSystem::update() 
+{
+	result_ = system_->update();
+	ERRCHECK(result_);
 }
-void AudioSystem::pause(FMOD::Channel* channel) {
+
+void AudioSystem::play(std::string audioId, FMOD::Channel* channel, float volume, float pitch) 
+{
+	result_ = system_->playSound(sounds_[audioId], 0, false, &channel);
+	ERRCHECK(result_);
+
+	result_ = channel->setVolume(volume);
+	ERRCHECK(result_);
+
+	result_ = channel->setPitch(pitch);
+	ERRCHECK(result_);
+}
+void AudioSystem::pause(FMOD::Channel* channel) 
+{
 	bool paused;
-	channel->getPaused(&paused);
-	channel->setPaused(!paused);
+
+	result_ = channel->getPaused(&paused);
+	ERRCHECK(result_);
+
+	result_ = channel->setPaused(!paused);
+	ERRCHECK(result_);
 }
 
-void AudioSystem::stop(FMOD::Channel* channel) {
-	channel->stop();
+void AudioSystem::stop(FMOD::Channel* channel) 
+{
+	result_ = channel->stop();
+	ERRCHECK(result_);
 }
 
-void AudioSystem::release(std::string audioId) {
-	result = sounds_[audioId]->release();	ERRCHECK(result);
+void AudioSystem::release(std::string audioId) 
+{
+	result_ = sounds_[audioId]->release();
+	ERRCHECK(result_);
 }

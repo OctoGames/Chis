@@ -73,8 +73,8 @@ Application::~Application()
 void Application::render()
 {
 	mRoot->renderOneFrame();
-	result = system->update();
-
+	//result = system->update();
+	AudioSystem::Instance()->update();
 }
 
 //Load all needed plugins and initialize the root
@@ -109,11 +109,10 @@ void Application::initCamera()
 	mainCamera->setFarClipDistance(10000);
 	mainCamera->setAutoAspectRatio(true);
 
-	mCamNode = mainCharacter->getMainCharacterNode()->createChildSceneNode("ncam");   //sManager->getRootSceneNode()->getChild("mainCharacter")->createChild("nCam");
-	//mCamNode = sManager->getRootSceneNode()->createChildSceneNode("nCam");
+	mCamNode = sManager->getRootSceneNode()->createChildSceneNode("nCam");
 	mCamNode->attachObject(mainCamera);
 
-	//mCamNode->setPosition(0, 0, 0);
+	mCamNode->setPosition(0, 0, 1000);
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	viewport = mWindow->addViewport(mainCamera);
@@ -263,8 +262,6 @@ void Application::loadResources()
 //Here we create a simple entity to see everything above works fine
 void Application::createEntity()
 {
-	mainCharacter = new MainCharacter(sManager);
-
 	//Create Ground
 	Ogre::MeshManager::getSingleton().createPlane("GroundPlane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), 10000, 10000, 100, 80, true, 1, 10.0, 10.0, (Ogre::Vector3::NEGATIVE_UNIT_Z));
@@ -317,19 +314,8 @@ void Application::ERRCHECK(FMOD_RESULT result) //Checks if there is any error
 }
 void Application::soundInit()
 {
-	FMOD::System_Create;
-	result = FMOD::System_Create(&system);      // Create the main system object.
-	ERRCHECK(result);
-
-
-	result = system->init(128, FMOD_INIT_NORMAL, 0); // Initialize FMOD
-	ERRCHECK(result);
-
-	std::string p = "MusicaFondo.wav";
-	p = PATH_ + p;
-	result = system->createSound(p.c_str(), FMOD_DEFAULT, 0, &sound1);
-	result = system->playSound(sound1, 0, false, &channel);
-	result = channel->setVolume(10.7f);
+	AudioSystem::Instance()->addSound("mouse", "22-The Mouse's House.mp3");
+	AudioSystem::Instance()->play("mouse", channel);
 }
 
 
@@ -344,25 +330,25 @@ SDL_Event Application::handleInput()
 		{
 			if (event.key.keysym.sym == SDLK_w)
 			{
-				mainCharacter->getMainCharacterNode()->translate(0, 0, -50, Ogre::Node::TS_LOCAL);
+			
 				std::cout << "Moving Forward" << std::endl;
 			}
 
 			else if (event.key.keysym.sym == SDLK_s)
 			{
-				mainCharacter->getMainCharacterNode()->translate(0, 0, 50, Ogre::Node::TS_LOCAL);
+			
 				std::cout << "Moving Backwards" << std::endl;
 			}
 
 			else if (event.key.keysym.sym == SDLK_a)
 			{
-				mainCharacter->getMainCharacterNode()->translate(-50, 0, 0, Ogre::Node::TS_LOCAL);
+			
 				std::cout << "Moving Left" << std::endl;
 			}
 
 			else if (event.key.keysym.sym == SDLK_d)
 			{
-				mainCharacter->getMainCharacterNode()->translate(50, 0, 0, Ogre::Node::TS_LOCAL);
+			
 				std::cout << "Moving Right" << std::endl;
 			}
 

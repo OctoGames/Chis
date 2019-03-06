@@ -1,38 +1,38 @@
 #ifndef _AUDIO_SYSTEM_H_
 #define _AUDIO_SYSTEM_H_
 
-#include <fmod.hpp>
-#include <fmod_errors.h>
+#include <stdio.h>
 #include <string>
-#include <iostream>
 #include <map>
 
-class AudioSystem {
-private:
-	const char* PATH_ = "Assets/Sounds/";
+#include <fmod.hpp>
+#include <fmod_errors.h>
 
-	FMOD_RESULT result;
-	FMOD::System *system = NULL;
-	
-	std::map<std::string, FMOD::Sound*> sounds_;
-	
-	static AudioSystem* instance_;
+class AudioSystem 
+{
+private:
+	AudioSystem();
 
 	void ERRCHECK(FMOD_RESULT result);
-	void init();
-	
-	AudioSystem();
-	~AudioSystem();
+
+	static AudioSystem* instance_;
+	const char* PATH_ = "Assets/Sounds/";
+	std::map<std::string, FMOD::Sound*> sounds_;
+
+	FMOD_RESULT result_;
+	FMOD::System* system_;
 
 public:
 	static AudioSystem* Instance();
+
 	void addSound(const std::string& audioId, const std::string& filename);
 	void update();
-	void play(std::string file, FMOD::Channel* channel, float volume, float pitch);
+
+	void play(std::string file, FMOD::Channel* channel, float volume = 1.0, float pitch = 1.0);
 	void pause(FMOD::Channel* channel);
 	void stop(FMOD::Channel* channel);
+
 	void release(std::string audioId);
-	
 };
 
 #endif 
