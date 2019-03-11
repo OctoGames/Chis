@@ -28,7 +28,8 @@ bool getAttribBool(rapidxml::xml_node<>* XMLNode, const Ogre::String &attrib, bo
     if(!XMLNode->first_attribute(attrib.c_str()))
         return defaultValue;
 
-    if(Ogre::String(XMLNode->first_attribute(attrib.c_str())->value()) == "true")
+    if(Ogre::String(XMLNode->first_attribute(attrib.c_str())->value()) == "true" ||
+		Ogre::String(XMLNode->first_attribute(attrib.c_str())->value()) == "True")
         return true;
 
     return false;
@@ -191,14 +192,14 @@ void DotSceneLoader::processScene(rapidxml::xml_node<>* XMLRoot)
     pElement = XMLRoot->first_node("nodes");
     if(pElement)
         processNodes(pElement);
-
+	
     // Process externals (?)
     pElement = XMLRoot->first_node("externals");
     if(pElement)
         processExternals(pElement);
 
     // Process userDataReference (?)
-    pElement = XMLRoot->first_node("userData");
+    pElement = XMLRoot->first_node("user_data");
     if(pElement)
         processUserData(pElement, mAttachNode->getUserObjectBindings());
 
@@ -258,6 +259,20 @@ void DotSceneLoader::processNodes(rapidxml::xml_node<>* XMLNode)
 void DotSceneLoader::processExternals(rapidxml::xml_node<>* XMLNode)
 {
     //! @todo Implement this
+	/*
+	Nombre del material igual que el nombre del nodo/entidad a el que va adjunto
+	(buscar cuando hace el parse del nodo porque ahi hace el parse del material)
+	*/
+
+	/*Ogre::String material = getAttrib(XMLNode, "material");
+
+	if(!material.empty())*/
+		/*
+		coger solo nombrematerial.material
+		quedarse con nombrematerial
+		nombrematerial = nombreEntity
+		*/
+
 }
 
 void DotSceneLoader::processEnvironment(rapidxml::xml_node<>* XMLNode)
@@ -303,6 +318,12 @@ void DotSceneLoader::processEnvironment(rapidxml::xml_node<>* XMLNode)
     pElement = XMLNode->first_node("colourBackground");
     if(pElement)
         mBackgroundColour = parseColour(pElement);
+
+	// Process colourDiffuse (?)
+	Ogre::ColourValue colourDiffuse = Ogre::ColourValue::White;
+	pElement = XMLNode->first_node("colourDiffuse");
+	if (pElement)
+		colourDiffuse = parseColour(pElement);
 }
 
 void DotSceneLoader::processTerrain(rapidxml::xml_node<>* XMLNode)
@@ -437,7 +458,7 @@ void DotSceneLoader::processLight(rapidxml::xml_node<>* XMLNode, Ogre::SceneNode
             processLightAttenuation(pElement, pLight);
     }
     // Process userDataReference (?)
-    pElement = XMLNode->first_node("userData");
+    pElement = XMLNode->first_node("user_data");
     if(pElement)
         processUserData(pElement, pLight->getUserObjectBindings());
 }
@@ -512,7 +533,7 @@ void DotSceneLoader::processCamera(rapidxml::xml_node<>* XMLNode, Ogre::SceneNod
         ;//!< @todo Implement the camera track target
 
     // Process userDataReference (?)
-    pElement = XMLNode->first_node("userData");
+    pElement = XMLNode->first_node("user_data");
     if(pElement)
         processUserData(pElement, static_cast<Ogre::MovableObject*>(pCamera)->getUserObjectBindings());
 }
@@ -638,7 +659,7 @@ void DotSceneLoader::processNode(rapidxml::xml_node<>* XMLNode, Ogre::SceneNode 
     }
 
     // Process userDataReference (?)
-    pElement = XMLNode->first_node("userData");
+    pElement = XMLNode->first_node("user_data");
     if(pElement)
         processUserData(pElement, pNode->getUserObjectBindings());
 }
@@ -727,12 +748,12 @@ void DotSceneLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::SceneNod
     Ogre::String name = getAttrib(XMLNode, "name");
     Ogre::String id = getAttrib(XMLNode, "id");
     Ogre::String meshFile = getAttrib(XMLNode, "meshFile");
-    Ogre::String material = getAttrib(XMLNode, "material");
-    bool isStatic = getAttribBool(XMLNode, "static", false);;
-    bool castShadows = getAttribBool(XMLNode, "castShadows", true);
+    //Ogre::String material = getAttrib(XMLNode, "material");
+	Ogre::String physics_type = getAttrib(XMLNode, "physics_type");
+    bool castShadows = getAttribBool(XMLNode, "ghost", true);
 
     // TEMP: Maintain a list of static and dynamic objects
-    if(isStatic)
+    if(physics_type == "STATIC")
         staticObjects.push_back(name);
     else
         dynamicObjects.push_back(name);
@@ -747,9 +768,10 @@ void DotSceneLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::SceneNod
         pEntity = mSceneMgr->createEntity(name, meshFile);
         pEntity->setCastShadows(castShadows);
         pParent->attachObject(pEntity);
-        
-        if(!material.empty())
-            pEntity->setMaterialName(material);
+		
+
+        /*if(!material.empty())
+            pEntity->setMaterialName(material);*/
     }
     catch(Ogre::Exception &/*e*/)
     {
@@ -757,7 +779,7 @@ void DotSceneLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::SceneNod
     }
 
     // Process userDataReference (?)
-    pElement = XMLNode->first_node("userData");
+    pElement = XMLNode->first_node("user_data");
     if(pElement)
         processUserData(pElement, pEntity->getUserObjectBindings());
 
@@ -951,12 +973,12 @@ void DotSceneLoader::processLightAttenuation(rapidxml::xml_node<>* XMLNode, Ogre
 void DotSceneLoader::processUserData(rapidxml::xml_node<>* XMLNode, Ogre::UserObjectBindings& userData)
 {
     // Process node (*)
-    rapidxml::xml_node<>* pElement = XMLNode->first_node("property");
+    rapidxml::xml_node<>* pElement = XMLNode;
     while(pElement)
     {
         Ogre::String name = getAttrib(pElement, "name");
         Ogre::String type = getAttrib(pElement, "type");
-        Ogre::String data = getAttrib(pElement, "data");
+        Ogre::String data = getAttrib(pElement, "value");
 
         Ogre::Any value;
         if(type == "bool")
@@ -964,12 +986,12 @@ void DotSceneLoader::processUserData(rapidxml::xml_node<>* XMLNode, Ogre::UserOb
         else if(type == "float")
             value = Ogre::StringConverter::parseReal(data);
         else if(type == "int")
-            value = Ogre::StringConverter::parseInt(data);
+            value = Ogre::StringConverter::parseBool(data);
         else
             value = data;
 
         userData.setUserAny(name, value);
-        pElement = pElement->next_sibling("property");
+        pElement = pElement->next_sibling("user_data");
     }
 }
 
