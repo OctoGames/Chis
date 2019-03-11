@@ -70,6 +70,11 @@ void Application::render()
 	mRoot->renderOneFrame();
 }
 
+void Application::update()
+{
+	physic->frameStarted();
+}
+
 //Load all needed plugins and initialize the root
 void Application::loadPluggins()
 {
@@ -355,15 +360,12 @@ void Application::createEntity()
 	body->setRestitution(1);
 	body->setUserPointer(mouseNode);
 
-	physic->getDynamicsWorld()->addRigidBody(body);
-	//physic->trackRigidBodyWithName(body, mouse);
+	physic->addToPhysicWorld(body);
+	physic->trackRigidBodyWithName(body, "mouse");
 
 }
 
-void update()
-{
-	physic->frameStarted();
-}
+
 
 
 //This method will handle the input from SDL and return the event taken
@@ -403,6 +405,11 @@ SDL_Event Application::handleInput()
 			{
 				event.type = SDL_QUIT;
 				
+			}
+
+			else if (event.key.keysym.sym == SDLK_SPACE)
+			{
+				physic->getRigidBodyByName("mouse")->applyCentralImpulse(btVector3(0, 50, 0));
 			}
 		}
 	}

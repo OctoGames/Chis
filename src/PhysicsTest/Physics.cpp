@@ -1,6 +1,8 @@
 #include "Physics.h"
+#include <iostream>
 
-Physics::Physics()
+
+Physics::Physics() : numberOfRigidBodies_(0)
 {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collisionConfiguration);
@@ -16,32 +18,38 @@ Physics::~Physics()
 }
 
 
-bool Physics::frameStarted(const Ogre::FrameEvent &evt)
+bool Physics::frameStarted()
 {
-	if (this->physicsEngine != NULL)
+
+	dynamicsWorld->stepSimulation(1.0f / 60.0f); //suppose you have 60 frames per second
+
+	for (int i = 0; i < numberOfRigidBodies_; i++)
 	{
-		physicsEngine->getDynamicsWorld()->stepSimulation(1.0f / 60.0f); //suppose you have 60 frames per second
+		btCollisionObject* obj = dynamicsWorld->getCollisionObjectArray()[i];
+		btRigidBody* body = btRigidBody::upcast(obj);
 
-		for (int i = 0; i < this->physicsEngine->getCollisionObjectCount(); i++)
+		if (body && body->getMotionState())
 		{
-			btCollisionObject* obj = this->physicsEngine->getDynamicsWorld()->getCollisionObjectArray()[i];
-			btRigidBody* body = btRigidBody::upcast(obj);
+			btTransform trans;
+			body->getMotionState()->getWorldTransform(trans);
 
-			if (body && body->getMotionState())
+			void *userPointer = body->getUserPointer();
+			if (userPointer)
 			{
-				btTransform trans;
-				body->getMotionState()->getWorldTransform(trans);
+				btQuaternion orientation = trans.getRotation();
+				Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(userPointer);
+				sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
+				sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
 
-				void *userPointer = body->getUserPointer();
-				if (userPointer)
-				{
-					btQuaternion orientation = trans.getRotation();
-					Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(userPointer);
-					sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
-					sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
-				}
+				std::cout << sceneNode->getPosition() << std::endl;
 			}
 		}
 	}
+
 	return true;
+}
+
+btRigidBody* Physics::getRigidBodyByName(std::string name)
+{
+	return physicsAccessors.find(name)->second;	
 }
