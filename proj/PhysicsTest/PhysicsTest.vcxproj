@@ -19,18 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\AudioTest\Application.cpp" />
-    <ClCompile Include="..\..\src\AudioTest\windowTestMain.cpp" />
+    <ClCompile Include="..\..\src\PhysicsTest\Application.cpp" />
+    <ClCompile Include="..\..\src\PhysicsTest\MainCharacter.cpp" />
+    <ClCompile Include="..\..\src\PhysicsTest\Physics.cpp" />
+    <ClCompile Include="..\..\src\PhysicsTest\windowTestMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\AudioTest\Application.h" />
+    <ClInclude Include="..\..\src\PhysicsTest\Application.h" />
+    <ClInclude Include="..\..\src\PhysicsTest\MainCharacter.h" />
+    <ClInclude Include="..\..\src\PhysicsTest\Physics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{466530FF-B024-4283-B248-BE763D0CE844}</ProjectGuid>
+    <ProjectGuid>{CD27E7E3-2B9D-472A-8200-4A0493624654}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>AudioTest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <RootNamespace>TestOgre</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -77,47 +81,27 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)src\AudioSystem;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\FMOD\fsbank\lib;$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\FMOD\studio\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>$(ProjectName)_d</TargetName>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)src\AudioSystem;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\FMOD\fsbank\lib;$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\FMOD\studio\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\</OutDir>
+    <IntDir>$(SolutionDir)obj\</IntDir>
+    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>AudioSystem.lib;SDL2.lib;SDL2main.lib;OgreMain.lib;fmod_vc.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -127,11 +111,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>AudioSystem_d.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;fmodL_vc.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;LinearMath_Debug.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -147,6 +132,27 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>OgreMain.lib;SDL2.lib;LinearMath.lib;BulletDynamics.lib;BulletCollision.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

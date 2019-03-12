@@ -83,10 +83,16 @@ void MapTestApp::setupScene(void)
 	{
 		std::cout << var << '\n';
 	}
-	map.parseDotScene("Assets/Scenes/test.scene", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mMapNode);
+	map.parseDotScene("Assets/Scenes/Test_prop.scene", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, mMapNode);
+
+	Ogre::SceneNode* ns = mSceneManager->getSceneNode("Cube");
+	Ogre::UserObjectBindings settings =  ns->getUserObjectBindings();
+	
+	float prop = Ogre::any_cast<float>(settings.getUserAny("prop"));
+	bool auxi = Ogre::any_cast<bool>(settings.getUserAny("Auxiliar"));
 	// CAMERA------------------------------------------------------------------
 
-	/*Ogre::Camera* cam = mSceneManager->createCamera("MainCamera");
+	Ogre::Camera* cam = mSceneManager->createCamera("MainCamera");
 	cam->setNearClipDistance(0.01);
 	cam->setFarClipDistance(10000);
 	cam->setAutoAspectRatio(true);
@@ -102,36 +108,37 @@ void MapTestApp::setupScene(void)
 
 	mCamManager = new OgreBites::CameraMan(mCamNode);
 	mCamManager->setStyle(OgreBites::CS_FREELOOK);
-	addInputListener(mCamManager);*/
+	addInputListener(mCamManager);
 
 	// CAMERA2------------------------------------------------------------------
 
-	Ogre::Camera* cam = mSceneManager->getCamera("Camera");
-	/*cam->setNearClipDistance(0.01);
-	cam->setFarClipDistance(10000);
-	cam->setAutoAspectRatio(true);*/
+	//Ogre::Camera* cam = mSceneManager->getCamera("Camera");
+	//*cam->setNearClipDistance(0.01);
+	//cam->setFarClipDistance(10000);
+	//cam->setAutoAspectRatio(true);*/
 
-	mCamNode = mSceneManager->getSceneNode("Camera");
+	//mCamNode = mSceneManager->getSceneNode("Camera");
 
-	Ogre::Viewport* vp = getRenderWindow()->addViewport(cam);
-	vp->setBackgroundColour(Ogre::ColourValue(0.51, 0.41, 0.21));
+	//Ogre::Viewport* vp = getRenderWindow()->addViewport(cam);
+	//vp->setBackgroundColour(Ogre::ColourValue(0.51, 0.41, 0.21));
 
-	mCamManager = new OgreBites::CameraMan(mCamNode);
-	mCamManager->setStyle(OgreBites::CS_FREELOOK);
-	addInputListener(mCamManager);
+	//mCamManager = new OgreBites::CameraMan(mCamNode);
+	//mCamManager->setStyle(OgreBites::CS_FREELOOK);
+	//addInputListener(mCamManager);
 
 
 	//// LIGHTS------------------------------------------------------------------
 
-	Ogre::Light* light = mSceneManager->createLight("Light");
+	/*Ogre::Light* light = mSceneManager->createLight("Light");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
 	light->setDiffuseColour(1, 1, 1);
 
-	/*Ogre::Light* light2 = mSceneManager->createLight("Light2");
+	Ogre::Light* light2 = mSceneManager->createLight("Light2");
 	light2->setType(Ogre::Light::LT_DIRECTIONAL);
 	light2->setDiffuseColour(1, 1, 1);
 
 	mLightNode = mCamNode->createChildSceneNode("nLight");
+	mLightNode->setPosition(Ogre::Vector3(0, 20, 0));
 	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
 	mLightNode->attachObject(light);
 
@@ -143,12 +150,12 @@ void MapTestApp::setupScene(void)
 
 	// ENTITIES----------------------------------------------------------------
 
-	/*Ogre::MeshManager::getSingleton().createPlane("GroundPlane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+	Ogre::MeshManager::getSingleton().createPlane("GroundPlane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), 10000, 10000, 100, 80, true, 1, 10.0, 10.0, (Ogre::Vector3::NEGATIVE_UNIT_Z));
 	Ogre::Entity* ground_ent = mSceneManager->createEntity("GroundPlane");
 	ground_ent->setMaterialName("ground_mat");
 	mGroundNode = mSceneManager->getRootSceneNode()->createChildSceneNode("nGround");
-	mGroundNode->attachObject(ground_ent);*/
+	mGroundNode->attachObject(ground_ent);
 
 	/*Ogre::Entity* mouse_ent = mSceneManager->createEntity("mouse.mesh");
 	mouse_ent->setMaterialName("mouse_mat");
@@ -157,13 +164,13 @@ void MapTestApp::setupScene(void)
 	mMouseNode->setScale(40, 40, 40);
 	mMouseNode->attachObject(mouse_ent);*/
 
-	/*Ogre::Entity* gun_ent = mSceneManager->createEntity("gun.mesh");
+	Ogre::Entity* gun_ent = mSceneManager->createEntity("gun.mesh");
 	gun_ent->setMaterialName("gun_mat");
-	mGunNode = mSceneManager->getSceneNode("Camera")->createChildSceneNode("nGun");
+	mGunNode = mSceneManager->getSceneNode("nMainCamera")->createChildSceneNode("nGun");
 	mGunNode->rotate(Ogre::Vector3(0, 1, 0), Ogre::Radian(Ogre::Degree(180.0f)));
 	mGunNode->setPosition(Ogre::Vector3(30, -50, -90));
-	mGunNode->attachObject(gun_ent);*/
+	mGunNode->attachObject(gun_ent);
 
-	/*mSceneManager->setSkyDome(true, "skyPlane");
-	mSceneManager->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50), "skyPlane", 1, 1, true, 1.0, 100, 100);*/
+	mSceneManager->setSkyDome(true, "skyPlane");
+	mSceneManager->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50), "skyPlane", 1, 1, true, 1.0, 100, 100);
 }
