@@ -38,8 +38,8 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 	mWindow->getCustomAttribute("WINDOW", &hWnd);
 
 	//Create a SDL window based on thos attributes to detect input
-	SDL_CreateWindowFrom((void*)hWnd);
-	
+	SDL_Window* window = SDL_CreateWindowFrom((void*)hWnd);
+
 	//After we create the SDL window, we set the Ogre window mode to fullscreen if required to solve blackscreen bug
 	if (fullScreen_)
 		mWindow->setFullscreen(true, winWidth_, winHeight_);
@@ -50,6 +50,13 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 
 	//Init Lights
 	initLights();
+
+	// Init mouse position
+	// SDL_ShowCursor(SDL_DISABLE);
+	prevX_ = SDL_GetWindowSurface(window)->w / 2;
+	prevY_ = SDL_GetWindowSurface(window)->h / 2;
+	SDL_WarpMouseInWindow(window, prevX_, prevY_);
+
 }
 
 Application::~Application()
@@ -142,7 +149,7 @@ void Application::readDataFromFile()
 
 	if (fullScreen == "TRUE")
 		fullScreen_ = true;
-	
+
 	//Read data config to screen width
 	line = findConfig("WIDTH", configFilePath);
 	std::string auxString = readString(line);
@@ -210,7 +217,7 @@ void Application::setUpResources()
 	Ogre::ConfigFile cf;
 
 	if (Ogre::FileSystemLayer::fileExists(resourcesPath))
-	{	
+	{
 		cf.load(resourcesPath);
 	}
 
@@ -335,8 +342,22 @@ SDL_Event Application::handleInput()
 			else if (event.key.keysym.sym == SDLK_ESCAPE)
 			{
 				event.type = SDL_QUIT;
-				
+
 			}
+		}
+		else if (event.type == SDL_MOUSEMOTION)
+		{
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+
+			if (x < prevX_)
+				mCamNode->yaw(Ogre::Degree((prevX_ + x) * 1 / 200));
+			else
+				mCamNode->yaw(Ogre::Degree((prevX_ + x) * -1 / 200));
+			// mCamNode->pitch(Ogre::Degree((y - prevY_) * 1 / 200));
+
+			prevX_ = x;
+			prevY_ = y;
 		}
 	}
 

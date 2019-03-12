@@ -84,6 +84,10 @@ private:
 	int winWidth_;
 	int winHeight_;
 
+	// Mouse variables
+	int prevX_;
+	int prevY_;
+
 	//Methods to load and set resources 
 	void setUpResources();
 	void loadResources();
