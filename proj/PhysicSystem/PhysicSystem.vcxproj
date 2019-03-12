@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\PhysicSystem\MeshStrider.cpp" />
     <ClCompile Include="..\..\src\PhysicSystem\Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\PhysicSystem\MeshStrider.h" />
     <ClInclude Include="..\..\src\PhysicSystem\Physics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -29,7 +31,7 @@
     <ProjectGuid>{F49AB9D2-CE9A-4CBA-9D91-E9B187E46155}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>AudioSystem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,8 +83,8 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src;$(SolutionDir)Dependencies\bullet3-2.88\src\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)bin\;$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,8 +93,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)bin\;$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

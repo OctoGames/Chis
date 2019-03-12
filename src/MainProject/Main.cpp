@@ -69,13 +69,14 @@ int main(int argc, char* argv[])
 
 	mainLightTransform->setPosition(0, 0, 20);
 
+	//Physics::Instance()->createRigidBody(btVector3(0,0,0), 1, "mouse.mesh");
 
 	while (Application::Instance()->handleInput().type != SDL_QUIT)
 	{
 		EntityComponentManager::Instance()->tick();
 		AudioSystem::Instance()->update();
 		Application::Instance()->render();
-
+		Physics::Instance()->update();
 	}
 
 	SDL_Quit(); //Make sure we destroy SDL window
