@@ -7,14 +7,15 @@
 #include "Camera.h"
 #include "Light.h"
 #include "AudioSource.h"
+#include "Physics.h"
 
 //Garbage collector
-#include "CheckML.h"
+//#include "CheckML.h"
 
 int main(int argc, char* argv[])
 {
 	//Garbage collector
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	// Define the GO
 	GameObject* mouse = new GameObject("mouse", "enemy");

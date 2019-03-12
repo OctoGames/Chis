@@ -7,7 +7,7 @@
 #include <SDL.h>
 
 //Garbage collector
-#include "CheckML.h"
+//#include "CheckML.h"
 
 
 class Application
