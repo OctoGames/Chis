@@ -1,10 +1,12 @@
 #include "component.h"
+#include "entitycomponentmanager.h"
 
 Component::Component(GameObject* container, bool enabled) :
 	first_enabled_(true),
 	container_(container)
 {
 	setEnabled(enabled);
+	EntityComponentManager::Instance()->addComponent(this);
 }
 
 Component::~Component()

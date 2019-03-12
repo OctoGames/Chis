@@ -5,7 +5,7 @@
 class Transform : public Component
 {
 public:
-	Transform(GameObject* container, bool enabled = true);
+	Transform(GameObject* container, const std::string& parent = "", bool enabled = true);
 	virtual ~Transform();
 
 	virtual std::string getName() const { return name_; }
