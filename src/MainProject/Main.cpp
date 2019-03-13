@@ -34,7 +34,6 @@ int main(int argc, char* argv[])
 	
 	mouseRenderer_->setMaterialName("mouse_mat");
 
-
 	//------------------MAIN CAMERA------------------//
 
 	//Create main Camera
@@ -69,7 +68,7 @@ int main(int argc, char* argv[])
 
 	mainLightTransform->setPosition(0, 0, 20);
 
-	//Physics::Instance()->createRigidBody(btVector3(0,0,0), 1, "mouse.mesh");
+	Physics::Instance()->createRigidBody(mouseTransform_->getNode(), 1, "mouseRB");
 
 	while (Application::Instance()->handleInput().type != SDL_QUIT)
 	{

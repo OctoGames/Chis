@@ -64,30 +64,32 @@ btRigidBody* Physics::getRigidBodyByName(std::string name)
 	return physicsAccessors.find(name)->second;
 }
 
-void Physics::createRigidBody(btVector3 position, double mass, std::string meshName)
+void Physics::createRigidBody(Ogre::SceneNode * node, double mass, std::string name)
 {
 	btTransform Transform;
+	btVector3 v;
+	v.setX(node->getPosition().x);
+	v.setY(node->getPosition().y);
+	v.setZ(node->getPosition().z);
+
 	Transform.setIdentity();
-	Transform.setOrigin(position);
+	Transform.setOrigin(v);
 	Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
 
-	btScalar Mass(mass); //the mass is 0, because the ground is immovable (static)
+	btScalar Mass(mass); 
 	btVector3 localInertia(0, 0, 0);
 
-
-	Ogre::MeshPtr MeshPtr = Ogre::Singleton<Ogre::MeshManager>::getSingletonPtr()->getByName(meshName);
-	MeshStrider* Strider = new MeshStrider(MeshPtr.get());
-
-	btCollisionShape* Shape = new btBvhTriangleMeshShape(Strider, true, true);
+	btCollisionShape* Shape = new btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
 
 	btDefaultMotionState *MotionState = new btDefaultMotionState(Transform);
 
 	Shape->calculateLocalInertia(Mass, localInertia);
 
 	btRigidBody::btRigidBodyConstructionInfo RBInfo(Mass, MotionState, Shape, localInertia);
+
 	btRigidBody *Body = new btRigidBody(RBInfo);
 
-	//Body->setUserPointer(mouseNode);
+	Body->setUserPointer(node);
 
 	//add the body to the dynamics world
 
@@ -96,5 +98,5 @@ void Physics::createRigidBody(btVector3 position, double mass, std::string meshN
 
 	dynamicsWorld->addRigidBody(Body);
 
-	trackRigidBodyWithName(Body, meshName);
+	trackRigidBodyWithName(Body, name);
 }

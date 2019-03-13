@@ -5,7 +5,7 @@
 
 #include <btBulletDynamicsCommon.h>
 
-#include "MeshStrider.h"
+#include "Transform.h"
 
 class Physics {
 
@@ -20,7 +20,7 @@ public:
 
 	bool update();
 
-	void createRigidBody(btVector3 position, double mass, std::string meshName);
+	void createRigidBody(Ogre::SceneNode * node, double mass, std::string name);
 
 	btRigidBody* getRigidBodyByName(std::string name);
 

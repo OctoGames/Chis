@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\PhysicsTest\Application.cpp" />
     <ClCompile Include="..\..\src\PhysicsTest\MainCharacter.cpp" />
+    <ClCompile Include="..\..\src\PhysicsTest\MeshStrider.cpp" />
     <ClCompile Include="..\..\src\PhysicsTest\Physics.cpp" />
     <ClCompile Include="..\..\src\PhysicsTest\windowTestMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\PhysicsTest\Application.h" />
     <ClInclude Include="..\..\src\PhysicsTest\MainCharacter.h" />
+    <ClInclude Include="..\..\src\PhysicsTest\MeshStrider.h" />
     <ClInclude Include="..\..\src\PhysicsTest\Physics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

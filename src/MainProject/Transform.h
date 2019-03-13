@@ -16,6 +16,8 @@ public:
 
 	void attachEntity(Ogre::MovableObject* entity) { node_->attachObject(entity); }
 
+	inline Ogre::SceneNode* getNode() { return node_; }
+
 private:
 	static std::string name_;
 	Ogre::SceneNode* node_;
