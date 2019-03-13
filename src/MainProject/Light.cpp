@@ -19,7 +19,7 @@ Light::~Light()
 void Light::initLight()
 {
 	// without light we would just get a black screen 
-	light_ = Application::Instance()->getSceneManager()->createLight("mainLight");
+	light_ = OgreSystem::Instance()->getSceneManager()->createLight("mainLight");
 	light_->setType(Ogre::Light::LT_DIRECTIONAL);
 	light_->setDiffuseColour(0.75, 0.75, 0.75);
 }

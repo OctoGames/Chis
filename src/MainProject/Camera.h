@@ -1,8 +1,7 @@
 #pragma once
-#include "Application.h"
-#include "component.h"
 
-#include <OgreCamera.h>
+#include "component.h"
+#include "OgreSystem.h"
 
 class Camera : public Component
 {

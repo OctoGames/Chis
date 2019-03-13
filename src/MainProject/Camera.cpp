@@ -19,12 +19,12 @@ Camera::~Camera()
 void Camera::initCamera()
 {
 	//Camera
-	mainCamera = Application::Instance()->getSceneManager()->createCamera("mainCamera");
+	mainCamera = OgreSystem::Instance()->getSceneManager()->createCamera("mainCamera");
 	mainCamera->setNearClipDistance(1);
 	mainCamera->setFarClipDistance(10000);
 	mainCamera->setAutoAspectRatio(true);
 
 	//Viewport
-	viewport = Application::Instance()->getWindow()->addViewport(mainCamera);
+	viewport = OgreSystem::Instance()->getWindow()->addViewport(mainCamera);
 	viewport->setBackgroundColour(Ogre::ColourValue(0.0, 0.5, 0.5));
 }
