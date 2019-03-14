@@ -15,7 +15,7 @@ Camera::Camera(GameObject* container, bool enabled) :
 
 	//Viewport
 	viewport_ = OgreSystem::Instance()->getWindow()->addViewport(camera_);
-	viewport_->setBackgroundColour(Ogre::ColourValue(0.0, 0.5, 0.5));
+	viewport_->setBackgroundColour(Ogre::ColourValue(0.7, 0.6, 0.0));
 
 	static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->attachEntity(camera_);
 }

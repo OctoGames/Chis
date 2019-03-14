@@ -89,14 +89,14 @@ void Physics::debugMode()
 
 void Physics::createRigidBody(Ogre::SceneNode * node, double mass, btVector3 scale, std::string name)
 {
-	btTransform Transform;
+	btTransform transform;
 	btVector3 v;
 	v.setX(node->getPosition().x);
 	v.setY(node->getPosition().y);
 	v.setZ(node->getPosition().z);
 
-	Transform.setIdentity();
-	Transform.setOrigin(v);
+	transform.setIdentity();
+	transform.setOrigin(v);
 	//Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
 
 	btScalar Mass(mass); 
@@ -104,7 +104,7 @@ void Physics::createRigidBody(Ogre::SceneNode * node, double mass, btVector3 sca
 
 	btCollisionShape* Shape = new btBoxShape(scale);
 
-	btDefaultMotionState *MotionState = new btDefaultMotionState(Transform);
+	btDefaultMotionState *MotionState = new btDefaultMotionState(transform);
 
 	Shape->calculateLocalInertia(Mass, localInertia);
 

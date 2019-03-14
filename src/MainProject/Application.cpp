@@ -30,7 +30,7 @@ void Application::run()
 
 void Application::initSystems()
 {
-	OgreSystem::Instance()->init("CHIS");
+	OgreSystem::Instance()->init();
 }
 
 void Application::initEntities()

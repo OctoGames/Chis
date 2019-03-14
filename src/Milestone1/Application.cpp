@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "AudioSource.h"
+#include "Physics.h"
 
 Application::Application() :
 	running_(true)
@@ -23,6 +24,7 @@ Application::~Application()
 void Application::initSystems()
 {
 	OgreSystem::Instance()->init();
+	Physics::Instance()->setDebugMode(true);
 }
 
 void Application::closeSystems()
@@ -48,14 +50,14 @@ void Application::initDemo()
 	bgMusic->play();
 
 	//------------------ACTION------------------//
+	btVector3 mouseScale(60, 30, 30);
 	GameObject* mouse = new GameObject("mouse", "enemy");
 	Transform* mouseTransform_ = new Transform(mouse);
 	mouseTransform_->setPosition(0.0, 20.0, 0.0);
 	mouseTransform_->setScale(30.0, 30.0, 30.0);
 	MeshRenderer* mouseRenderer_ = new MeshRenderer(mouse, "mouse.mesh");
 	mouseRenderer_->setMaterialName("mouse_mat");
-
-	//Physics::Instance()->createRigidBody(mouseTransform_->getNode(), 1, "mouseRB");
+	Physics::Instance()->createRigidBody(mouseTransform_->getNode(), 1, mouseScale, "mouseRB");
 }
 
 void Application::run()
@@ -84,13 +86,19 @@ void Application::handleInput()
 			{
 				running_ = false;
 			}
+			else if (event.key.keysym.sym == SDLK_p)
+			{
+				Physics::Instance()->toggleDebugMode();
+			}
 		}
 	}
 }
 
 void Application::update()
 {
-
+	Physics::Instance()->update();
+	EntityComponentManager::Instance()->update();
+	AudioSystem::Instance()->update();
 }
 
 void Application::render()

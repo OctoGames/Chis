@@ -40,7 +40,7 @@
     <ProjectGuid>{7F94F34B-902B-4BB6-935C-90F5C4A94D6E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Milestone1</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -92,8 +92,8 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\AudioSystem;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\Debug;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)src\PhysicSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\AudioSystem;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)bin;$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\Debug;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -102,8 +102,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\AudioSystem;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\Release;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)src\PhysicSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\AudioSystem;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)bin;$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\Release;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -121,7 +121,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>AudioSystem_d.lib;RenderSystem_d.lib;EntityComponentSystem_d.lib;fmodL_vc.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>RenderSystem_d.lib;fmodL_vc.lib;PhysicSystem_d.lib;AudioSystem_d.lib;EntityComponentSystem_d.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;LinearMath_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>AudioSystem.lib;RenderSystem.lib;EntityComponentSystem.lib;fmod_vc.lib;SDL2.lib;SDL2main.lib;OgreMain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>RenderSystem.lib;AudioSystem.lib;PhysicSystem.lib;fmod_vc.lib;EntityComponentSystem.lib;SDL2.lib;SDL2main.lib;OgreMain.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

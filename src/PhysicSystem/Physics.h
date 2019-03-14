@@ -2,10 +2,9 @@
 #include <map>
 
 #include <Ogre.h>
+//#include "Transform.h"
 
 #include <btBulletDynamicsCommon.h>
-
-#include "Transform.h"
 
 #include "debugDrawer.h"
 
