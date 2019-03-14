@@ -20,15 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\PhysicsTest\Application.cpp" />
+    <ClCompile Include="..\..\src\PhysicsTest\debugDrawer.cpp" />
     <ClCompile Include="..\..\src\PhysicsTest\MainCharacter.cpp" />
-    <ClCompile Include="..\..\src\PhysicsTest\MeshStrider.cpp" />
     <ClCompile Include="..\..\src\PhysicsTest\Physics.cpp" />
     <ClCompile Include="..\..\src\PhysicsTest\windowTestMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\PhysicsTest\Application.h" />
+    <ClInclude Include="..\..\src\PhysicsTest\debugDrawer.h" />
     <ClInclude Include="..\..\src\PhysicsTest\MainCharacter.h" />
-    <ClInclude Include="..\..\src\PhysicsTest\MeshStrider.h" />
     <ClInclude Include="..\..\src\PhysicsTest\Physics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -88,7 +88,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\entityComponentSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\MainProject;$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -98,7 +98,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\entityComponentSystem;$(SolutionDir)src\MainProject;$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies/lib/;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

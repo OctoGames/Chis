@@ -1,5 +1,4 @@
 #include "Physics.h"
-#include <iostream>
 
 Physics* Physics::instance_ = nullptr;
 
@@ -50,8 +49,6 @@ bool Physics::update()
 				Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(userPointer);
 				sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
 				sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
-
-				std::cout << sceneNode->getPosition() << std::endl;
 			}
 		}
 	}
@@ -94,9 +91,6 @@ void Physics::createRigidBody(Ogre::SceneNode * node, double mass, std::string n
 	//add the body to the dynamics world
 
 	addToPhysicWorld(Body);
-	numberOfRigidBodies_++;
-
-	dynamicsWorld->addRigidBody(Body);
 
 	trackRigidBodyWithName(Body, name);
 }

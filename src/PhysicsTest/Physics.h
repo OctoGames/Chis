@@ -5,13 +5,15 @@
 
 #include <btBulletDynamicsCommon.h>
 
-#include "MeshStrider.h"
+#include "Transform.h"
+
+#include "debugDrawer.h"
 
 class Physics {
 
 public:
-	Physics();
-	~Physics();
+	
+	static Physics* Instance();
 
 	inline void addToPhysicWorld(btRigidBody * body) { dynamicsWorld->addRigidBody(body); numberOfRigidBodies_++; };
 	inline btDiscreteDynamicsWorld* getDynamicsWorld() { return dynamicsWorld; };
@@ -20,11 +22,18 @@ public:
 
 	bool update();
 
-	void createRigidBody(btVector3 position, double mass, std::string meshName, Ogre::SceneNode* node);
+	void createRigidBody(Ogre::SceneNode * node, double mass, std::string name);
 
 	btRigidBody* getRigidBodyByName(std::string name);
 
+	void debugMode();
+
 private:
+
+	Physics();
+	~Physics();
+
+	static Physics* instance_;
 
 	int numberOfRigidBodies_;
 

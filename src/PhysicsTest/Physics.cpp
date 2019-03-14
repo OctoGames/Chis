@@ -1,5 +1,7 @@
 #include "Physics.h"
 
+Physics* Physics::instance_ = nullptr;
+
 Physics::Physics() : numberOfRigidBodies_(0)
 {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -10,6 +12,14 @@ Physics::Physics() : numberOfRigidBodies_(0)
 
 }
 
+Physics* Physics::Instance()
+{
+	if (instance_ == nullptr)
+	{
+		instance_ = new Physics();
+	}
+	return instance_;
+}
 
 Physics::~Physics()
 {
@@ -43,6 +53,8 @@ bool Physics::update()
 		}
 	}
 
+	//dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(1, 0, 0, 1));
+
 	return true;
 }
 
@@ -51,26 +63,39 @@ btRigidBody* Physics::getRigidBodyByName(std::string name)
 	return physicsAccessors.find(name)->second;
 }
 
-void Physics::createRigidBody(btVector3 position, double mass, std::string meshName, Ogre::SceneNode* node)
+void Physics::debugMode()
+{
+	debugDrawer* dbg_drawer = &debugDrawer::getSingleton();	// DebugDrawer derives btIDebugDraw, see below for my definition
+	dbg_drawer->init();
+	dbg_drawer->setDebugMode(btIDebugDraw::DBG_DrawWireframe + btIDebugDraw::DBG_DrawContactPoints + btIDebugDraw::DBG_DrawConstraints + btIDebugDraw::DBG_DrawConstraintLimits);
+	//dbg_drawer->setDebugMode(1);
+	dbg_drawer->debugPhysics(true);
+	dynamicsWorld->setDebugDrawer(dbg_drawer);
+
+	btVector3 from(0, 20, 0);
+	btVector3 to(30, 20, 0);
+	
+	dynamicsWorld->getDebugDrawer()->drawSphere(from, 10, btVector3(1,0,0));
+}
+
+void Physics::createRigidBody(Ogre::SceneNode * node, double mass, std::string name)
 {
 	btTransform Transform;
+	btVector3 v;
+	v.setX(node->getPosition().x);
+	v.setY(node->getPosition().y);
+	v.setZ(node->getPosition().z);
+
 	Transform.setIdentity();
-	Transform.setOrigin(position);
+	Transform.setOrigin(v);
 	Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
 
 	btScalar Mass(mass); 
 	btVector3 localInertia(0, 0, 0);
 
-	Ogre::MeshPtr MeshPtr = Ogre::Singleton<Ogre::MeshManager>::getSingletonPtr()->getByName(meshName);
-	MeshStrider* Strider = new MeshStrider(MeshPtr.get());
-
-	btCollisionShape* Shape = new btBvhTriangleMeshShape(Strider, true, true);
+	btCollisionShape* Shape = new btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
 
 	btDefaultMotionState *MotionState = new btDefaultMotionState(Transform);
-
-	Shape->setUserPointer(node);
-
-	Shape->setUserIndex(1);
 
 	Shape->calculateLocalInertia(Mass, localInertia);
 
@@ -83,9 +108,8 @@ void Physics::createRigidBody(btVector3 position, double mass, std::string meshN
 	//add the body to the dynamics world
 
 	addToPhysicWorld(Body);
-	numberOfRigidBodies_++;
 
-	dynamicsWorld->addRigidBody(Body);
+	trackRigidBodyWithName(Body, name);
 
-	trackRigidBodyWithName(Body, meshName);
+	debugMode();
 }
