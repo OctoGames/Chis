@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\EntityComponentSystem\component.cpp" />
-    <ClCompile Include="..\..\src\EntityComponentSystem\entitycomponentmanager.cpp" />
-    <ClCompile Include="..\..\src\EntityComponentSystem\gameobject.cpp" />
+    <ClCompile Include="..\..\src\EntityComponentSystem\Component.cpp" />
+    <ClCompile Include="..\..\src\EntityComponentSystem\EntityComponentManager.cpp" />
+    <ClCompile Include="..\..\src\EntityComponentSystem\GameObejct.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EntityComponentSystem\component.h" />
-    <ClInclude Include="..\..\src\EntityComponentSystem\entitycomponentmanager.h" />
-    <ClInclude Include="..\..\src\EntityComponentSystem\gameobject.h" />
+    <ClInclude Include="..\..\src\EntityComponentSystem\Component.h" />
+    <ClInclude Include="..\..\src\EntityComponentSystem\EntityComponentManager.h" />
+    <ClInclude Include="..\..\src\EntityComponentSystem\GameObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

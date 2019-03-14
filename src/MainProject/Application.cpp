@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "entitycomponentmanager.h"
+#include "EntityComponentManager.h"
 #include "Transform.h"
 #include "MeshRenderer.h"
 #include "Camera.h"
@@ -113,7 +113,7 @@ void Application::handleInput()
 void Application::update()
 {
 	Physics::Instance()->update();
-	EntityComponentManager::Instance()->tick();
+	EntityComponentManager::Instance()->update();
 	AudioSystem::Instance()->update();
 }
 

@@ -4,61 +4,30 @@
 #include <map>
 #include <list>
 
-#include "gameobject.h"
-#include "component.h"
+#include "GameObject.h"
+#include "Component.h"
 
 class EntityComponentManager
 {
 public:
 	static EntityComponentManager* Instance();
 
-	void addComponent(Component* component)
-	{
-		components_.push_back(component);
-		containers_[component->gameObject()->getGameObjectID()].push_back(component);
-	}
+	void addEntity(GameObject* entity);
+	void addComponent(Component* component);
+	void addGameObject(GameObject* game_object);
+	void addGameObjectWithTag(GameObject* game_object, const std::string& tag);
+	Component* getComponent(GameObject* game_object, const std::string& component_name);
+	std::list<GameObject*> findGameObjectsWithTag(const std::string& tag);
 
-	void addGameObject(GameObject* game_object)
-	{
-		containers_[game_object->getGameObjectID()] = std::list<Component*>();
-	} 
-
-	void addGameObjectWithTag(GameObject* game_object, const std::string& tag)
-	{
-		tags_[game_object->getTag()].push_back(game_object);
-	}
-
-	Component* getComponent(GameObject* game_object, const std::string& component_name)
-	{
-		for (Component* c : containers_[game_object->getGameObjectID()])
-		{
-			if (c->getName() == component_name) return c;
-		}
-
-		return nullptr;
-	}
-
-	std::list<GameObject*> findGameObjectsWithTag(const std::string& tag)
-	{
-		return tags_[tag];
-	}
-
-	void tick()
-	{
-		for (Component* c : components_)
-		{
-			c->fixedUpdate();
-			c->update();
-			c->lateUpdate();
-		}
-	}
+	void update();
+	void close();
 
 private:
-	EntityComponentManager() {}
-	~EntityComponentManager() {};
+	EntityComponentManager();
 
 	static EntityComponentManager* instance_;
 
+	std::list<GameObject*> entities_;
 	std::list<Component*> components_;
 	std::map<int, std::list<Component*>> containers_;
 	std::map<std::string, std::list<GameObject*>> tags_;

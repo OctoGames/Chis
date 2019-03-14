@@ -2,6 +2,7 @@
 #define _OGRE_SYSTEM_H_
 
 #include <OgreRoot.h>
+#include <OgreLogManager.h>
 #include <OgreSceneManager.h>
 #include <OgreFileSystemLayer.h>
 

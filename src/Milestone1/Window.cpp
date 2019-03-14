@@ -1,11 +1,18 @@
 #include "Window.h"
 
-Window::Window()
+Window::Window() :
+	nativeWindow_(nullptr),
+	renderWindow_(nullptr)
 {
 }
 
 Window::~Window()
 {
+	delete renderWindow_;
+	renderWindow_ = nullptr;
+	SDL_DestroyWindow(nativeWindow_);
+	SDL_QuitSubSystem(SDL_INIT_VIDEO);
+	nativeWindow_ = nullptr;
 }
 
 void Window::createNativeWindow(const std::string& windowName, int width, int height, int flags)

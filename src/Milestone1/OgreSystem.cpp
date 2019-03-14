@@ -17,7 +17,7 @@ OgreSystem::OgreSystem() :
 	sceneManager_(nullptr),
 	fileSystemLayer_(nullptr)
 {
-
+	appName_ = "CHIS";
 }
 
 void OgreSystem::init()
@@ -58,7 +58,7 @@ void OgreSystem::createRoot()
 #endif
 
 	fileSystemLayer_->setHomePath(solutionPath_);
-	root_->initialise(false);
+	if (root_->restoreConfig()) root_->initialise(false);
 }
 
 void OgreSystem::createWindow()
