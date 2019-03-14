@@ -74,7 +74,10 @@ void Physics::debugMode()
 
 	btVector3 from(0, 20, 0);
 	btVector3 to(30, 20, 0);
+	btVector3 col(1, 0, 0);
 	
+	//dynamicsWorld->getDebugDrawer()->drawLine(from, to, col, col);
+
 	dynamicsWorld->getDebugDrawer()->drawSphere(from, 10, btVector3(1,0,0));
 }
 

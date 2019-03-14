@@ -1,5 +1,6 @@
 #include <btBulletDynamicsCommon.h>
 #include <Ogre.h>
+#include "OgreSystem.h"
 
 class debugDrawer : public btIDebugDraw{
 
@@ -26,7 +27,7 @@ public:
 	virtual void setDebugMode(int debugMode) { debugModes = (DebugDrawModes)debugMode; }
 	virtual int getDebugMode() const { return debugModes; }
 
-	void drawLine(const btVector3 &from, const btVector3 &to, const btVector3 &color) { };
+	void drawLine(const btVector3 &from, const btVector3 &to, const btVector3 &color);
 
 protected:
 	bool frameStarted(const Ogre::FrameEvent& evt) {};

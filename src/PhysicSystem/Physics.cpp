@@ -2,13 +2,16 @@
 
 Physics* Physics::instance_ = nullptr;
 
-Physics::Physics() : numberOfRigidBodies_(0)
+Physics::Physics() : numberOfRigidBodies_(0),
+debug_(false)
 {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collisionConfiguration);
 	overlappingPairCache = new btDbvtBroadphase();
 	solver = new btSequentialImpulseConstraintSolver();
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
+
+	debugMode();
 
 }
 
@@ -29,7 +32,6 @@ Physics::~Physics()
 
 bool Physics::update()
 {
-
 	dynamicsWorld->stepSimulation(1.0f / 60.0f); //suppose you have 60 frames per second
 
 	for (int i = 0; i < numberOfRigidBodies_; i++)
@@ -53,6 +55,23 @@ bool Physics::update()
 		}
 	}
 
+	if (debug_)
+	{
+		debugDrawer::Instance()->resetLineNumber();
+
+		for (int i = 0; i < debugObjects.size(); i++)
+		{
+			Ogre::SceneNode* n = debugObjects[i].node;
+
+			btVector3 v;
+			v.setX(n->getPosition().x);
+			v.setY(n->getPosition().y);
+			v.setZ(n->getPosition().z);
+
+			debugDrawer::Instance()->drawCube(v, debugObjects[i].scale);
+		}
+	}
+
 	return true;
 }
 
@@ -61,7 +80,14 @@ btRigidBody* Physics::getRigidBodyByName(std::string name)
 	return physicsAccessors.find(name)->second;
 }
 
-void Physics::createRigidBody(Ogre::SceneNode * node, double mass, std::string name)
+void Physics::debugMode()
+{
+	dbg_drawer = &debugDrawer::getSingleton();	// DebugDrawer derives btIDebugDraw, see below for my definition
+
+	dynamicsWorld->setDebugDrawer(dbg_drawer);
+}
+
+void Physics::createRigidBody(Ogre::SceneNode * node, double mass, btVector3 scale, std::string name)
 {
 	btTransform Transform;
 	btVector3 v;
@@ -71,12 +97,12 @@ void Physics::createRigidBody(Ogre::SceneNode * node, double mass, std::string n
 
 	Transform.setIdentity();
 	Transform.setOrigin(v);
-	Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
+	//Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
 
 	btScalar Mass(mass); 
 	btVector3 localInertia(0, 0, 0);
 
-	btCollisionShape* Shape = new btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
+	btCollisionShape* Shape = new btBoxShape(scale);
 
 	btDefaultMotionState *MotionState = new btDefaultMotionState(Transform);
 
@@ -86,11 +112,18 @@ void Physics::createRigidBody(Ogre::SceneNode * node, double mass, std::string n
 
 	btRigidBody *Body = new btRigidBody(RBInfo);
 
-	Body->setUserPointer(node);
-
 	//add the body to the dynamics world
 
 	addToPhysicWorld(Body);
 
 	trackRigidBodyWithName(Body, name);
+
+	debugObjectsPropierties dbp;
+	dbp.node = node; dbp.scale = scale;
+
+	debugObjects.push_back(dbp);
+
+	debugDrawer::Instance()->drawCube(v, scale);
+
+	Body->setUserPointer(node);
 }

@@ -1,126 +1,54 @@
-#ifndef DEBUGDRAWER_H_INCLUDED
-#define DEBUGDRAWER_H_INCLUDED
-
-#include <map>
+#include <btBulletDynamicsCommon.h>
 #include <Ogre.h>
+#include "OgreSystem.h"
 
-typedef std::pair<Ogre::Vector3, Ogre::ColourValue> VertexPair;
+class debugDrawer : public btIDebugDraw{
 
-#define DEFAULT_ICOSPHERE_RECURSION_LEVEL	1
-
-class IcoSphere
-{
 public:
-	struct TriangleIndices
+
+	static debugDrawer &getSingleton()
 	{
-		int v1, v2, v3;
+		static debugDrawer instance_;
+		return instance_;
+	}
 
-		TriangleIndices(int _v1, int _v2, int _v3) : v1(_v1), v2(_v2), v3(_v3) {}
+	static debugDrawer* Instance();
 
-		bool operator < (const TriangleIndices &o) const { return v1 < o.v1 && v2 < o.v2 && v3 < o.v3; }
-	};
+	void init() {};
 
-	struct LineIndices
-	{
-		int v1, v2;
+	void deinit() {};
 
-		LineIndices(int _v1, int _v2) : v1(_v1), v2(_v2) {}
+	void debugPhysics(bool enable) {};
 
-		bool operator == (const LineIndices &o) const
-		{
-			return (v1 == o.v1 && v2 == o.v2) || (v1 == o.v2 && v2 == o.v1);
-		}
-	};
+	virtual void drawTriangle(const btVector3 &v0, const btVector3 &v1, const btVector3 &v2, const btVector3 &color, btScalar) { (void)v0; (void)v1; (void)v2; (void)color; }
+	virtual void drawContactPoint(const btVector3 &PointOnB, const btVector3 &normalOnB, btScalar distance, int lifeTime, const btVector3 &color) { (void)PointOnB; (void)normalOnB; (void)distance; (void)lifeTime; (void)color; }
+	virtual void reportErrorWarning(const char *warningString) { (void)warningString; }
+	virtual void draw3dText(const btVector3 &location, const char *textString) { (void)location; (void)textString; }
+	virtual void setDebugMode(int debugMode) { debugModes = (DebugDrawModes)debugMode; }
+	virtual int getDebugMode() const { return debugModes; }
 
-	IcoSphere();
-	~IcoSphere();
+	void drawLine(const btVector3 &from, const btVector3 &to, const btVector3 &color);
 
-	void create(int recursionLevel);
-	void addToLineIndices(int baseIndex, std::list<int> *target);
-	int addToVertices(std::list<VertexPair> *target, const Ogre::Vector3 &position, const Ogre::ColourValue &colour, float scale);
-	void addToTriangleIndices(int baseIndex, std::list<int> *target);
+	void drawCube(btVector3 position, btVector3 scale);
 
-private:
-	int addVertex(const Ogre::Vector3 &vertex);
-	void addLineIndices(int index0, int index1);
-	void addTriangleLines(int index0, int index1, int index2);
-	int getMiddlePoint(int index0, int index1);
-	void addFace(int index0, int index1, int index2);
+	void resetLineNumber();
 
-	void removeLineIndices(int index0, int index1);
-
-	std::vector<Ogre::Vector3> vertices;
-	std::list<LineIndices> lineIndices;
-	std::list<int> triangleIndices;
-	std::list<TriangleIndices> faces;
-	std::map<__int64, int> middlePointIndexCache;
-	int index;
-};
-
-class DebugDrawer
-{
-public:
-	DebugDrawer(Ogre::SceneManager *_sceneManager, float _fillAlpha);
-	~DebugDrawer();
-
-	void build();
-
-	void setIcoSphereRecursionLevel(int recursionLevel);
-
-	void drawLine(const Ogre::Vector3 &start, const Ogre::Vector3 &end, const Ogre::ColourValue &colour);
-	void drawCircle(const Ogre::Vector3 &centre, float radius, int segmentsCount, const Ogre::ColourValue& colour, bool isFilled = false);
-	void drawCylinder(const Ogre::Vector3 &centre, float radius, int segmentsCount, float height, const Ogre::ColourValue& colour, bool isFilled = false);
-	void drawQuad(const Ogre::Vector3 *vertices, const Ogre::ColourValue& colour, bool isFilled = false);
-	void drawCuboid(const Ogre::Vector3 *vertices, const Ogre::ColourValue& colour, bool isFilled = false);
-	void drawSphere(const Ogre::Vector3 &centre, float radius, const Ogre::ColourValue& colour, bool isFilled = false);
-	void drawTetrahedron(const Ogre::Vector3 &centre, float scale, const Ogre::ColourValue& colour, bool isFilled = false);
-
-	bool getEnabled() { return isEnabled; }
-	void setEnabled(bool _isEnabled) { isEnabled = _isEnabled; }
-	void switchEnabled() { isEnabled = !isEnabled; }
-
-	void clear();
+protected:
+	bool frameStarted(const Ogre::FrameEvent& evt) {};
+	bool frameEnded(const Ogre::FrameEvent& evt) {};
 
 private:
 
-	Ogre::SceneManager *sceneManager;
-	Ogre::ManualObject *manualObject;
-	float fillAlpha;
-	IcoSphere icoSphere;
+	DebugDrawModes debugModes;
 
-	bool isEnabled;
+	static debugDrawer* instance_;
 
-	std::list<VertexPair> lineVertices, triangleVertices;
-	std::list<int> lineIndices, triangleIndices;
+	debugDrawer();
+	virtual ~debugDrawer() {};
 
-	int linesIndex, trianglesIndex;
+	//Ogre::SceneManager* sceneManager;
 
-	void initialise();
-	void shutdown();
+	bool isDebuggingPhysics;
 
-	void buildLine(const Ogre::Vector3& start, const Ogre::Vector3& end, const Ogre::ColourValue& colour, float alpha = 1.0f);
-	void buildQuad(const Ogre::Vector3 *vertices, const Ogre::ColourValue& colour, float alpha = 1.0f);
-	void buildFilledQuad(const Ogre::Vector3 *vertices, const Ogre::ColourValue& colour, float alpha = 1.0f);
-	void buildFilledTriangle(const Ogre::Vector3 *vertices, const Ogre::ColourValue& colour, float alpha = 1.0f);
-	void buildCuboid(const Ogre::Vector3 *vertices, const Ogre::ColourValue& colour, float alpha = 1.0f);
-	void buildFilledCuboid(const Ogre::Vector3 *vertices, const Ogre::ColourValue& colour, float alpha = 1.0f);
-
-	void buildCircle(const Ogre::Vector3 &centre, float radius, int segmentsCount, const Ogre::ColourValue& colour, float alpha = 1.0f);
-	void buildFilledCircle(const Ogre::Vector3 &centre, float radius, int segmentsCount, const Ogre::ColourValue& colour, float alpha = 1.0f);
-
-	void buildCylinder(const Ogre::Vector3 &centre, float radius, int segmentsCount, float height, const Ogre::ColourValue& colour, float alpha = 1.0f);
-	void buildFilledCylinder(const Ogre::Vector3 &centre, float radius, int segmentsCount, float height, const Ogre::ColourValue& colour, float alpha = 1.0f);
-
-	void buildTetrahedron(const Ogre::Vector3 &centre, float scale, const Ogre::ColourValue &colour, float alpha = 1.0f);
-	void buildFilledTetrahedron(const Ogre::Vector3 &centre, float scale, const Ogre::ColourValue &colour, float alpha = 1.0f);
-
-	int addLineVertex(const Ogre::Vector3 &vertex, const Ogre::ColourValue &colour);
-	void addLineIndices(int index1, int index2);
-
-	int addTriangleVertex(const Ogre::Vector3 &vertex, const Ogre::ColourValue &colour);
-	void addTriangleIndices(int index1, int index2, int index3);
-
-	void addQuadIndices(int index1, int index2, int index3, int index4);
+	int numberOfLines_;
 };
-
-#endif

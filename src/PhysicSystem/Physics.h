@@ -7,6 +7,8 @@
 
 #include "Transform.h"
 
+#include "debugDrawer.h"
+
 class Physics {
 
 public:
@@ -20,14 +22,29 @@ public:
 
 	bool update();
 
-	void createRigidBody(Ogre::SceneNode * node, double mass, std::string name);
+	void createRigidBody(Ogre::SceneNode * node, double mass, btVector3 scale, std::string name);
 
 	btRigidBody* getRigidBodyByName(std::string name);
 
+	inline void setDebugMode(bool db) { debug_ = db; };
+
+	inline void toggleDebugMode() { debug_ = !debug_; if (!debug_) debugDrawer::Instance()->resetLineNumber();};
+
 private:
+
+	struct debugObjectsPropierties {
+		Ogre::SceneNode* node;
+		btVector3 scale;
+	};
 
 	Physics();
 	~Physics();
+
+	void debugMode();
+
+	bool debug_;
+
+	debugDrawer* dbg_drawer;
 
 	static Physics* instance_;
 
@@ -40,4 +57,6 @@ private:
 	btDiscreteDynamicsWorld* dynamicsWorld;
 	std::vector<btCollisionShape *> collisionShapes;
 	std::map<std::string, btRigidBody *> physicsAccessors;
+
+	std::vector<debugObjectsPropierties> debugObjects;
 };

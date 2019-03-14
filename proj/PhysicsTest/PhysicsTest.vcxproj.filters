@@ -10,7 +10,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\PhysicsTest\Application.h" />
     <ClInclude Include="..\..\src\PhysicsTest\MainCharacter.h" />
-    <ClInclude Include="..\..\src\PhysicsTest\debugDrawer.h" />
     <ClInclude Include="..\..\src\PhysicsTest\Physics.h" />
+    <ClInclude Include="..\..\src\PhysicsTest\debugDrawer.h" />
   </ItemGroup>
 </Project>

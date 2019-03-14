@@ -90,6 +90,8 @@ private:
 	void setUpResources();
 	void loadResources();
 
+	Ogre::SceneManager* getSceneManager() { return sManager; };
+
 	//This method and variable are just a test to see everything works fine
 	void createEntity();
 public:
