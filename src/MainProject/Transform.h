@@ -1,7 +1,7 @@
 #pragma once
 
 #include "OgreSystem.h"
-#include "component.h"
+#include "Component.h"
 
 class Transform : public Component
 {

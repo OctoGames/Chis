@@ -1,6 +1,6 @@
 #pragma once
 
-#include "component.h"
+#include "Component.h"
 #include "OgreSystem.h"
 
 class MeshRenderer : public Component

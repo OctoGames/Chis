@@ -1,7 +1,7 @@
 #ifndef _AUDIO_SOURCE_H_
 #define _AUDIO_SOURCE_H_
 
-#include "component.h"
+#include "Component.h"
 #include "AudioSystem.h"
 
 class AudioSource : public Component

@@ -1,5 +1,5 @@
-#include "component.h"
-#include "entitycomponentmanager.h"
+#include "Component.h"
+#include "EntityComponentManager.h"
 
 Component::Component(GameObject* container, bool enabled) :
 	first_enabled_(true),
