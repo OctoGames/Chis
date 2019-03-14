@@ -58,7 +58,7 @@ void Application::initEntities()
 	Light* mainLight_ = new Light(mainLight, true);
 	mainLightTransform->setPosition(0, 0, 20);
 
-	//Physics::Instance()->createRigidBody(mouseTransform_->getNode(), 1, "mouseRB");
+	Physics::Instance()->createRigidBody(mouseTransform_->getNode(), 1, "mouseRB");
 }
 
 void Application::handleInput()

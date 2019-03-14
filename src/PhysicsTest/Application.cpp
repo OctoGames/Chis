@@ -72,7 +72,7 @@ void Application::render()
 
 void Application::update()
 {
-	physic->update();
+	Physics::Instance()->update();
 }
 
 //Load all needed plugins and initialize the root
@@ -276,7 +276,7 @@ void Application::createEntity()
 
 
 
-	physic = new Physics();
+
 
 	btTransform groundTransform;
 	groundTransform.setIdentity();
@@ -294,7 +294,7 @@ void Application::createEntity()
 	btRigidBody *groundBody = new btRigidBody(groundRBInfo);
 
 	//add the body to the dynamics world
-	physic->addToPhysicWorld(groundBody);
+	Physics::Instance()->addToPhysicWorld(groundBody);
 
 
 
@@ -330,8 +330,8 @@ void Application::createEntity()
 	mouseNode->setVisible(true);
 
 	
+	Physics::Instance()->createRigidBody(mouseNode, 1, "mouse");
 
-	//physic->createRigidBody(btVector3(0, 100, 0), 1, "mouse.mesh", mouseNode);
 
 
 	////create the new shape, and tell the physics that is a Box
@@ -409,7 +409,7 @@ SDL_Event Application::handleInput()
 
 			else if (event.key.keysym.sym == SDLK_SPACE)
 			{
-				physic->getRigidBodyByName("mouse")->applyCentralImpulse(btVector3(0, 50, 0));
+				Physics::Instance()->getRigidBodyByName("mouse")->applyCentralImpulse(btVector3(0, 50, 0));
 			}
 		}
 	}

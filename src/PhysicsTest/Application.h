@@ -92,8 +92,6 @@ private:
 
 	//This method and variable are just a test to see everything works fine
 	void createEntity();
-
-	Physics* physic;
 public:
 
 	void render();
