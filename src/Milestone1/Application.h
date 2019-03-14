@@ -15,8 +15,9 @@ public:
 private:
 	bool running_;
 
+	void handleInput();
+	void update();
+	void render();
 };
-
-
 
 #endif // !_APPLICATION_H_
