@@ -1,143 +1,102 @@
 #include "OgreSystem.h"
 
+#include <SDL_syswm.h>
+#include <OgreConfigFile.h>
+
 OgreSystem* OgreSystem::instance_ = nullptr;
 
-void OgreSystem::init(std::string appname)
-{
-#if _DEBUG
-	resourcesCfg_ = "resources_d.cfg";
-	pluginsCfg_ = "plugins_d.cfg";
-#else
-	resourcesCfg_ = "resources.cfg";
-	pluginsCfg_ = "plugins.cfg";
-#endif
-
-	appName_ = appname;
-	fileSystemLayer_ = new Ogre::FileSystemLayer(appName_);
-	loadPlugins();
-	readDataFromFile();
-	setupWindow();
-	sceneManager_ = root_->createSceneManager();
-	setUpResources();
-	loadResources();
-
-	SDL_Init(SDL_INIT_VIDEO);
-	unsigned long hWnd = 0;
-	window_->getCustomAttribute("WINDOW", &hWnd);
-	SDL_CreateWindowFrom((void*)hWnd);
-	if (fullScreen_) window_->setFullscreen(true, winWidth_, winHeight_);
-}
-
-OgreSystem * OgreSystem::Instance()
+OgreSystem* OgreSystem::Instance()
 {
 	if (instance_ == nullptr) instance_ = new OgreSystem();
 	return instance_;
 }
 
-void OgreSystem::setupWindow()
+OgreSystem::OgreSystem() :
+	root_(nullptr),
+	window_(nullptr),
+	sceneManager_(nullptr),
+	fileSystemLayer_(nullptr)
 {
-	//Only one available render system on our proyect
-	root_->setRenderSystem(*(root_->getAvailableRenderers().begin()));
-	root_->initialise(false);
-
-	//Window
-	window_ = root_->createRenderWindow(appName_, winWidth_, winHeight_, false);
-
-	window_->setActive(true);
-	window_->setAutoUpdated(true);
-	window_->setDeactivateOnFocusChange(false);
+	appName_ = "CHIS";
 }
 
-//Reads the data from a .config file given to setUp the screen
-void OgreSystem::readDataFromFile()
+void OgreSystem::init()
 {
-	std::string configFilePath = fileSystemLayer_->getConfigFilePath("plugins.cfg");
-	configFilePath.erase(configFilePath.find_last_of("\\") + 1, configFilePath.size() - 1);
-
-	//Read the information to FullScreen
-	std::string line;
-	std::string fullScreen;
-
-	line = findConfig("FULLSCREEN", configFilePath);
-
-	fullScreen = readString(line);
-
-	if (fullScreen == "TRUE")
-		fullScreen_ = true;
-
-	//Read data config to screen width
-	line = findConfig("WIDTH", configFilePath);
-	std::string auxString = readString(line);
-	winWidth_ = std::stoi(auxString);
-
-	//Read data config to screen height
-	line = findConfig("HEIGHT", configFilePath);
-	auxString = readString(line);
-	winHeight_ = std::stoi(auxString);
+	createRoot();
+	createWindow();
+	createResources();
+	createSceneManager();
 }
 
-std::string OgreSystem::findConfig(std::string config, std::string configFilePath)
+void OgreSystem::close()
 {
-	std::ifstream configFile;
+	if (root_ != nullptr) root_->saveConfig();
 
-	configFile.open(configFilePath + "Configuration.config");
+	root_->destroySceneManager(sceneManager_);
+	sceneManager_ = nullptr;
 
-	std::string auxString;
-	std::string line;
-	bool found = false;
+	delete window_;
+	window_ = nullptr;
 
-	while (!configFile.eof() && !found)
-	{
-		//read data to fullScreen Mode
-		std::getline(configFile, line);
+	delete fileSystemLayer_;
+	fileSystemLayer_ = nullptr;
 
-		auxString = line;
-
-		if (auxString.erase(auxString.find_last_of("="), auxString.size() - 1) == config)
-		{
-			found = true;
-		}
-
-	}
-
-	configFile.close();
-
-	return line;
+	root_ = nullptr;
 }
 
-//Read the string until find = sign. Then takes the whole right part and returns it
-std::string OgreSystem::readString(std::string s)
+void OgreSystem::createRoot()
 {
-	int i = 0;
-	bool found = false;
-	std::string auxString;
+	fileSystemLayer_ = new Ogre::FileSystemLayer(appName_);
 
-	while (i < s.size() && !found)
-	{
-		if (s[i] == '=')
-		{
-			found = true;
-			auxString = s.substr(i + 1, s.size() - 1);
-		}
-		else i++;
-	}
+#if _DEBUG
+	root_ = new Ogre::Root("plugins_d.cfg");
+	solutionPath_ = fileSystemLayer_->getConfigFilePath("plugins_d.cfg");
+#else
+	root_ = new Ogre::Root("plugins.cfg");
+	solutionPath_ = fileSystemLayer_->getConfigFilePath("plugins.cfg");
+#endif
 
-	return auxString;
+	fileSystemLayer_->setHomePath(solutionPath_);
+	if (root_->restoreConfig()) root_->initialise(false);
 }
 
-//this method parses the resources.cfg file how? not 100% sure but it works fine
-void OgreSystem::setUpResources()
+void OgreSystem::createWindow()
 {
-	resourcesPath_ = fileSystemLayer_->getConfigFilePath("resources.cfg");
+	window_ = new Window();
+
+	int w, h, flags;
+	Ogre::String token;
+	Ogre::NameValuePairList miscParams;
+	Ogre::ConfigOptionMap ropts = root_->getRenderSystem()->getConfigOptions();
+	miscParams["FSAA"] = ropts["FSAA"].currentValue;
+	miscParams["vsync"] = ropts["VSync"].currentValue;
+	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
+	std::istringstream mode(ropts["Video Mode"].currentValue); mode >> w >> token >> h;
+	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;
+	else flags = SDL_WINDOW_RESIZABLE;
+
+	window_->createNativeWindow(appName_, w, h, flags);
+
+	SDL_SysWMinfo wmInfo;
+	SDL_VERSION(&wmInfo.version);
+	SDL_GetWindowWMInfo(window_->getNativeWindow(), &wmInfo);
+	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+	Ogre::RenderWindow* renderWindow = root_->createRenderWindow(appName_, w, h, false, &miscParams);
+
+	window_->setRenderWindow(renderWindow);
+	window_->setWindowGrab(false, true);
+}
+
+void OgreSystem::createResources()
+{
 	Ogre::ConfigFile cf;
-
-	if (Ogre::FileSystemLayer::fileExists(resourcesPath_))
-	{
-		cf.load(resourcesPath_);
-	}
+	Ogre::String resourcesPath = fileSystemLayer_->getConfigFilePath("resources.cfg");
+	if (Ogre::FileSystemLayer::fileExists(resourcesPath)) cf.load(resourcesPath);
+	else Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+		Ogre::FileSystemLayer::resolveBundlePath(solutionPath_ + "\\Assets"),
+		"FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 	Ogre::String sec, type, arch;
-	// go through all specified resource groups
 	Ogre::ConfigFile::SettingsBySection_::const_iterator seci;
 	for (seci = cf.getSettingsBySection().begin(); seci != cf.getSettingsBySection().end(); ++seci)
 	{
@@ -145,41 +104,24 @@ void OgreSystem::setUpResources()
 		const Ogre::ConfigFile::SettingsMultiMap& settings = seci->second;
 		Ogre::ConfigFile::SettingsMultiMap::const_iterator i;
 
-		// go through all resource paths
 		for (i = settings.begin(); i != settings.end(); i++)
 		{
 			type = i->first;
-
-			//Added the whole route to fix the problem with other computers route
-			std::string auxPath = resourcesPath_;
-			//We take the resources path and delete the finel path
-			auxPath.erase(auxPath.find_last_of("\\") + 1, auxPath.size() - 1);
-
-			//then, to taht last path, we add the one where resources will be located
-			arch = auxPath + Ogre::FileSystemLayer::resolveBundlePath(i->second);
+			arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
 			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
 		}
 	}
 
 	sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 	const Ogre::ResourceGroupManager::LocationList genLocs = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList(sec);
-
 	OgreAssert(!genLocs.empty(), ("Resource Group '" + sec + "' must contain at least one entry").c_str());
-
 	arch = genLocs.front().archive->getName();
 	type = genLocs.front().archive->getType();
-}
 
-void OgreSystem::loadResources()
-{
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-
-void OgreSystem::loadPlugins()
+void OgreSystem::createSceneManager()
 {
-	Ogre::String pluginsPath;
-	pluginsPath = fileSystemLayer_->getConfigFilePath("plugins.cfg");
-
-	root_ = new Ogre::Root(pluginsPath);
+	sceneManager_ = root_->createSceneManager();
 }

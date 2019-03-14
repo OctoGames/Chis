@@ -12,6 +12,7 @@ public:
 	~Window();
 
 	inline SDL_Window* getNativeWindow() { return nativeWindow_; }
+	inline Ogre::RenderWindow* getRenderWindow() { return renderWindow_; }
 	inline void setRenderWindow(Ogre::RenderWindow* renderWindow) { renderWindow_ = renderWindow; }
 
 	void createNativeWindow(const std::string& windowName, int width, int height, int flags);

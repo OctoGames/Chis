@@ -15,6 +15,10 @@ public:
 private:
 	bool running_;
 
+	void initSystems();
+	void closeSystems();
+	void initDemo();
+
 	void handleInput();
 	void update();
 	void render();

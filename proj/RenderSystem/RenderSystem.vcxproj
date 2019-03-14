@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\RenderSystem\OgreSystem.cpp" />
+    <ClCompile Include="..\..\src\RenderSystem\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\RenderSystem\OgreSystem.h" />
+    <ClInclude Include="..\..\src\RenderSystem\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
