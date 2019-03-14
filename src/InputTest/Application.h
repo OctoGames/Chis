@@ -94,10 +94,25 @@ private:
 
 	//This method and variable are just a test to see everything works fine
 	void createEntity();
+
+	//-----------------------------
+	Ogre::SceneNode *cameraYawNode_;
+	Ogre::SceneNode *cameraPitchNode_;
+	Ogre::SceneNode *cameraRollNode_;
+
+	Ogre::Camera* camera_;
+
+	Ogre::Vector3 translateVector_;
+	Ogre::Real moveScale_;
+	Ogre::Radian rotateScale_;
+	Ogre::Radian rotX_;
+	Ogre::Radian rotY_;
+
 public:
 
 	void render();
 	SDL_Event handleInput();
+	void cameraMov();
 	Application(std::string appname);
 	~Application();
 };

@@ -26,6 +26,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\InputTest\Application.h" />
     <ClInclude Include="..\..\src\InputTest\MainCharacter.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="InputTest.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="c:\users\nuria\desktop\idc_peep.bin" />
+    <None Include="idc_peep.bin" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

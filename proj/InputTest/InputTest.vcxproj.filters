@@ -32,5 +32,21 @@
     <ClInclude Include="..\..\src\InputTest\MainCharacter.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="InputTest.rc">
+      <Filter>Archivos de recursos</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="idc_peep.bin">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="c:\users\nuria\desktop\idc_peep.bin">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>

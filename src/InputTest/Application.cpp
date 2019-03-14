@@ -57,6 +57,22 @@ Application::Application(std::string appName) : appName_(appName), mRoot(0), ful
 	prevY_ = SDL_GetWindowSurface(window)->h / 2;
 	SDL_WarpMouseInWindow(window, prevX_, prevY_);
 
+	// paramList.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND")));
+	// paramList.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+
+	//HWND hwnd;
+	//mWindow->getCustomAttribute("WINDOW", &hwnd);
+	//HINSTANCE hInst = (HINSTANCE)GetModuleHandle(NULL);
+	//SetClassLong(hwnd, GCL_HCURSOR, (LONG)
+	//	LoadCursor(hInst, MAKEINTRESOURCE(PEEPHOLE)));
+
+	//----------------------------------
+
+	/*translateVector_ = { 4.0, 4.0, 4.0 };
+	moveScale_ = Ogre::Real(4.0);
+	rotateScale_ = 10.0;
+	rotX_ = 10.0;
+	rotY_ = 10.0;*/
 }
 
 Application::~Application()
@@ -75,6 +91,9 @@ Application::~Application()
 void Application::render()
 {
 	mRoot->renderOneFrame();
+	//SDL_Cursor *  cursor;
+	//cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_NO);
+	//SDL_SetCursor(cursor);
 }
 
 //Load all needed plugins and initialize the root
@@ -117,6 +136,10 @@ void Application::initCamera()
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	viewport = mWindow->addViewport(mainCamera);
+
+	//-----------------------
+
+	//cameraMov();
 
 }
 
@@ -306,6 +329,8 @@ void Application::createEntity()
 
 }
 
+
+
 //This method will handle the input from SDL and return the event taken
 SDL_Event Application::handleInput()
 {
@@ -339,7 +364,7 @@ SDL_Event Application::handleInput()
 				std::cout << "Moving Right" << std::endl;
 			}
 
-			else if (event.key.keysym.sym == SDLK_ESCAPE)
+			if (event.key.keysym.sym == SDLK_ESCAPE)
 			{
 				event.type = SDL_QUIT;
 
@@ -347,20 +372,213 @@ SDL_Event Application::handleInput()
 		}
 		else if (event.type == SDL_MOUSEMOTION)
 		{
+			// mCamNode->setFixedYawAxis(true);
 			int x, y;
 			SDL_GetMouseState(&x, &y);
+
+			// If you want a camera to not have roll, the usual way is local pitch and world yaw 
+			// (this is how all first person game cameras work)
+			//if (x < prevX_)
+			//	mCamNode->yaw(Ogre::Degree((prevX_ - x) * 1 / 200), Ogre::Node::TS_WORLD); // left
+			//else
+			//	mCamNode->yaw(Ogre::Degree((prevX_ + x) * -1 / 200), Ogre::Node::TS_WORLD); // right
 
 			if (x < prevX_)
 				mCamNode->yaw(Ogre::Degree((prevX_ + x) * 1 / 200));
 			else
 				mCamNode->yaw(Ogre::Degree((prevX_ + x) * -1 / 200));
-			// mCamNode->pitch(Ogre::Degree((y - prevY_) * 1 / 200));
+
+			//if (y < prevY_)
+			//	mCamNode->pitch(Ogre::Degree((prevY_ - y) * 1 / 200), Ogre::Node::TS_LOCAL); // up
+			//else
+			//	mCamNode->pitch(Ogre::Degree((prevY_ + y) * -1 / 200), Ogre::Node::TS_LOCAL); // down
 
 			prevX_ = x;
 			prevY_ = y;
 		}
 	}
 
+	//-------------------------------------------------
+
+
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_KEYDOWN)
+		{
+			// Move camera upwards along to world's Y-axis.
+			if (event.key.keysym.sym == SDLK_o)
+			{
+				//this->translateVector.y = this->moveScale;
+				mCamNode->setPosition(mCamNode->getPosition() + Ogre::Vector3(0, 5, 0));
+			}
+
+			// Move camera downwards along to world's Y-axis.
+			else if (event.key.keysym.sym == SDLK_l)
+			{
+				//this->translateVector.y = -(this->moveScale);
+				mCamNode->setPosition(mCamNode->getPosition() - Ogre::Vector3(0, 5, 0));
+			}
+
+			// Move camera forward.
+			else if (event.key.keysym.sym == SDLK_w)
+			{
+				translateVector_.z = -(moveScale_);
+			}
+
+			// Move camera backward.
+			else if (event.key.keysym.sym == SDLK_s)
+			{
+				translateVector_.z = moveScale_;
+			}
+
+			// Move camera left.
+			else if (event.key.keysym.sym == SDLK_a)
+			{
+				translateVector_.x = -(moveScale_);
+			}
+
+			// Move camera right.
+			else if (event.key.keysym.sym == SDLK_d)
+			{
+				translateVector_.x = moveScale_;
+			}
+
+			// Rotate camera left.
+			else if (event.key.keysym.sym == SDLK_q)
+			{
+				cameraYawNode_->yaw(rotateScale_);
+			}
+
+			// Rotate camera right.
+			else if (event.key.keysym.sym == SDLK_e)
+			{
+				cameraYawNode_->yaw(-(rotateScale_));
+			}
+
+			// Strip all yaw rotation on the camera.
+			else if (event.key.keysym.sym == SDLK_y)
+			{
+				cameraYawNode_->setOrientation(Ogre::Quaternion::IDENTITY);
+			}
+
+			// Rotate camera upwards.
+			else if (event.key.keysym.sym == SDLK_z)
+			{
+				cameraPitchNode_->pitch(rotateScale_);
+			}
+
+			// Rotate camera downwards.
+			else if (event.key.keysym.sym == SDLK_x)
+			{
+				cameraPitchNode_->pitch(-(rotateScale_));
+			}
+
+			// Strip all pitch rotation on the camera.
+			else if (event.key.keysym.sym == SDLK_p)
+			{
+				cameraPitchNode_->setOrientation(Ogre::Quaternion::IDENTITY);
+			}
+
+			// Tilt camera on the left.
+			else if (event.key.keysym.sym == SDLK_c)
+			{
+				this->cameraRollNode_->roll(-(rotateScale_));
+			}
+
+			// Strip all pitch rotation on the camera.
+			else if (event.key.keysym.sym == SDLK_v)
+			{
+				this->cameraRollNode_->roll(rotateScale_);
+			}
+
+			// Strip all tilt applied to the camera.
+			else if (event.key.keysym.sym == SDLK_r)
+			{
+				this->cameraRollNode_->setOrientation(Ogre::Quaternion::IDENTITY);
+			}
+
+			// Strip all rotation to the camera.
+			else if (event.key.keysym.sym == SDLK_h)
+			{
+				cameraYawNode_->setOrientation(Ogre::Quaternion::IDENTITY);
+				cameraPitchNode_->setOrientation(Ogre::Quaternion::IDENTITY);
+				cameraRollNode_->setOrientation(Ogre::Quaternion::IDENTITY);
+			}
+
+		}
+	}	
+
 	return event;
 
 }
+
+void Application::cameraMov()
+{
+	// Create the camera's top node (which will only handle position).
+	//mCamNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+	mCamNode->setPosition(0, 0, 500);
+
+	// Create the camera's yaw node as a child of camera's top node.
+	cameraYawNode_ = mCamNode->createChildSceneNode();
+
+	// Create the camera's pitch node as a child of camera's yaw node.
+	cameraPitchNode_ = cameraYawNode_->createChildSceneNode();
+
+	// Create the camera's roll node as a child of camera's pitch node
+	// and attach the camera to it.
+	cameraRollNode_ = cameraPitchNode_->createChildSceneNode();
+	cameraRollNode_->attachObject(camera_);
+
+	Ogre::Real pitchAngle;
+	Ogre::Real pitchAngleSign;
+
+	// Yaws the camera according to the mouse relative movement.
+	cameraYawNode_->yaw(rotX_);
+
+	// Pitches the camera according to the mouse relative movement.
+	cameraPitchNode_->pitch(rotY_);
+
+	// Translates the camera according to the translate vector which is
+	// controlled by the keyboard arrows.
+	//
+	// NOTE: We multiply the mTranslateVector by the cameraPitchNode's
+	// orientation quaternion and the cameraYawNode's orientation
+	// quaternion to translate the camera accoding to the camera's
+	// orientation around the Y-axis and the X-axis.
+	mCamNode->translate(cameraYawNode_->getOrientation() *
+		cameraPitchNode_->getOrientation() *
+		translateVector_,
+		Ogre::SceneNode::TS_LOCAL);
+
+	// Angle of rotation around the X-axis.
+	pitchAngle = (2 * Ogre::Degree(Ogre::Math::ACos(cameraPitchNode_->getOrientation().w)).valueDegrees());
+
+	// Just to determine the sign of the angle we pick up above, the
+	// value itself does not interest us.
+	pitchAngleSign = cameraPitchNode_->getOrientation().x;
+
+	// Limit the pitch between -90 degress and +90 degrees, Quake3-style.
+	if (pitchAngle > 90.0f)
+	{
+		if (pitchAngleSign > 0)
+			// Set orientation to 90 degrees on X-axis.
+			cameraPitchNode_->setOrientation(Ogre::Quaternion(Ogre::Math::Sqrt(0.5f),
+				Ogre::Math::Sqrt(0.5f), 0, 0));
+		else if (pitchAngleSign < 0)
+			// Sets orientation to -90 degrees on X-axis.
+			cameraPitchNode_->setOrientation(Ogre::Quaternion(Ogre::Math::Sqrt(0.5f),
+				-Ogre::Math::Sqrt(0.5f), 0, 0));
+	}
+
+	/*mWindow->setDebugText("Camera orientation: ("
+		+ ((cameraYawNode_->getOrientation().y >= 0) ? std::string("+") :
+			std::string("-")) + "" + Ogre::StringConverter::toString(Ogre::Math::Floor(2 *
+				Ogre::Degree(Ogre::Math::ACos(cameraYawNode_->getOrientation().w)).valueDegrees())) + ", " +
+				((cameraPitchNode_->getOrientation().x >= 0) ? std::string("+") : std::string("-")) + "" +
+		Ogre::StringConverter::toString(Ogre::Math::Floor(2 *
+			Ogre::Degree(Ogre::Math::ACos(cameraPitchNode_->getOrientation().w)).valueDegrees())) + ", " +
+			((camera_->getOrientation().z >= 0) ? std::string("+") : std::string("-")) + "" +
+		Ogre::StringConverter::toString(Ogre::Math::Floor(2 *
+			Ogre::Degree(Ogre::Math::ACos(camera_->getOrientation().w)).valueDegrees())) + ")");*/
+}
+
