@@ -92,15 +92,21 @@ void Physics::debugMode()
 	dynamicsWorld->setDebugDrawer(dbg_drawer);
 }
 
-void Physics::createBoxRigidBody(Ogre::SceneNode * node, double mass, btVector3 scale, std::string name)
+void Physics::createBoxRigidBody(Ogre::SceneNode * node, double mass, Ogre::Vector3 scale, std::string name)
 {
+
+	btVector3 v3;
+	v3.setX(scale.x);
+	v3.setY(scale.y);
+	v3.setZ(scale.z);
+
 	btTransform transform = setTransform(node);
 
-	btCollisionShape* shape = new btBoxShape(scale);
+	btCollisionShape* shape = new btBoxShape(v3);
 
 	setRigidBody(shape, mass, name, node, transform);
 
-	setDebugObject(node, "box", 0, scale);
+	setDebugObject(node, "box", 0, v3);
 
 }
 

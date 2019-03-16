@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "AudioSource.h"
+#include "RigidBody.h"
 #include "Physics.h"
 
 Application::Application() : running_(true)
@@ -35,34 +36,34 @@ void Application::initSystems()
 
 void Application::initEntities()
 {
-
 	//----------------MOUSE OBJECT------------------//
-	btVector3 mouseScale(60, 30, 30);
 
 	GameObject* mouse = new GameObject("mouse", "enemy");
 	Transform* mouseTransform_ = new Transform(mouse);
 	mouseTransform_->setPosition(0.0, 100.0, 0.0);
 	mouseTransform_->setScale(30.0, 30.0, 30.0);
+
+	RigidBody* mouseRigidBody = new RigidBody(mouse);
+	mouseRigidBody->createSphereRB(1, 30, "mouseRB");
+
 	MeshRenderer* mouseRenderer_ = new MeshRenderer(mouse, "mouse.mesh");
 	mouseRenderer_->setMaterialName("mouse_mat");
 
-	Physics::Instance()->createSphereRididBody(mouseTransform_->getNode(), 1, 20, "mouseRB");
+	//----------------FLOOR OBJECT------------------//
 
-	//----------------FLOOR OBJECT------------------// ONLY FOR TEST NOT WITH COMPONENTS
+	Ogre::Vector3 floorScale(1000, 10, 1000);
 
-	btVector3 floorScale(1000, 10, 1000);
+	GameObject* floor = new GameObject("floor", "floor");
+	Transform* floorTransform_ = new Transform(floor);
+	floorTransform_->setPosition(0.0, 0.0, 0.0);
+	floorTransform_->setScale(1000, 10, 1000);
 
-	//Create Ground
-	Ogre::MeshManager::getSingleton().createPlane("GroundPlane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-		Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), 10000, 10000, 100, 80, true, 1, 10.0, 10.0, (Ogre::Vector3::NEGATIVE_UNIT_Z));
+	RigidBody* floorRigidBody = new RigidBody(floor);
+	floorRigidBody->createBoxRB(0, floorScale, "floorRB");
 
-	Ogre::Entity* ground_ent = OgreSystem::Instance()->getSceneManager()->createEntity("GroundPlane");
-	ground_ent->setMaterialName("ground_mat");
-
-	Ogre::SceneNode* mGroundNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("nGround");
-	mGroundNode->attachObject(ground_ent);
-
-	Physics::Instance()->createBoxRigidBody(mGroundNode, 0, floorScale, "floorRB");
+	//Theres a fish mesh as floor because I dont wanna waste time creating a box mesh, obviously should be changed in the future
+	MeshRenderer* floorRenderer_ = new MeshRenderer(floor, "fish.mesh");
+	floorRenderer_->setMaterialName("ground_mat");
 
 	//------------------MAIN CAMERA------------------//
 

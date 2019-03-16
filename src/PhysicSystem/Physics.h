@@ -28,7 +28,7 @@ public:
 	inline void toggleDebugMode() { debug_ = !debug_; if (!debug_) debugDrawer::Instance()->resetLineNumber();};
 
 
-	void createBoxRigidBody(Ogre::SceneNode * node, double mass, btVector3 scale, std::string name);
+	void createBoxRigidBody(Ogre::SceneNode * node, double mass, Ogre::Vector3 scale, std::string name);
 	void createSphereRididBody(Ogre::SceneNode * node, double mass, double radious, std::string name);
 
 private:

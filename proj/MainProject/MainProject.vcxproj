@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\src\MainProject\Main.cpp" />
     <ClCompile Include="..\..\src\MainProject\Light.cpp" />
     <ClCompile Include="..\..\src\MainProject\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\MainProject\RigidBody.cpp" />
     <ClCompile Include="..\..\src\MainProject\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <ClInclude Include="..\..\src\MainProject\Camera.h" />
     <ClInclude Include="..\..\src\MainProject\Light.h" />
     <ClInclude Include="..\..\src\MainProject\MeshRenderer.h" />
+    <ClInclude Include="..\..\src\MainProject\RigidBody.h" />
     <ClInclude Include="..\..\src\MainProject\Transform.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

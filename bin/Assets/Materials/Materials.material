@@ -25,7 +25,7 @@ material Examples/Robot {
 	}
 }
 
-material Examples/Fish
+material water_mat
 {
 	technique
 	{
