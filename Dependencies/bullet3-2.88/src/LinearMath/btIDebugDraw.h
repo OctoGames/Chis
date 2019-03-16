@@ -103,7 +103,7 @@ public:
 		drawSpherePatch(center, up, -axis, radius, minTh, maxTh, minPs, maxPs, color, stepDegrees, false);
 	}
 
-	virtual void drawSphere(const btVector3& p, btScalar radius, const btVector3& color)
+	virtual void drawSphere(const btVector3& p, btScalar radius, const btVector3& color = btVector3(0,1,0))
 	{
 		btTransform tr;
 		tr.setIdentity();

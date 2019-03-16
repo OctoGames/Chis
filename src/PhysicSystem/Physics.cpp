@@ -68,7 +68,12 @@ bool Physics::update()
 			v.setY(n->getPosition().y);
 			v.setZ(n->getPosition().z);
 
-			debugDrawer::Instance()->drawCube(v, debugObjects[i].scale);
+			if(debugObjects[i].type == "box")
+				debugDrawer::Instance()->drawCube(v, debugObjects[i].scale);
+			else if (debugObjects[i].type == "sphere")
+			{
+				debugDrawer::Instance()->drawSphere(v, debugObjects[i].radious);
+			}
 		}
 	}
 
@@ -87,7 +92,59 @@ void Physics::debugMode()
 	dynamicsWorld->setDebugDrawer(dbg_drawer);
 }
 
-void Physics::createRigidBody(Ogre::SceneNode * node, double mass, btVector3 scale, std::string name)
+void Physics::createBoxRigidBody(Ogre::SceneNode * node, double mass, btVector3 scale, std::string name)
+{
+	btTransform transform = setTransform(node);
+
+	btCollisionShape* shape = new btBoxShape(scale);
+
+	setRigidBody(shape, mass, name, node, transform);
+
+	setDebugObject(node, "box", 0, scale);
+
+}
+
+void Physics::createSphereRididBody(Ogre::SceneNode * node, double mass, double radious, std::string name)
+{
+	
+	btTransform transform = setTransform(node);
+
+	btCollisionShape* shape = new btSphereShape(radious);
+
+	setRigidBody(shape, mass, name, node, transform);
+
+	setDebugObject(node, "sphere", radious, btVector3(radious, radious, radious));
+}
+
+void Physics::setDebugObject(Ogre::SceneNode * node, std::string type, double radious, btVector3 scale)
+{
+	debugObjectsPropierties dbp;
+	dbp.node = node; dbp.radious = radious; dbp.scale = scale; dbp.type = type;
+
+	debugObjects.push_back(dbp);
+}
+
+void Physics::setRigidBody(btCollisionShape* shape, double mass, std::string name, Ogre::SceneNode* node, btTransform transform)
+{
+	btScalar Mass(mass);
+	btVector3 localInertia(0, 0, 0);
+
+	btDefaultMotionState *MotionState = new btDefaultMotionState(transform);
+
+	shape->calculateLocalInertia(Mass, localInertia);
+
+	btRigidBody::btRigidBodyConstructionInfo RBInfo(Mass, MotionState, shape, localInertia);
+
+	btRigidBody *Body = new btRigidBody(RBInfo);
+
+	addToPhysicWorld(Body);
+
+	trackRigidBodyWithName(Body, name);
+
+	Body->setUserPointer(node);
+}
+
+btTransform Physics::setTransform(Ogre::SceneNode* node)
 {
 	btTransform transform;
 	btVector3 v;
@@ -99,31 +156,5 @@ void Physics::createRigidBody(Ogre::SceneNode * node, double mass, btVector3 sca
 	transform.setOrigin(v);
 	//Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
 
-	btScalar Mass(mass); 
-	btVector3 localInertia(0, 0, 0);
-
-	btCollisionShape* Shape = new btBoxShape(scale);
-
-	btDefaultMotionState *MotionState = new btDefaultMotionState(transform);
-
-	Shape->calculateLocalInertia(Mass, localInertia);
-
-	btRigidBody::btRigidBodyConstructionInfo RBInfo(Mass, MotionState, Shape, localInertia);
-
-	btRigidBody *Body = new btRigidBody(RBInfo);
-
-	//add the body to the dynamics world
-
-	addToPhysicWorld(Body);
-
-	trackRigidBodyWithName(Body, name);
-
-	debugObjectsPropierties dbp;
-	dbp.node = node; dbp.scale = scale;
-
-	debugObjects.push_back(dbp);
-
-	debugDrawer::Instance()->drawCube(v, scale);
-
-	Body->setUserPointer(node);
+	return transform;
 }

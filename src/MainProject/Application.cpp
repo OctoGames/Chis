@@ -46,7 +46,7 @@ void Application::initEntities()
 	MeshRenderer* mouseRenderer_ = new MeshRenderer(mouse, "mouse.mesh");
 	mouseRenderer_->setMaterialName("mouse_mat");
 
-	Physics::Instance()->createRigidBody(mouseTransform_->getNode(), 1, mouseScale, "mouseRB");
+	Physics::Instance()->createSphereRididBody(mouseTransform_->getNode(), 1, 20, "mouseRB");
 
 	//----------------FLOOR OBJECT------------------// ONLY FOR TEST NOT WITH COMPONENTS
 
@@ -62,7 +62,7 @@ void Application::initEntities()
 	Ogre::SceneNode* mGroundNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("nGround");
 	mGroundNode->attachObject(ground_ent);
 
-	Physics::Instance()->createRigidBody(mGroundNode, 0, floorScale, "floorRB");
+	Physics::Instance()->createBoxRigidBody(mGroundNode, 0, floorScale, "floorRB");
 
 	//------------------MAIN CAMERA------------------//
 
