@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 #include <list>
 #include <map>
 // This class is used to load the names of the components of the game objects of the archetype files

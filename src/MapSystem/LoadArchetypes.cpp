@@ -48,3 +48,22 @@ std::list<std::string*> LoadArchetypes::getComponentsList(const std::string& gam
 
 	return (*it).second;
 }
+
+/*
+Components LoadArchetypes::parseComponent(const std::string& c)
+		{
+			if (c == "audiosource")
+				return AUDIOSOURCE;
+			else if (c == "camera")
+				return CAMERA;
+			else if (c == "light")
+				return LIGHT;
+			else if (c == "meshrenderer")
+				return MESHRENDERER;
+			else if (c == "rigidbody")
+				return RIGIDBODY;
+			else if (c == "transform")
+				return TRANSFORM;
+			return Components();
+		}
+*/
