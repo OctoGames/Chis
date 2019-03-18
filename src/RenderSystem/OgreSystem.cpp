@@ -2,6 +2,7 @@
 
 #include <SDL_syswm.h>
 #include <OgreConfigFile.h>
+#include <OgreGpuProgramManager.h>
 
 OgreSystem* OgreSystem::instance_ = nullptr;
 
@@ -118,6 +119,56 @@ void OgreSystem::createResources()
 	arch = genLocs.front().archive->getName();
 	type = genLocs.front().archive->getType();
 
+
+	//---------------------------------------------------------------SHADERS-------------------------------------------//
+	// Add locations for supported shader languages
+
+	if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsles"))
+	{
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch + "/materials/programs/GLSLES", type, sec);
+	}
+	else if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsl"))
+	{
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch + "/materials/programs/GLSL120", type, sec);
+
+		if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsl150"))
+		{
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch + "/materials/programs/GLSL150", type, sec);
+		}
+		else
+		{
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch + "/materials/programs/GLSL", type, sec);
+		}
+
+		if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsl400"))
+		{
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch + "/materials/programs/GLSL400", type, sec);
+		}
+	}
+	else if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("hlsl"))
+	{
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch + "/materials/programs/HLSL", type, sec);
+	}
+
+	std::string mRTShaderLibPath = arch + "/RTShaderLib";
+	Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/materials", type, sec);
+
+	if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsles"))
+	{
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/GLSL", type, sec);
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/GLSLES", type, sec);
+	}
+	else if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsl"))
+	{
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/GLSL", type, sec);
+	}
+	else if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("hlsl"))
+	{
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/HLSL", type, sec);
+	}
+
+
+	//Initialize all resources
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 

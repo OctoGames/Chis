@@ -40,6 +40,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderSystem", "proj\Render
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Milestone1", "proj\Milestone1\Milestone1.vcxproj", "{7F94F34B-902B-4BB6-935C-90F5C4A94D6E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShaderTest", "proj\ShaderTest\ShaderTest.vcxproj", "{E0C1E192-220D-418F-977E-431D5B57ACFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -160,6 +162,14 @@ Global
 		{7F94F34B-902B-4BB6-935C-90F5C4A94D6E}.Release|x64.Build.0 = Release|x64
 		{7F94F34B-902B-4BB6-935C-90F5C4A94D6E}.Release|x86.ActiveCfg = Release|Win32
 		{7F94F34B-902B-4BB6-935C-90F5C4A94D6E}.Release|x86.Build.0 = Release|Win32
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Debug|x64.ActiveCfg = Debug|x64
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Debug|x64.Build.0 = Debug|x64
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Debug|x86.ActiveCfg = Debug|Win32
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Debug|x86.Build.0 = Debug|Win32
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Release|x64.ActiveCfg = Release|x64
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Release|x64.Build.0 = Release|x64
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Release|x86.ActiveCfg = Release|Win32
+		{E0C1E192-220D-418F-977E-431D5B57ACFC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +189,7 @@ Global
 		{F49AB9D2-CE9A-4CBA-9D91-E9B187E46155} = {7EB74F2B-1CE0-4CFF-9B68-9212C8E960FA}
 		{A2135C3A-B03D-41E4-AB52-93D0F9203D6A} = {7EB74F2B-1CE0-4CFF-9B68-9212C8E960FA}
 		{7F94F34B-902B-4BB6-935C-90F5C4A94D6E} = {28F1D134-FA58-4FF6-AEB5-2A9ABC42CFDE}
+		{E0C1E192-220D-418F-977E-431D5B57ACFC} = {95055AD1-DA7B-4FC5-99F9-CA8CC4998641}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E952FE6B-5EE1-403E-9D54-ED1AB21EA295}

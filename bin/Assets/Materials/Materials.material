@@ -25,7 +25,7 @@ material Examples/Robot {
 	}
 }
 
-material water_mat
+material Examples/Fish 
 {
 	technique
 	{
@@ -35,11 +35,21 @@ material water_mat
 			diffuse 2 2 2
 			ambient 0.5 0.5 0.5
 			specular 0.8 0.8 0.8 68
+            cull_hardware none
+            cull_software none
 
-			texture_unit 
+            vertex_program_ref toonVs
+            { 
+            }
+            fragment_program_ref toonFs
+            {
+            }
+
+			texture_unit textura
 			{
 				texture Water.jpg
-				scroll_anim 0.1 0.0
+				//scroll_anim 0.1 0.0
+                tex_address_mode wrap
 				colour_op modulate
 			}
 		}
@@ -186,7 +196,6 @@ material ground_mat
 	{
 		pass 
 		{ 
-
 			texture_unit 
 			{
 				texture ground.jpg
@@ -194,4 +203,105 @@ material ground_mat
 			}
 		}
 	}
+}
+
+//------------------------CartoonTest---------------------------\\
+
+vertex_program toonVs glsl
+{
+    source toonVs.glsl
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+        param_named_auto normalMat inverse_transpose_world_matrix
+    }
+}
+
+//------------------------------------------------------------------------------------
+
+fragment_program toonFs glsl
+{
+    source toonFs.glsl
+    default_params
+    {
+        param_named textura int 0
+        param_named_auto lightDiffuse light_diffuse_colour 0
+        param_named_auto lightDirection light_position 0
+        param_named shadow_level float 0.2
+        param_named shadow_color float 0.2
+
+    }
+}
+
+//------------------------CartoonTestOUTLINE---------------------------\\
+
+vertex_program outlineVs glsl
+{
+    source outlineVs.glsl
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+        param_named_auto normalMat inverse_transpose_world_matrix
+    }
+}
+
+//------------------------------------------------------------------------------------
+
+fragment_program outlineFs glsl
+{
+    source outlineFs.glsl
+}
+
+
+
+material gunMaterial
+{
+    technique
+    {
+        pass
+        {
+            cull_hardware none
+            cull_software none
+
+            vertex_program_ref toonVs
+            { 
+            }
+            fragment_program_ref toonFs
+            {
+                param_named color float3 1.0 0.65 0.0
+            }
+
+            texture_unit textura
+            {
+                texture corrosion.jpg 2d
+                tex_address_mode wrap
+            }
+        }
+    } 
+}
+
+material mouseMaterial
+{
+    technique
+    {
+        pass
+        {
+            cull_hardware none
+            cull_software none
+
+            vertex_program_ref toonVs
+            { 
+            }
+            fragment_program_ref toonFs
+            {
+                param_named color float3 0.24 0.7 0.4
+            }
+
+            texture_unit textura
+            {
+                texture mouse_tex2.png 2d
+                tex_address_mode wrap
+            }
+        }
+    } 
 }

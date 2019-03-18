@@ -47,7 +47,7 @@ void Application::initEntities()
 	mouseRigidBody->createSphereRB(1, 30, "mouseRB");
 
 	MeshRenderer* mouseRenderer_ = new MeshRenderer(mouse, "mouse.mesh");
-	mouseRenderer_->setMaterialName("mouse_mat");
+	mouseRenderer_->setMaterialName("mouseMaterial");
 
 	//----------------FLOOR OBJECT------------------//
 
