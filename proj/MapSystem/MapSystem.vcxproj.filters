@@ -15,39 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\MapTest\Application.cpp">
+    <ClCompile Include="..\..\src\MapSystem\DotSceneLoader.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\MapTest\MapTestApp.cpp">
+    <ClCompile Include="..\..\src\MapSystem\LoadArchetypes.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\MapTest\DotSceneLoader.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\MapTest\MapTestMain.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\MapTest\SceneLoader.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\MapTest\LoadArchetypes.cpp">
+    <ClCompile Include="..\..\src\MapSystem\SceneLoader.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\MapTest\Application.h">
+    <ClInclude Include="..\..\src\MapSystem\DotSceneLoader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\MapTest\MapTestApp.h">
+    <ClInclude Include="..\..\src\MapSystem\LoadArchetypes.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\MapTest\DotSceneLoader.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\MapTest\SceneLoader.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\MapTest\LoadArchetypes.h">
+    <ClInclude Include="..\..\src\MapSystem\SceneLoader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
