@@ -38,7 +38,7 @@
     <ProjectGuid>{F43E5FEC-DF43-47AB-957B-7DF46DA2D963}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TestOgre</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectName>MapTest</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
