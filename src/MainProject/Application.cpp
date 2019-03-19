@@ -7,6 +7,7 @@
 #include "AudioSource.h"
 #include "RigidBody.h"
 #include "Physics.h"
+#include "SceneLoader.h"
 
 Application::Application() : running_(true)
 {
@@ -36,6 +37,9 @@ void Application::initSystems()
 
 void Application::initEntities()
 {
+	//-----------------READ SCENE-------------------//
+	SceneLoader::Instance()->loadScene("test.scene");
+
 	//----------------MOUSE OBJECT------------------//
 
 	GameObject* mouse = new GameObject("mouse", "enemy");

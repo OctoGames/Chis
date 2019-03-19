@@ -19,13 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\MapSystem\DotSceneLoader.cpp" />
     <ClCompile Include="..\..\src\MapSystem\LoadArchetypes.cpp" />
     <ClCompile Include="..\..\src\MapSystem\SceneLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\MapSystem\DotSceneLoader.h" />
     <ClInclude Include="..\..\src\MapSystem\LoadArchetypes.h" />
+    <ClInclude Include="..\..\src\MapSystem\rapidxml.hpp" />
     <ClInclude Include="..\..\src\MapSystem\SceneLoader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -85,7 +84,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)src\MainProject;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Terrain\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)src\MainProject;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Terrain\include\;$(SolutionDir)src\RenderSystem;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -1,67 +1,25 @@
-<scene export_time="1552863730.0011373" exported_by="gonza" formatVersion="1.0.1" previous_export_time="1552863708.9901023" >
+<scene previous_export_time="1552949649.3450382" export_time="1552951837.365968" formatVersion="1.0.1" exported_by="gonza" >
   <nodes >
-    <node name="Sphere" >
-      <position y="17.360739" x="-20.197742" z="24.330320" />
-      <rotation qx="0.000000" qy="0.000000" qz="-0.000000" qw="1.000000" />
-      <scale y="12.981299" x="12.981299" z="12.981299" />
-      <game >
-        <sensors />
-        <actuators />
-      </game>
-      <entity inertia_tensor="0.4000000059604645" physics_type="STATIC" actor="False" friction_x="1.0" velocity_max="0.0" damping_rot="0.10000000149011612" lock_trans_z="False" damping_trans="0.03999999910593033" mass="1.0" mass_radius="1.0" lock_trans_y="False" meshFile="Sphere.mesh" velocity_min="0.0" lock_rot_y="False" friction_z="1.0" lock_trans_x="False" anisotropic_friction="False" ghost="False" friction_y="1.0" lock_rot_z="False" lock_rot_x="False" name="Sphere" />
-    </node>
     <node name="Cube" >
-      <position y="0.000000" x="0.000000" z="-0.000000" />
-      <rotation qx="0.000000" qy="1.000000" qz="-0.000000" qw="0.000000" />
-      <scale y="8.209750" x="8.209750" z="8.209750" />
-      <user_data type="str" value="enemy" name="tag" />
+      <position z="0.000000" y="100.000000" x="0.000000" />
+      <rotation qx="0.000000" qy="0.000000" qz="1.000000" qw="0.000000" />
+      <scale z="70.855370" y="70.855370" x="70.855370" />
+      <user_data type="str" value="enemy" name="Tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity inertia_tensor="0.4000000059604645" physics_type="STATIC" actor="False" friction_x="1.0" velocity_max="0.0" damping_rot="0.1589999943971634" lock_trans_z="False" damping_trans="0.02539999969303608" mass="1.0" mass_radius="1.0" lock_trans_y="False" meshFile="Cube.mesh" velocity_min="0.0" lock_rot_y="False" friction_z="1.0" lock_trans_x="False" anisotropic_friction="False" ghost="False" friction_y="1.0" lock_rot_z="False" lock_rot_x="False" name="Cube" />
-    </node>
-    <node name="Lamp" >
-      <position y="15.859079" x="23.196636" z="-1.005454" />
-      <rotation qx="0.169076" qy="0.755880" qz="-0.272171" qw="0.570947" />
-      <scale y="1.000000" x="1.000000" z="1.000000" />
-      <game >
-        <sensors />
-        <actuators />
-      </game>
-      <light shadow="true" type="directional" name="Lamp" powerScale="10.0" >
-        <position y="15.859079" x="23.196636" z="-1.005454" />
-        <lightAttenuation linear="0.001" constant="1.0" range="5000" quadratic="0.0" />
-        <direction y="-0.795" x="0.055" z="0.605" />
-        <colourDiffuse b="1.0" r="1.0" g="1.0" />
-        <colourSpecular b="1.0" r="1.0" g="1.0" />
-        <colourShadow b="1.0" r="1.0" g="1.0" />
-      </light>
-    </node>
-    <node name="Camera" >
-      <position y="31.667852" x="22.958740" z="66.969498" />
-      <rotation qx="0.483536" qy="0.336872" qz="-0.208704" qw="0.780483" />
-      <scale y="1.000000" x="1.000000" z="1.000000" />
-      <game >
-        <sensors />
-        <actuators />
-      </game>
-      <camera fov="0.5033799435163735" name="Camera" projectionType="perspective" >
-        <clipping farPlaneDist="100.0" far="100.0" nearPlaneDist="0.10000000149011612" near="0.10000000149011612" />
-      </camera>
+      <entity mass_radius="1.0" meshFile="Cube.mesh" lock_trans_y="False" friction_x="1.0" lock_rot_x="False" velocity_min="0.0" lock_rot_y="False" ghost="False" friction_y="1.0" mass="1.0" lock_trans_z="False" lock_rot_z="False" inertia_tensor="0.4000000059604645" anisotropic_friction="False" lock_trans_x="False" name="Cube" velocity_max="0.0" friction_z="1.0" actor="False" physics_type="STATIC" damping_trans="0.02539999969303608" damping_rot="0.1589999943971634" />
     </node>
   </nodes>
   <externals >
     <item type="material" >
-      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\Material.001.material" />
-    </item>
-    <item type="material" >
-      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\Material.002.material" />
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\Cube.material" />
     </item>
   </externals>
   <environment >
     <colourAmbient b="0.0" r="0.0" g="0.0" />
-    <colourDiffuse b="0.05087608844041824" r="0.05087608844041824" g="0.05087608844041824" />
     <colourBackground b="0.05087608844041824" r="0.05087608844041824" g="0.05087608844041824" />
+    <colourDiffuse b="0.05087608844041824" r="0.05087608844041824" g="0.05087608844041824" />
   </environment>
 </scene>

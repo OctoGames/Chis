@@ -14,32 +14,33 @@ LoadArchetypes* LoadArchetypes::Instance()
 	return instance_;
 }
 
-std::list<std::string*> LoadArchetypes::loadArchetype(const std::string& gameObject)
+std::list<std::string> LoadArchetypes::loadArchetype(const std::string& gameObject)
 {
 	std::fstream file;
-	std::string name = gameObject + ".components";
+	std::string name = PATH_ + gameObject + ".components";
 	std::string component;
-	std::list<std::string*> componentList;
+	std::list<std::string> componentList;
 
 	file.open(name.c_str(), std::ios::in);
 	if (file.is_open()) {
 		getline(file, component);
 		while (!file.eof()) {
-			componentList.push_back(&component);
+			componentList.push_back(component);
 			getline(file, component);
 		}
 		file.close();
-	}
+	}else
+		Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++Error al cargar el Arquetipo++++++++++++++++++++++ \n Ruta del archivo = " + name);
 
-	gameObjects_.insert(std::pair< std::string, std::list<std::string*>>
+	gameObjects_.insert(std::pair< std::string, std::list<std::string>>
 		(gameObject, componentList));
 	
 	return componentList;
 }
 
-std::list<std::string*> LoadArchetypes::getComponentsList(const std::string& gameObject)
+std::list<std::string> LoadArchetypes::getComponentsList(const std::string& gameObject)
 {
-	std::map<std::string, std::list<std::string*>>
+	std::map<std::string, std::list<std::string>>
 		::iterator it = gameObjects_.find(gameObject);
 
 	if (it == gameObjects_.end()) {
@@ -48,22 +49,3 @@ std::list<std::string*> LoadArchetypes::getComponentsList(const std::string& gam
 
 	return (*it).second;
 }
-
-/*
-Components LoadArchetypes::parseComponent(const std::string& c)
-		{
-			if (c == "audiosource")
-				return AUDIOSOURCE;
-			else if (c == "camera")
-				return CAMERA;
-			else if (c == "light")
-				return LIGHT;
-			else if (c == "meshrenderer")
-				return MESHRENDERER;
-			else if (c == "rigidbody")
-				return RIGIDBODY;
-			else if (c == "transform")
-				return TRANSFORM;
-			return Components();
-		}
-*/

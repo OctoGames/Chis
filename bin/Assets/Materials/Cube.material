@@ -1,12 +1,12 @@
-// Material.002 genrated by blender2ogre 0.6.0
+// Cube genrated by blender2ogre 0.6.0
 
-material Material.002 
+material Cube 
 {
     receive_shadows on 
 
     technique
     {
-        pass Material.002
+        pass Cube
         {
             ambient 0.09636999666690826 0.8000000715255737 0.12846891582012177 1.0
             diffuse 0.0770959984823465 0.640000066757203 0.10277513418756623 1.0
