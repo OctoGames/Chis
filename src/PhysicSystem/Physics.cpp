@@ -1,9 +1,11 @@
 #include "Physics.h"
+#include <iostream>
 
 Physics* Physics::instance_ = nullptr;
 
 Physics::Physics() : numberOfRigidBodies_(0),
-debug_(false)
+debug_(false),
+visibleDebug_(false)
 {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collisionConfiguration);
@@ -63,13 +65,25 @@ bool Physics::update()
 		{
 			Ogre::SceneNode* n = debugObjects[i].node;
 
+			if (!visibleDebug_)
+				n->setVisible(false);
+			else
+				n->setVisible(true);
+
 			btVector3 v;
 			v.setX(n->getPosition().x);
 			v.setY(n->getPosition().y);
 			v.setZ(n->getPosition().z);
 
+			btQuaternion quaternion;
+
+			quaternion.setX(n->getOrientation().x);
+			quaternion.setY(n->getOrientation().y);
+			quaternion.setZ(n->getOrientation().z);
+			quaternion.setW(n->getOrientation().w);
+
 			if(debugObjects[i].type == "box")
-				debugDrawer::Instance()->drawCube(v, debugObjects[i].scale);
+				debugDrawer::Instance()->drawCube(v, debugObjects[i].scale, quaternion);
 			else if (debugObjects[i].type == "sphere")
 			{
 				debugDrawer::Instance()->drawSphere(v, debugObjects[i].radious);
@@ -79,6 +93,30 @@ bool Physics::update()
 
 	return true;
 }
+
+void Physics::toggleDebug()
+{
+	debug_ = !debug_; 
+
+	if (!debug_) {
+		debugDrawer::Instance()->resetLineNumber();
+
+		for (int i = 0; i < debugObjects.size(); i++)
+		{
+			Ogre::SceneNode* n = debugObjects[i].node;
+
+			n->setVisible(true);
+		}
+	}
+}
+
+void Physics::toggleDebugMode()
+{
+
+	if(debug_)
+		 visibleDebug_ = !visibleDebug_;
+}
+
 
 btRigidBody* Physics::getRigidBodyByName(std::string name)
 {

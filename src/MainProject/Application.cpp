@@ -48,7 +48,7 @@ void Application::initEntities()
 	mouseTransform_->setScale(30.0, 30.0, 30.0);
 
 	RigidBody* mouseRigidBody = new RigidBody(mouse);
-	mouseRigidBody->createSphereRB(1, 30, "mouseRB");
+	mouseRigidBody->createBoxRB(1, Ogre::Vector3(50,30,30), "mouseRB");
 
 	MeshRenderer* mouseRenderer_ = new MeshRenderer(mouse, "mouse.mesh");
 	mouseRenderer_->setMaterialName("mouseMaterial");
@@ -66,7 +66,7 @@ void Application::initEntities()
 	floorRigidBody->createBoxRB(0, floorScale, "floorRB");
 
 	//Theres a fish mesh as floor because I dont wanna waste time creating a box mesh, obviously should be changed in the future
-	MeshRenderer* floorRenderer_ = new MeshRenderer(floor, "fish.mesh");
+	MeshRenderer* floorRenderer_ = new MeshRenderer(floor, "Cube.mesh");
 	floorRenderer_->setMaterialName("ground_mat");
 
 	//------------------MAIN CAMERA------------------//
@@ -74,7 +74,8 @@ void Application::initEntities()
 	GameObject* cam = new GameObject("camera", "cam");
 	Transform* cameraTransform = new Transform(cam);
 	Camera* mainCamera = new Camera(cam, true);
-	cameraTransform->setPosition(0, 50, 400);
+	cameraTransform->setPosition(200, 100, 400);
+	cameraTransform->getNode()->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 	AudioSource* bgMusic = new AudioSource(cam, "MouseMusic", "22-The Mouse's House.mp3");
 	bgMusic->play();
 
@@ -85,8 +86,6 @@ void Application::initEntities()
 	Light* mainLight_ = new Light(mainLight, true);
 	mainLightTransform->setPosition(0, 20, 0);
 	mainLightTransform->getNode()->setDirection(Ogre::Vector3(0, -1, -1));
-
-	Physics::Instance()->setDebugMode(true);
 }
 
 void Application::handleInput()
@@ -108,6 +107,11 @@ void Application::handleInput()
 			}
 
 			else if (event.key.keysym.sym == SDLK_p)
+			{
+				Physics::Instance()->toggleDebug();
+			}
+
+			else if (event.key.keysym.sym == SDLK_o)
 			{
 				Physics::Instance()->toggleDebugMode();
 			}

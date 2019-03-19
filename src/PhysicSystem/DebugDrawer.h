@@ -29,7 +29,7 @@ public:
 
 	void drawLine(const btVector3 &from, const btVector3 &to, const btVector3 &color);
 
-	void drawCube(btVector3 position, btVector3 scale);
+	void drawCube(btVector3 position, btVector3 scale, btQuaternion orientation);
 
 	void resetLineNumber();
 

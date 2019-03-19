@@ -25,13 +25,16 @@ public:
 
 	inline void setDebugMode(bool db) { debug_ = db; };
 
-	inline void toggleDebugMode() { debug_ = !debug_; if (!debug_) debugDrawer::Instance()->resetLineNumber();};
+	void toggleDebug();
+	void toggleDebugMode();
 
 
 	void createBoxRigidBody(Ogre::SceneNode * node, double mass, Ogre::Vector3 scale, std::string name);
 	void createSphereRididBody(Ogre::SceneNode * node, double mass, double radious, std::string name);
 
 private:
+
+	bool visibleDebug_;
 
 	struct debugObjectsPropierties {
 		Ogre::SceneNode* node;

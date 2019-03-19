@@ -17,10 +17,12 @@ debugDrawer* debugDrawer::Instance()
 	return instance_;
 }
 
-void debugDrawer::drawCube(btVector3 position, btVector3 scale)
+void debugDrawer::drawCube(btVector3 position, btVector3 scale, btQuaternion orientation)
 {
 
 	btVector3 pos = position;
+
+	scale *= 2;
 
 	pos.setX(pos.getX() - (scale.getX() / 2));
 	pos.setY(pos.getY() - (scale.getY() / 2));
@@ -46,6 +48,8 @@ void debugDrawer::drawCube(btVector3 position, btVector3 scale)
 	lastTop.setY(lastTop.getY() + scale.getY());
 
 	btVector3 col(0, 1, 0);
+
+	
 
 	drawLine(baseY, baseX, col);
 	drawLine(baseX, lastBase, col);
@@ -91,7 +95,8 @@ void debugDrawer::drawLine(const btVector3 &from, const btVector3 &to, const btV
 
 	line->end();
 
-	OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode()->attachObject(line);
+	Ogre::SceneNode* sNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+	sNode->attachObject(line);
 
 
 }

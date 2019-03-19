@@ -200,7 +200,10 @@ void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameO
 	}
 	else {
 		pElement = XMLNode->first_node("scale");
-		rigidBody->createBoxRB(mass, parseVector3(pElement), gameObject->getName() + "RB");
+		
+		Ogre::Vector3 v3 = parseVector3(pElement);
+
+		rigidBody->createBoxRB(mass, v3, gameObject->getName() + "RB");
 
 	}
 }
