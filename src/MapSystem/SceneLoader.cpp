@@ -87,7 +87,7 @@ void SceneLoader::processNode(rapidxml::xml_node<>* XMLNode) {
 	// Get the gameobject name
 	Ogre::String gameObjectName = getAttrib(XMLNode, "name");
 	Ogre::String gameObjectTag = "";
-
+	Ogre::StringUtil::toLowerCase(gameObjectName);
 	//-----look for the gameobject tag-----//
 	pElement = XMLNode->first_node("user_data");
 	bool findTag = false;
@@ -95,7 +95,9 @@ void SceneLoader::processNode(rapidxml::xml_node<>* XMLNode) {
 	{
 		Ogre::String nameProp = getAttrib(pElement, "name");
 		Ogre::String typeProp = getAttrib(pElement, "type");
-		if (nameProp == "tag" || nameProp == "Tag" || nameProp == "TAG" && typeProp == "str") {
+
+		Ogre::StringUtil::toLowerCase(nameProp);
+		if (nameProp == "tag" && typeProp == "str") {
 			gameObjectTag = getAttrib(pElement, "value");
 			findTag = true;
 		}
@@ -105,7 +107,7 @@ void SceneLoader::processNode(rapidxml::xml_node<>* XMLNode) {
 
 	// create a gameobjects with its name and tag 
 	GameObject* g = new GameObject(gameObjectName, gameObjectTag);
-
+	
 	// lista de componentes del gameobject
 	std::list<std::string> componentsList = LoadArchetypes::Instance()->getComponentsList(gameObjectName);
 	if(componentsList.empty())
@@ -119,26 +121,28 @@ void SceneLoader::processNode(rapidxml::xml_node<>* XMLNode) {
 
 void SceneLoader::loadComponent(const std::string& c, rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
 {
+	Ogre::String componentString = c;
+	Ogre::StringUtil::toLowerCase(componentString);
 
-	if (c == "audiosource") {
+	if (componentString == "audiosource") {
 		loadAudioSource(XMLNode, gameObject);
 	}
-	else if (c == "camera") {
+	else if (componentString == "camera") {
 		//???
 	}
-	else if (c == "light") {
+	else if (componentString == "light") {
 		loadLight(XMLNode, gameObject);
 	}
-	else if (c == "meshrenderer") {
+	else if (componentString == "meshrenderer") {
 		loadMeshRenderer(XMLNode, gameObject);
 	}
 
-	else if (c == "rigidbody") {
+	else if (componentString == "rigidbody") {
 
 		loadRigidBody(XMLNode, gameObject);
 	}
 
-	else if (c == "transform") {
+	else if (componentString == "transform") {
 		loadTranform(XMLNode, gameObject);
 	}
 }
@@ -161,10 +165,11 @@ void SceneLoader::loadMeshRenderer(rapidxml::xml_node<>* XMLNode, GameObject* ga
 	if (meshFile == "")
 		Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Error al leer el meshFile +++++++++++++++++++++++++++");
 	MeshRenderer* renderer = new MeshRenderer(gameObject, meshFile);
-	//creo que no hace falta registrar el material, viene automáticamente con el mesh
-	renderer->setMaterialName(gameObject->getName() + ".material");
+	
+	//no hace falta hacer el set material, lo coge automáticamente(ni idea de como pero lo coge y es genial)
+	//renderer->setMaterialName(gameObject->getName());
 
-	Ogre::LogManager::getSingleton().logMessage("+++++++++++++++++++++++++++++++++++++"+gameObject->getName() + ".material++++++++++++++++ \n"+ meshFile);
+	Ogre::LogManager::getSingleton().logMessage("++++++++++++++++ Material:"+gameObject->getName() + "++++++++++++++++ Name Mesh:"+ meshFile);
 }
 
 void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
@@ -176,18 +181,21 @@ void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameO
 	pElement = XMLNode->first_node("user_data");
 	Ogre::String radioSphereRB, massValue;
 	double mass = 1.0;
-	bool findRigidBody = false, findMass = false;
+	bool findRigidBodySphere = false, findMass = false;
 
-	while (pElement && (!findRigidBody || !findMass))
+	while (pElement && (!findRigidBodySphere || !findMass))
 	{
 		Ogre::String nameProp = getAttrib(pElement, "name");
 		Ogre::String typeProp = getAttrib(pElement, "type");
-		if (!findRigidBody && (nameProp == "SphereRB" || nameProp == "sphererb" || nameProp == "SPHERERB" && typeProp == "float")) {
+		Ogre::StringUtil::toLowerCase(nameProp);
+		Ogre::StringUtil::toLowerCase(typeProp);
+
+		if (!findRigidBodySphere && nameProp == "sphererb" && typeProp == "float") {
 			radioSphereRB = getAttrib(pElement, "value");
-			findRigidBody = true;
+			findRigidBodySphere = true;
 		}
 
-		else if (!findMass && (nameProp == "Mass" || nameProp == "mass" || nameProp == "MASS" && typeProp == "float")) {
+		else if (!findMass && nameProp == "mass" && typeProp == "float") {
 			massValue = getAttrib(pElement, "value");
 			mass = (double)Ogre::StringConverter::parseReal(massValue);
 			findMass = true;
@@ -195,7 +203,7 @@ void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameO
 		pElement = pElement->next_sibling("user_data");
 	}
 
-	if (findRigidBody) {
+	if (findRigidBodySphere) {
 		rigidBody->createSphereRB(mass, (double)Ogre::StringConverter::parseReal(radioSphereRB), gameObject->getName() + "RB");
 	}
 	else {
@@ -204,7 +212,6 @@ void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameO
 		Ogre::Vector3 v3 = parseVector3(pElement);
 
 		rigidBody->createBoxRB(mass, v3, gameObject->getName() + "RB");
-
 	}
 }
 
@@ -257,9 +264,9 @@ bool SceneLoader::getAttribBool(rapidxml::xml_node<>* XMLNode, const Ogre::Strin
 Ogre::Vector3 SceneLoader::parseVector3(rapidxml::xml_node<>* XMLNode)
 {
 	return Ogre::Vector3(
-		Ogre::StringConverter::parseReal(XMLNode->first_attribute("z")->value()),
+		Ogre::StringConverter::parseReal(XMLNode->first_attribute("x")->value()),
 		Ogre::StringConverter::parseReal(XMLNode->first_attribute("y")->value()),
-		Ogre::StringConverter::parseReal(XMLNode->first_attribute("x")->value())
+		Ogre::StringConverter::parseReal(XMLNode->first_attribute("z")->value())
 	);
 }
 

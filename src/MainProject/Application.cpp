@@ -55,19 +55,22 @@ void Application::initEntities()
 
 	//----------------FLOOR OBJECT------------------//
 
-	Ogre::Vector3 floorScale(1000, 10, 1000);
+	//Ogre::Vector3 floorScale(1000, 10, 1000);
 
-	GameObject* floor = new GameObject("floor", "floor");
-	Transform* floorTransform_ = new Transform(floor);
-	floorTransform_->setPosition(0.0, 0.0, 0.0);
-	floorTransform_->setScale(1000, 10, 1000);
+	//GameObject* floor = new GameObject("floor", "floor");
+	//Transform* floorTransform_ = new Transform(floor);
+	//floorTransform_->setPosition(0.0, 0.0, 0.0);
+	//floorTransform_->setScale(1000, 10, 1000);
 
-	RigidBody* floorRigidBody = new RigidBody(floor);
-	floorRigidBody->createBoxRB(0, floorScale, "floorRB");
+	//RigidBody* floorRigidBody = new RigidBody(floor);
+	//floorRigidBody->createBoxRB(0, floorScale, "floorRB");
 
 	//Theres a fish mesh as floor because I dont wanna waste time creating a box mesh, obviously should be changed in the future
 	MeshRenderer* floorRenderer_ = new MeshRenderer(floor, "Cube.mesh");
 	floorRenderer_->setMaterialName("ground_mat");
+	////Theres a fish mesh as floor because I dont wanna waste time creating a box mesh, obviously should be changed in the future
+	//MeshRenderer* floorRenderer_ = new MeshRenderer(floor, "fish.mesh");
+	//floorRenderer_->setMaterialName("ground_mat");
 
 	//------------------MAIN CAMERA------------------//
 

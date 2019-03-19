@@ -1,16 +1,16 @@
-// Cube genrated by blender2ogre 0.6.0
+// cube genrated by blender2ogre 0.6.0
 
-material Cube 
+material cube 
 {
     receive_shadows on 
 
     technique
     {
-        pass Cube
+        pass cube
         {
-            ambient 0.09636999666690826 0.8000000715255737 0.12846891582012177 1.0
-            diffuse 0.0770959984823465 0.640000066757203 0.10277513418756623 1.0
-            specular 0.3913152813911438 0.5 0.08868220448493958 1.0 12.5
+            ambient 0.8000000715255737 0.04970933869481087 0.17782573401927948 1.0
+            diffuse 0.640000066757203 0.03976747154843019 0.14226058933527153 1.0
+            specular 0.5 0.45063289999961853 0.47212108969688416 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
             alpha_to_coverage off
