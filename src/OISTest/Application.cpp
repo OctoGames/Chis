@@ -28,8 +28,8 @@ void Application::initDemo()
 	Ogre::Camera* lCamera = OgreSystem::Instance()->getSceneManager()->createCamera("MyFirstCamera");
 
 	// I attach the camera to a new SceneNode. It will be easier then to move it in the scene.
-	lCameraNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("MyFirstCameraNode");
-	lCameraNode->attachObject(lCamera);
+	cameraNode_ = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("MyFirstCameraNode");
+	cameraNode_->attachObject(lCamera);
 
 	// We create a viewport on a part of the window.
 	// A viewport is the link between 1 camera and 1 drawing surface (here the window).
@@ -41,18 +41,18 @@ void Application::initDemo()
 	float lViewportLeft = (1.0f - lViewportWidth) * 0.5f;
 	float lViewportTop = (1.0f - lViewportHeight) * 0.5f;
 	unsigned short lMainViewportZOrder = 100;
-	vp = OgreSystem::Instance()->getWindow()->addViewport(lCamera, lMainViewportZOrder, lViewportLeft, lViewportTop, lViewportWidth, lViewportHeight);
+	viewport_ = OgreSystem::Instance()->getWindow()->addViewport(lCamera, lMainViewportZOrder, lViewportLeft, lViewportTop, lViewportWidth, lViewportHeight);
 
 	// I want the viewport to draw the scene automatically
 	// when I will call lWindow->update();
-	vp->setAutoUpdated(true);
+	viewport_->setAutoUpdated(true);
 
 	// I choose a color for this viewport. 
 	// I prefer to have a bright color, to detect holes in geometry etc...
-	vp->setBackgroundColour(Ogre::ColourValue(1, 0, 1));
+	viewport_->setBackgroundColour(Ogre::ColourValue(1, 0, 1));
 
 	// I choose the visual ratio of the camera. To make it looks real, I want it the same as the viewport.
-	float ratio = float(vp->getActualWidth()) / float(vp->getActualHeight());
+	float ratio = float(viewport_->getActualWidth()) / float(viewport_->getActualHeight());
 	lCamera->setAspectRatio(ratio);
 
 	// I choose the clipping far& near planes. if far/near>2000, you can get z buffer problem.
@@ -70,7 +70,7 @@ void Application::initDemo()
 	Ogre::Light* light_ = OgreSystem::Instance()->getSceneManager()->createLight("mainLight");
 	light_->setType(Ogre::Light::LT_DIRECTIONAL);
 	light_->setDiffuseColour(0.75, 0.75, 0.75);
-	lCameraNode->attachObject(light_);
+	cameraNode_->attachObject(light_);
 
 	Ogre::String lNameOfTheMesh = "mouse.mesh";
 	int lNumberOfEntities = 5;
@@ -144,10 +144,10 @@ void Application::run()
 	}
 }
 
-void Application::handleInput(unsigned long lDeltaTime_s)
+void Application::handleInput(float lDeltaTime_s)
 {
 	// I capture the keyboard settings.
-		// Then I update the scene according to these informations.
+	// Then I update the scene according to these informations.
 	OIS::Keyboard* lKeyboard = OgreSystem::Instance()->getKeyboard();
 	OIS::Mouse* lMouse = OgreSystem::Instance()->getMouse();
 
@@ -159,25 +159,25 @@ void Application::handleInput(unsigned long lDeltaTime_s)
 	{
 		float lCoeff = 200.0f * lDeltaTime_s;
 		Ogre::Vector3 lTranslation(Ogre::Vector3::ZERO);
-		if (lKeyboard->isKeyDown(OIS::KC_T))
+		if (lKeyboard->isKeyDown(OIS::KC_W))
 		{
 			lTranslation.z -= lCoeff;
 		}
-		if (lKeyboard->isKeyDown(OIS::KC_G))
+		if (lKeyboard->isKeyDown(OIS::KC_S))
 		{
 			lTranslation.z += lCoeff;
 		}
-		if (lKeyboard->isKeyDown(OIS::KC_F))
+		if (lKeyboard->isKeyDown(OIS::KC_A))
 		{
 			lTranslation.x -= lCoeff;
 		}
-		if (lKeyboard->isKeyDown(OIS::KC_H))
+		if (lKeyboard->isKeyDown(OIS::KC_D))
 		{
 			lTranslation.x += lCoeff;
 		}
 		if (lTranslation != Ogre::Vector3::ZERO)
 		{
-			lCameraNode->translate(lTranslation, Ogre::Node::TS_LOCAL);
+			cameraNode_->translate(lTranslation, Ogre::Node::TS_LOCAL);
 		}
 		if (lKeyboard->isKeyDown(OIS::KC_ESCAPE))
 		{
@@ -195,7 +195,7 @@ void Application::handleInput(unsigned long lDeltaTime_s)
 			float red = Ogre::Math::RangeRandom(0.1f, 0.9f);
 			float green = Ogre::Math::RangeRandom(0.1f, 0.9f);
 			float blue = Ogre::Math::RangeRandom(0.1f, 0.9f);
-			vp->setBackgroundColour(Ogre::ColourValue(red, green, blue));
+			viewport_->setBackgroundColour(Ogre::ColourValue(red, green, blue));
 		}
 		float lMouseX = float(lMouseState.X.rel) / float(OgreSystem::Instance()->getWindow()->getWidth());
 		float lMouseY = float(lMouseState.Y.rel) / float(OgreSystem::Instance()->getWindow()->getHeight());
@@ -204,8 +204,8 @@ void Application::handleInput(unsigned long lDeltaTime_s)
 		Ogre::Radian lAngleY(lMouseY * lRotCoeff);
 
 		// If the 'player' don't make loopings, 'yaw in world' + 'pitch in local' is often enough for a camera controler.
-		lCameraNode->yaw(lAngleX, Ogre::Node::TS_WORLD);
-		lCameraNode->pitch(lAngleY, Ogre::Node::TS_LOCAL);
+		cameraNode_->yaw(lAngleX, Ogre::Node::TS_WORLD);
+		cameraNode_->pitch(lAngleY, Ogre::Node::TS_LOCAL);
 	}
 }
 

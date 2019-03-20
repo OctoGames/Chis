@@ -21,12 +21,12 @@ private:
 	void closeSystems();
 	void initDemo();
 
-	void handleInput(unsigned long lDeltaTime_s);
+	void handleInput(float lDeltaTime_s);
 	void update();
 	void render();
 
-	Ogre::SceneNode* lCameraNode;
-	Ogre::Viewport* vp;
+	Ogre::SceneNode* cameraNode_;
+	Ogre::Viewport* viewport_;
 };
 
 #endif // !_APPLICATION_H_
