@@ -11,12 +11,7 @@ public:
 
 	void run();
 
-	inline bool isRunning() const { return running_; }
-	inline void setRunning(bool running) { running_ = running; }
-
 private:
-	bool running_;
-
 	void initSystems();
 	void closeDemo();
 	void closeSystems();

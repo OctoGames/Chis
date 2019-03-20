@@ -1,7 +1,6 @@
 #include "Application.h"
 
-Application::Application() :
-	running_(true)
+Application::Application()
 {
 	initSystems();
 	initDemo();
@@ -117,7 +116,7 @@ void Application::run()
 	// It allow the binding of messages between the application and the OS.
 	// These messages are most of the time : keystroke, mouse moved, ... or window closed.
 	// If I don't do this, the message are never caught, and the window won't close.
-	while (!OgreSystem::Instance()->getWindow()->isClosed() && running_)
+	while (!OgreSystem::Instance()->getWindow()->isClosed() && OgreSystem::Instance()->isRunning())
 	{
 		// For the window drawing, you will increase performances if you : 
 		// 0/ do some cpu calculations (ex: update sound).
@@ -186,7 +185,7 @@ void Application::handleInput(float deltaTime)
 		}
 		if (lKeyboard->isKeyDown(OIS::KC_ESCAPE))
 		{
-			running_ = false;
+			OgreSystem::Instance()->quit();
 		}
 	}
 

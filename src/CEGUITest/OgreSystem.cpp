@@ -16,7 +16,8 @@ OgreSystem::OgreSystem() :
 	root_(nullptr),
 	window_(nullptr),
 	sceneManager_(nullptr),
-	fileSystemLayer_(nullptr)
+	fileSystemLayer_(nullptr),
+	running_(true)
 {
 	appName_ = "CHIS";
 }
@@ -36,8 +37,16 @@ void OgreSystem::init()
 	CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
 	CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
 
-	//CEGUI::SchemeManager::getSingleton().createFromFile("RevoltLookSkin.scheme");
-	//CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("RevoltLook/MouseArrow");
+	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
+	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
+	CEGUI::Window *sheet = wmgr.createWindow("DefaultWindow", "CEGUIDemo/Sheet");
+	CEGUI::Window *quit = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+	quit->setText("Quit");
+	quit->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
+	sheet->addChild(quit);
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
+	quit->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&OgreSystem::quit, this));
 }
 
 void OgreSystem::close()
@@ -101,10 +110,15 @@ void OgreSystem::createWindow()
 
 void OgreSystem::createInputManager()
 {
-	size_t hWnd = 0;
-	getWindow()->getCustomAttribute("WINDOW", &hWnd);
-
-	inputManager_ = OIS::InputManager::createInputSystem(hWnd);
+	OIS::ParamList pl;
+	size_t windowHnd = 0;
+	std::ostringstream windowHndStr;
+	getWindow()->getCustomAttribute("WINDOW", &windowHnd);
+	windowHndStr << windowHnd;
+	pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
+	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND")));
+	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+	inputManager_ = OIS::InputManager::createInputSystem(pl);
 	mouse_ = static_cast<OIS::Mouse*>(inputManager_->createInputObject(OIS::OISMouse, false));
 	keyboard_ = static_cast<OIS::Keyboard*>(inputManager_->createInputObject(OIS::OISKeyboard, false));
 }

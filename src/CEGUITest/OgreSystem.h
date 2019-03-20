@@ -39,6 +39,9 @@ public:
 	inline OIS::Mouse* getMouse() { return mouse_; }
 	inline OIS::Keyboard* getKeyboard() { return keyboard_; }
 
+	inline bool isRunning() const { return running_; }
+	void quit() { running_ = false; }
+
 private:
 	OgreSystem();
 
@@ -62,6 +65,7 @@ private:
 	OIS::InputManager* inputManager_;
 
 	CEGUI::OgreRenderer* renderer_;
+	bool running_;
 };
 
 #endif // !_OGRE_SYSTEM_H_
