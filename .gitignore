@@ -27,3 +27,5 @@ Dependencies/cmake-3\.14\.0-rc2/
 Dependencies/cegui-dependencies/Build/
 
 Dependencies/cegui-0\.8\.7/Build/
+
+Dependencies/cegui-0\.8\.7/dependencies/
