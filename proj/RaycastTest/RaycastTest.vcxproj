@@ -19,31 +19,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\EntityComponentSystem\Component.cpp" />
-    <ClCompile Include="..\..\src\EntityComponentSystem\EntityComponentManager.cpp" />
-    <ClCompile Include="..\..\src\EntityComponentSystem\GameObejct.cpp" />
+    <ClCompile Include="..\..\src\RaycastTest\Application.cpp" />
+    <ClCompile Include="..\..\src\RaycastTest\debugDrawer.cpp" />
+    <ClCompile Include="..\..\src\RaycastTest\Main.cpp" />
+    <ClCompile Include="..\..\src\RaycastTest\OgreSystem.cpp" />
+    <ClCompile Include="..\..\src\RaycastTest\Physics.cpp" />
+    <ClCompile Include="..\..\src\RaycastTest\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EntityComponentSystem\Component.h" />
-    <ClInclude Include="..\..\src\EntityComponentSystem\EntityComponentManager.h" />
-    <ClInclude Include="..\..\src\EntityComponentSystem\GameObject.h" />
+    <ClInclude Include="..\..\src\RaycastTest\Application.h" />
+    <ClInclude Include="..\..\src\RaycastTest\debugDrawer.h" />
+    <ClInclude Include="..\..\src\RaycastTest\OgreSystem.h" />
+    <ClInclude Include="..\..\src\RaycastTest\Physics.h" />
+    <ClInclude Include="..\..\src\RaycastTest\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{65051CFB-B4DE-410F-80DA-2BC8726D2695}</ProjectGuid>
+    <ProjectGuid>{CA57A5FA-B4CE-44A6-90AD-7013F52D638B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>EntityComponentSystem</RootNamespace>
+    <RootNamespace>OISTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -85,8 +90,8 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\entityComponentSystem;$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -95,8 +100,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\entityComponentSystem;$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -114,7 +119,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OIS_d.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;LinearMath_Debug.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -149,7 +154,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OIS.lib;SDL2.lib;SDL2main.lib;OgreMain.lib;LinearMath.lib;BulletDynamics.lib;BulletCollision.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
