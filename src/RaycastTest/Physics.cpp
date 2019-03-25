@@ -57,11 +57,13 @@ bool Physics::update()
 		}
 	}
 
+	debugDrawer::Instance()->resetLineNumber();
+
 	castRays();
 
 	if (debug_)
 	{
-		debugDrawer::Instance()->resetLineNumber();
+		
 
 		for (int i = 0; i < debugObjects.size(); i++)
 		{
@@ -205,73 +207,69 @@ btTransform Physics::setTransform(Ogre::SceneNode* node)
 	return transform;
 }
 
+void Physics::createRaycast(btVector3 from, btVector3 to, bool allHits, std::string name)
+{
+	rayCast r;
+	r.from = from;
+	r.to = to;
+	r.allHits = allHits;
+	r.rayName = name;
+
+	rayCasts_.push_back(r);
+}
+
+void Physics::firstHitRaycast(btVector3 from, btVector3 to)
+{
+	debugDrawer::Instance()->drawLine(from, to, btVector3(0, 1, 0));
+
+	btCollisionWorld::ClosestRayResultCallback closestResults(from, to);
+	closestResults.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
+
+	dynamicsWorld->rayTest(from, to, closestResults);
+
+	if (closestResults.hasHit())
+	{
+		btVector3 p = from.lerp(to, closestResults.m_closestHitFraction);
+		debugDrawer::Instance()->drawSphere(p, 1, btVector3(0,0,1));
+	}
+}
+
+void Physics::allHitsRaycast(btVector3 from, btVector3 to)
+{
+	dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(0, 0, 0, 1));
+	btCollisionWorld::AllHitsRayResultCallback allResults(from, to);
+	allResults.m_flags |= btTriangleRaycastCallback::kF_KeepUnflippedNormal;
+	//kF_UseGjkConvexRaytest flag is now enabled by default, use the faster but more approximate algorithm
+	//allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
+	allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
+
+	dynamicsWorld->rayTest(from, to, allResults);
+
+	for (int i = 0; i < allResults.m_hitFractions.size(); i++)
+	{
+		btVector3 p = from.lerp(to, allResults.m_hitFractions[i]);
+		dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, btVector3(1,0,0));
+	}
+}
+
 void Physics::castRays()
 {
-	static float up = 0.f;
-	static float dir = 1.f;
-	//add some simple animation
-	//if (!m_idle)
-	{
-		up += 0.01 * dir;
-
-		if (btFabs(up) > 2)
-		{
-			dir *= -1.f;
-		}
-
-		btTransform tr = dynamicsWorld->getCollisionObjectArray()[1]->getWorldTransform();
-		static float angle = 0.f;
-		angle += 0.01f;
-		tr.setRotation(btQuaternion(btVector3(0, 1, 0), angle));
-		dynamicsWorld->getCollisionObjectArray()[1]->setWorldTransform(tr);
-	}
-
 	///step the simulation
 	if (dynamicsWorld)
 	{
 		dynamicsWorld->updateAabbs();
 		dynamicsWorld->computeOverlappingPairs();
 
-		btVector3 red(1, 0, 0);
-		btVector3 blue(0, 0, 1);
-
-		///all hits
+		for (int i = 0; i < rayCasts_.size(); i++)
 		{
-			btVector3 from(-30, 1 + up, 0);
-			btVector3 to(30, 1, 0);
-			dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(0, 0, 0, 1));
-			btCollisionWorld::AllHitsRayResultCallback allResults(from, to);
-			allResults.m_flags |= btTriangleRaycastCallback::kF_KeepUnflippedNormal;
-			//kF_UseGjkConvexRaytest flag is now enabled by default, use the faster but more approximate algorithm
-			//allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
-			allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
-
-			dynamicsWorld->rayTest(from, to, allResults);
-
-			for (int i = 0; i < allResults.m_hitFractions.size(); i++)
+			if (rayCasts_[i].allHits)
 			{
-				btVector3 p = from.lerp(to, allResults.m_hitFractions[i]);
-				dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, red);
-				dynamicsWorld->getDebugDrawer()->drawLine(p, p + allResults.m_hitNormalWorld[i], red);
+				allHitsRaycast(rayCasts_[i].from, rayCasts_[i].to);
 			}
-		}
 
-		///first hit
-		{
-			btVector3 from(-30, 1.2, 0);
-			btVector3 to(30, 1.2, 0);
-			dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(0, 0, 1, 1));
-
-			btCollisionWorld::ClosestRayResultCallback closestResults(from, to);
-			closestResults.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
-
-			dynamicsWorld->rayTest(from, to, closestResults);
-
-			if (closestResults.hasHit())
+			else
 			{
-				btVector3 p = from.lerp(to, closestResults.m_closestHitFraction);
-				dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, blue);
-				dynamicsWorld->getDebugDrawer()->drawLine(p, p + closestResults.m_hitNormalWorld, blue);
+				firstHitRaycast(rayCasts_[i].from, rayCasts_[i].to);
 			}
 		}
 	}

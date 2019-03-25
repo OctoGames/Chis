@@ -35,7 +35,21 @@ public:
 	void createBoxRigidBody(Ogre::SceneNode * node, double mass, Ogre::Vector3 scale, std::string name);
 	void createSphereRididBody(Ogre::SceneNode * node, double mass, double radious, std::string name);
 
+	void createRaycast(btVector3 from, btVector3 to, bool allHits, std::string name);
+
 private:
+
+	void firstHitRaycast(btVector3 from, btVector3 to);
+	void allHitsRaycast(btVector3 from, btVector3 to);
+
+	struct rayCast {
+		btVector3 from;
+		btVector3 to;
+		bool allHits;
+		std::string rayName;
+	};
+
+	std::vector<rayCast> rayCasts_;
 
 	bool visibleDebug_;
 

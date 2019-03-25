@@ -88,9 +88,11 @@ void Application::initDemo()
 		lEntity->setMaterialName("mouse_mat");
 
 		Physics::Instance()->createBoxRigidBody(lNode, 0, Ogre::Vector3(30, 30, 30), "ch");
-		Physics::Instance()->setDebugMode(true);
+		//Physics::Instance()->setDebugMode(true);
 		// The loaded mesh will be white. This is normal.
 	}
+
+	Physics::Instance()->createRaycast(btVector3(0, 0, 0), btVector3(0, 0, -300), true, "pepe");
 }
 
 void Application::run()
