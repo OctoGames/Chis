@@ -5,7 +5,7 @@ Physics* Physics::instance_ = nullptr;
 
 Physics::Physics() : numberOfRigidBodies_(0),
 debug_(false),
-visibleDebug_(false)
+visibleDebug_(true)
 {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collisionConfiguration);
@@ -30,7 +30,6 @@ Physics::~Physics()
 {
 
 }
-
 
 bool Physics::update()
 {
@@ -57,10 +56,12 @@ bool Physics::update()
 		}
 	}
 
+	debugDrawer::Instance()->resetLineNumber();
+
+	castRays();
+
 	if (debug_)
 	{
-		debugDrawer::Instance()->resetLineNumber();
-
 		for (int i = 0; i < debugObjects.size(); i++)
 		{
 			Ogre::SceneNode* n = debugObjects[i].node;
@@ -75,15 +76,8 @@ bool Physics::update()
 			v.setY(n->getPosition().y);
 			v.setZ(n->getPosition().z);
 
-			btQuaternion quaternion;
-
-			quaternion.setX(n->getOrientation().x);
-			quaternion.setY(n->getOrientation().y);
-			quaternion.setZ(n->getOrientation().z);
-			quaternion.setW(n->getOrientation().w);
-
 			if(debugObjects[i].type == "box")
-				debugDrawer::Instance()->drawCube(v, debugObjects[i].scale, quaternion);
+				debugDrawer::Instance()->drawCube(v, debugObjects[i].scale);
 			else if (debugObjects[i].type == "sphere")
 			{
 				debugDrawer::Instance()->drawSphere(v, debugObjects[i].radious);
@@ -116,7 +110,6 @@ void Physics::toggleDebugMode()
 	if(debug_)
 		 visibleDebug_ = !visibleDebug_;
 }
-
 
 btRigidBody* Physics::getRigidBodyByName(std::string name)
 {
@@ -201,4 +194,138 @@ btTransform Physics::setTransform(Ogre::SceneNode* node)
 	//Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
 
 	return transform;
+}
+
+void Physics::getRaycastByName(const std::string name, btVector3& from, btVector3& to)
+{
+	bool found = false;
+	int i = 0;
+
+	while (i < rayCasts_.size() && !found)
+	{
+		if (name == rayCasts_[i].rayName)
+		{
+			from = rayCasts_[i].from;
+			to = rayCasts_[i].to;
+			found = true;
+		}
+		else i++;
+	}
+}
+
+void Physics::setRaycastByName(const std::string name, btVector3 from, btVector3 to)
+{
+	bool found = false;
+	int i = 0;
+
+	while (i < rayCasts_.size() && !found)
+	{
+		if (name == rayCasts_[i].rayName)
+		{
+			rayCasts_[i].from = from;
+			rayCasts_[i].to = to;
+			found = true;
+		}
+		else i++;
+	}
+}
+
+void Physics::createRaycast(btVector3 from, btVector3 to, bool allHits, std::string name)
+{
+	rayCast r;
+	r.from = from;
+	r.to = to;
+	r.allHits = allHits;
+	r.rayName = name;
+
+	rayCasts_.push_back(r);
+}
+
+Ogre::SceneNode * Physics::firstHitRaycast(btVector3 from, btVector3 to)
+{
+	btCollisionWorld::ClosestRayResultCallback closestResults(from, to);
+	closestResults.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
+
+	dynamicsWorld->rayTest(from, to, closestResults);
+
+	Ogre::SceneNode *sceneNodeCollided = nullptr;
+
+	if (closestResults.hasHit())
+	{
+		//This is the object the rayCast has collided with
+		const btCollisionObject* collidedObj = closestResults.m_collisionObject;
+
+		const btRigidBody* body = btRigidBody::upcast(collidedObj);
+
+		sceneNodeCollided = static_cast<Ogre::SceneNode *>(body->getUserPointer());
+
+		std::cout << sceneNodeCollided->getName() << std::endl;
+		
+		if (debug_)
+		{
+			btVector3 p = from.lerp(to, closestResults.m_closestHitFraction);
+			debugDrawer::Instance()->drawCube(p, btVector3(1, 1, 1));
+			debugDrawer::Instance()->drawLine(from, p, btVector3(1, 0, 0));
+		}
+	}
+	else
+	{
+
+		if (debug_)
+		{
+			debugDrawer::Instance()->drawLine(from, to, btVector3(0, 1, 0));
+		}
+	}
+
+	return sceneNodeCollided;
+}
+
+void Physics::allHitsRaycast(btVector3 from, btVector3 to)
+{
+	dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(0, 0, 0, 1));
+	btCollisionWorld::AllHitsRayResultCallback allResults(from, to);
+	allResults.m_flags |= btTriangleRaycastCallback::kF_KeepUnflippedNormal;
+	//kF_UseGjkConvexRaytest flag is now enabled by default, use the faster but more approximate algorithm
+	//allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
+	allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
+
+	dynamicsWorld->rayTest(from, to, allResults);
+
+	for (int i = 0; i < allResults.m_hitFractions.size(); i++)
+	{
+
+		if (debug_)
+		{
+			btVector3 p = from.lerp(to, allResults.m_hitFractions[i]);
+			debugDrawer::Instance()->drawCube(p, btVector3(1, 1, 1));
+			//dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, btVector3(1,0,0));
+		}
+	}
+}
+
+Ogre::SceneNode * Physics::castRays()
+{
+
+	Ogre::SceneNode * sceneNodeCollided = nullptr;
+	///step the simulation
+	if (dynamicsWorld)
+	{
+		dynamicsWorld->updateAabbs();
+		dynamicsWorld->computeOverlappingPairs();
+
+		for (int i = 0; i < rayCasts_.size(); i++)
+		{
+			if (rayCasts_[i].allHits)
+			{
+				allHitsRaycast(rayCasts_[i].from, rayCasts_[i].to);
+			}
+
+			else
+			{
+				sceneNodeCollided = firstHitRaycast(rayCasts_[i].from, rayCasts_[i].to);
+			}
+		}
+	}
+
+	return sceneNodeCollided;
 }

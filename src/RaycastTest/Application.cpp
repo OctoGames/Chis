@@ -78,8 +78,9 @@ void Application::initDemo()
 	{
 		Ogre::Entity* lEntity = OgreSystem::Instance()->getSceneManager()->createEntity(lNameOfTheMesh);
 		// Now I attach it to a scenenode, so that it becomes present in the scene.
-		Ogre::SceneNode* lNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+		Ogre::SceneNode* lNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("Mouse" + std::to_string(iter));
 		lNode->attachObject(lEntity);
+	
 		// I move the SceneNode so that it is visible to the camera.
 		float lPositionOffset = float(1 + iter * 2) - (float(lNumberOfEntities));
 		lPositionOffset = lPositionOffset * 20;
@@ -87,12 +88,13 @@ void Application::initDemo()
 		lNode->setScale(30.0f, 30.0f, 30.0f);
 		lEntity->setMaterialName("mouse_mat");
 
-		Physics::Instance()->createBoxRigidBody(lNode, 0, Ogre::Vector3(30, 30, 30), "ch");
-		//Physics::Instance()->setDebugMode(true);
+		Physics::Instance()->createBoxRigidBody(lNode, 0, Ogre::Vector3(30, 30, 30), "MouseRB" + std::to_string(iter));
+
 		// The loaded mesh will be white. This is normal.
 	}
 
-	Physics::Instance()->createRaycast(btVector3(0, 0, 0), btVector3(0, 0, -300), true, "pepe");
+	Physics::Instance()->setDebugMode(true);
+	Physics::Instance()->createRaycast(btVector3(0, 0, 0), btVector3(0, 0, -300), false, "cameraRaycast");
 }
 
 void Application::run()
@@ -189,6 +191,57 @@ void Application::handleInput(float lDeltaTime_s)
 		{
 			running_ = false;
 		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_DOWN))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+
+			from.setY(from.getY() - 2);
+			to.setY(to.getY() - 2);
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_LEFT))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+
+			from.setX(from.getX() - 2);
+			to.setX(to.getX() - 2);
+
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_RIGHT))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+
+			from.setX(from.getX() + 2);
+			to.setX(to.getX() + 2);
+
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_UP ))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+
+			from.setY(from.getY() + 2);
+			to.setY(to.getY() + 2);
+
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
 	}
 
 	// same for the mouse.
@@ -197,11 +250,10 @@ void Application::handleInput(float lDeltaTime_s)
 		const OIS::MouseState& lMouseState = lMouse->getMouseState();
 		if (lMouseState.buttonDown(OIS::MB_Left))
 		{
-			//// I change the colour of the background...
-			//float red = Ogre::Math::RangeRandom(0.1f, 0.9f);
-			//float green = Ogre::Math::RangeRandom(0.1f, 0.9f);
-			//float blue = Ogre::Math::RangeRandom(0.1f, 0.9f);
-			//viewport_->setBackgroundColour(Ogre::ColourValue(red, green, blue));
+		}
+
+		else if (lMouseState.buttonDown(OIS::MB_Right))
+		{
 		}
 		float lMouseX = float(lMouseState.X.rel) / float(OgreSystem::Instance()->getWindow()->getWidth());
 		float lMouseY = float(lMouseState.Y.rel) / float(OgreSystem::Instance()->getWindow()->getHeight());

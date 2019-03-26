@@ -5,7 +5,7 @@ Physics* Physics::instance_ = nullptr;
 
 Physics::Physics() : numberOfRigidBodies_(0),
 debug_(false),
-visibleDebug_(false)
+visibleDebug_(true)
 {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collisionConfiguration);
@@ -30,7 +30,6 @@ Physics::~Physics()
 {
 
 }
-
 
 bool Physics::update()
 {
@@ -63,8 +62,6 @@ bool Physics::update()
 
 	if (debug_)
 	{
-		
-
 		for (int i = 0; i < debugObjects.size(); i++)
 		{
 			Ogre::SceneNode* n = debugObjects[i].node;
@@ -79,15 +76,8 @@ bool Physics::update()
 			v.setY(n->getPosition().y);
 			v.setZ(n->getPosition().z);
 
-			btQuaternion quaternion;
-
-			quaternion.setX(n->getOrientation().x);
-			quaternion.setY(n->getOrientation().y);
-			quaternion.setZ(n->getOrientation().z);
-			quaternion.setW(n->getOrientation().w);
-
 			if(debugObjects[i].type == "box")
-				debugDrawer::Instance()->drawCube(v, debugObjects[i].scale, quaternion);
+				debugDrawer::Instance()->drawCube(v, debugObjects[i].scale);
 			else if (debugObjects[i].type == "sphere")
 			{
 				debugDrawer::Instance()->drawSphere(v, debugObjects[i].radious);
@@ -120,7 +110,6 @@ void Physics::toggleDebugMode()
 	if(debug_)
 		 visibleDebug_ = !visibleDebug_;
 }
-
 
 btRigidBody* Physics::getRigidBodyByName(std::string name)
 {
@@ -207,6 +196,40 @@ btTransform Physics::setTransform(Ogre::SceneNode* node)
 	return transform;
 }
 
+void Physics::getRaycastByName(const std::string name, btVector3& from, btVector3& to)
+{
+	bool found = false;
+	int i = 0;
+
+	while (i < rayCasts_.size() && !found)
+	{
+		if (name == rayCasts_[i].rayName)
+		{
+			from = rayCasts_[i].from;
+			to = rayCasts_[i].to;
+			found = true;
+		}
+		else i++;
+	}
+}
+
+void Physics::setRaycastByName(const std::string name, btVector3 from, btVector3 to)
+{
+	bool found = false;
+	int i = 0;
+
+	while (i < rayCasts_.size() && !found)
+	{
+		if (name == rayCasts_[i].rayName)
+		{
+			rayCasts_[i].from = from;
+			rayCasts_[i].to = to;
+			found = true;
+		}
+		else i++;
+	}
+}
+
 void Physics::createRaycast(btVector3 from, btVector3 to, bool allHits, std::string name)
 {
 	rayCast r;
@@ -218,20 +241,43 @@ void Physics::createRaycast(btVector3 from, btVector3 to, bool allHits, std::str
 	rayCasts_.push_back(r);
 }
 
-void Physics::firstHitRaycast(btVector3 from, btVector3 to)
+Ogre::SceneNode * Physics::firstHitRaycast(btVector3 from, btVector3 to)
 {
-	debugDrawer::Instance()->drawLine(from, to, btVector3(0, 1, 0));
-
 	btCollisionWorld::ClosestRayResultCallback closestResults(from, to);
 	closestResults.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
 
 	dynamicsWorld->rayTest(from, to, closestResults);
 
+	Ogre::SceneNode *sceneNodeCollided = nullptr;
+
 	if (closestResults.hasHit())
 	{
-		btVector3 p = from.lerp(to, closestResults.m_closestHitFraction);
-		debugDrawer::Instance()->drawSphere(p, 1, btVector3(0,0,1));
+		//This is the object the rayCast has collided with
+		const btCollisionObject* collidedObj = closestResults.m_collisionObject;
+
+		const btRigidBody* body = btRigidBody::upcast(collidedObj);
+
+		sceneNodeCollided = static_cast<Ogre::SceneNode *>(body->getUserPointer());
+
+		std::cout << sceneNodeCollided->getName() << std::endl;
+		
+		if (debug_)
+		{
+			btVector3 p = from.lerp(to, closestResults.m_closestHitFraction);
+			debugDrawer::Instance()->drawCube(p, btVector3(1, 1, 1));
+			debugDrawer::Instance()->drawLine(from, p, btVector3(1, 0, 0));
+		}
 	}
+	else
+	{
+
+		if (debug_)
+		{
+			debugDrawer::Instance()->drawLine(from, to, btVector3(0, 1, 0));
+		}
+	}
+
+	return sceneNodeCollided;
 }
 
 void Physics::allHitsRaycast(btVector3 from, btVector3 to)
@@ -247,13 +293,20 @@ void Physics::allHitsRaycast(btVector3 from, btVector3 to)
 
 	for (int i = 0; i < allResults.m_hitFractions.size(); i++)
 	{
-		btVector3 p = from.lerp(to, allResults.m_hitFractions[i]);
-		dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, btVector3(1,0,0));
+
+		if (debug_)
+		{
+			btVector3 p = from.lerp(to, allResults.m_hitFractions[i]);
+			debugDrawer::Instance()->drawCube(p, btVector3(1, 1, 1));
+			//dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, btVector3(1,0,0));
+		}
 	}
 }
 
-void Physics::castRays()
+Ogre::SceneNode * Physics::castRays()
 {
+
+	Ogre::SceneNode * sceneNodeCollided = nullptr;
 	///step the simulation
 	if (dynamicsWorld)
 	{
@@ -269,8 +322,10 @@ void Physics::castRays()
 
 			else
 			{
-				firstHitRaycast(rayCasts_[i].from, rayCasts_[i].to);
+				sceneNodeCollided = firstHitRaycast(rayCasts_[i].from, rayCasts_[i].to);
 			}
 		}
 	}
+
+	return sceneNodeCollided;
 }

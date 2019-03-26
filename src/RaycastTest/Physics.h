@@ -11,6 +11,13 @@
 
 #include "debugDrawer.h"
 
+struct rayCast {
+	btVector3 from;
+	btVector3 to;
+	bool allHits;
+	std::string rayName;
+};
+
 class Physics {
 
 public:
@@ -37,23 +44,20 @@ public:
 
 	void createRaycast(btVector3 from, btVector3 to, bool allHits, std::string name);
 
+	void getRaycastByName(const std::string name, btVector3& from, btVector3& to);
+
+	void setRaycastByName(const std::string name, const btVector3 from, const btVector3 to);
+
 private:
 
-	void firstHitRaycast(btVector3 from, btVector3 to);
+	Ogre::SceneNode * firstHitRaycast(btVector3 from, btVector3 to);
 	void allHitsRaycast(btVector3 from, btVector3 to);
-
-	struct rayCast {
-		btVector3 from;
-		btVector3 to;
-		bool allHits;
-		std::string rayName;
-	};
 
 	std::vector<rayCast> rayCasts_;
 
 	bool visibleDebug_;
 
-	void castRays();
+	Ogre::SceneNode * castRays();
 
 	struct debugObjectsPropierties {
 		Ogre::SceneNode* node;

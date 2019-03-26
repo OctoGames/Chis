@@ -17,7 +17,7 @@ debugDrawer* debugDrawer::Instance()
 	return instance_;
 }
 
-void debugDrawer::drawCube(btVector3 position, btVector3 scale, btQuaternion orientation)
+void debugDrawer::drawCube(btVector3 position, btVector3 scale)
 {
 
 	btVector3 pos = position;
