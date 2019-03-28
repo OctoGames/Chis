@@ -88,9 +88,15 @@ void SceneLoader::processNode(rapidxml::xml_node<>* XMLNode) {
 	Ogre::String gameObjectName = getAttrib(XMLNode, "name");
 	Ogre::String gameObjectTag = "";
 	Ogre::StringUtil::toLowerCase(gameObjectName);
+
 	//-----look for the gameobject tag-----//
 	pElement = XMLNode->first_node("user_data");
 	bool findTag = false;
+	bool vertex = false;
+	int vertexID;
+
+
+
 	while (pElement && !findTag)
 	{
 		Ogre::String nameProp = getAttrib(pElement, "name");
@@ -101,23 +107,41 @@ void SceneLoader::processNode(rapidxml::xml_node<>* XMLNode) {
 			gameObjectTag = getAttrib(pElement, "value");
 			findTag = true;
 		}
+		else if (nameProp == "vertex") {
+			vertexID = getAttribReal(pElement, "value");
+			findTag = true;
+			vertex = true;
+		}
+
 		pElement = pElement->next_sibling("user_data");
 	}
-	//-----look for the gameobject tag-----//
+	if (vertex) {
+		if (vertexID >= vertexPositions.size()) {
+			vertexPositions.resize(vertexID + 1);
+			Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Tamaño vector" + std::to_string(vertexPositions.size()));
 
-	// create a gameobjects with its name and tag 
-	GameObject* g = new GameObject(gameObjectName, gameObjectTag);
-	
-	// lista de componentes del gameobject
-	std::list<std::string> componentsList = LoadArchetypes::Instance()->getComponentsList(gameObjectName);
-	if(componentsList.empty())
-		Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Error: lista de componentes vacía +++++++++++++++++++++++++++");
-	// create components from the list of components with its parametres
-	for (std::string c : componentsList)
-	{
-		loadComponent(c, XMLNode, g);
+		}
+		loadVertexTransform(XMLNode, vertexID);
+		Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Número de vértice " + std::to_string(vertexID));
+		vertex = false;
+	}
+	else {
+		//-----look for the gameobject tag-----//
+			// create a gameobjects with its name and tag 
+		GameObject* g = new GameObject(gameObjectName, gameObjectTag);
+
+		// lista de componentes del gameobject
+		std::list<std::string> componentsList = LoadArchetypes::Instance()->getComponentsList(gameObjectName);
+		if (componentsList.empty())
+			Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Error: lista de componentes vacía +++++++++++++++++++++++++++");
+		// create components from the list of components with its parametres
+		for (std::string c : componentsList)
+		{
+			loadComponent(c, XMLNode, g);
+		}
 	}
 }
+
 
 void SceneLoader::loadComponent(const std::string& c, rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
 {
@@ -143,7 +167,7 @@ void SceneLoader::loadComponent(const std::string& c, rapidxml::xml_node<>* XMLN
 	}
 
 	else if (componentString == "transform") {
-		loadTranform(XMLNode, gameObject);
+		loadTransform(XMLNode, gameObject);
 	}
 }
 
@@ -165,11 +189,11 @@ void SceneLoader::loadMeshRenderer(rapidxml::xml_node<>* XMLNode, GameObject* ga
 	if (meshFile == "")
 		Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Error al leer el meshFile +++++++++++++++++++++++++++");
 	MeshRenderer* renderer = new MeshRenderer(gameObject, meshFile);
-	
+
 	//no hace falta hacer el set material, lo coge automáticamente(ni idea de como pero lo coge y es genial)
 	//renderer->setMaterialName(gameObject->getName());
 
-	Ogre::LogManager::getSingleton().logMessage("++++++++++++++++ Material:"+gameObject->getName() + "++++++++++++++++ Name Mesh:"+ meshFile);
+	Ogre::LogManager::getSingleton().logMessage("++++++++++++++++ Material:" + gameObject->getName() + "++++++++++++++++ Name Mesh:" + meshFile);
 }
 
 void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
@@ -208,14 +232,14 @@ void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameO
 	}
 	else {
 		pElement = XMLNode->first_node("scale");
-		
+
 		Ogre::Vector3 v3 = parseVector3(pElement);
 
 		rigidBody->createBoxRB(mass, v3, gameObject->getName() + "RB");
 	}
 }
 
-void SceneLoader::loadTranform(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
+void SceneLoader::loadTransform(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
 {
 	rapidxml::xml_node<>* pElement;
 	Transform* transform = new Transform(gameObject);
@@ -231,6 +255,14 @@ void SceneLoader::loadTranform(rapidxml::xml_node<>* XMLNode, GameObject* gameOb
 	// Process scale (?)
 	pElement = XMLNode->first_node("scale");
 	if (pElement) transform->setScale(parseVector3(pElement));
+}
+
+void SceneLoader::loadVertexTransform(rapidxml::xml_node<>* XMLNode, int vertexID) {
+	rapidxml::xml_node<>* pElement;
+
+	// Process position (?)
+	pElement = XMLNode->first_node("position");
+	if (pElement) vertexPositions[vertexID] = parseVector3(pElement);
 }
 
 

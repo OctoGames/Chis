@@ -8,14 +8,12 @@
 #include "RigidBody.h"
 #include "rapidxml.hpp"
 
+#include <vector>
 #include <Ogre.h>
 
 // Read the scene and create the objects from the list of components of each one
 class SceneLoader {
-public:
-	static SceneLoader* Instance();
 
-	void loadScene(const Ogre::String& SceneName);
 
 private:
 	SceneLoader();
@@ -30,7 +28,10 @@ private:
 	void loadLight(rapidxml::xml_node<>* XMLNode, GameObject* gameObject);
 	void loadMeshRenderer(rapidxml::xml_node<>* XMLNode, GameObject* gameObject);
 	void loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameObject);
-	void loadTranform(rapidxml::xml_node<>* XMLNode, GameObject* gameObject);
+	void loadTransform(rapidxml::xml_node<>* XMLNode, GameObject* gameObject);
+	void loadVertexTransform(rapidxml::xml_node<>* XMLNode, int vertexID);
+
+
 
 	Ogre::String getAttrib(rapidxml::xml_node<>* XMLNode, const Ogre::String &attrib, const Ogre::String &defaultValue = "");
 	Ogre::Real getAttribReal(rapidxml::xml_node<>* XMLNode, const Ogre::String &attrib, Ogre::Real defaultValue = 0);
@@ -39,8 +40,16 @@ private:
 	Ogre::Quaternion parseQuaternion(rapidxml::xml_node<>* XMLNode);
 	Ogre::ColourValue parseColour(rapidxml::xml_node<>* XMLNode);
 
+	std::vector<Ogre::Vector3> vertexPositions;
 	static SceneLoader* instance_;
 
 	const char* PATH_ = "Assets/Scenes/";
+public:
+	static SceneLoader* Instance();
+
+	void loadScene(const Ogre::String& SceneName);
+	inline std::vector <Ogre::Vector3> getVertex() {
+		return vertexPositions;
+	}
 };
 #endif SCENELOADER_H_

@@ -8,6 +8,9 @@
 #include "RigidBody.h"
 #include "Physics.h"
 #include "SceneLoader.h"
+#include "GraphGenerator.h"
+
+
 
 Application::Application() : running_(true)
 {
@@ -39,7 +42,8 @@ void Application::initEntities()
 {
 	//-----------------READ SCENE-------------------//
 	SceneLoader::Instance()->loadScene("test.scene");
-
+	//GraphGenerator* graphG = new GraphGenerator();
+	//graphG->initG();
 	//----------------MOUSE OBJECT------------------//
 
 	GameObject* mouse = new GameObject("mouse", "enemy");
@@ -70,6 +74,10 @@ void Application::initEntities()
 	Light* mainLight_ = new Light(mainLight, true);
 	mainLightTransform->setPosition(0, 20, 0);
 	mainLightTransform->getNode()->setDirection(Ogre::Vector3(0, -1, -1));
+	
+	
+	
+
 }
 
 void Application::handleInput()

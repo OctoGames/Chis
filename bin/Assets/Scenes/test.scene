@@ -1,30 +1,95 @@
-<scene exported_by="gonza" previous_export_time="1553009083.0069003" export_time="1553009108.6667557" formatVersion="1.0.1" >
+<scene exported_by="Celia" export_time="1553809915.8264034" previous_export_time="1553008838.693528" formatVersion="1.0.1" >
   <nodes >
-    <node name="plane" >
-      <position z="0" y="0" x="0" />
+    <node name="vertex" >
+      <position z="-198.993637" x="-9.713552" y="72.272499" />
       <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
-      <scale z="200" y="1.000000" x="200" />
-      <user_data name="prop" type="float" value="1.0" />
-      <user_data name="mass" type="float" value="0.0" />
+      <scale z="4.000000" x="4.000000" y="4.000000" />
+      <user_data value="0.0" type="float" name="vertex" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity velocity_min="0.0" lock_trans_y="False" inertia_tensor="0.4000000059604645" damping_trans="0.03999999910593033" lock_trans_x="False" anisotropic_friction="False" mass_radius="1.0" friction_z="1.0" physics_type="STATIC" damping_rot="0.10000000149011612" meshFile="plane.mesh" lock_rot_y="False" actor="False" lock_rot_x="False" velocity_max="0.0" lock_trans_z="False" name="plane" ghost="False" friction_x="1.0" mass="1.0" friction_y="1.0" lock_rot_z="False" />
+      <entity lock_trans_z="False" friction_y="1.0" lock_trans_y="False" friction_x="1.0" name="Cone" velocity_max="0.0" damping_rot="0.10000000149011612" velocity_min="0.0" friction_z="1.0" mass="1.0" ghost="False" lock_rot_z="False" damping_trans="0.03999999910593033" physics_type="STATIC" meshFile="Cone.mesh" mass_radius="1.0" actor="False" anisotropic_friction="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_trans_x="False" />
+    </node>
+    <node name="plane" >
+      <position z="-111.310028" x="-5.673067" y="-10.211142" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="130.279999" x="115.299995" y="1.000000" />
+      <user_data value="1.0" type="float" name="prop" />
+      <user_data value="0.0" type="float" name="mass" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity lock_trans_z="False" friction_y="1.0" lock_trans_y="False" friction_x="1.0" name="plane" velocity_max="0.0" damping_rot="0.10000000149011612" velocity_min="0.0" friction_z="1.0" mass="1.0" ghost="False" lock_rot_z="False" damping_trans="0.03999999910593033" physics_type="STATIC" meshFile="plane.mesh" mass_radius="1.0" actor="False" anisotropic_friction="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_trans_x="False" />
     </node>
     <node name="cube" >
-      <position z="50.000000" y="50.000000" x="0.000000" />
+      <position z="-100.000000" x="0.000000" y="0.000000" />
       <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
-      <scale z="50.000000" y="20.000000" x="70.000000" />
-      <user_data name="Tag" type="str" value="cubo" />
+      <scale z="8.000000" x="8.000000" y="8.000000" />
+      <user_data value="cubo" type="str" name="Tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity velocity_min="0.0" lock_trans_y="False" inertia_tensor="0.4000000059604645" damping_trans="0.02539999969303608" lock_trans_x="False" anisotropic_friction="False" mass_radius="1.0" friction_z="1.0" physics_type="STATIC" damping_rot="0.1589999943971634" meshFile="cube.mesh" lock_rot_y="False" actor="False" lock_rot_x="False" velocity_max="0.0" lock_trans_z="False" name="cube" ghost="False" friction_x="1.0" mass="1.0" friction_y="1.0" lock_rot_z="False" />
+      <entity lock_trans_z="False" friction_y="1.0" lock_trans_y="False" friction_x="1.0" name="cube" velocity_max="0.0" damping_rot="0.1589999943971634" velocity_min="0.0" friction_z="1.0" mass="1.0" ghost="False" lock_rot_z="False" damping_trans="0.02539999969303608" physics_type="STATIC" meshFile="cube.mesh" mass_radius="1.0" actor="False" anisotropic_friction="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_trans_x="False" />
+    </node>
+    <node name="Camera" >
+      <position z="-50.003616" x="59.068741" y="31.667852" />
+      <rotation qy="0.336872" qw="0.780483" qx="0.483536" qz="-0.208704" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera projectionType="perspective" fov="0.5033799435163735" name="Camera" >
+        <clipping far="100.0" farPlaneDist="100.0" near="0.10000000149011612" nearPlaneDist="0.10000000149011612" />
+      </camera>
+    </node>
+    <node name="vertex.001" >
+      <position z="-181.216980" x="-27.471817" y="72.272499" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="4.000000" x="4.000000" y="4.000000" />
+      <user_data value="1.0" type="float" name="vertex" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity lock_trans_z="False" friction_y="1.0" lock_trans_y="False" friction_x="1.0" name="Cone.001" velocity_max="0.0" damping_rot="0.10000000149011612" velocity_min="0.0" friction_z="1.0" mass="1.0" ghost="False" lock_rot_z="False" damping_trans="0.03999999910593033" physics_type="STATIC" meshFile="Cone.001.mesh" mass_radius="1.0" actor="False" anisotropic_friction="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_trans_x="False" />
+    </node>
+    <node name="V2" >
+      <position z="-157.883453" x="-49.100929" y="72.272499" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="4.000000" x="4.000000" y="4.000000" />
+      <user_data value="2" type="int" name="vertex" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity lock_trans_z="False" friction_y="1.0" lock_trans_y="False" friction_x="1.0" name="Cone.002" velocity_max="0.0" damping_rot="0.10000000149011612" velocity_min="0.0" friction_z="1.0" mass="1.0" ghost="False" lock_rot_z="False" damping_trans="0.03999999910593033" physics_type="STATIC" meshFile="Cone.002.mesh" mass_radius="1.0" actor="False" anisotropic_friction="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_trans_x="False" />
+    </node>
+    <node name="V3" >
+      <position z="-190.426559" x="10.216894" y="72.272499" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="4.000000" x="4.000000" y="4.000000" />
+      <user_data value="3" type="int" name="vertex" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity lock_trans_z="False" friction_y="1.0" lock_trans_y="False" friction_x="1.0" name="Cone.004" velocity_max="0.0" damping_rot="0.10000000149011612" velocity_min="0.0" friction_z="1.0" mass="1.0" ghost="False" lock_rot_z="False" damping_trans="0.03999999910593033" physics_type="STATIC" meshFile="Cone.004.mesh" mass_radius="1.0" actor="False" anisotropic_friction="False" inertia_tensor="0.4000000059604645" lock_rot_x="False" lock_rot_y="False" lock_trans_x="False" />
     </node>
   </nodes>
   <externals >
+    <item type="material" >
+      <file name="C:\Users\Celia\Desktop\Chis\bin\Assets\Scenes\plane.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Celia\Desktop\Chis\bin\Assets\Scenes\cube.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Celia\Desktop\Chis\bin\Assets\Scenes\cube2.material" />
+    </item>
   </externals>
   <environment >
     <colourBackground b="0.05087608844041824" g="0.05087608844041824" r="0.05087608844041824" />
