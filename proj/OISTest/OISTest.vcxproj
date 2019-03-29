@@ -20,13 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\OISTest\Application.cpp" />
+    <ClCompile Include="..\..\src\OISTest\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\..\src\OISTest\InputManager.cpp" />
     <ClCompile Include="..\..\src\OISTest\Main.cpp" />
-    <ClCompile Include="..\..\src\OISTest\OgreSystem.cpp" />
+    <ClCompile Include="..\..\src\OISTest\RenderManager.cpp" />
+    <ClCompile Include="..\..\src\OISTest\TimeManager.cpp" />
     <ClCompile Include="..\..\src\OISTest\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\OISTest\Application.h" />
-    <ClInclude Include="..\..\src\OISTest\OgreSystem.h" />
+    <ClInclude Include="..\..\src\OISTest\FirstPersonCamera.h" />
+    <ClInclude Include="..\..\src\OISTest\InputManager.h" />
+    <ClInclude Include="..\..\src\OISTest\RenderManager.h" />
+    <ClInclude Include="..\..\src\OISTest\TimeManager.h" />
     <ClInclude Include="..\..\src\OISTest\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -86,7 +92,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;      $(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -96,7 +102,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;      $(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -115,7 +121,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OIS_d.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OIS_d.lib;SDL2.lib;SDL2main.lib;OgreMain_d.lib;OgreBites_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -150,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OIS.lib;SDL2.lib;SDL2main.lib;OgreMain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OIS.lib;SDL2.lib;SDL2main.lib;OgreMain.lib;OgreBites.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

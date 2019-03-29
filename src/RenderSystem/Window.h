@@ -1,26 +1,31 @@
-#ifndef _WINDOW_H_
-#define _WINDOW_H_
+#ifndef __WINDOW_H__
+#define __WINDOW_H__
 
-#include <string>
-#include <OgreRenderWindow.h>
 #include <SDL.h>
+#include <SDL_video.h>
+#include <SDL_syswm.h>
 
-class Window
+#include <OgreRenderWindow.h>
+#include <OgreWindowEventUtilities.h>
+
+class Window : public Ogre::WindowEventListener
 {
 public:
-	Window();
+	Window(Ogre::String windowName = "Ogre Application");
 	~Window();
 
 	inline SDL_Window* getNativeWindow() { return nativeWindow_; }
 	inline Ogre::RenderWindow* getRenderWindow() { return renderWindow_; }
-	inline void setRenderWindow(Ogre::RenderWindow* renderWindow) { renderWindow_ = renderWindow; }
 
-	void createNativeWindow(const std::string& windowName, int width, int height, int flags);
-	void setWindowGrab(bool grab, bool cursor);
+	void update();
 
 private:
+	virtual void windowResized(Ogre::RenderWindow* rw);
+	virtual void windowClosed(Ogre::RenderWindow* rw);
+
 	SDL_Window* nativeWindow_;
 	Ogre::RenderWindow* renderWindow_;
 };
 
-#endif // !_WINDOW_H_
+#endif // !__WINDOW_H__
+

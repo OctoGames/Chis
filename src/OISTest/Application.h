@@ -1,7 +1,9 @@
-#ifndef _APPLICATION_H_
-#define _APPLICATION_H_
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
 
-#include "OgreSystem.h"
+#include "RenderManager.h"
+#include "InputManager.h"
+#include "FirstPersonCamera.h"
 
 class Application
 {
@@ -11,23 +13,12 @@ public:
 
 	void run();
 
-	inline bool isRunning() const { return running_; }
-	inline void setRunning(bool running) { running_ = running; }
-
 private:
-	bool running_;
+	void createScene();
+	void updateScene(float deltaTime);
 
-	void initSystems();
-	void closeSystems();
-	void initDemo();
-
-	void handleInput(float lDeltaTime_s);
-	void update();
-	void render();
-
-	Ogre::SceneNode* cameraNode_;
-	Ogre::Viewport* viewport_;
+	FirstPersonCamera* fpsCamera_;
 };
 
-#endif // !_APPLICATION_H_
+#endif // !__APPLICATION_H__
 

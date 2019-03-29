@@ -1,51 +1,70 @@
-#include "OgreSystem.h"
+#include "RenderManager.h"
 
-#include <SDL_syswm.h>
-#include <OgreConfigFile.h>
-#include <OgreGpuProgramManager.h>
+RenderManager* RenderManager::instance_ = nullptr;
 
-OgreSystem* OgreSystem::instance_ = nullptr;
-
-OgreSystem* OgreSystem::Instance()
+RenderManager* RenderManager::Instance()
 {
-	if (instance_ == nullptr) instance_ = new OgreSystem();
+	if (instance_ == nullptr) instance_ = new RenderManager();
 	return instance_;
 }
 
-OgreSystem::OgreSystem() :
-	root_(nullptr),
+RenderManager::RenderManager() :
+	time_(nullptr),
 	window_(nullptr),
+	running_(false),
+	appName_(""),
+	pluginsCfg_(""),
+	resourcesCfg_(""),
+	solutionPath_(""),
+	root_(nullptr),
 	sceneManager_(nullptr),
 	fileSystemLayer_(nullptr)
 {
-	appName_ = "CHIS";
 }
 
-void OgreSystem::init()
+void RenderManager::init()
 {
-	createRoot();
-	createWindow();
-	createResources();
-	createSceneManager();
+	appName_ = "CHIS v0.5.0";
+
+	initRoot();
+
+	window_ = new Window(appName_);
+
+	loadResources();
+
+	time_ = new TimeManager();
+
+	sceneManager_ = root_->createSceneManager();
+
+	running_ = true;
+
+	root_->clearEventTimes();
 }
 
-void OgreSystem::close()
+void RenderManager::update(float deltaTime)
 {
-	if (root_ != nullptr) root_->saveConfig();
-
-	root_->destroySceneManager(sceneManager_);
-	sceneManager_ = nullptr;
-
-	delete window_;
-	window_ = nullptr;
-
-	delete fileSystemLayer_;
-	fileSystemLayer_ = nullptr;
-
-	root_ = nullptr;
+	window_->update();
+	root_->renderOneFrame();
 }
 
-void OgreSystem::createRoot()
+void RenderManager::close()
+{
+	if (window_)
+	{
+		delete window_;
+		window_ = nullptr;
+	}
+
+	if (root_)
+	{
+		root_->saveConfig();
+		root_->destroySceneManager(sceneManager_);
+		delete fileSystemLayer_;
+		delete root_;
+	}
+}
+
+void RenderManager::initRoot()
 {
 	fileSystemLayer_ = new Ogre::FileSystemLayer(appName_);
 
@@ -61,34 +80,7 @@ void OgreSystem::createRoot()
 	if (root_->restoreConfig()) root_->initialise(false);
 }
 
-void OgreSystem::createWindow()
-{
-	window_ = new Window();
-
-	int w, h, flags;
-	Ogre::String token;
-	Ogre::NameValuePairList miscParams;
-	Ogre::ConfigOptionMap ropts = root_->getRenderSystem()->getConfigOptions();
-	miscParams["FSAA"] = ropts["FSAA"].currentValue;
-	miscParams["vsync"] = ropts["VSync"].currentValue;
-	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
-	std::istringstream mode(ropts["Video Mode"].currentValue); mode >> w >> token >> h;
-	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;
-	else flags = SDL_WINDOW_RESIZABLE;
-
-	window_->createNativeWindow(appName_, w, h, flags);
-
-	SDL_SysWMinfo wmInfo;
-	SDL_VERSION(&wmInfo.version);
-	SDL_GetWindowWMInfo(window_->getNativeWindow(), &wmInfo);
-	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
-	Ogre::RenderWindow* renderWindow = root_->createRenderWindow(appName_, w, h, false, &miscParams);
-
-	window_->setRenderWindow(renderWindow);
-	window_->setWindowGrab(false, true);
-}
-
-void OgreSystem::createResources()
+void RenderManager::loadResources()
 {
 	Ogre::ConfigFile cf;
 	Ogre::String resourcesPath = fileSystemLayer_->getConfigFilePath("resources.cfg");
@@ -119,9 +111,6 @@ void OgreSystem::createResources()
 	arch = genLocs.front().archive->getName();
 	type = genLocs.front().archive->getType();
 
-
-	//---------------------------------------------------------------SHADERS-------------------------------------------//
-	// Add locations for supported shader languages
 
 	if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsles"))
 	{
@@ -167,12 +156,5 @@ void OgreSystem::createResources()
 		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/HLSL", type, sec);
 	}
 
-
-	//Initialize all resources
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-}
-
-void OgreSystem::createSceneManager()
-{
-	sceneManager_ = root_->createSceneManager();
 }
