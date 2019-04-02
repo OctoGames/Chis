@@ -1,10 +1,12 @@
 #include "Camera.h"
+
 #include "Transform.h"
-#include "entitycomponentmanager.h"
+#include "EntityComponentManager.h"
 
 std::string Camera::name_ = "Camera";
 
-Camera::Camera(GameObject* container, bool enabled) : Component(container, enabled)
+Camera::Camera(GameObject* container, bool enabled) : 
+	Component(container, enabled)
 {
 	initCamera();
 	static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->attachEntity(camera_);

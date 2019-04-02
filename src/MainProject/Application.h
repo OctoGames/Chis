@@ -1,7 +1,14 @@
-#pragma once
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
 
-//Garbage collector
-//#include "CheckML.h"
+#include "EntityComponentManager.h"
+#include "RenderManager.h"
+#include "InputManager.h"
+#include "UIManager.h"
+#include "Physics.h"
+#include "SceneLoader.h"
+#include "GraphGenerator.h"
+
 
 class Application
 {
@@ -12,13 +19,8 @@ public:
 	void run();
 
 private:
-	void initSystems();
-	void initEntities();
-
-	void handleInput();
-	void update();
-	void render();
-
-	bool running_;
+	void createScene();
+	void updateScene();
 };
 
+#endif // !__APPLICATION_H__

@@ -1,5 +1,5 @@
-#ifndef _AUDIO_SOURCE_H_
-#define _AUDIO_SOURCE_H_
+#ifndef __AUDIO_SOURCE_H__
+#define __AUDIO_SOURCE_H__
 
 #include "Component.h"
 #include "AudioSystem.h"
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif
+#endif // !__AUDIO_SOURCE_H__

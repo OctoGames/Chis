@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\EntityComponentSystem\Component.cpp">
+    <ClCompile Include="..\..\src\ECSystem\Component.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EntityComponentSystem\EntityComponentManager.cpp">
+    <ClCompile Include="..\..\src\ECSystem\EntityComponentManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EntityComponentSystem\GameObejct.cpp">
+    <ClCompile Include="..\..\src\ECSystem\GameObejct.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EntityComponentSystem\Component.h">
+    <ClInclude Include="..\..\src\ECSystem\Component.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\EntityComponentSystem\EntityComponentManager.h">
+    <ClInclude Include="..\..\src\ECSystem\EntityComponentManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\EntityComponentSystem\GameObject.h">
+    <ClInclude Include="..\..\src\ECSystem\GameObject.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

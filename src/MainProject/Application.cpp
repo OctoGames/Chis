@@ -1,44 +1,45 @@
 #include "Application.h"
-#include "EntityComponentManager.h"
+
 #include "Transform.h"
 #include "MeshRenderer.h"
 #include "Camera.h"
+#include "FirstPersonCamera.h"
 #include "Light.h"
 #include "AudioSource.h"
 #include "RigidBody.h"
-#include "Physics.h"
-#include "SceneLoader.h"
-#include "GraphGenerator.h"
 
-
-
-Application::Application() : running_(true)
+Application::Application()
 {
-	initSystems();
-	initEntities();
+	RenderManager::Instance()->init();
+	InputManager::Instance()->init();
+	UIManager::Instance()->init();
+	createScene();
 }
 
 Application::~Application()
 {
-
+	UIManager::Instance()->close();
+	InputManager::Instance()->close();
+	RenderManager::Instance()->close();
 }
 
 void Application::run()
 {
-	while (running_)
+	while (RenderManager::Instance()->isRunning())
 	{
-		handleInput();
-		update();
-		render();
+		float dt = RenderManager::Instance()->time()->tick();
+		if (dt == 0.0f) continue;
+
+		AudioSystem::Instance()->update();
+		InputManager::Instance()->update(dt);
+		updateScene();
+		Physics::Instance()->update();
+		EntityComponentManager::Instance()->update();
+		RenderManager::Instance()->update(dt);
 	}
 }
 
-void Application::initSystems()
-{
-	RenderManager::Instance()->init();
-}
-
-void Application::initEntities()
+void Application::createScene()
 {
 	//-----------------READ SCENE-------------------//
 	SceneLoader::Instance()->loadScene("test.scene");
@@ -61,7 +62,7 @@ void Application::initEntities()
 
 	GameObject* cam = new GameObject("camera", "cam");
 	Transform* cameraTransform = new Transform(cam);
-	Camera* mainCamera = new Camera(cam, true);
+	FirstPersonCamera* mainCamera = new FirstPersonCamera(cam, true);
 	cameraTransform->setPosition(200, 100, 400);
 	cameraTransform->getNode()->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 	AudioSource* bgMusic = new AudioSource(cam, "MouseMusic", "22-The Mouse's House.mp3");
@@ -74,51 +75,20 @@ void Application::initEntities()
 	Light* mainLight_ = new Light(mainLight, true);
 	mainLightTransform->setPosition(0, 20, 0);
 	mainLightTransform->getNode()->setDirection(Ogre::Vector3(0, -1, -1));
-	
-	
-	
-
 }
 
-void Application::handleInput()
+void Application::updateScene()
 {
-	SDL_Event event;
-
-	while (SDL_PollEvent(&event))
+	if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_ESCAPE))
 	{
-		if (event.type == SDL_QUIT)
-		{
-			running_ = false;
-		}
-
-		if (event.type == SDL_KEYDOWN)
-		{
-			if (event.key.keysym.sym == SDLK_ESCAPE)
-			{
-				running_ = false;
-			}
-
-			else if (event.key.keysym.sym == SDLK_p)
-			{
-				Physics::Instance()->toggleDebug();
-			}
-
-			else if (event.key.keysym.sym == SDLK_o)
-			{
-				Physics::Instance()->toggleDebugMode();
-			}
-		}
+		RenderManager::Instance()->setRunning(false);
 	}
-}
-
-void Application::update()
-{
-	Physics::Instance()->update();
-	EntityComponentManager::Instance()->update();
-	AudioSystem::Instance()->update();
-}
-
-void Application::render()
-{
-	RenderManager::Instance()->getRoot()->renderOneFrame();
+	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_P))
+	{
+		Physics::Instance()->toggleDebug();
+	}
+	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_O))
+	{
+		Physics::Instance()->toggleDebugMode();
+	}
 }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __MESH_RENDERER_H__
+#define __MESH_RENDERER_H__
 
 #include "Component.h"
 #include "RenderManager.h"
@@ -11,10 +12,11 @@ public:
 
 	virtual std::string getName() const { return name_; }
 
-	// maybe there will be a list of materials bc they can be more than one
 	inline void setMaterialName(const std::string& name) { entity_->setMaterialName(name); }
 
 private:
 	static std::string name_;
 	Ogre::Entity* entity_;
 };
+
+#endif // !__MESH_RENDERER_H__

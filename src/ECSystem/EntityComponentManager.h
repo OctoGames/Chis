@@ -12,15 +12,16 @@ class EntityComponentManager
 public:
 	static EntityComponentManager* Instance();
 
+	void init();
+	void update();
+	void close();
+
 	void addEntity(GameObject* entity);
 	void addComponent(Component* component);
-	void addGameObject(GameObject* game_object);
+	void addFactory(const std::string& name, BaseFactory* f);
 	void addGameObjectWithTag(GameObject* game_object, const std::string& tag);
 	Component* getComponent(GameObject* game_object, const std::string& component_name);
 	std::list<GameObject*> findGameObjectsWithTag(const std::string& tag);
-
-	void update();
-	void close();
 
 private:
 	EntityComponentManager();
@@ -29,6 +30,7 @@ private:
 
 	std::list<GameObject*> entities_;
 	std::list<Component*> components_;
+	std::map<std::string, BaseFactory*> factories_;
 	std::map<int, std::list<Component*>> containers_;
 	std::map<std::string, std::list<GameObject*>> tags_;
 };

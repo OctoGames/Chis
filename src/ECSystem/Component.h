@@ -28,4 +28,13 @@ public:
 	bool enabled_;
 };
 
+class BaseFactory
+{
+public:
+	BaseFactory() {}
+	virtual ~BaseFactory() {}
+
+	virtual Component* create() = 0;
+};
+
 #endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __CAMERA_H__
+#define __CAMERA_H__
 
 #include "Component.h"
 #include "RenderManager.h"
@@ -12,14 +13,14 @@ public:
 	virtual std::string getName() const { return name_; }
 
 private:
-	//Poninter to the main camera and viewPort
 	Ogre::Camera* camera_;
 	Ogre::Viewport* viewport_;
 
-	//Scene nodes to the camera and lights
 	Ogre::SceneNode* mCamNode_ = nullptr;
 
 	void initCamera();
 
 	static std::string name_;
 };
+
+#endif // !__CAMERA_H__

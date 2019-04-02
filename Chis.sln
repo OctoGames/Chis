@@ -11,7 +11,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputTest", "proj\InputTest
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CheeseTest", "proj\CheeseTest\CheeseTest.vcxproj", "{FB6B76C6-A25A-47D5-955F-188E54953BAF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EntityComponentSystem", "proj\EntityComponentSystem\EntityComponentSystem.vcxproj", "{65051CFB-B4DE-410F-80DA-2BC8726D2695}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ECSystem", "proj\ECSystem\ECSystem.vcxproj", "{65051CFB-B4DE-410F-80DA-2BC8726D2695}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ECSTest", "proj\ECSTest\ECSTest.vcxproj", "{D9B86F10-B75D-451B-8C2B-CF08C1944341}"
 	ProjectSection(ProjectDependencies) = postProject

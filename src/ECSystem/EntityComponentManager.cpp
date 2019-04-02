@@ -12,6 +12,10 @@ EntityComponentManager* EntityComponentManager::Instance()
 	return instance_;
 }
 
+void EntityComponentManager::init()
+{
+}
+
 void EntityComponentManager::update()
 {
 	for (Component* c : components_)
@@ -48,9 +52,9 @@ void EntityComponentManager::addComponent(Component* component)
 	containers_[component->gameObject()->getGameObjectID()].push_back(component);
 }
 
-void EntityComponentManager::addGameObject(GameObject* game_object)
+void EntityComponentManager::addFactory(const std::string & name, BaseFactory * f)
 {
-	containers_[game_object->getGameObjectID()] = std::list<Component*>();
+	factories_[name] = f;
 }
 
 void EntityComponentManager::addGameObjectWithTag(GameObject* game_object, const std::string& tag)
