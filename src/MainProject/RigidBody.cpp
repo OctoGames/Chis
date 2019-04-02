@@ -3,6 +3,10 @@
 
 std::string RigidBody::name_ = "RigidBody";
 
+RigidBody::RigidBody()
+{
+}
+
 RigidBody::RigidBody(GameObject* container, const std::string& parent, bool enabled) : Component(container, enabled)
 {
 
@@ -14,6 +18,10 @@ RigidBody::RigidBody(GameObject* container, const std::string& parent, bool enab
 RigidBody::~RigidBody()
 {
 
+}
+
+void RigidBody::init(const std::map<std::string, ValueType>& params)
+{
 }
 
 void RigidBody::createSphereRB(double mass, double radious, std::string name)

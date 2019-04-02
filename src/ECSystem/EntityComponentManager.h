@@ -20,6 +20,7 @@ public:
 	void addComponent(Component* component);
 	void addFactory(const std::string& name, BaseFactory* f);
 	void addGameObjectWithTag(GameObject* game_object, const std::string& tag);
+	BaseFactory* getFactory(const std::string& name) { return factories_[name]; }
 	Component* getComponent(GameObject* game_object, const std::string& component_name);
 	std::list<GameObject*> findGameObjectsWithTag(const std::string& tag);
 

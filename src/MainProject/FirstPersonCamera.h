@@ -8,11 +8,13 @@
 class FirstPersonCamera : public Component, public OIS::KeyListener, public OIS::MouseListener
 {
 public:
+	FirstPersonCamera();
 	FirstPersonCamera(GameObject* container, bool enabled);
 	virtual ~FirstPersonCamera();
 
 	virtual void update();
 
+	virtual void init(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
 
 	virtual bool keyPressed(const OIS::KeyEvent &e);
@@ -42,6 +44,15 @@ private:
 	bool goingLeft_;
 	bool goingRight_;
 	bool fastMove_;
+};
+
+class FirstPersonCameraFactory : public BaseFactory
+{
+public:
+	FirstPersonCameraFactory() {}
+	virtual ~FirstPersonCameraFactory() {}
+
+	virtual Component* create() { return new FirstPersonCamera(); }
 };
 
 #endif // !__FIRST_PERSON_CAMERA_H__

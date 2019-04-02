@@ -1,6 +1,12 @@
 #include "Component.h"
 #include "EntityComponentManager.h"
 
+Component::Component() :
+	first_enabled_(true),
+	container_(nullptr)
+{
+}
+
 Component::Component(GameObject* container, bool enabled) :
 	first_enabled_(true),
 	container_(container)
@@ -20,6 +26,7 @@ void Component::setEnabled(bool enabled)
 
 	if (first_enabled_ && enabled_)
 	{
+		EntityComponentManager::Instance()->addComponent(this);
 		first_enabled_ = false;
 		start();
 	}

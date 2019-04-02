@@ -7,9 +7,11 @@
 class AudioSource : public Component
 {
 public:
+	AudioSource();
 	AudioSource(GameObject* container, const std::string& audioId, const std::string& filename, bool enabled = true);
 	virtual ~AudioSource();
 
+	virtual void init(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
 
 	void play();
@@ -29,7 +31,15 @@ private:
 	std::string audioId_;
 	float volume_;
 	float pitch_;
+};
 
+class AudioSourceFactory : public BaseFactory
+{
+public:
+	AudioSourceFactory() {}
+	virtual ~AudioSourceFactory() {}
+
+	virtual Component* create() { return new AudioSource(); }
 };
 
 #endif // !__AUDIO_SOURCE_H__

@@ -2,9 +2,8 @@
 
 #include "Transform.h"
 #include "MeshRenderer.h"
-#include "Camera.h"
 #include "FirstPersonCamera.h"
-#include "Light.h"
+#include "DirectionalLight.h"
 #include "AudioSource.h"
 #include "RigidBody.h"
 
@@ -13,6 +12,14 @@ Application::Application()
 	RenderManager::Instance()->init();
 	InputManager::Instance()->init();
 	UIManager::Instance()->init();
+
+	EntityComponentManager::Instance()->addFactory("Transform", &TransformFactory());
+	EntityComponentManager::Instance()->addFactory("MeshRenderer", &MeshRendererFactory());
+	EntityComponentManager::Instance()->addFactory("FirstPersonCamera", &FirstPersonCameraFactory());
+	EntityComponentManager::Instance()->addFactory("DirectionalLight", &DirectionalLightFactory());
+	EntityComponentManager::Instance()->addFactory("AudioSource", &AudioSourceFactory());
+	EntityComponentManager::Instance()->addFactory("Rigidbody", &RigidBodyFactory());
+
 	createScene();
 }
 
@@ -71,10 +78,37 @@ void Application::createScene()
 	//------------------LIGHTS-----------------------//
 
 	GameObject* mainLight = new GameObject("light", "mainLight");
-	Transform* mainLightTransform = new Transform(mainLight);
-	Light* mainLight_ = new Light(mainLight, true);
-	mainLightTransform->setPosition(0, 20, 0);
-	mainLightTransform->getNode()->setDirection(Ogre::Vector3(0, -1, -1));
+	Transform* mainLightTransform = new Transform(mainLight,  "camera");
+	DirectionalLight* mainLight_ = new DirectionalLight(mainLight, true);
+	//mainLightTransform->setPosition(0, 20, 0);
+	mainLightTransform->getNode()->setDirection(Ogre::Vector3(0, 0, -1));
+
+	//std::map<std::string, ValueType> params;
+	//params["parent"].s = "";
+	//params["position_x"].f = 0.0f;
+	//params["position_y"].f = 20.0f;
+	//params["position_z"].f = 0.0f;
+	//params["direction_x"].f = 0.0f;
+	//params["direction_y"].f = -1.0f;
+	//params["direction_z"].f = -1.0f;
+	//params["scale_x"].f = 1.0f;
+	//params["scale_y"].f = 1.0f;
+	//params["scale_z"].f = 1.0f;
+	//params["enabled"].b = true;
+	//
+	//BaseFactory* f = EntityComponentManager::Instance()->getFactory("Transform");
+	//Component* c1 = f->create();
+	//c1->setContainer(mainLight);
+	//c1->init(params);
+
+	//params["diffuse_x"].f = 0.75f;
+	//params["diffuse_y"].f = 0.75f;
+	//params["diffuse_z"].f = 0.75f;
+	//params["enabled"].b = true;
+
+	//Component* c2 = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
+	//c2->setContainer(mainLight);
+	//c2->init(params);
 }
 
 void Application::updateScene()
