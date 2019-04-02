@@ -35,7 +35,7 @@ void Application::run()
 
 void Application::initSystems()
 {
-	OgreSystem::Instance()->init();
+	RenderManager::Instance()->init();
 }
 
 void Application::initEntities()
@@ -120,5 +120,5 @@ void Application::update()
 
 void Application::render()
 {
-	OgreSystem::Instance()->getRoot()->renderOneFrame();
+	RenderManager::Instance()->getRoot()->renderOneFrame();
 }

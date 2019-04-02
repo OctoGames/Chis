@@ -8,7 +8,7 @@ RigidBody::RigidBody(GameObject* container, const std::string& parent, bool enab
 
 	//We asume EVERY gameObject already has a Transform component because for it definition it has a position so it scene node has already
 	//been created and we can find it by its name.
-	node_ = OgreSystem::Instance()->getSceneManager()->getSceneNode("n" + gameObject()->getName());
+	node_ = RenderManager::Instance()->getSceneManager()->getSceneNode("n" + gameObject()->getName());
 }
 
 RigidBody::~RigidBody()

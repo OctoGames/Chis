@@ -1,9 +1,7 @@
 #include <vector>
 #include <map>
 
-#include <Ogre.h>
-//#include "Transform.h"
-
+#include "RenderManager.h"
 #include <btBulletDynamicsCommon.h>
 
 #include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"

@@ -1,12 +1,8 @@
 #include "Application.h"
-#include "OgreSystem.h"
-//Garbage collector
-//#include "CheckML.h"
+#include "RenderManager.h"
 
 int main(int argc, char* argv[])
 {
-	//Garbage collector
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	Application* app = nullptr;
 
 	try

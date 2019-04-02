@@ -1,6 +1,6 @@
 #pragma once
 
-#include "OgreSystem.h"
+#include "RenderManager.h"
 #include "Component.h"
 
 class Transform : public Component

@@ -1,6 +1,5 @@
 #include <btBulletDynamicsCommon.h>
-#include <Ogre.h>
-#include "OgreSystem.h"
+#include "RenderManager.h"
 
 class debugDrawer : public btIDebugDraw{
 

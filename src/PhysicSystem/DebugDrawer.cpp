@@ -84,7 +84,7 @@ void debugDrawer::drawLine(const btVector3 &from, const btVector3 &to, const btV
 	std::string name = "LineNumber " + std::to_string(numberOfLines_);
 
 
-	Ogre::ManualObject* line = OgreSystem::Instance()->getSceneManager()->createManualObject(name);
+	Ogre::ManualObject* line = RenderManager::Instance()->getSceneManager()->createManualObject(name);
 
 	line->begin("BaseWhiteNoLighting", Ogre::RenderOperation::OT_LINE_STRIP);
 
@@ -95,7 +95,7 @@ void debugDrawer::drawLine(const btVector3 &from, const btVector3 &to, const btV
 
 	line->end();
 
-	Ogre::SceneNode* sNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
+	Ogre::SceneNode* sNode = RenderManager::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode();
 	sNode->attachObject(line);
 
 
@@ -106,7 +106,7 @@ void debugDrawer::resetLineNumber()
 
 	for (int i = 1; i < numberOfLines_ + 1; i++)
 	{
-		OgreSystem::Instance()->getSceneManager()->destroyManualObject("LineNumber " + std::to_string(i));
+		RenderManager::Instance()->getSceneManager()->destroyManualObject("LineNumber " + std::to_string(i));
 	}
 
 	numberOfLines_ = 0;
