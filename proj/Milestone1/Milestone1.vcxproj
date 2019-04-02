@@ -90,7 +90,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)obj\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)src\PhysicSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\AudioSystem;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin;$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\Debug;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(LibraryPath)</LibraryPath>
@@ -101,7 +101,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)obj\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
     <IncludePath>$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)src\PhysicSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\AudioSystem;$(SolutionDir)src\EntityComponentSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin;$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\FMOD\lowlevel\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\Release;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>

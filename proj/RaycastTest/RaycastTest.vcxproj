@@ -88,7 +88,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)obj\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IncludePath>$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\entityComponentSystem;$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
     <LibraryPath>$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
@@ -99,7 +99,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)obj\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
     <IncludePath>$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\entityComponentSystem;$(SolutionDir)Dependencies\bullet3-2.88\src;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\OIS;$(IncludePath)</IncludePath>
     <LibraryPath>$(Solutiondir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
