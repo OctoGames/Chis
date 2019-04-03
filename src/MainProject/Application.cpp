@@ -13,12 +13,13 @@ Application::Application()
 	InputManager::Instance()->init();
 	UIManager::Instance()->init();
 
-	EntityComponentManager::Instance()->addFactory("Transform", &TransformFactory());
-	EntityComponentManager::Instance()->addFactory("MeshRenderer", &MeshRendererFactory());
-	EntityComponentManager::Instance()->addFactory("FirstPersonCamera", &FirstPersonCameraFactory());
-	EntityComponentManager::Instance()->addFactory("DirectionalLight", &DirectionalLightFactory());
-	EntityComponentManager::Instance()->addFactory("AudioSource", &AudioSourceFactory());
-	EntityComponentManager::Instance()->addFactory("Rigidbody", &RigidBodyFactory());
+	// Register the Component Factories before the Application starts
+	EntityComponentManager::Instance()->addFactory("Transform", new TransformFactory());
+	EntityComponentManager::Instance()->addFactory("MeshRenderer", new MeshRendererFactory());
+	EntityComponentManager::Instance()->addFactory("FirstPersonCamera", new FirstPersonCameraFactory());
+	EntityComponentManager::Instance()->addFactory("DirectionalLight", new DirectionalLightFactory());
+	EntityComponentManager::Instance()->addFactory("AudioSource", new AudioSourceFactory());
+	EntityComponentManager::Instance()->addFactory("Rigidbody", new RigidBodyFactory());
 
 	createScene();
 }
@@ -77,38 +78,54 @@ void Application::createScene()
 
 	//------------------LIGHTS-----------------------//
 
+	// We can create GameObjects and Components on the go,
+	// but we can also use the registered factories to do so.
+	// First, we create the GameObject as in previous entities:
+
 	GameObject* mainLight = new GameObject("light", "mainLight");
-	Transform* mainLightTransform = new Transform(mainLight,  "camera");
-	DirectionalLight* mainLight_ = new DirectionalLight(mainLight, true);
-	//mainLightTransform->setPosition(0, 20, 0);
-	mainLightTransform->getNode()->setDirection(Ogre::Vector3(0, 0, -1));
 
-	//std::map<std::string, ValueType> params;
-	//params["parent"].s = "";
-	//params["position_x"].f = 0.0f;
-	//params["position_y"].f = 20.0f;
-	//params["position_z"].f = 0.0f;
-	//params["direction_x"].f = 0.0f;
-	//params["direction_y"].f = -1.0f;
-	//params["direction_z"].f = -1.0f;
-	//params["scale_x"].f = 1.0f;
-	//params["scale_y"].f = 1.0f;
-	//params["scale_z"].f = 1.0f;
-	//params["enabled"].b = true;
-	//
-	//BaseFactory* f = EntityComponentManager::Instance()->getFactory("Transform");
-	//Component* c1 = f->create();
-	//c1->setContainer(mainLight);
-	//c1->init(params);
+	// Then, we create the data structure that maps the init params.
+	// We can reuse this param list for future components, 
+	// just make sure you clear it before reusing!
 
-	//params["diffuse_x"].f = 0.75f;
-	//params["diffuse_y"].f = 0.75f;
-	//params["diffuse_z"].f = 0.75f;
-	//params["enabled"].b = true;
+	std::map<std::string, ValueType> params;
+	params["parent"].s = "";
+	params["position_x"].f = 0.0f;
+	params["position_y"].f = 20.0f;
+	params["position_z"].f = 0.0f;
+	params["direction_x"].f = 0.0f;
+	params["direction_y"].f = -1.0f;
+	params["direction_z"].f = -1.0f;
+	params["scale_x"].f = 1.0f;
+	params["scale_y"].f = 1.0f;
+	params["scale_z"].f = 1.0f;
+	params["enabled"].b = true;
 
-	//Component* c2 = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
-	//c2->setContainer(mainLight);
-	//c2->init(params);
+	// Now we call the appropriate Factory to create the desired Component:
+
+	Component* c1 = EntityComponentManager::Instance()->getFactory("Transform")->create();
+
+	// We need to attach the component to its container manually.
+	// Perhaps we should change the default constructor in Components 
+	// to receive a pointer to a GameObject, since all components need one.
+
+	c1->setContainer(mainLight);
+
+	// We init the Component with the data loaded in the params list:
+
+	c1->init(params);
+
+	// Same proccess with the next component:
+
+	params.clear();
+	params["diffuse_r"].f = 0.75f;
+	params["diffuse_g"].f = 0.75f;
+	params["diffuse_b"].f = 0.75f;
+	params["enabled"].b = true;
+
+	Component* c2 = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
+	c2->setContainer(mainLight);
+	c2->init(params);
 }
 
 void Application::updateScene()
