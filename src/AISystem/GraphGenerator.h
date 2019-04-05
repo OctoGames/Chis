@@ -8,28 +8,32 @@
 #include <iostream>
 #include <fstream>
 #include <Ogre.h>
-#include <SceneLoader.h>
+//#include <SceneLoader.h>
 class GraphGenerator
 {
 private:
 	static GraphGenerator* instance_;
 	const char* PATH_ = "Assets/AIFiles/";
 	Grafo* graph;
+	BFS* bfs;
 	int size, cheeseVertex;
 	std::vector<Ogre::Vector3> vertexPositions;
 	inline void getVertexVector() {
-		vertexPositions = SceneLoader::Instance()->getVertex();
+		//vertexPositions = SceneLoader::Instance()->getVertex();
 	};
 
 	void readFile(const std::string& filename);
 public:
-	Grafo* getGraph() {
+	inline Grafo* getGraph() {
 		return graph;
 	}
-	BFS* bfs;
+	inline BFS* getBFS() {
+		return bfs;
+	}
 	static GraphGenerator* Instance();
-	GraphGenerator();
-	~GraphGenerator();
+	void init();
+	GraphGenerator() {};
+	~GraphGenerator() {};
 };
 
 #endif 
