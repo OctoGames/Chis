@@ -30,6 +30,9 @@ public:
 	inline bool isEnabled() const { return enabled_; }
 	inline void setEnabled(bool enabled);
 
+	virtual inline void addCollidedGameObject(GameObject* go) {}
+	virtual inline void clearCollidedGameObjects() {}
+
 	virtual void start() {}
 	virtual void fixedUpdate() {}
 	virtual void update() {}

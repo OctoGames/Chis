@@ -73,38 +73,28 @@ void Application::initDemo()
 	cameraNode_->attachObject(light_);
 
 	Ogre::String lNameOfTheMesh = "mouse.mesh";
-
-
-	//------------------------------------------MOUSE 1----------------------------------------------
-	Ogre::Entity* lEntity = RenderManager::Instance()->getSceneManager()->createEntity(lNameOfTheMesh);
-	// Now I attach it to a scenenode, so that it becomes present in the scene.
-	Ogre::SceneNode* lNode = RenderManager::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("nMouse" + std::to_string(1));
-	lNode->attachObject(lEntity);
+	int lNumberOfEntities = 5;
+	for (int iter = 0; iter < lNumberOfEntities; ++iter)
+	{
+		Ogre::Entity* lEntity = RenderManager::Instance()->getSceneManager()->createEntity(lNameOfTheMesh);
+		// Now I attach it to a scenenode, so that it becomes present in the scene.
+		Ogre::SceneNode* lNode = RenderManager::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("Mouse" + std::to_string(iter));
+		lNode->attachObject(lEntity);
 	
-	// I move the SceneNode so that it is visible to the camera.
-	lNode->translate(0, 100, -300.0f);
-	lNode->setScale(30.0f, 30.0f, 30.0f);
-	lEntity->setMaterialName("mouse_mat");
+		// I move the SceneNode so that it is visible to the camera.
+		float lPositionOffset = float(1 + iter * 2) - (float(lNumberOfEntities));
+		lPositionOffset = lPositionOffset * 20;
+		lNode->translate(lPositionOffset, lPositionOffset, -200.0f);
+		lNode->setScale(30.0f, 30.0f, 30.0f);
+		lEntity->setMaterialName("mouse_mat");
 
-	Physics::Instance()->createBoxRigidBody(lNode, 10, Ogre::Vector3(30, 30, 30), "MouseRB" + std::to_string(1));
-		
+		Physics::Instance()->createBoxRigidBody(lNode, 0, Ogre::Vector3(30, 30, 30), "MouseRB" + std::to_string(iter));
 
-	//------------------------------------------MOUSE 2----------------------------------------------
+		// The loaded mesh will be white. This is normal.
+	}
 
-	Ogre::Entity* lEntity2 = RenderManager::Instance()->getSceneManager()->createEntity(lNameOfTheMesh);
-	// Now I attach it to a scenenode, so that it becomes present in the scene.
-	Ogre::SceneNode* lNode2 = RenderManager::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("nFloor" + std::to_string(2));
-	lNode2->attachObject(lEntity2);
-
-	// I move the SceneNode so that it is visible to the camera.
-	lNode2->translate(0, 0, -300.0f);
-	lNode2->setScale(200, 5, 200);
-	lEntity2->setMaterialName("mouse_mat");
-
-	Physics::Instance()->createBoxRigidBody(lNode2, 0, Ogre::Vector3(200, 5, 200), "MouseRB" + std::to_string(2));
-
-
-	//Physics::Instance()->setDebugMode(true);
+	Physics::Instance()->setDebugMode(true);
+	Physics::Instance()->createRaycast(btVector3(0, 0, 0), btVector3(0, 0, -300), "cameraRaycast");
 }
 
 void Application::run()
@@ -159,12 +149,127 @@ void Application::run()
 		handleInput(lDeltaTime_s);
 		Physics::Instance()->update();
 		render();
+
+		Ogre::SceneNode* s = nullptr;
+		s = Physics::Instance()->getRaycastCollisionByName("cameraRaycast");
+		if(s != nullptr)
+			std::cout << s->getName() << std::endl;
 	}
 }
 
 void Application::handleInput(float lDeltaTime_s)
 {
+	// I capture the keyboard settings.
+	// Then I update the scene according to these informations.
+	OIS::Keyboard* lKeyboard = RenderManager::Instance()->getKeyboard();
+	OIS::Mouse* lMouse = RenderManager::Instance()->getMouse();
 
+	// The current time is used in the calculation : this is 'real time'. 
+	// The camera move with the same speed on any computer.
+	// I put a coefficient 200.0 because the scene is big.
+	// I test the keys TGFH for moving.
+	lKeyboard->capture();
+	{
+		float lCoeff = 200.0f * lDeltaTime_s;
+		Ogre::Vector3 lTranslation(Ogre::Vector3::ZERO);
+		if (lKeyboard->isKeyDown(OIS::KC_W))
+		{
+			lTranslation.z -= lCoeff;
+		}
+		if (lKeyboard->isKeyDown(OIS::KC_S))
+		{
+			lTranslation.z += lCoeff;
+		}
+		if (lKeyboard->isKeyDown(OIS::KC_A))
+		{
+			lTranslation.x -= lCoeff;
+		}
+		if (lKeyboard->isKeyDown(OIS::KC_D))
+		{
+			lTranslation.x += lCoeff;
+		}
+		if (lTranslation != Ogre::Vector3::ZERO)
+		{
+			cameraNode_->translate(lTranslation, Ogre::Node::TS_LOCAL);
+		}
+		if (lKeyboard->isKeyDown(OIS::KC_ESCAPE))
+		{
+			running_ = false;
+		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_DOWN))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
+
+			from.setY(from.getY() - 2);
+			to.setY(to.getY() - 2);
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_LEFT))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
+
+			from.setX(from.getX() - 2);
+			to.setX(to.getX() - 2);
+
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_RIGHT))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
+
+			from.setX(from.getX() + 2);
+			to.setX(to.getX() + 2);
+
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
+
+		if (lKeyboard->isKeyDown(OIS::KC_UP ))
+		{
+			btVector3 from; btVector3 to;
+
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
+
+			from.setY(from.getY() + 2);
+			to.setY(to.getY() + 2);
+
+
+			Physics::Instance()->setRaycastByName("cameraRaycast", from, to);
+		}
+	}
+
+	// same for the mouse.
+	lMouse->capture();
+	{
+		const OIS::MouseState& lMouseState = lMouse->getMouseState();
+		if (lMouseState.buttonDown(OIS::MB_Left))
+		{
+		}
+
+		else if (lMouseState.buttonDown(OIS::MB_Right))
+		{
+		}
+		float lMouseX = float(lMouseState.X.rel) / float(RenderManager::Instance()->getWindow()->getWidth());
+		float lMouseY = float(lMouseState.Y.rel) / float(RenderManager::Instance()->getWindow()->getHeight());
+		float lRotCoeff = -5.0f;
+		Ogre::Radian lAngleX(lMouseX * lRotCoeff);
+		Ogre::Radian lAngleY(lMouseY * lRotCoeff);
+
+		// If the 'player' don't make loopings, 'yaw in world' + 'pitch in local' is often enough for a camera controler.
+		cameraNode_->yaw(lAngleX, Ogre::Node::TS_WORLD);
+		cameraNode_->pitch(lAngleY, Ogre::Node::TS_LOCAL);
+	}
 }
 
 void Application::render()

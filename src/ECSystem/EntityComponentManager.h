@@ -23,6 +23,8 @@ public:
 	BaseFactory* getFactory(const std::string& name) { return factories_[name]; }
 	Component* getComponent(GameObject* game_object, const std::string& component_name);
 	std::list<GameObject*> findGameObjectsWithTag(const std::string& tag);
+	GameObject* findGameObjectWithName(const std::string& name);
+	inline std::list<Component*> getAllComponents() { return components_; };
 
 private:
 	EntityComponentManager();

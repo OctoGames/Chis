@@ -76,3 +76,24 @@ std::list<GameObject*> EntityComponentManager::findGameObjectsWithTag(const std:
 {
 	return tags_[tag];
 }
+
+GameObject* EntityComponentManager::findGameObjectWithName(const std::string & name)
+{
+	bool found = false;
+	GameObject* auxGO = nullptr;
+
+	std::list<GameObject*>::iterator it = entities_.begin();
+
+	while (it != entities_.end() && !found)
+	{
+		if ((*it)->getName() == name)
+		{
+			auxGO = (*it);
+			found = true;
+		}
+
+		else it++;
+	}
+
+	return auxGO;
+}

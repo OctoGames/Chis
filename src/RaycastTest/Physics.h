@@ -8,6 +8,8 @@
 
 #include "debugDrawer.h"
 
+#include "EntityComponentManager.h"
+
 struct rayCast {
 	btVector3 from;
 	btVector3 to;
@@ -64,6 +66,8 @@ private:
 		double radious;
 		std::string type;
 	};
+
+	void detectCollision();
 
 	Physics();
 	~Physics();

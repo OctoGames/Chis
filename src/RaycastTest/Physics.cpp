@@ -58,6 +58,8 @@ bool Physics::update()
 
 	debugDrawer::Instance()->resetLineNumber();
 
+	detectCollision();
+
 	castRays();
 
 	if (debug_)
@@ -86,6 +88,53 @@ bool Physics::update()
 	}
 
 	return true;
+}
+
+void Physics::detectCollision()
+{
+	btDispatcher* dispatcher = dynamicsWorld->getCollisionWorld()->getDispatcher();
+	int numManifolds = dispatcher->getNumManifolds();
+
+	std::list<Component*> components = EntityComponentManager::Instance()->getAllComponents();
+
+	for(Component* c : components)
+	{
+		c->clearCollidedGameObjects();
+	}
+
+	for (int i = 0; i < numManifolds; i++)
+	{
+		btPersistentManifold * contactManifold = dispatcher->getManifoldByIndexInternal(i);
+
+		//First we take A object
+		const btCollisionObject* obA = contactManifold->getBody0();
+
+		const btRigidBody* bodyA = btRigidBody::upcast(obA);
+
+		Ogre::SceneNode* obAsceneNode = static_cast<Ogre::SceneNode *>(bodyA->getUserPointer());
+
+		std::string obAname = obAsceneNode->getName();
+
+		//Then we do the same with the second one
+		const btCollisionObject* obB = contactManifold->getBody1();
+
+		const btRigidBody* bodyB = btRigidBody::upcast(obB);
+
+		Ogre::SceneNode* obBsceneNode = static_cast<Ogre::SceneNode *>(bodyB->getUserPointer());
+
+		std::string obBname = obBsceneNode->getName();
+
+		//Now we search in the gameObject list the ones that collided
+
+		std::string auxBname = obBname.substr(1, obBname.size());
+		std::string auxAname = obAname.substr(1, obAname.size());
+
+		GameObject* objA = EntityComponentManager::Instance()->findGameObjectWithName(auxAname);
+		GameObject* objB = EntityComponentManager::Instance()->findGameObjectWithName(auxBname);
+
+		EntityComponentManager::Instance()->getComponent(objA, "RigidBody")->addCollidedGameObject(objB);
+		EntityComponentManager::Instance()->getComponent(objB, "RigidBody")->addCollidedGameObject(objA);
+	}
 }
 
 void Physics::toggleDebug()
