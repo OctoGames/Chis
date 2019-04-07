@@ -9,7 +9,9 @@ UIManager * UIManager::Instance()
 }
 
 UIManager::UIManager() :
-	renderer_(nullptr)
+	renderer_(nullptr),
+	fWnd(nullptr),
+	menuClosed_(false)
 {
 	InputManager::Instance()->addKeyListener(this, "GUI");
 	InputManager::Instance()->addMouseListener(this, "GUI");
@@ -29,18 +31,37 @@ void UIManager::init()
 
 	// Set default resources
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-10.font");
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-10");
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("TaharezLook/Tooltip");
+
 
 	// Create CEGUI root object
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* sheet = wmgr.createWindow("DefaultWindow", "CEGUIDemo/Sheet");
-	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
+	CEGUI::Window* myRoot = wmgr.createWindow("DefaultWindow", "root");
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot);
+
+	fWnd = static_cast<CEGUI::FrameWindow*>(wmgr.createWindow("TaharezLook/FrameWindow", "testWindow"));
+	myRoot->addChild(fWnd);
+	fWnd->setPosition(CEGUI::UVector2(CEGUI::UDim(-0.2f, -0.2f), CEGUI::UDim(-0.2f, -0.2f)));
+	fWnd->setSize(CEGUI::USize(CEGUI::UDim(1.3f, 1.3f), CEGUI::UDim(1.3f, 1.3f)));
+	fWnd->setTitleBarEnabled(false);
+	fWnd->setCloseButtonEnabled(false);
+
 	CEGUI::Window *quit = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+	fWnd->addChild(quit);
+	quit->setPosition(CEGUI::UVector2(CEGUI::UDim(0.45f, 0.0f), CEGUI::UDim(0.5f, 0.0f)));
 	quit->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
 	quit->setText("Quit");
-	sheet->addChild(quit);
-
 	quit->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&UIManager::quit, this));
+
+	CEGUI::Window *start = wmgr.createWindow("TaharezLook/Button", "CEGUIDemo/QuitButton");
+	fWnd->addChild(start);
+	start->setPosition(CEGUI::UVector2(CEGUI::UDim(0.45f, 0.0f), CEGUI::UDim(0.25f, 0.0f)));
+	start->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
+	start->setText("Start");
+	start->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&UIManager::closeMenu, this));
 }
 
 void UIManager::close()
@@ -109,4 +130,16 @@ bool UIManager::frameRenderingQueued(const Ogre::FrameEvent & evt)
 void UIManager::quit()
 {
 	RenderManager::Instance()->setRunning(false);
+}
+
+void UIManager::closeMenu()
+{
+	fWnd->hide();
+	menuClosed_ = true;
+}
+
+void UIManager::openMenu()
+{
+	fWnd->show();
+	menuClosed_ = false;
 }

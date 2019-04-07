@@ -22,10 +22,14 @@ public:
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
-
 	virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
 
+	bool isMenuClosed() const { return menuClosed_; }
+
 	void quit();
+	void closeMenu();
+
+	void openMenu();
 
 private:
 	UIManager();
@@ -33,6 +37,10 @@ private:
 	static UIManager* instance_;
 
 	CEGUI::OgreRenderer* renderer_;
+
+	CEGUI::FrameWindow* fWnd;
+
+	bool menuClosed_;
 };
 
 #endif // !__UI_MANAGER_H__

@@ -7,7 +7,8 @@
 #include "AudioSource.h"
 #include "RigidBody.h"
 
-Application::Application()
+Application::Application() :
+	sceneCreated_(false)
 {
 	RenderManager::Instance()->init();
 	InputManager::Instance()->init();
@@ -20,8 +21,6 @@ Application::Application()
 	EntityComponentManager::Instance()->addFactory("DirectionalLight", new DirectionalLightFactory());
 	EntityComponentManager::Instance()->addFactory("AudioSource", new AudioSourceFactory());
 	EntityComponentManager::Instance()->addFactory("Rigidbody", new RigidBodyFactory());
-
-	createScene();
 }
 
 Application::~Application()
@@ -40,9 +39,19 @@ void Application::run()
 
 		AudioSystem::Instance()->update();
 		InputManager::Instance()->update(dt);
-		updateScene();
-		Physics::Instance()->update();
-		EntityComponentManager::Instance()->update();
+
+		if (sceneCreated_)
+		{
+			updateScene();
+			Physics::Instance()->update();
+			EntityComponentManager::Instance()->update();
+		}
+		else if (UIManager::Instance()->isMenuClosed())
+		{
+			createScene();
+			sceneCreated_ = true;
+		}
+
 		RenderManager::Instance()->update(dt);
 	}
 }
@@ -51,8 +60,7 @@ void Application::createScene()
 {
 	//-----------------READ SCENE-------------------//
 	SceneLoader::Instance()->loadScene("test.scene");
-	//GraphGenerator* graphG = new GraphGenerator();
-	//graphG->initG();
+
 	//----------------MOUSE OBJECT------------------//
 
 	GameObject* mouse = new GameObject("mouse", "enemy");
@@ -132,7 +140,8 @@ void Application::updateScene()
 {
 	if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_ESCAPE))
 	{
-		RenderManager::Instance()->setRunning(false);
+		if (UIManager::Instance()->isMenuClosed()) UIManager::Instance()->openMenu();
+		//RenderManager::Instance()->setRunning(false);
 	}
 	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_P))
 	{

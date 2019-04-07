@@ -21,6 +21,8 @@ public:
 private:
 	void createScene();
 	void updateScene();
+
+	bool sceneCreated_;
 };
 
 #endif // !__APPLICATION_H__
