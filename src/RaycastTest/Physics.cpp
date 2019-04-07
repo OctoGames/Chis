@@ -196,7 +196,7 @@ btTransform Physics::setTransform(Ogre::SceneNode* node)
 	return transform;
 }
 
-void Physics::getRaycastByName(const std::string name, btVector3& from, btVector3& to)
+void Physics::getRaycastValuesByName(const std::string name, btVector3& from, btVector3& to)
 {
 	bool found = false;
 	int i = 0;
@@ -213,6 +213,25 @@ void Physics::getRaycastByName(const std::string name, btVector3& from, btVector
 	}
 }
 
+Ogre::SceneNode* Physics::getRaycastCollisionByName(const std::string name)
+{
+	bool found = false;
+	int i = 0;
+	Ogre::SceneNode* collided = nullptr;
+
+	while (i < rayCasts_.size() && !found)
+	{
+		if (name == rayCasts_[i].rayName)
+		{
+			collided = rayCasts_[i].collision;
+			found = true;
+		}
+		else i++;
+	}
+
+	return collided;
+}
+
 void Physics::setRaycastByName(const std::string name, btVector3 from, btVector3 to)
 {
 	bool found = false;
@@ -224,18 +243,18 @@ void Physics::setRaycastByName(const std::string name, btVector3 from, btVector3
 		{
 			rayCasts_[i].from = from;
 			rayCasts_[i].to = to;
+			rayCasts_[i].collision = nullptr;
 			found = true;
 		}
 		else i++;
 	}
 }
 
-void Physics::createRaycast(btVector3 from, btVector3 to, bool allHits, std::string name)
+void Physics::createRaycast(btVector3 from, btVector3 to, std::string name)
 {
 	rayCast r;
 	r.from = from;
 	r.to = to;
-	r.allHits = allHits;
 	r.rayName = name;
 
 	rayCasts_.push_back(r);
@@ -258,8 +277,6 @@ Ogre::SceneNode * Physics::firstHitRaycast(btVector3 from, btVector3 to)
 		const btRigidBody* body = btRigidBody::upcast(collidedObj);
 
 		sceneNodeCollided = static_cast<Ogre::SceneNode *>(body->getUserPointer());
-
-		std::cout << sceneNodeCollided->getName() << std::endl;
 		
 		if (debug_)
 		{
@@ -280,29 +297,6 @@ Ogre::SceneNode * Physics::firstHitRaycast(btVector3 from, btVector3 to)
 	return sceneNodeCollided;
 }
 
-void Physics::allHitsRaycast(btVector3 from, btVector3 to)
-{
-	dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(0, 0, 0, 1));
-	btCollisionWorld::AllHitsRayResultCallback allResults(from, to);
-	allResults.m_flags |= btTriangleRaycastCallback::kF_KeepUnflippedNormal;
-	//kF_UseGjkConvexRaytest flag is now enabled by default, use the faster but more approximate algorithm
-	//allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
-	allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
-
-	dynamicsWorld->rayTest(from, to, allResults);
-
-	for (int i = 0; i < allResults.m_hitFractions.size(); i++)
-	{
-
-		if (debug_)
-		{
-			btVector3 p = from.lerp(to, allResults.m_hitFractions[i]);
-			debugDrawer::Instance()->drawCube(p, btVector3(1, 1, 1));
-			//dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, btVector3(1,0,0));
-		}
-	}
-}
-
 Ogre::SceneNode * Physics::castRays()
 {
 
@@ -315,15 +309,7 @@ Ogre::SceneNode * Physics::castRays()
 
 		for (int i = 0; i < rayCasts_.size(); i++)
 		{
-			if (rayCasts_[i].allHits)
-			{
-				allHitsRaycast(rayCasts_[i].from, rayCasts_[i].to);
-			}
-
-			else
-			{
-				sceneNodeCollided = firstHitRaycast(rayCasts_[i].from, rayCasts_[i].to);
-			}
+			rayCasts_[i].collision = firstHitRaycast(rayCasts_[i].from, rayCasts_[i].to);
 		}
 	}
 

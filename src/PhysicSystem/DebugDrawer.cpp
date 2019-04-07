@@ -106,6 +106,7 @@ void debugDrawer::resetLineNumber()
 
 	for (int i = 1; i < numberOfLines_ + 1; i++)
 	{
+		
 		RenderManager::Instance()->getSceneManager()->destroyManualObject("LineNumber " + std::to_string(i));
 	}
 

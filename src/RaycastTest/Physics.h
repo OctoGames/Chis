@@ -1,9 +1,6 @@
 #include <vector>
 #include <map>
 
-#include <Ogre.h>
-//#include "Transform.h"
-
 #include <btBulletDynamicsCommon.h>
 
 #include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
@@ -16,6 +13,7 @@ struct rayCast {
 	btVector3 to;
 	bool allHits;
 	std::string rayName;
+	Ogre::SceneNode* collision;
 };
 
 class Physics {
@@ -42,16 +40,17 @@ public:
 	void createBoxRigidBody(Ogre::SceneNode * node, double mass, Ogre::Vector3 scale, std::string name);
 	void createSphereRididBody(Ogre::SceneNode * node, double mass, double radious, std::string name);
 
-	void createRaycast(btVector3 from, btVector3 to, bool allHits, std::string name);
+	void createRaycast(btVector3 from, btVector3 to, std::string name);
 
-	void getRaycastByName(const std::string name, btVector3& from, btVector3& to);
+	void getRaycastValuesByName(const std::string name, btVector3& from, btVector3& to);
+
+	Ogre::SceneNode* getRaycastCollisionByName(const std::string name);
 
 	void setRaycastByName(const std::string name, const btVector3 from, const btVector3 to);
 
 private:
 
 	Ogre::SceneNode * firstHitRaycast(btVector3 from, btVector3 to);
-	void allHitsRaycast(btVector3 from, btVector3 to);
 
 	std::vector<rayCast> rayCasts_;
 

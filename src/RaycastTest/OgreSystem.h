@@ -22,10 +22,10 @@
 #include <OISJoyStick.h>
 #include <OISInputManager.h>
 
-class OgreSystem
+class RenderManager
 {
 public:
-	static OgreSystem* Instance();
+	static RenderManager* Instance();
 
 	void init();
 	void close();
@@ -37,7 +37,7 @@ public:
 	inline OIS::Keyboard* getKeyboard() { return keyboard_; }
 
 private:
-	OgreSystem();
+	RenderManager();
 
 	void createRoot();
 	void createWindow();
@@ -45,7 +45,7 @@ private:
 	void createSceneManager();
 	void createInputManager();
 
-	static OgreSystem* instance_;
+	static RenderManager* instance_;
 
 	Window* window_;
 	Ogre::Root* root_;

@@ -1,18 +1,18 @@
-#include "OgreSystem.h"
+#include "RenderManager.h"
 
 #include <SDL_syswm.h>
 #include <OgreConfigFile.h>
 #include <OgreGpuProgramManager.h>
 
-OgreSystem* OgreSystem::instance_ = nullptr;
+RenderManager* RenderManager::instance_ = nullptr;
 
-OgreSystem* OgreSystem::Instance()
+RenderManager* RenderManager::Instance()
 {
-	if (instance_ == nullptr) instance_ = new OgreSystem();
+	if (instance_ == nullptr) instance_ = new RenderManager();
 	return instance_;
 }
 
-OgreSystem::OgreSystem() :
+RenderManager::RenderManager() :
 	root_(nullptr),
 	window_(nullptr),
 	sceneManager_(nullptr),
@@ -21,7 +21,7 @@ OgreSystem::OgreSystem() :
 	appName_ = "CHIS";
 }
 
-void OgreSystem::init()
+void RenderManager::init()
 {
 	createRoot();
 	createWindow();
@@ -30,7 +30,7 @@ void OgreSystem::init()
 	createSceneManager();
 }
 
-void OgreSystem::close()
+void RenderManager::close()
 {
 	if (root_ != nullptr) root_->saveConfig();
 
@@ -46,7 +46,7 @@ void OgreSystem::close()
 	root_ = nullptr;
 }
 
-void OgreSystem::createRoot()
+void RenderManager::createRoot()
 {
 	fileSystemLayer_ = new Ogre::FileSystemLayer(appName_);
 
@@ -62,7 +62,7 @@ void OgreSystem::createRoot()
 	if (root_->restoreConfig()) root_->initialise(false);
 }
 
-void OgreSystem::createWindow()
+void RenderManager::createWindow()
 {
 	window_ = new Window();
 
@@ -89,7 +89,7 @@ void OgreSystem::createWindow()
 	window_->setWindowGrab(false, true);
 }
 
-void OgreSystem::createInputManager()
+void RenderManager::createInputManager()
 {
 	size_t hWnd = 0;
 	getWindow()->getCustomAttribute("WINDOW", &hWnd);
@@ -99,7 +99,7 @@ void OgreSystem::createInputManager()
 	keyboard_ = static_cast<OIS::Keyboard*>(inputManager_->createInputObject(OIS::OISKeyboard, false));
 }
 
-void OgreSystem::createResources()
+void RenderManager::createResources()
 {
 	Ogre::ConfigFile cf;
 	Ogre::String resourcesPath = fileSystemLayer_->getConfigFilePath("resources.cfg");
@@ -183,7 +183,7 @@ void OgreSystem::createResources()
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void OgreSystem::createSceneManager()
+void RenderManager::createSceneManager()
 {
 	sceneManager_ = root_->createSceneManager();
 }

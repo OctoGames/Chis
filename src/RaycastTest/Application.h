@@ -1,7 +1,7 @@
 #ifndef _APPLICATION_H_
 #define _APPLICATION_H_
 
-#include "OgreSystem.h"
+#include "RenderManager.h"
 #include "Physics.h"
 
 class Application

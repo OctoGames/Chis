@@ -14,21 +14,21 @@ Application::~Application()
 
 void Application::initSystems()
 {
-	OgreSystem::Instance()->init();
+	RenderManager::Instance()->init();
 }
 
 void Application::closeSystems()
 {
-	OgreSystem::Instance()->close();
+	RenderManager::Instance()->close();
 }
 
 void Application::initDemo()
 {
 	// I create a camera. It represent a 'point of view' in the scene.
-	Ogre::Camera* lCamera = OgreSystem::Instance()->getSceneManager()->createCamera("MyFirstCamera");
+	Ogre::Camera* lCamera = RenderManager::Instance()->getSceneManager()->createCamera("MyFirstCamera");
 
 	// I attach the camera to a new SceneNode. It will be easier then to move it in the scene.
-	cameraNode_ = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("MyFirstCameraNode");
+	cameraNode_ = RenderManager::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("MyFirstCameraNode");
 	cameraNode_->attachObject(lCamera);
 
 	// We create a viewport on a part of the window.
@@ -41,7 +41,7 @@ void Application::initDemo()
 	float lViewportLeft = (1.0f - lViewportWidth) * 0.5f;
 	float lViewportTop = (1.0f - lViewportHeight) * 0.5f;
 	unsigned short lMainViewportZOrder = 100;
-	viewport_ = OgreSystem::Instance()->getWindow()->addViewport(lCamera, lMainViewportZOrder, lViewportLeft, lViewportTop, lViewportWidth, lViewportHeight);
+	viewport_ = RenderManager::Instance()->getWindow()->addViewport(lCamera, lMainViewportZOrder, lViewportLeft, lViewportTop, lViewportWidth, lViewportHeight);
 
 	// I want the viewport to draw the scene automatically
 	// when I will call lWindow->update();
@@ -62,12 +62,12 @@ void Application::initDemo()
 	lCamera->setFarClipDistance(3000.0f);
 
 	// I want my window to be active
-	OgreSystem::Instance()->getWindow()->setActive(true);
+	RenderManager::Instance()->getWindow()->setActive(true);
 
 	// I want to update myself the content of the window, not automatically.
-	OgreSystem::Instance()->getWindow()->setAutoUpdated(false);
+	RenderManager::Instance()->getWindow()->setAutoUpdated(false);
 
-	Ogre::Light* light_ = OgreSystem::Instance()->getSceneManager()->createLight("mainLight");
+	Ogre::Light* light_ = RenderManager::Instance()->getSceneManager()->createLight("mainLight");
 	light_->setType(Ogre::Light::LT_DIRECTIONAL);
 	light_->setDiffuseColour(0.75, 0.75, 0.75);
 	cameraNode_->attachObject(light_);
@@ -76,9 +76,9 @@ void Application::initDemo()
 	int lNumberOfEntities = 5;
 	for (int iter = 0; iter < lNumberOfEntities; ++iter)
 	{
-		Ogre::Entity* lEntity = OgreSystem::Instance()->getSceneManager()->createEntity(lNameOfTheMesh);
+		Ogre::Entity* lEntity = RenderManager::Instance()->getSceneManager()->createEntity(lNameOfTheMesh);
 		// Now I attach it to a scenenode, so that it becomes present in the scene.
-		Ogre::SceneNode* lNode = OgreSystem::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("Mouse" + std::to_string(iter));
+		Ogre::SceneNode* lNode = RenderManager::Instance()->getSceneManager()->getRootSceneNode()->createChildSceneNode("Mouse" + std::to_string(iter));
 		lNode->attachObject(lEntity);
 	
 		// I move the SceneNode so that it is visible to the camera.
@@ -94,18 +94,18 @@ void Application::initDemo()
 	}
 
 	Physics::Instance()->setDebugMode(true);
-	Physics::Instance()->createRaycast(btVector3(0, 0, 0), btVector3(0, 0, -300), false, "cameraRaycast");
+	Physics::Instance()->createRaycast(btVector3(0, 0, 0), btVector3(0, 0, -300), "cameraRaycast");
 }
 
 void Application::run()
 {
-	OgreSystem::Instance()->getRoot()->clearEventTimes();
+	RenderManager::Instance()->getRoot()->clearEventTimes();
 
 	// The root has an access to Ogre3D's internal timer.
 	// This timer can be controlled (for example, if you want to synchronise
 	// some shaders between 5 computers), and accessed for time informations.
 	// Here I reset the timer.
-	Ogre::Timer* lOgreTimer = OgreSystem::Instance()->getRoot()->getTimer();
+	Ogre::Timer* lOgreTimer = RenderManager::Instance()->getRoot()->getTimer();
 	lOgreTimer->reset();
 
 	// I name my variable with something that indicates milliseconds or seconds.
@@ -119,7 +119,7 @@ void Application::run()
 	// It allow the binding of messages between the application and the OS.
 	// These messages are most of the time : keystroke, mouse moved, ... or window closed.
 	// If I don't do this, the message are never caught, and the window won't close.
-	while (!OgreSystem::Instance()->getWindow()->isClosed() && running_)
+	while (!RenderManager::Instance()->getWindow()->isClosed() && running_)
 	{
 		// For the window drawing, you will increase performances if you : 
 		// 0/ do some cpu calculations (ex: update sound).
@@ -149,6 +149,11 @@ void Application::run()
 		handleInput(lDeltaTime_s);
 		Physics::Instance()->update();
 		render();
+
+		Ogre::SceneNode* s = nullptr;
+		s = Physics::Instance()->getRaycastCollisionByName("cameraRaycast");
+		if(s != nullptr)
+			std::cout << s->getName() << std::endl;
 	}
 }
 
@@ -156,8 +161,8 @@ void Application::handleInput(float lDeltaTime_s)
 {
 	// I capture the keyboard settings.
 	// Then I update the scene according to these informations.
-	OIS::Keyboard* lKeyboard = OgreSystem::Instance()->getKeyboard();
-	OIS::Mouse* lMouse = OgreSystem::Instance()->getMouse();
+	OIS::Keyboard* lKeyboard = RenderManager::Instance()->getKeyboard();
+	OIS::Mouse* lMouse = RenderManager::Instance()->getMouse();
 
 	// The current time is used in the calculation : this is 'real time'. 
 	// The camera move with the same speed on any computer.
@@ -196,7 +201,7 @@ void Application::handleInput(float lDeltaTime_s)
 		{
 			btVector3 from; btVector3 to;
 
-			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
 
 			from.setY(from.getY() - 2);
 			to.setY(to.getY() - 2);
@@ -208,7 +213,7 @@ void Application::handleInput(float lDeltaTime_s)
 		{
 			btVector3 from; btVector3 to;
 
-			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
 
 			from.setX(from.getX() - 2);
 			to.setX(to.getX() - 2);
@@ -221,7 +226,7 @@ void Application::handleInput(float lDeltaTime_s)
 		{
 			btVector3 from; btVector3 to;
 
-			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
 
 			from.setX(from.getX() + 2);
 			to.setX(to.getX() + 2);
@@ -234,7 +239,7 @@ void Application::handleInput(float lDeltaTime_s)
 		{
 			btVector3 from; btVector3 to;
 
-			Physics::Instance()->getRaycastByName("cameraRaycast", from, to);
+			Physics::Instance()->getRaycastValuesByName("cameraRaycast", from, to);
 
 			from.setY(from.getY() + 2);
 			to.setY(to.getY() + 2);
@@ -255,8 +260,8 @@ void Application::handleInput(float lDeltaTime_s)
 		else if (lMouseState.buttonDown(OIS::MB_Right))
 		{
 		}
-		float lMouseX = float(lMouseState.X.rel) / float(OgreSystem::Instance()->getWindow()->getWidth());
-		float lMouseY = float(lMouseState.Y.rel) / float(OgreSystem::Instance()->getWindow()->getHeight());
+		float lMouseX = float(lMouseState.X.rel) / float(RenderManager::Instance()->getWindow()->getWidth());
+		float lMouseY = float(lMouseState.Y.rel) / float(RenderManager::Instance()->getWindow()->getHeight());
 		float lRotCoeff = -5.0f;
 		Ogre::Radian lAngleX(lMouseX * lRotCoeff);
 		Ogre::Radian lAngleY(lMouseY * lRotCoeff);
@@ -272,23 +277,23 @@ void Application::render()
 	// the window update its content.
 	// each viewport that is 'autoupdated' will be redrawn now,
 	// in order given by its z-order.
-	OgreSystem::Instance()->getWindow()->update(false);
+	RenderManager::Instance()->getWindow()->update(false);
 
 	// The drawn surface is then shown on the screen
 	// (google "double buffering" if you want more details).
 	// I always use vertical synchro.
 	bool lVerticalSynchro = true;
-	OgreSystem::Instance()->getWindow()->swapBuffers();
+	RenderManager::Instance()->getWindow()->swapBuffers();
 
 	//// I print some statistics (more are available in Ogre3D)
 	//// With VSync enabled, that should be close to 59,9fps.
-	//const Ogre::RenderTarget::FrameStats& lStats = OgreSystem::Instance()->getWindow()->getStatistics();
+	//const Ogre::RenderTarget::FrameStats& lStats = RenderManager::Instance()->getWindow()->getStatistics();
 	//std::cout << "FPS: " << lStats.lastFPS << "; AvgFPS : " << lStats.avgFPS;
 	//std::cout << "; batchcount :" << lStats.batchCount << std::endl;
 
 	// This update some internal counters and listeners.
 	// Each render surface (window/rtt/mrt) that is 'auto-updated' has got its 'update' function called.
-	OgreSystem::Instance()->getRoot()->renderOneFrame();
+	RenderManager::Instance()->getRoot()->renderOneFrame();
 
 	//Ogre::WindowEventUtilities::messagePump();
 }
