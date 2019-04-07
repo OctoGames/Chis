@@ -59,8 +59,9 @@ void Application::run()
 void Application::createScene()
 {
 	//-----------------READ SCENE-------------------//
-	SceneLoader::Instance()->loadScene("test.scene");
-
+	SceneLoader::Instance()->loadScene("Map1.scene");
+	//GraphGenerator* graphG = new GraphGenerator();
+	//graphG->initG();
 	//----------------MOUSE OBJECT------------------//
 
 	GameObject* mouse = new GameObject("mouse", "enemy");
@@ -134,6 +135,8 @@ void Application::createScene()
 	Component* c2 = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
 	c2->setContainer(mainLight);
 	c2->init(params);
+
+	Physics::Instance()->setDebugMode(true);
 }
 
 void Application::updateScene()

@@ -131,7 +131,7 @@ void SceneLoader::processNode(rapidxml::xml_node<>* XMLNode) {
 		GameObject* g = new GameObject(gameObjectName, gameObjectTag);
 
 		// lista de componentes del gameobject
-		std::list<std::string> componentsList = LoadArchetypes::Instance()->getComponentsList(gameObjectName);
+		std::list<std::string> componentsList = LoadArchetypes::Instance()->getComponentsList(gameObjectTag);
 		if (componentsList.empty())
 			Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Error: lista de componentes vacía +++++++++++++++++++++++++++");
 		// create components from the list of components with its parametres
