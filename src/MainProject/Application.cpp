@@ -6,6 +6,7 @@
 #include "DirectionalLight.h"
 #include "AudioSource.h"
 #include "RigidBody.h"
+#include "GunController.h"
 
 Application::Application() :
 	sceneCreated_(false)
@@ -21,6 +22,7 @@ Application::Application() :
 	EntityComponentManager::Instance()->addFactory("DirectionalLight", new DirectionalLightFactory());
 	EntityComponentManager::Instance()->addFactory("AudioSource", new AudioSourceFactory());
 	EntityComponentManager::Instance()->addFactory("Rigidbody", new RigidBodyFactory());
+	EntityComponentManager::Instance()->addFactory("GunController", new GunControllerFactory());
 }
 
 Application::~Application()
@@ -60,10 +62,9 @@ void Application::createScene()
 {
 	//-----------------READ SCENE-------------------//
 	SceneLoader::Instance()->loadScene("Map1.scene");
-	//GraphGenerator* graphG = new GraphGenerator();
-	//graphG->initG();
-	//----------------MOUSE OBJECT------------------//
 
+
+	//----------------MOUSE OBJECT------------------//
 	GameObject* mouse = new GameObject("mouse", "enemy");
 	Transform* mouseTransform_ = new Transform(mouse);
 	mouseTransform_->setPosition(50.0, 50.0, 0.0);
@@ -76,7 +77,6 @@ void Application::createScene()
 	mouseRenderer_->setMaterialName("mouseMaterial");
 
 	//------------------MAIN CAMERA------------------//
-
 	GameObject* cam = new GameObject("camera", "cam");
 	Transform* cameraTransform = new Transform(cam);
 	FirstPersonCamera* mainCamera = new FirstPersonCamera(cam, true);
@@ -85,8 +85,22 @@ void Application::createScene()
 	AudioSource* bgMusic = new AudioSource(cam, "MouseMusic", "22-The Mouse's House.mp3");
 	bgMusic->play();
 
-	//------------------LIGHTS-----------------------//
+	GameObject* gun = new GameObject("gun", "gun");
+	Transform* gunTranform = new Transform(gun, "camera");
+	gunTranform->setPosition(Ogre::Vector3(30, -50, -90));
+	gunTranform->rotate(Ogre::Vector3(0, 1, 0), 180.0f);
+	MeshRenderer* gunRenderer = new MeshRenderer(gun, "gun.mesh");
+	gunRenderer->setMaterialName("gun_mat");
+	AudioSource* shootSFX = new AudioSource(gun, "ShootSFX", "shoot.wav");
 
+	std::map<std::string, ValueType> params;
+	params["enabled"].b = true;
+	Component* c = EntityComponentManager::Instance()->getFactory("GunController")->create();
+	c->setContainer(gun);
+	c->init(params);
+	EntityComponentManager::Instance()->addComponent(c);
+
+	//------------------LIGHTS-----------------------//
 	// We can create GameObjects and Components on the go,
 	// but we can also use the registered factories to do so.
 	// First, we create the GameObject as in previous entities:
@@ -97,7 +111,7 @@ void Application::createScene()
 	// We can reuse this param list for future components, 
 	// just make sure you clear it before reusing!
 
-	std::map<std::string, ValueType> params;
+	params.clear();
 	params["parent"].s = "";
 	params["position_x"].f = 0.0f;
 	params["position_y"].f = 20.0f;
@@ -122,21 +136,32 @@ void Application::createScene()
 
 	// We init the Component with the data loaded in the params list:
 
+	
 	c1->init(params);
 
 	// Same proccess with the next component:
 
 	params.clear();
-	params["diffuse_r"].f = 0.75f;
-	params["diffuse_g"].f = 0.75f;
-	params["diffuse_b"].f = 0.75f;
+	params["direction_x"].f = 0.55f;
+	params["direction_y"].f = -0.3f;
+	params["direction_z"].f = 0.75f;
+	params["ambient_r"].f = 0.8f;
+	params["ambient_g"].f = 0.8f;
+	params["ambient_b"].f = 0.8f;
+	params["diffuse_r"].f = 1.0f;
+	params["diffuse_g"].f = 1.0f;
+	params["diffuse_b"].f = 1.0f;
+	params["specular_r"].f = 0.4f;
+	params["specular_g"].f = 0.4f;
+	params["specular_b"].f = 0.4f;
 	params["enabled"].b = true;
 
 	Component* c2 = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
 	c2->setContainer(mainLight);
 	c2->init(params);
 
-	Physics::Instance()->setDebugMode(true);
+	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane", 5, 8, 500);
+	//Physics::Instance()->setDebugMode(true);
 }
 
 void Application::updateScene()
@@ -144,7 +169,7 @@ void Application::updateScene()
 	if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_ESCAPE))
 	{
 		if (UIManager::Instance()->isMenuClosed()) UIManager::Instance()->openMenu();
-		//RenderManager::Instance()->setRunning(false);
+		else RenderManager::Instance()->setRunning(false);
 	}
 	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_P))
 	{
@@ -153,5 +178,9 @@ void Application::updateScene()
 	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_O))
 	{
 		Physics::Instance()->toggleDebugMode();
+	}
+	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_F))
+	{
+		RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
 	}
 }

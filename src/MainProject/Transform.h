@@ -22,6 +22,7 @@ public:
 	inline void setScale(float x, float y, float z) { node_->setScale(x, y, z); }
 	inline void setScale(const Ogre::Vector3 &v) { node_->setScale(v); }
 	inline void setOrientation(const Ogre::Quaternion &q) { node_->setOrientation(q); };
+	inline void rotate(const Ogre::Vector3& axis, float degrees) { node_->rotate(axis, Ogre::Radian(Ogre::Degree(degrees))); }
 
 	void attachEntity(Ogre::MovableObject* entity) { node_->attachObject(entity); }
 

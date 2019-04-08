@@ -1,6 +1,5 @@
 #include "FirstPersonCamera.h"
 
-#include "InputManager.h"
 #include "Transform.h"
 #include "EntityComponentManager.h"
 
@@ -72,9 +71,11 @@ void FirstPersonCamera::init(const std::map<std::string, ValueType>& params)
 	viewport_->setBackgroundColour(Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f));
 	viewport_->setAutoUpdated(true);
 
-	float ratio = float(viewport_->getActualWidth()) / float(viewport_->getActualHeight());
-	camera_->setFarClipDistance(params.at("far_clip").f);
+	bool infiniteClip = RenderManager::Instance()->getRoot()->getRenderSystem()->getCapabilities()->hasCapability(Ogre::RSC_INFINITE_FAR_PLANE);
+	if (infiniteClip) camera_->setFarClipDistance(0);
+	else camera_->setFarClipDistance(params.at("far_clip").f);
 	camera_->setNearClipDistance(params.at("near_clip").f);
+	float ratio = float(viewport_->getActualWidth()) / float(viewport_->getActualHeight());
 	camera_->setAspectRatio(ratio);
 
 	InputManager::Instance()->addKeyListener(this, "FirstPersonCamera");
