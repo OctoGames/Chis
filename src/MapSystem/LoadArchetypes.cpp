@@ -25,6 +25,7 @@ std::list<std::string> LoadArchetypes::loadArchetype(const std::string& gameObje
 	if (file.is_open()) {
 		getline(file, component);
 		while (!file.eof()) {
+			Ogre::StringUtil::toLowerCase(component);
 			componentList.push_back(component);
 			getline(file, component);
 		}

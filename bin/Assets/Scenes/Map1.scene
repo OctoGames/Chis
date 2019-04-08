@@ -1,142 +1,172 @@
-<scene formatVersion="1.0.1" export_time="1554659057.4843152" previous_export_time="1554658985.7826338" exported_by="Celia" >
+<scene export_time="1554687632.1278691" previous_export_time="1554687575.916793" formatVersion="1.0.1" exported_by="gonza" >
   <nodes >
     <node name="Lata" >
-      <position z="55.337051" x="-91.429909" y="15.607440" />
-      <rotation qw="0.241048" qx="-0.612347" qz="0.325938" qy="-0.678743" />
-      <scale z="5.486937" x="5.486938" y="5.486938" />
-      <user_data name="tag" value="Scene" type="str" />
+      <position z="-66.891739" x="-546.202515" y="23.068649" />
+      <rotation qx="-0.612347" qw="0.241048" qz="0.172952" qy="-0.732813" />
+      <scale z="27.781250" x="27.781254" y="27.781250" />
+      <user_data type="str" value="Scene" name="tag" />
+      <user_data type="str" value="lata" name="material" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cylinder.006" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cylinder.006.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Lata" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Lata.mesh" damping_rot="0.10000000149011612" />
     </node>
     <node name="Sarten" >
-      <position z="144.246582" x="-98.799309" y="13.034921" />
-      <rotation qw="1.000000" qx="0.000000" qz="-0.000000" qy="0.000000" />
-      <scale z="20.888266" x="20.888266" y="20.888266" />
-      <user_data name="tag" value="Scene" type="str" />
+      <position z="383.271271" x="-583.514954" y="10.043575" />
+      <rotation qx="0.000000" qw="1.000000" qz="-0.000000" qy="0.000000" />
+      <scale z="105.760612" x="105.760612" y="105.760612" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cylinder.005" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cylinder.005.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Sarten" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Sarten.mesh" damping_rot="0.10000000149011612" />
     </node>
     <node name="Mando" >
-      <position z="97.663055" x="-6.805752" y="13.537773" />
-      <rotation qw="0.999168" qx="0.000000" qz="-0.000000" qy="0.040790" />
-      <scale z="8.143502" x="8.143502" y="8.143502" />
-      <user_data name="tag" value="Scene" type="str" />
+      <position z="147.411514" x="-117.737015" y="12.589594" />
+      <rotation qx="0.000000" qw="0.999168" qz="-0.000000" qy="0.040790" />
+      <scale z="41.231846" x="41.231846" y="41.231846" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cube.004" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cube.004.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Mando" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Mando.mesh" damping_rot="0.10000000149011612" />
     </node>
     <node name="Donut" >
-      <position z="105.791420" x="72.029457" y="13.287933" />
-      <rotation qw="0.969802" qx="0.000000" qz="-0.000000" qy="-0.243893" />
-      <scale z="0.668948" x="0.668948" y="0.668948" />
-      <user_data name="tag" value="Scene" type="str" />
+      <position z="677.150635" x="281.418152" y="11.324617" />
+      <rotation qx="0.000000" qw="0.969802" qz="-0.000000" qy="-0.243893" />
+      <scale z="3.386992" x="3.386992" y="3.386992" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Torus.001" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Torus.001.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Donut" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Donut.mesh" damping_rot="0.10000000149011612" />
     </node>
-    <node name="Donut Box" >
-      <position z="125.108177" x="88.524590" y="12.744385" />
-      <rotation qw="0.864470" qx="0.000000" qz="-0.000000" qy="0.502684" />
-      <scale z="20.749422" x="20.749422" y="20.749424" />
-      <user_data name="tag" value="Scene" type="str" />
+    <node name="DonutBox" >
+      <position z="286.370544" x="364.935791" y="8.572544" />
+      <rotation qx="0.000000" qw="0.864470" qz="-0.000000" qy="0.502684" />
+      <scale z="105.057648" x="105.057648" y="105.057625" />
+      <user_data type="str" value="Scene" name="tag" />
+      <user_data type="str" value="donut_box" name="material" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cube.003" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cube.003.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="DonutBox" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="DonutBox.mesh" damping_rot="0.10000000149011612" />
     </node>
     <node name="Cuchillo" >
-      <position z="41.704369" x="-11.159601" y="14.443064" />
-      <rotation qw="0.414903" qx="-0.592660" qz="0.203090" qy="-0.659822" />
-      <scale z="1.981377" x="1.981377" y="1.981377" />
-      <user_data name="tag" value="Scene" type="str" />
+      <position z="-248.366974" x="43.214592" y="78.489677" />
+      <rotation qx="-0.642164" qw="0.766567" qz="-0.000000" qy="0.000000" />
+      <scale z="10.032029" x="10.032029" y="10.032028" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cylinder.003" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cylinder.003.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Cuchillo" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Cuchillo.mesh" damping_rot="0.10000000149011612" />
     </node>
-    <node name="MEsa" >
-      <position z="8.487412" x="5.455677" y="-4.128828" />
-      <rotation qw="1.000000" qx="0.000000" qz="-0.000000" qy="0.000000" />
-      <scale z="302.378876" x="302.378876" y="302.378876" />
-      <user_data name="tag" value="Scene" type="str" />
+    <node name="Mesa" >
+      <position z="-304.099030" x="-55.655441" y="-76.859222" />
+      <rotation qx="0.000000" qw="1.000000" qz="-0.000000" qy="0.000000" />
+      <scale z="1530.992310" x="1530.992310" y="1530.992310" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cylinder.001" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cylinder.001.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Mesa" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Mesa.mesh" damping_rot="0.10000000149011612" />
     </node>
     <node name="Queso" >
-      <position z="8.504831" x="22.963261" y="21.009922" />
-      <rotation qw="1.000000" qx="0.000000" qz="-0.000000" qy="0.000000" />
-      <scale z="12.741194" x="12.741194" y="12.741194" />
-      <user_data name="tag" value="Scene" type="str" />
+      <position z="-304.010773" x="32.988247" y="50.422264" />
+      <rotation qx="0.000000" qw="1.000000" qz="-0.000000" qy="0.000000" />
+      <scale z="64.510681" x="64.510681" y="64.510681" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cylinder" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cylinder.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Queso" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Queso.mesh" damping_rot="0.10000000149011612" />
     </node>
-    <node name="Tabla de quesos" >
-      <position z="8.356091" x="22.846697" y="12.620402" />
-      <rotation qw="1.000000" qx="0.000000" qz="-0.000000" qy="0.000000" />
-      <scale z="6.832731" x="4.062702" y="6.832731" />
-      <user_data name="tag" value="Scene" type="str" />
+    <node name="Tabladequesos" >
+      <position z="-304.763916" x="32.398067" y="7.944803" />
+      <rotation qx="0.000000" qw="1.000000" qz="-0.000000" qy="0.000000" />
+      <scale z="34.595203" x="20.570105" y="34.595203" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Cube.001" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Cube.001.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Tabladequesos" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Tabladequesos.mesh" damping_rot="0.10000000149011612" />
     </node>
-    <node name="Donut2" >
-      <position z="120.640648" x="63.766773" y="13.287933" />
-      <rotation qw="0.957736" qx="0.000000" qz="-0.000000" qy="-0.287650" />
-      <scale z="0.668948" x="0.668948" y="0.668948" />
-      <user_data name="tag" value="Scene" type="str" />
+    <node name="Donut4" >
+      <position z="-42.495636" x="496.385071" y="11.324617" />
+      <rotation qx="0.000000" qw="0.957736" qz="-0.000000" qy="-0.287650" />
+      <scale z="3.386992" x="3.386992" y="3.386992" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Torus.002" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Torus.002.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Donut4" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Donut4.mesh" damping_rot="0.10000000149011612" />
     </node>
     <node name="Donut3" >
-      <position z="115.357368" x="87.170799" y="13.287933" />
-      <rotation qw="0.969802" qx="0.000000" qz="-0.000000" qy="-0.243893" />
-      <scale z="0.668948" x="0.668948" y="0.668948" />
-      <user_data name="tag" value="Scene" type="str" />
+      <position z="237.000656" x="358.081299" y="11.324617" />
+      <rotation qx="0.000000" qw="0.969802" qz="-0.000000" qy="-0.243893" />
+      <scale z="3.386992" x="3.386992" y="3.386992" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Torus.003" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Torus.003.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Donut3" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Donut3.mesh" damping_rot="0.10000000149011612" />
     </node>
-    <node name="Donut2.001" >
-      <position z="170.052902" x="31.142769" y="13.287933" />
-      <rotation qw="0.957736" qx="0.000000" qz="-0.000000" qy="-0.287650" />
-      <scale z="0.668948" x="0.668948" y="0.668948" />
-      <user_data name="tag" value="Scene" type="str" />
+    <node name="Donut2" >
+      <position z="513.932739" x="74.402390" y="11.324617" />
+      <rotation qx="0.000000" qw="0.957736" qz="-0.000000" qy="-0.287650" />
+      <scale z="3.386992" x="3.386992" y="3.386992" />
+      <user_data type="str" value="Scene" name="tag" />
       <game >
         <sensors />
         <actuators />
       </game>
-      <entity lock_trans_y="False" mass="1.0" actor="False" friction_x="1.0" lock_trans_z="False" lock_rot_x="False" lock_trans_x="False" name="Torus.004" anisotropic_friction="False" velocity_max="0.0" friction_y="1.0" lock_rot_z="False" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" meshFile="Torus.004.mesh" friction_z="1.0" mass_radius="1.0" velocity_min="0.0" damping_rot="0.10000000149011612" lock_rot_y="False" ghost="False" physics_type="STATIC" />
+      <entity velocity_min="0.0" anisotropic_friction="False" lock_rot_y="False" lock_trans_y="False" lock_rot_z="False" lock_trans_z="False" mass="1.0" friction_z="1.0" damping_trans="0.03999999910593033" ghost="False" inertia_tensor="0.4000000059604645" name="Donut2" friction_y="1.0" physics_type="STATIC" mass_radius="1.0" friction_x="1.0" actor="False" lock_rot_x="False" lock_trans_x="False" velocity_max="0.0" meshFile="Donut2.mesh" damping_rot="0.10000000149011612" />
     </node>
   </nodes>
-  <externals />
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\lata.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\sarten.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\mando.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\donut.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\donut_box.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\cuchillo.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\mesa.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\queso.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\tabla_de_quesos.material" />
+    </item>
+  </externals>
   <environment >
-    <colourDiffuse b="0.05087608844041824" r="0.05087608844041824" g="0.05087608844041824" />
-    <colourBackground b="0.05087608844041824" r="0.05087608844041824" g="0.05087608844041824" />
-    <colourAmbient b="0.0" r="0.0" g="0.0" />
+    <colourDiffuse g="0.05087608844041824" r="0.05087608844041824" b="0.05087608844041824" />
+    <colourBackground g="0.05087608844041824" r="0.05087608844041824" b="0.05087608844041824" />
+    <colourAmbient g="0.0" r="0.0" b="0.0" />
   </environment>
 </scene>

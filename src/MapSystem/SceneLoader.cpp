@@ -162,7 +162,6 @@ void SceneLoader::loadComponent(const std::string& c, rapidxml::xml_node<>* XMLN
 	}
 
 	else if (componentString == "rigidbody") {
-
 		loadRigidBody(XMLNode, gameObject);
 	}
 
@@ -191,9 +190,6 @@ void SceneLoader::loadMeshRenderer(rapidxml::xml_node<>* XMLNode, GameObject* ga
 	MeshRenderer* renderer = new MeshRenderer(gameObject, meshFile);
 
 	//no hace falta hacer el set material, lo coge automáticamente(ni idea de como pero lo coge y es genial)
-	//renderer->setMaterialName(gameObject->getName());
-
-	Ogre::LogManager::getSingleton().logMessage("++++++++++++++++ Material:" + gameObject->getName() + "++++++++++++++++ Name Mesh:" + meshFile);
 }
 
 void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
@@ -204,7 +200,7 @@ void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameO
 	// Find mass and rigid body type attributes
 	pElement = XMLNode->first_node("user_data");
 	Ogre::String radioSphereRB, massValue;
-	double mass = 1.0;
+	double mass = 0.0;
 	bool findRigidBodySphere = false, findMass = false;
 
 	while (pElement && (!findRigidBodySphere || !findMass))
@@ -234,6 +230,7 @@ void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameO
 		pElement = XMLNode->first_node("scale");
 
 		Ogre::Vector3 v3 = parseVector3(pElement);
+		v3.y = v3.y*0.05;
 
 		rigidBody->createBoxRB(mass, v3, gameObject->getName() + "RB");
 	}

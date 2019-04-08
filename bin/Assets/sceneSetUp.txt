@@ -1,2 +1,4 @@
 del Scenes\*.xml
+del Scenes\*.txt
 move Scenes\*.mesh C:\Users\Celia\Desktop\Chis\bin\Assets\Meshes
+move Scenes\*.material C:\Users\Celia\Desktop\Chis\bin\Assets\Materials

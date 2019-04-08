@@ -66,7 +66,7 @@ void Application::createScene()
 
 	GameObject* mouse = new GameObject("mouse", "enemy");
 	Transform* mouseTransform_ = new Transform(mouse);
-	mouseTransform_->setPosition(0.0, 100.0, 0.0);
+	mouseTransform_->setPosition(50.0, 50.0, 0.0);
 	mouseTransform_->setScale(30.0, 30.0, 30.0);
 
 	RigidBody* mouseRigidBody = new RigidBody(mouse);
