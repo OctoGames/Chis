@@ -2,8 +2,6 @@
 
 #include "Transform.h"
 #include "EntityComponentManager.h"
-#include "UIManager.h"
-#include "Physics.h"
 
 std::string FirstPersonCamera::name_ = "FirstPersonCamera";
 
@@ -128,31 +126,6 @@ bool FirstPersonCamera::keyPressed(const OIS::KeyEvent & e)
 
 	case OIS::KC_LSHIFT:
 		fastMove_ = !fastMove_;
-		break;
-
-	case OIS::KC_SPACE:
-	{
-		Ogre::Vector3 from = cameraNode_->getPosition();
-		Ogre::Vector3 to = camera_->getDirection() * 100.0f;
-		Physics::Instance()->createRaycast(btVector3(from.x, from.y, from.z), btVector3(to.x, to.y, to.z), "test");
-	}
-		break;
-
-	case OIS::KC_O:
-		Physics::Instance()->toggleDebugMode();
-		break;
-
-	case OIS::KC_P:
-		Physics::Instance()->toggleDebug();
-		break;
-
-	case OIS::KC_F:
-		RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
-		break;
-
-	case OIS::KC_ESCAPE:
-		if (UIManager::Instance()->isMenuClosed()) UIManager::Instance()->openMenu();
-		else RenderManager::Instance()->setRunning(false);
 		break;
 	}
 

@@ -42,8 +42,9 @@ void Application::run()
 		AudioSystem::Instance()->update();
 		InputManager::Instance()->update(dt);
 
-		if (sceneCreated_ && UIManager::Instance()->isMenuClosed())
+		if (sceneCreated_)
 		{
+			updateScene();
 			Physics::Instance()->update();
 			EntityComponentManager::Instance()->update();
 		}
@@ -160,5 +161,26 @@ void Application::createScene()
 	c2->init(params);
 
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane", 5, 8, 500);
-	Physics::Instance()->setDebugMode(true);
+	//Physics::Instance()->setDebugMode(true);
+}
+
+void Application::updateScene()
+{
+	if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_ESCAPE))
+	{
+		if (UIManager::Instance()->isMenuClosed()) UIManager::Instance()->openMenu();
+		else RenderManager::Instance()->setRunning(false);
+	}
+	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_P))
+	{
+		Physics::Instance()->toggleDebug();
+	}
+	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_O))
+	{
+		Physics::Instance()->toggleDebugMode();
+	}
+	else if (InputManager::Instance()->getKeyboard()->isKeyDown(OIS::KC_F))
+	{
+		RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
+	}
 }
