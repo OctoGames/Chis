@@ -3,17 +3,9 @@
 
 Component::Component() :
 	first_enabled_(true),
+	enabled_(true),
 	container_(nullptr)
 {
-	//EntityComponentManager::Instance()->addComponent(this);
-}
-
-Component::Component(GameObject* container, bool enabled) :
-	first_enabled_(true),
-	container_(container)
-{
-	setEnabled(enabled);
-	EntityComponentManager::Instance()->addComponent(this);
 }
 
 Component::~Component()

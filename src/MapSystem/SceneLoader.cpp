@@ -180,78 +180,78 @@ void SceneLoader::loadLight(rapidxml::xml_node<>* XMLNode, GameObject* gameObjec
 
 void SceneLoader::loadMeshRenderer(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
 {
-	rapidxml::xml_node<>* pElement;
-	//Read the entity node and find meshFile attribute
-	Ogre::String meshFile = "";
-	pElement = XMLNode->first_node("entity");
-	if (pElement) meshFile = getAttrib(pElement, "meshFile");
-	if (meshFile == "")
-		Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Error al leer el meshFile +++++++++++++++++++++++++++");
-	MeshRenderer* renderer = new MeshRenderer(gameObject, meshFile);
+	//rapidxml::xml_node<>* pElement;
+	////Read the entity node and find meshFile attribute
+	//Ogre::String meshFile = "";
+	//pElement = XMLNode->first_node("entity");
+	//if (pElement) meshFile = getAttrib(pElement, "meshFile");
+	//if (meshFile == "")
+	//	Ogre::LogManager::getSingleton().logMessage("++++++++++++++++++++++ Error al leer el meshFile +++++++++++++++++++++++++++");
+	//MeshRenderer* renderer = new MeshRenderer(gameObject, meshFile);
 
-	//no hace falta hacer el set material, lo coge automáticamente(ni idea de como pero lo coge y es genial)
+	////no hace falta hacer el set material, lo coge automáticamente(ni idea de como pero lo coge y es genial)
 }
 
 void SceneLoader::loadRigidBody(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
 {
-	rapidxml::xml_node<>* pElement;
-	RigidBody* rigidBody = new RigidBody(gameObject);
+	//rapidxml::xml_node<>* pElement;
+	//RigidBody* rigidBody = new RigidBody(gameObject);
 
-	// Find mass and rigid body type attributes
-	pElement = XMLNode->first_node("user_data");
-	Ogre::String radioSphereRB, massValue;
-	double mass = 0.0;
-	bool findRigidBodySphere = false, findMass = false;
+	//// Find mass and rigid body type attributes
+	//pElement = XMLNode->first_node("user_data");
+	//Ogre::String radioSphereRB, massValue;
+	//double mass = 0.0;
+	//bool findRigidBodySphere = false, findMass = false;
 
-	while (pElement && (!findRigidBodySphere || !findMass))
-	{
-		Ogre::String nameProp = getAttrib(pElement, "name");
-		Ogre::String typeProp = getAttrib(pElement, "type");
-		Ogre::StringUtil::toLowerCase(nameProp);
-		Ogre::StringUtil::toLowerCase(typeProp);
+	//while (pElement && (!findRigidBodySphere || !findMass))
+	//{
+	//	Ogre::String nameProp = getAttrib(pElement, "name");
+	//	Ogre::String typeProp = getAttrib(pElement, "type");
+	//	Ogre::StringUtil::toLowerCase(nameProp);
+	//	Ogre::StringUtil::toLowerCase(typeProp);
 
-		if (!findRigidBodySphere && nameProp == "sphererb" && typeProp == "float") {
-			radioSphereRB = getAttrib(pElement, "value");
-			findRigidBodySphere = true;
-		}
+	//	if (!findRigidBodySphere && nameProp == "sphererb" && typeProp == "float") {
+	//		radioSphereRB = getAttrib(pElement, "value");
+	//		findRigidBodySphere = true;
+	//	}
 
-		else if (!findMass && nameProp == "mass" && typeProp == "float") {
-			massValue = getAttrib(pElement, "value");
-			mass = (double)Ogre::StringConverter::parseReal(massValue);
-			findMass = true;
-		}
-		pElement = pElement->next_sibling("user_data");
-	}
+	//	else if (!findMass && nameProp == "mass" && typeProp == "float") {
+	//		massValue = getAttrib(pElement, "value");
+	//		mass = (double)Ogre::StringConverter::parseReal(massValue);
+	//		findMass = true;
+	//	}
+	//	pElement = pElement->next_sibling("user_data");
+	//}
 
-	if (findRigidBodySphere) {
-		rigidBody->createSphereRB(mass, (double)Ogre::StringConverter::parseReal(radioSphereRB), gameObject->getName() + "RB");
-	}
-	else {
-		pElement = XMLNode->first_node("scale");
+	//if (findRigidBodySphere) {
+	//	rigidBody->createSphereRB(mass, (double)Ogre::StringConverter::parseReal(radioSphereRB), gameObject->getName() + "RB");
+	//}
+	//else {
+	//	pElement = XMLNode->first_node("scale");
 
-		Ogre::Vector3 v3 = parseVector3(pElement);
-		v3.y = v3.y*0.05;
+	//	Ogre::Vector3 v3 = parseVector3(pElement);
+	//	v3.y = v3.y*0.05;
 
-		rigidBody->createBoxRB(mass, v3, gameObject->getName() + "RB");
-	}
+	//	rigidBody->createBoxRB(mass, v3, gameObject->getName() + "RB");
+	//}
 }
 
 void SceneLoader::loadTransform(rapidxml::xml_node<>* XMLNode, GameObject* gameObject)
 {
-	rapidxml::xml_node<>* pElement;
-	Transform* transform = new Transform(gameObject);
+	//rapidxml::xml_node<>* pElement;
+	//Transform* transform = new Transform(gameObject);
 
-	// Process position (?)
-	pElement = XMLNode->first_node("position");
-	if (pElement) transform->setPosition(parseVector3(pElement));
+	//// Process position (?)
+	//pElement = XMLNode->first_node("position");
+	//if (pElement) transform->setPosition(parseVector3(pElement));
 
-	// Process rotation (?)
-	pElement = XMLNode->first_node("rotation");
-	if (pElement) transform->setOrientation(parseQuaternion(pElement));
+	//// Process rotation (?)
+	//pElement = XMLNode->first_node("rotation");
+	//if (pElement) transform->setOrientation(parseQuaternion(pElement));
 
-	// Process scale (?)
-	pElement = XMLNode->first_node("scale");
-	if (pElement) transform->setScale(parseVector3(pElement));
+	//// Process scale (?)
+	//pElement = XMLNode->first_node("scale");
+	//if (pElement) transform->setScale(parseVector3(pElement));
 }
 
 void SceneLoader::loadVertexTransform(rapidxml::xml_node<>* XMLNode, int vertexID) {

@@ -3,7 +3,6 @@
 
 #include "LoadArchetypes.h"
 #include "gameobject.h"
-#include "Transform.h"
 #include "MeshRenderer.h"
 #include "RigidBody.h"
 #include "rapidxml.hpp"

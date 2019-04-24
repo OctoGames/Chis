@@ -95,13 +95,6 @@ void Physics::detectCollision()
 	btDispatcher* dispatcher = dynamicsWorld->getCollisionWorld()->getDispatcher();
 	int numManifolds = dispatcher->getNumManifolds();
 
-	std::list<Component*> components = EntityComponentManager::Instance()->getAllComponents();
-
-	for(Component* c : components)
-	{
-		c->clearCollidedGameObjects();
-	}
-
 	for (int i = 0; i < numManifolds; i++)
 	{
 		btPersistentManifold * contactManifold = dispatcher->getManifoldByIndexInternal(i);
@@ -190,7 +183,7 @@ void Physics::createBoxRigidBody(Ogre::SceneNode * node, double mass, Ogre::Vect
 
 }
 
-void Physics::createSphereRididBody(Ogre::SceneNode * node, double mass, double radious, std::string name)
+void Physics::createSphereRigidBody(Ogre::SceneNode * node, double mass, double radious, std::string name)
 {
 	
 	btTransform transform = setTransform(node);

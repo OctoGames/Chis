@@ -1,24 +1,30 @@
 #ifndef _GAME_OBJECT_H_
 #define _GAME_OBJECT_H_
 
-#include <string>
+#include "RenderManager.h"
 
 class GameObject
 {
 public:
-	GameObject(const std::string& name, const std::string& tag = "", bool active = true);
+	GameObject(const std::string& name, const std::string& parent = "", const std::string& tag = "", bool active = true);
 	~GameObject();
 
+	inline Ogre::SceneNode* transform() { return node_; }
+	inline std::string getParent() const { return parent_; }
 	inline std::string getName() const { return name_; }
 	inline std::string getTag() const { return tag_; }
-	inline int getGameObjectID() const { return unique_id_; }
+	inline std::string getGameObjectID() const { return unique_id_; }
 	inline bool isActive() const { return active_; }
 	inline void setActive(bool active) { active_ = active; }
 
+	GameObject* clone();
+
 private:
+	Ogre::SceneNode* node_;
+	std::string parent_;
 	std::string name_;
 	std::string tag_;
-	int unique_id_;
+	std::string unique_id_;
 	bool active_;
 
 	static int game_object_count_;

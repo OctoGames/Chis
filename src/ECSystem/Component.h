@@ -19,19 +19,20 @@ class Component
 {
 public:
 	Component();
-	Component(GameObject* container, bool enabled = true);
 	virtual ~Component();
 
-	virtual void init(const std::map<std::string, ValueType>& params) = 0;
+	virtual void load(const std::map<std::string, ValueType>& params) = 0;
 	virtual std::string getName() const = 0;
+	virtual Component* clone() = 0;
+	virtual void init() = 0;
 
 	inline GameObject* gameObject() { return container_; }
 	inline void setContainer(GameObject* o) { container_ = o; }
 	inline bool isEnabled() const { return enabled_; }
-	inline void setEnabled(bool enabled);
+	virtual void setEnabled(bool enabled);
 
-	virtual inline void addCollidedGameObject(GameObject* go) {}
-	virtual inline void clearCollidedGameObjects() {}
+	virtual void addCollidedGameObject(GameObject* go) {}
+	virtual void clearCollidedGameObjects() {}
 
 	virtual void start() {}
 	virtual void fixedUpdate() {}
