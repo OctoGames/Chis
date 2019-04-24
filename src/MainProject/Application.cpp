@@ -1,6 +1,5 @@
 #include "Application.h"
 
-#include "Transform.h"
 #include "MeshRenderer.h"
 #include "FirstPersonCamera.h"
 #include "DirectionalLight.h"
@@ -15,8 +14,6 @@ Application::Application() :
 	InputManager::Instance()->init();
 	UIManager::Instance()->init();
 
-	// Register the Component Factories before the Application starts
-	EntityComponentManager::Instance()->addFactory("Transform", new TransformFactory());
 	EntityComponentManager::Instance()->addFactory("MeshRenderer", new MeshRendererFactory());
 	EntityComponentManager::Instance()->addFactory("FirstPersonCamera", new FirstPersonCameraFactory());
 	EntityComponentManager::Instance()->addFactory("DirectionalLight", new DirectionalLightFactory());
@@ -59,106 +56,155 @@ void Application::run()
 
 void Application::createScene()
 {
-	//-----------------READ SCENE-------------------//
-	SceneLoader::Instance()->loadScene("Map1.scene");
-
-
-	//----------------MOUSE OBJECT------------------//
-	GameObject* mouse = new GameObject("mouse", "enemy");
-	Transform* mouseTransform_ = new Transform(mouse);
-	mouseTransform_->setPosition(50.0, 50.0, 0.0);
-	mouseTransform_->setScale(30.0, 30.0, 30.0);
-
-	RigidBody* mouseRigidBody = new RigidBody(mouse);
-	mouseRigidBody->createBoxRB(1, Ogre::Vector3(50,30,30), "mouseRB");
-
-	MeshRenderer* mouseRenderer_ = new MeshRenderer(mouse, "mouse.mesh");
-	mouseRenderer_->setMaterialName("mouseMaterial");
-
-	//------------------MAIN CAMERA------------------//
-	GameObject* cam = new GameObject("camera", "cam");
-	Transform* cameraTransform = new Transform(cam);
-	FirstPersonCamera* mainCamera = new FirstPersonCamera(cam, true);
-	cameraTransform->setPosition(200, 100, 400);
-	cameraTransform->getNode()->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
-	AudioSource* bgMusic = new AudioSource(cam, "MouseMusic", "22-The Mouse's House.mp3");
-	bgMusic->play();
-
-	GameObject* gun = new GameObject("gun", "gun");
-	Transform* gunTranform = new Transform(gun, "camera");
-	gunTranform->setPosition(Ogre::Vector3(30, -50, -90));
-	gunTranform->rotate(Ogre::Vector3(0, 1, 0), 180.0f);
-	MeshRenderer* gunRenderer = new MeshRenderer(gun, "gun.mesh");
-	gunRenderer->setMaterialName("gun_mat");
-	AudioSource* shootSFX = new AudioSource(gun, "ShootSFX", "shoot.wav");
-
+	GameObject* object = nullptr;
+	Component* component = nullptr;
+	std::list<Component*> components;
 	std::map<std::string, ValueType> params;
-	params["enabled"].b = true;
-	Component* c = EntityComponentManager::Instance()->getFactory("GunController")->create();
-	c->setContainer(gun);
-	c->init(params);
-	EntityComponentManager::Instance()->addComponent(c);
 
-	//------------------LIGHTS-----------------------//
-	// We can create GameObjects and Components on the go,
-	// but we can also use the registered factories to do so.
-	// First, we create the GameObject as in previous entities:
 
-	GameObject* mainLight = new GameObject("light", "mainLight");
-
-	// Then, we create the data structure that maps the init params.
-	// We can reuse this param list for future components, 
-	// just make sure you clear it before reusing!
-
-	params.clear();
-	params["parent"].s = "";
-	params["position_x"].f = 0.0f;
-	params["position_y"].f = 20.0f;
-	params["position_z"].f = 0.0f;
-	params["direction_x"].f = 0.0f;
-	params["direction_y"].f = -1.0f;
-	params["direction_z"].f = -1.0f;
-	params["scale_x"].f = 1.0f;
-	params["scale_y"].f = 1.0f;
-	params["scale_z"].f = 1.0f;
-	params["enabled"].b = true;
-
-	// Now we call the appropriate Factory to create the desired Component:
-
-	Component* c1 = EntityComponentManager::Instance()->getFactory("Transform")->create();
-
-	// We need to attach the component to its container manually.
-	// Perhaps we should change the default constructor in Components 
-	// to receive a pointer to a GameObject, since all components need one.
-
-	c1->setContainer(mainLight);
-
-	// We init the Component with the data loaded in the params list:
-
+	//-------------------MOUSE---------------------//
 	
-	c1->init(params);
-
-	// Same proccess with the next component:
-
+	object = new GameObject("Mouse", "", "Enemy", true);
+	
+	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
+	params["enabled"].b = true;
+	params["mesh_name"].s = "mouse.mesh";
+	params["material_name"].s = "mouseMaterial";
+	component->load(params);
+	components.push_back(component);
 	params.clear();
+
+	component = EntityComponentManager::Instance()->getFactory("Rigidbody")->create();
+	params["enabled"].b = true;
+	params["mass"].d = 1.0;
+	params["radius"].d = 0.0;
+	params["scale_x"].d = 50.0;
+	params["scale_y"].d = 30.0;
+	params["scale_z"].d = 30.0;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
+
+	EntityComponentManager::Instance()->addPrototype(new Prototype("MouseEnemy", object, components));	
+	components.clear();
+
+	GameObject* mouse = EntityComponentManager::Instance()->instantiate("MouseEnemy");
+	mouse->transform()->setPosition(50.0, 50.0, 0.0);
+	mouse->transform()->setScale(30.0, 30.0, 30.0);
+
+
+
+	//-------------------LIGHT-----------------------//
+
+	object = new GameObject("MainLight", "", "Light", true);
+
+	component = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
+	params["enabled"].b = true;
 	params["direction_x"].f = 0.55f;
 	params["direction_y"].f = -0.3f;
 	params["direction_z"].f = 0.75f;
-	params["ambient_r"].f = 0.8f;
-	params["ambient_g"].f = 0.8f;
-	params["ambient_b"].f = 0.8f;
 	params["diffuse_r"].f = 1.0f;
 	params["diffuse_g"].f = 1.0f;
 	params["diffuse_b"].f = 1.0f;
 	params["specular_r"].f = 0.4f;
 	params["specular_g"].f = 0.4f;
 	params["specular_b"].f = 0.4f;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
+
+	EntityComponentManager::Instance()->addPrototype(new Prototype("DirLight", object, components));
+	components.clear();
+
+	GameObject* light = EntityComponentManager::Instance()->instantiate("DirLight");
+	light->transform()->setPosition(0.0, 20.0, 0.0);
+
+
+
+	//--------------------PLAYER--------------------//
+
+	object = new GameObject("Player", "", "Player", true);
+
+	component = EntityComponentManager::Instance()->getFactory("FirstPersonCamera")->create();
 	params["enabled"].b = true;
+	params["far_clip"].f = 10000.0f;
+	params["near_clip"].f = 1.5f;
+	params["color_r"].f = 1.0f;
+	params["color_g"].f = 0.0f;
+	params["color_b"].f = 1.0f;
+	params["max_speed"].f = 200.0f;
+	params["pitch_limit"].f = 180.0f;
+	params["forward_key"].i = OIS::KC_W;
+	params["backward_key"].i = OIS::KC_S;
+	params["fast_key"].i = OIS::KC_LSHIFT;
+	params["left_key"].i = OIS::KC_A;
+	params["right_key"].i = OIS::KC_D;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
 
-	Component* c2 = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
-	c2->setContainer(mainLight);
-	c2->init(params);
+	component = EntityComponentManager::Instance()->getFactory("AudioSource")->create();
+	params["enabled"].b = true;
+	params["filename"].s = "22-The Mouse's House.mp3";
+	params["audio_id"].s = "MouseMusic";
+	params["volume"].f = 1.0f;
+	params["pitch"].f = 1.0f;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
 
-	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane", 5, 8, 500);
+	EntityComponentManager::Instance()->addPrototype(new Prototype("Player", object, components));
+	components.clear();
+
+	GameObject* player = EntityComponentManager::Instance()->instantiate("Player");
+	player->transform()->setPosition(200.0, 100.0, 400.0);
+	player->transform()->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+	static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(player, "AudioSource"))->play();
+
+
+
+	//----------------------GUN----------------------//
+
+	object = new GameObject("Gun", "Player", "Gun", true);
+
+	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
+	params["enabled"].b = true;
+	params["mesh_name"].s = "gun.mesh";
+	params["material_name"].s = "gunMaterial";
+	component->load(params);
+	components.push_back(component);
+	params.clear();
+
+	component = EntityComponentManager::Instance()->getFactory("AudioSource")->create();
+	params["enabled"].b = true;
+	params["filename"].s = "shoot.wav";
+	params["audio_id"].s = "ShootSFX";
+	params["volume"].f = 1.0f;
+	params["pitch"].f = 1.0f;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
+
+	component = EntityComponentManager::Instance()->getFactory("GunController")->create();
+	params["enabled"].b = true;
+	params["fire_button"].i = OIS::MouseButtonID::MB_Left;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
+
+	EntityComponentManager::Instance()->addPrototype(new Prototype("Gun", object, components));
+	components.clear();
+
+	GameObject* gun = EntityComponentManager::Instance()->instantiate("Gun");
+	gun->transform()->setPosition(Ogre::Vector3(30, -50, -90));
+	gun->transform()->rotate(Ogre::Vector3(0, 1, 0), Ogre::Radian(Ogre::Degree(180.0f)));
+
+
+
+	//--------------------SCENE--------------------//
+
+	//SceneLoader::Instance()->loadScene("Map1.scene");
+	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
+	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
 	Physics::Instance()->setDebugMode(true);
 }

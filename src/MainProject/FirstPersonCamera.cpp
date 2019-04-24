@@ -1,6 +1,5 @@
 #include "FirstPersonCamera.h"
 
-#include "Transform.h"
 #include "EntityComponentManager.h"
 #include "UIManager.h"
 #include "Physics.h"
@@ -8,82 +7,89 @@
 std::string FirstPersonCamera::name_ = "FirstPersonCamera";
 
 FirstPersonCamera::FirstPersonCamera() :
-	maxSpeed_(0),
+	camera_(nullptr),
+	viewport_(nullptr),
+	farClipDistance_(0.0f),	
+	nearClipDistance_(0.0f),	
+	backgroundColour_(Ogre::ColourValue::ZERO),	
+	maxSpeed_(0.0f),	
 	pitchLimit_(0.0f),
 	velocity_(Ogre::Vector3::ZERO),
+	moveForwardsKey_(OIS::KC_W),
+	moveBackwardsKey_(OIS::KC_S),
+	moveLeftKey_(OIS::KC_A),
+	moveRightKey_(OIS::KC_D),
+	fastMoveKey_(OIS::KC_LSHIFT),
 	goingForward_(false),
 	goingBack_(false),
 	goingLeft_(false),
 	goingRight_(false),
-	fastMove_(false),
-	changeBackground_(false),
-	camera_(nullptr),
-	viewport_(nullptr),
-	cameraNode_(nullptr)
+	fastMove_(false)
 {
-}
-
-FirstPersonCamera::FirstPersonCamera(GameObject* container, bool enabled) : 
-	Component(container, enabled),
-	maxSpeed_(200),
-	pitchLimit_(180.0f),
-	velocity_(Ogre::Vector3::ZERO), 
-	goingForward_(false), 
-	goingBack_(false), 
-	goingLeft_(false), 
-	goingRight_(false), 
-	fastMove_(false),
-	changeBackground_(false),
-	camera_(nullptr),
-	viewport_(nullptr),
-	cameraNode_(nullptr)
-{
-	camera_ = RenderManager::Instance()->getSceneManager()->createCamera("FirstPersonCamera");
-	cameraNode_ = static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->getNode();
-	static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->attachEntity(camera_);
-	cameraNode_->setPosition(0, 0, 500);
-	cameraNode_->setFixedYawAxis(true);
-
-	viewport_ = RenderManager::Instance()->getWindow()->addViewport(camera_);
-	viewport_->setBackgroundColour(Ogre::ColourValue(1, 0, 1));
-	viewport_->setAutoUpdated(true);
-
-	float ratio = float(viewport_->getActualWidth()) / float(viewport_->getActualHeight());
-	camera_->setFarClipDistance(10000.0f);
-	camera_->setNearClipDistance(1.5f);
-	camera_->setAspectRatio(ratio);
-
-	InputManager::Instance()->addKeyListener(this, "FirstPersonCamera");
-	InputManager::Instance()->addMouseListener(this, "FirstPersonCamera");
 }
 
 FirstPersonCamera::~FirstPersonCamera()
 {
 }
 
-void FirstPersonCamera::init(const std::map<std::string, ValueType>& params)
+void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
 {
-	camera_ = RenderManager::Instance()->getSceneManager()->createCamera("FirstPersonCamera");
-	cameraNode_ = static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->getNode();
-	static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->attachEntity(camera_);
-	cameraNode_->setPosition(params.at("position_x").f, params.at("position_y").f, params.at("position_z").f);
-	cameraNode_->setFixedYawAxis(params.at("yaw_fixed").b);
+	enabled_ = params.at("enabled").b;
+	farClipDistance_ = params.at("far_clip").f;
+	nearClipDistance_ = params.at("near_clip").f;
+	backgroundColour_ = Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f);
+
+	maxSpeed_ = params.at("max_speed").f;
+	pitchLimit_ = params.at("pitch_limit").f;
+
+	moveForwardsKey_ = static_cast<OIS::KeyCode>(params.at("forward_key").i);
+	moveBackwardsKey_ = static_cast<OIS::KeyCode>(params.at("backward_key").i);
+	moveLeftKey_ = static_cast<OIS::KeyCode>(params.at("left_key").i);
+	moveRightKey_ = static_cast<OIS::KeyCode>(params.at("right_key").i);
+	fastMoveKey_ = static_cast<OIS::KeyCode>(params.at("fast_key").i);
+}
+
+Component * FirstPersonCamera::clone()
+{
+	FirstPersonCamera* clonedComponent = new FirstPersonCamera();
+
+	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->farClipDistance_ = this->farClipDistance_;
+	clonedComponent->nearClipDistance_ = this->nearClipDistance_;
+	clonedComponent->backgroundColour_ = this->backgroundColour_;
+
+	clonedComponent->maxSpeed_ = this->maxSpeed_;
+	clonedComponent->pitchLimit_ = this->pitchLimit_;
+
+	clonedComponent->moveForwardsKey_ = this->moveForwardsKey_;
+	clonedComponent->moveBackwardsKey_ = this->moveBackwardsKey_;
+	clonedComponent->moveLeftKey_ = this->moveLeftKey_;
+	clonedComponent->moveRightKey_ = this->moveRightKey_;
+	clonedComponent->fastMoveKey_ = this->fastMoveKey_;
+
+	return clonedComponent;
+}
+
+void FirstPersonCamera::init()
+{
+	camera_ = RenderManager::Instance()->getSceneManager()->createCamera("FirstPersonCamera_" + gameObject()->getName());
+	gameObject()->transform()->attachObject(camera_);
+	gameObject()->transform()->setFixedYawAxis(true);
 
 	viewport_ = RenderManager::Instance()->getWindow()->addViewport(camera_);
-	viewport_->setBackgroundColour(Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f));
+	viewport_->setBackgroundColour(backgroundColour_);
 	viewport_->setAutoUpdated(true);
 
+	camera_->setAspectRatio(float(viewport_->getActualWidth()) / float(viewport_->getActualHeight()));
 	bool infiniteClip = RenderManager::Instance()->getRoot()->getRenderSystem()->getCapabilities()->hasCapability(Ogre::RSC_INFINITE_FAR_PLANE);
-	if (infiniteClip) camera_->setFarClipDistance(0);
-	else camera_->setFarClipDistance(params.at("far_clip").f);
-	camera_->setNearClipDistance(params.at("near_clip").f);
-	float ratio = float(viewport_->getActualWidth()) / float(viewport_->getActualHeight());
-	camera_->setAspectRatio(ratio);
+	if (infiniteClip) camera_->setFarClipDistance(0.0f);
+	else camera_->setFarClipDistance(farClipDistance_);
+	camera_->setNearClipDistance(nearClipDistance_);
 
 	InputManager::Instance()->addKeyListener(this, "FirstPersonCamera");
 	InputManager::Instance()->addMouseListener(this, "FirstPersonCamera");
 
-	setEnabled(params.at("enabled").b);
+	setEnabled(enabled_);
 }
 
 void FirstPersonCamera::update()
@@ -93,67 +99,26 @@ void FirstPersonCamera::update()
 
 	if (velocity_ != Ogre::Vector3::ZERO)
 	{
-		cameraNode_->translate(velocity_ * deltaTime);
-	}
-
-	if (changeBackground_)
-	{
-		float red = Ogre::Math::RangeRandom(0.1f, 0.9f);
-		float green = Ogre::Math::RangeRandom(0.1f, 0.9f);
-		float blue = Ogre::Math::RangeRandom(0.1f, 0.9f);
-		setBackgroundColour(Ogre::ColourValue(red, green, blue));
-		changeBackground_ = false;
+		gameObject()->transform()->translate(velocity_ * deltaTime);
 	}
 }
 
 bool FirstPersonCamera::keyPressed(const OIS::KeyEvent & e)
 {
-	switch (e.key)
+	if (e.key == moveForwardsKey_) goingForward_ = true;
+	else if (e.key == moveBackwardsKey_) goingBack_ = true;
+	else if (e.key == moveLeftKey_) goingLeft_ = true;
+	else if (e.key == moveRightKey_) goingRight_ = true;
+
+	// TEMPORARY STUFF ----------------------------------------------------
+	// We need a generic game controller to switch states, debug tools, etc.
+	else if (e.key == OIS::KC_O) Physics::Instance()->toggleDebugMode();
+	else if (e.key == OIS::KC_P) Physics::Instance()->toggleDebug();
+	else if (e.key == OIS::KC_F) RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
+	else if (e.key == OIS::KC_ESCAPE)
 	{
-	case OIS::KC_W:
-		goingForward_ = true;
-		break;
-
-	case OIS::KC_S:
-		goingBack_ = true;
-		break;
-
-	case OIS::KC_A:
-		goingLeft_ = true;
-		break;
-
-	case OIS::KC_D:
-		goingRight_ = true;
-		break;
-
-	case OIS::KC_LSHIFT:
-		fastMove_ = !fastMove_;
-		break;
-
-	case OIS::KC_SPACE:
-	{
-		Ogre::Vector3 from = cameraNode_->getPosition();
-		Ogre::Vector3 to = camera_->getDirection() * 100.0f;
-		Physics::Instance()->createRaycast(btVector3(from.x, from.y, from.z), btVector3(to.x, to.y, to.z), "test");
-	}
-		break;
-
-	case OIS::KC_O:
-		Physics::Instance()->toggleDebugMode();
-		break;
-
-	case OIS::KC_P:
-		Physics::Instance()->toggleDebug();
-		break;
-
-	case OIS::KC_F:
-		RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
-		break;
-
-	case OIS::KC_ESCAPE:
 		if (UIManager::Instance()->isMenuClosed()) UIManager::Instance()->openMenu();
 		else RenderManager::Instance()->setRunning(false);
-		break;
 	}
 
 	return true;
@@ -161,24 +126,10 @@ bool FirstPersonCamera::keyPressed(const OIS::KeyEvent & e)
 
 bool FirstPersonCamera::keyReleased(const OIS::KeyEvent & e)
 {
-	switch (e.key)
-	{
-	case OIS::KC_W:
-		goingForward_ = false;
-		break;
-
-	case OIS::KC_S:
-		goingBack_ = false;
-		break;
-
-	case OIS::KC_A:
-		goingLeft_ = false;
-		break;
-
-	case OIS::KC_D:
-		goingRight_ = false;
-		break;
-	}
+	if (e.key == moveForwardsKey_) goingForward_ = false;
+	else if (e.key == moveBackwardsKey_) goingBack_ = false;
+	else if (e.key == moveLeftKey_) goingLeft_ = false;
+	else if (e.key == moveRightKey_) goingRight_ = false;
 
 	return true;
 }
@@ -187,23 +138,17 @@ bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 {
 	float relY = -e.state.Y.rel;
 	float relX = -e.state.X.rel;
-	float currentCameraPitch = cameraNode_->getOrientation().getPitch().valueDegrees();
+	float currentCameraPitch = gameObject()->transform()->getOrientation().getPitch().valueDegrees();
 	float nextCameraPitch = currentCameraPitch + (relY * 0.15f);
 
-	if (nextCameraPitch < pitchLimit_ && nextCameraPitch > -pitchLimit_) cameraNode_->pitch(Ogre::Degree(relY * 0.15f));
-	cameraNode_->yaw(Ogre::Degree(relX * 0.15f), Ogre::Node::TS_PARENT);
+	if (nextCameraPitch < pitchLimit_ && nextCameraPitch > -pitchLimit_) gameObject()->transform()->pitch(Ogre::Degree(relY * 0.15f));
+	gameObject()->transform()->yaw(Ogre::Degree(relX * 0.15f), Ogre::Node::TS_PARENT);
 
 	return true;
 }
 
 bool FirstPersonCamera::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
-	switch (id)
-	{
-	case OIS::MB_Left:
-		changeBackground_ = true;
-		break;
-	}
 	return true;
 }
 
@@ -215,7 +160,7 @@ bool FirstPersonCamera::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButto
 void FirstPersonCamera::setCameraAcceleration(float deltaTime)
 {
 	Ogre::Vector3 accel = Ogre::Vector3::ZERO;
-	Ogre::Matrix3 axes = cameraNode_->getLocalAxes();
+	Ogre::Matrix3 axes = gameObject()->transform()->getLocalAxes();
 	if (goingForward_) accel -= axes.GetColumn(2);
 	if (goingBack_) accel += axes.GetColumn(2);
 	if (goingRight_) accel += axes.GetColumn(0);

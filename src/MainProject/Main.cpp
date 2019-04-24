@@ -1,5 +1,4 @@
 #include "Application.h"
-#include "RenderManager.h"
 
 int main(int argc, char* argv[])
 {

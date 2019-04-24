@@ -1,13 +1,13 @@
 #include "GunController.h"
 
-#include "Transform.h"
 #include "AudioSource.h"
 #include "EntityComponentManager.h"
 
 std::string GunController::name_ = "GunController";
 
 GunController::GunController() :
-	isFiring_(false)
+	isFiring_(false),
+	fireButton_(OIS::MouseButtonID::MB_Left)
 {
 }
 
@@ -19,28 +19,31 @@ void GunController::update()
 {
 	if (isFiring_)
 	{
-		AudioSource* a = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
-		a->play();
+		static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"))->play();
 		isFiring_ = false;
 	}
 }
 
-void GunController::init(const std::map<std::string, ValueType>& params)
+void GunController::load(const std::map<std::string, ValueType>& params)
 {
-	InputManager::Instance()->addKeyListener(this, "GunController");
+	enabled_ = params.at("enabled").b;
+	fireButton_ = static_cast<OIS::MouseButtonID>(params.at("fire_button").i);
+}
+
+Component * GunController::clone()
+{
+	GunController* clonedComponent = new GunController();
+
+	clonedComponent->enabled_ = this->enabled_;
+	fireButton_ = this->fireButton_;
+
+	return clonedComponent;
+}
+
+void GunController::init()
+{
 	InputManager::Instance()->addMouseListener(this, "GunController");
-
-	setEnabled(params.at("enabled").b);
-}
-
-bool GunController::keyPressed(const OIS::KeyEvent & e)
-{
-	return true;
-}
-
-bool GunController::keyReleased(const OIS::KeyEvent & e)
-{
-	return true;
+	setEnabled(enabled_);
 }
 
 bool GunController::mouseMoved(const OIS::MouseEvent & e)

@@ -8,11 +8,12 @@ class AudioSource : public Component
 {
 public:
 	AudioSource();
-	AudioSource(GameObject* container, const std::string& audioId, const std::string& filename, bool enabled = true);
 	virtual ~AudioSource();
 
-	virtual void init(const std::map<std::string, ValueType>& params);
+	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
+	virtual Component* clone();
+	virtual void init();
 
 	void play();
 	void pause();

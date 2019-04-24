@@ -4,7 +4,7 @@
 #include "InputManager.h"
 #include "Component.h"
 
-class GunController : public Component, public OIS::KeyListener, public OIS::MouseListener
+class GunController : public Component, public OIS::MouseListener
 {
 public:
 	GunController();
@@ -12,11 +12,11 @@ public:
 
 	virtual void update();
 
-	virtual void init(const std::map<std::string, ValueType>& params);
+	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
+	virtual Component* clone();
+	virtual void init();
 
-	virtual bool keyPressed(const OIS::KeyEvent &e);
-	virtual bool keyReleased(const OIS::KeyEvent &e);
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
@@ -25,6 +25,7 @@ private:
 	static std::string name_;
 
 	bool isFiring_;
+	OIS::MouseButtonID fireButton_;
 };
 
 class GunControllerFactory : public BaseFactory

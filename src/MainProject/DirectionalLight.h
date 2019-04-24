@@ -8,17 +8,20 @@ class DirectionalLight : public Component
 {
 public:
 	DirectionalLight();
-	DirectionalLight(GameObject* container, bool enabled);
 	virtual ~DirectionalLight();
 
-	virtual void init(const std::map<std::string, ValueType>& params);
+	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
+	virtual Component* clone();
+	virtual void init();
 
 private:
-	void initLight();
 	static std::string name_;
 
 	Ogre::Light* light_;
+	Ogre::Vector3 lightDirection_;
+	Ogre::ColourValue diffuseColour_;
+	Ogre::ColourValue specularColour_;
 };
 
 class DirectionalLightFactory : public BaseFactory

@@ -11,28 +11,37 @@ AudioSource::AudioSource() :
 {
 }
 
-AudioSource::AudioSource(GameObject* container, const std::string& audioId, const std::string& filename, bool enabled) :
-	Component(container, enabled),
-	channel_(nullptr),
-	filename_(filename),
-	audioId_(audioId),
-	volume_(1.0f),
-	pitch_(1.0f)
-{
-	AudioSystem::Instance()->addSound(audioId_, filename_);
-}
-
 AudioSource::~AudioSource()
 {
 
 }
 
-void AudioSource::init(const std::map<std::string, ValueType>& params)
+void AudioSource::load(const std::map<std::string, ValueType>& params)
 {
+	enabled_ = params.at("enabled").b;
+	filename_ = params.at("filename").s;
+	audioId_ = params.at("audio_id").s;
 	volume_ = params.at("volume").f;
 	pitch_ = params.at("pitch").f;
-	AudioSystem::Instance()->addSound(params.at("audio_id").s, params.at("file").s);
-	setEnabled(params.at("enabled").b);
+}
+
+Component * AudioSource::clone()
+{
+	AudioSource* clonedComponent = new AudioSource();
+	
+	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->filename_ = this->filename_;
+	clonedComponent->audioId_ = this->audioId_;
+	clonedComponent->volume_ = this->volume_;
+	clonedComponent->pitch_ = this->pitch_;
+
+	return clonedComponent;
+}
+
+void AudioSource::init()
+{
+	AudioSystem::Instance()->addSound(audioId_, filename_);
+	setEnabled(enabled_);
 }
 
 void AudioSource::play()

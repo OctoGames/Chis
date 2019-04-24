@@ -1,6 +1,6 @@
-#pragma once
+#ifndef __RIGIDBODY_H__
+#define __RIGIDBODY_H__
 
-#include "RenderManager.h"
 #include "Component.h"
 #include "GameObject.h"
 
@@ -8,25 +8,25 @@ class RigidBody : public Component
 {
 public:
 	RigidBody();
-	RigidBody(GameObject* container, const std::string& parent = "", bool enabled = true);
 	virtual ~RigidBody();
 
-	virtual void init(const std::map<std::string, ValueType>& params);
+	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
+	virtual Component* clone();
+	virtual void init();
 
-	inline Ogre::SceneNode* getNode() { return node_; }
+	virtual void fixedUpdate();
 
-	void createSphereRB(double mass, double radious, std::string name);
-	void createBoxRB(double mass, Ogre::Vector3 scale, std::string name);
-
-	virtual inline void addCollidedGameObject(GameObject* go) { collidedGameObjects_.push_back(go);};
-	virtual inline void clearCollidedGameObjects() { collidedGameObjects_.clear(); };
+	virtual void addCollidedGameObject(GameObject* go) { collidedGameObjects_.push_back(go); };
+	virtual void clearCollidedGameObjects() { collidedGameObjects_.clear(); };
 
 private:
 	static std::string name_;
-	Ogre::SceneNode* node_;
 
-	std::vector<GameObject*> collidedGameObjects_;
+	double mass_;
+	double radius_;
+	Ogre::Vector3 scale_;
+	std::list<GameObject*> collidedGameObjects_;
 };
 
 class RigidBodyFactory : public BaseFactory
@@ -37,3 +37,5 @@ public:
 
 	virtual Component* create() { return new RigidBody(); }
 };
+
+#endif // !__RIGIDBODY_H__

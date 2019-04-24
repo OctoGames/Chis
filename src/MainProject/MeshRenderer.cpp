@@ -1,29 +1,42 @@
 #include "MeshRenderer.h"
-#include "entitycomponentmanager.h"
-#include "Transform.h"
+
+#include "EntityComponentManager.h"
 
 std::string MeshRenderer::name_ = "MeshRenderer";
 
 MeshRenderer::MeshRenderer() :
-	entity_(nullptr)
+	entity_(nullptr),
+	meshName_(""),
+	materialName_("")
 {
-}
-
-MeshRenderer::MeshRenderer(GameObject* container, const std::string& meshName, bool enabled) : 
-	Component(container, enabled)
-{
-	entity_ = RenderManager::Instance()->getSceneManager()->createEntity(meshName);
-	static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->attachEntity(entity_);
 }
 
 MeshRenderer::~MeshRenderer()
 {
-
 }
 
-void MeshRenderer::init(const std::map<std::string, ValueType>& params)
+void MeshRenderer::load(const std::map<std::string, ValueType>& params)
 {
-	entity_ = RenderManager::Instance()->getSceneManager()->createEntity(params.at("mesh").s);
-	static_cast<Transform*>(EntityComponentManager::Instance()->getComponent(gameObject(), "Transform"))->attachEntity(entity_);
-	setEnabled(params.at("enabled").b);
+	enabled_ = params.at("enabled").b;
+	meshName_ = params.at("mesh_name").s;
+	materialName_ = params.at("material_name").s;
+}
+
+Component * MeshRenderer::clone()
+{
+	MeshRenderer* clonedComponent = new MeshRenderer();
+
+	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->meshName_ = this->meshName_;
+	clonedComponent->materialName_ = this->materialName_;
+
+	return clonedComponent;
+}
+
+void MeshRenderer::init()
+{
+	entity_ = RenderManager::Instance()->getSceneManager()->createEntity(meshName_);
+	entity_->setMaterialName(materialName_);
+	gameObject()->transform()->attachObject(entity_);
+	setEnabled(enabled_);
 }

@@ -9,7 +9,6 @@
 #include "SceneLoader.h"
 #include "GraphGenerator.h"
 
-
 class Application
 {
 public:

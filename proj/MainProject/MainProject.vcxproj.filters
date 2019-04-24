@@ -21,9 +21,6 @@
     <ClCompile Include="..\..\src\MainProject\MeshRenderer.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\MainProject\Transform.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\MainProject\Main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\MainProject\MeshRenderer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\MainProject\Transform.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\MainProject\AudioSource.h">

@@ -8,17 +8,19 @@ class MeshRenderer : public Component
 {
 public:
 	MeshRenderer();
-	MeshRenderer(GameObject* container, const std::string& meshName, bool enabled = true);
 	virtual ~MeshRenderer();
 
-	virtual void init(const std::map<std::string, ValueType>& params);
+	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
-
-	inline void setMaterialName(const std::string& name) { entity_->setMaterialName(name); }
+	virtual Component* clone();
+	virtual void init();
 
 private:
 	static std::string name_;
+
 	Ogre::Entity* entity_;
+	std::string meshName_;
+	std::string materialName_;
 };
 
 class MeshRendererFactory : public BaseFactory

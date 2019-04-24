@@ -1,35 +1,51 @@
 #include "RigidBody.h"
+
 #include "Physics.h"
 
 std::string RigidBody::name_ = "RigidBody";
 
-RigidBody::RigidBody()
+RigidBody::RigidBody() :
+	mass_(0.0),
+	radius_(0.0),
+	scale_(Ogre::Vector3::ZERO),
+	collidedGameObjects_(std::list<GameObject*>())
 {
-}
-
-RigidBody::RigidBody(GameObject* container, const std::string& parent, bool enabled) : Component(container, enabled)
-{
-
-	//We asume EVERY gameObject already has a Transform component because for it definition it has a position so it scene node has already
-	//been created and we can find it by its name.
-	node_ = RenderManager::Instance()->getSceneManager()->getSceneNode("n" + gameObject()->getName());
 }
 
 RigidBody::~RigidBody()
 {
-
 }
 
-void RigidBody::init(const std::map<std::string, ValueType>& params)
+void RigidBody::load(const std::map<std::string, ValueType>& params)
 {
+	enabled_ = params.at("enabled").b;
+	mass_ = params.at("mass").d;
+	radius_ = params.at("radius").d;
+	scale_ = Ogre::Vector3(params.at("scale_x").f, params.at("scale_y").f, params.at("scale_z").f);
 }
 
-void RigidBody::createSphereRB(double mass, double radious, std::string name)
+Component * RigidBody::clone()
 {
-	Physics::Instance()->createSphereRididBody(node_, mass, radious, name);
+	RigidBody* clonedComponent = new RigidBody();
+
+	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->mass_ = this->mass_;
+	clonedComponent->radius_ = this->radius_;
+	clonedComponent->scale_ = this->scale_;
+
+	return clonedComponent;
 }
 
-void RigidBody::createBoxRB(double mass, Ogre::Vector3 scale, std::string name)
+void RigidBody::init()
 {
-	Physics::Instance()->createBoxRigidBody(node_, mass, scale, name);
+	if (radius_ > 0.0) Physics::Instance()->createSphereRigidBody(gameObject()->transform(), mass_, radius_, "rb" + gameObject()->getGameObjectID());
+	else Physics::Instance()->createBoxRigidBody(gameObject()->transform(), mass_, scale_, "rb" + gameObject()->getGameObjectID());
+
+	collidedGameObjects_.clear();
+	setEnabled(enabled_);
+}
+
+void RigidBody::fixedUpdate()
+{
+	clearCollidedGameObjects();
 }
