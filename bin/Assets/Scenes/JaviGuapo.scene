@@ -187,7 +187,7 @@
       <user_data value="cuchillo" type="str" name="material_name" />
       <user_data value="Cuchillo.mesh" type="str" name="mesh_name" />
       <user_data value="obstaculo" type="str" name="prototype_name" />
-      <user_data value="0.0" type="float" name="mass" />
+      <user_data value="1.0" type="float" name="mass" />
       <user_data value="0.0" type="float" name="radius" />
       <user_data value="10.032" type="float" name="scale_x" />
       <user_data value="10.032" type="float" name="scale_y" />
