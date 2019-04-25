@@ -80,7 +80,10 @@ void Application::createScene()
 	params["radius"].d = 0.0;
 	params["scale_x"].d = 50.0;
 	params["scale_y"].d = 30.0;
-	params["scale_z"].d = 30.0;
+	params["scale_z"].d = 30.0;	
+	params["scale_rb_x"].d = 80.0;
+	params["scale_rb_y"].d = 30.0;
+	params["scale_rb_z"].d = 30.0;
 	component->load(params);
 	components.push_back(component);
 	params.clear();
@@ -207,19 +210,19 @@ void Application::createScene()
 
 	//params["enabled_mr"].b = true;
 	//params["enabled_rb"].b = true;
-	//params["mesh_name"].s = "Donut.mesh";
-	//params["material_name"].s = "donut";
+	//params["mesh_name"].s = "Mesa.mesh";
+	//params["material_name"].s = "mesa";
 	//params["mass"].f = 0.0f;
 	//params["radius"].f = 0.0f;
-	//params["scale_x"].f = 3.0f;
-	//params["scale_y"].f = 3.0f;
-	//params["scale_z"].f = 3.0f;
+	//params["scale_x"].f = 1989.5f/2.2f;
+	//params["scale_y"].f = 20.0046f/2.2f;
+	//params["scale_z"].f = 2000.46f/2.2f;
 
 	//Prototype* prototype = EntityComponentManager::Instance()->getPrototype("obstaculo");
 	//GameObject* clonedObject = prototype->getEntity()->clone();
 	//clonedObject->setName("obstaculo");
 	//clonedObject->transform()->setPosition(Ogre::Vector3(50.0, 50.0, 0.0));
-	//clonedObject->transform()->setScale(Ogre::Vector3(3.0,3.0,3.0));
+	//clonedObject->transform()->setScale(Ogre::Vector3(10.0023, 10.0023, 10.0023));
 
 	//for (Component* c : prototype->getComponents()) {
 	//	Component* clonedComponent = c->clone();

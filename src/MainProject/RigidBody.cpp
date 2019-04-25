@@ -21,7 +21,7 @@ void RigidBody::load(const std::map<std::string, ValueType>& params)
 	enabled_ = params.at("enabled_rb").b;
 	mass_ = params.at("mass").d;
 	radius_ = params.at("radius").d;
-	scale_ = Ogre::Vector3(params.at("scale_x").f, params.at("scale_y").f, params.at("scale_z").f);
+	scale_ = Ogre::Vector3(params.at("scale_rb_x").f / 2.2f, params.at("scale_rb_y").f / 2.2f, params.at("scale_rb_z").f / 2.2f);
 }
 
 Component * RigidBody::clone()

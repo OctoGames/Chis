@@ -1,9 +1,9 @@
-<scene previous_export_time="1556216287.1633945" formatVersion="1.0.1" exported_by="gonza" export_time="1556217186.7591374" >
+<scene previous_export_time="1556221895.0054457" formatVersion="1.0.1" exported_by="gonza" export_time="1556221984.8677616" >
   <nodes >
     <node name="Mesa" >
       <position z="38.822498" y="-22.273300" x="-151.016998" />
       <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
-      <scale z="10.002300" y="10.002301" x="10.002300" />
+      <scale z="10.002300" y="10.002300" x="10.002294" />
       <user_data value="obstaculo" type="str" name="prototype_name" />
       <user_data value="mesa" type="str" name="material_name" />
       <user_data value="0.0" type="float" name="mass" />
@@ -21,6 +21,9 @@
       <user_data value="0.0" type="float" name="rot_y" />
       <user_data value="0.0" type="float" name="rot_z" />
       <user_data value="Mesa.mesh" type="str" name="mesh_name" />
+      <user_data value="2000.0" type="float" name="scale_rb_x" />
+      <user_data value="22.0" type="float" name="scale_rb_y" />
+      <user_data value="2000.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -48,6 +51,9 @@
       <user_data value="27.781" type="float" name="scale_z" />
       <user_data value="23.0686" type="float" name="pos_y" />
       <user_data value="-66.8917" type="float" name="pos_z" />
+      <user_data value="55.0" type="float" name="scale_rb_x" />
+      <user_data value="96.0" type="float" name="scale_rb_y" />
+      <user_data value="55.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -57,7 +63,7 @@
     <node name="Sarten" >
       <position z="383.270996" y="10.043575" x="-583.515015" />
       <rotation qx="0.000000" qy="0.000000" qw="1.000000" qz="-0.000000" />
-      <scale z="105.760612" y="105.760612" x="105.760612" />
+      <scale z="105.760628" y="105.760773" x="105.760483" />
       <user_data value="0.0" type="float" name="mass" />
       <user_data value="1.0" type="float" name="enabled_mr" />
       <user_data value="1.0" type="float" name="enabled_rb" />
@@ -75,6 +81,9 @@
       <user_data value="105.761" type="float" name="scale_z" />
       <user_data value="0.0" type="float" name="radius" />
       <user_data value="obstaculo" type="str" name="prototype_name" />
+      <user_data value="250.0" type="float" name="scale_rb_x" />
+      <user_data value="32.0" type="float" name="scale_rb_y" />
+      <user_data value="420.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -102,6 +111,9 @@
       <user_data value="41.2318" type="float" name="scale_x" />
       <user_data value="41.2318" type="float" name="scale_y" />
       <user_data value="41.2318" type="float" name="scale_z" />
+      <user_data value="253.0" type="float" name="scale_rb_x" />
+      <user_data value="30.0" type="float" name="scale_rb_y" />
+      <user_data value="85.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -111,7 +123,7 @@
     <node name="Donut" >
       <position z="677.150635" y="11.324617" x="281.417999" />
       <rotation qx="0.000000" qy="-0.243893" qw="0.969802" qz="-0.000000" />
-      <scale z="3.386992" y="3.386992" x="3.386992" />
+      <scale z="3.386992" y="3.386995" x="3.386992" />
       <user_data value="281.41815" type="float" name="pos_x" />
       <user_data value="11.32462" type="float" name="pos_y" />
       <user_data value="677.15063" type="float" name="pos_z" />
@@ -129,6 +141,9 @@
       <user_data value="donut" type="str" name="material_name" />
       <user_data value="0.0" type="float" name="radius" />
       <user_data value="obstaculo" type="str" name="prototype_name" />
+      <user_data value="80.7588" type="float" name="scale_rb_x" />
+      <user_data value="29.0" type="float" name="scale_rb_y" />
+      <user_data value="80.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -156,6 +171,9 @@
       <user_data value="105.058" type="float" name="scale_y" />
       <user_data value="105.058" type="float" name="scale_z" />
       <user_data value="0.86447" type="float" name="rot_w" />
+      <user_data value="250.0" type="float" name="scale_rb_x" />
+      <user_data value="40.0" type="float" name="scale_rb_y" />
+      <user_data value="420.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -183,6 +201,9 @@
       <user_data value="0.0" type="float" name="rot_z" />
       <user_data value="1" type="int" name="enabled_mr" />
       <user_data value="1" type="int" name="enabled_rb" />
+      <user_data value="11.3" type="float" name="scale_rb_x" />
+      <user_data value="150.0" type="float" name="scale_rb_y" />
+      <user_data value="22.3" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -210,6 +231,9 @@
       <user_data value="64.5107" type="float" name="scale_y" />
       <user_data value="50.4222" type="float" name="pos_y" />
       <user_data value="-304.011" type="float" name="pos_z" />
+      <user_data value="127.0" type="float" name="scale_rb_x" />
+      <user_data value="127.0" type="float" name="scale_rb_z" />
+      <user_data value="42.0" type="float" name="scale_rb_y" />
       <game >
         <sensors />
         <actuators />
@@ -237,6 +261,9 @@
       <user_data value="34.5952" type="float" name="scale_z" />
       <user_data value="7.9448" type="float" name="pos_y" />
       <user_data value="-304.764" type="float" name="pos_z" />
+      <user_data value="545.0" type="float" name="scale_rb_x" />
+      <user_data value="58.0" type="float" name="scale_rb_y" />
+      <user_data value="287.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -264,6 +291,9 @@
       <user_data value="150.646" type="float" name="pos_x" />
       <user_data value="469.96" type="float" name="pos_z" />
       <user_data value="obstaculo" type="str" name="prototype_name" />
+      <user_data value="80.0" type="float" name="scale_rb_x" />
+      <user_data value="29.0" type="float" name="scale_rb_y" />
+      <user_data value="80.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -291,6 +321,9 @@
       <user_data value="0.0" type="float" name="radius" />
       <user_data value="253.644" type="float" name="pos_z" />
       <user_data value="obstaculo" type="str" name="prototype_name" />
+      <user_data value="80.0" type="float" name="scale_rb_x" />
+      <user_data value="29.0" type="float" name="scale_rb_y" />
+      <user_data value="80.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
@@ -300,7 +333,7 @@
     <node name="Donut.003" >
       <position z="61.248402" y="11.324617" x="508.260010" />
       <rotation qx="0.000000" qy="-0.243893" qw="0.969802" qz="-0.000000" />
-      <scale z="3.386992" y="3.386992" x="3.386992" />
+      <scale z="3.386994" y="3.386995" x="3.386992" />
       <user_data value="11.32462" type="float" name="pos_y" />
       <user_data value="3.387" type="float" name="scale_x" />
       <user_data value="3.387" type="float" name="scale_y" />
@@ -318,6 +351,9 @@
       <user_data value="508.26" type="float" name="pos_x" />
       <user_data value="61.2484" type="float" name="pos_z" />
       <user_data value="obstaculo" type="str" name="prototype_name" />
+      <user_data value="80.0" type="float" name="scale_rb_x" />
+      <user_data value="29.0" type="float" name="scale_rb_y" />
+      <user_data value="80.0" type="float" name="scale_rb_z" />
       <game >
         <sensors />
         <actuators />
