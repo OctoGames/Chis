@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+	<entity name="obstaculo" parent="" tag="static" active="1" >
+      	<component name="MeshRenderer" >
+			<user_data value="1" type="int" name="enabled_MR" />
+      		<user_data value="" type="str" name="mesh_name" />
+      		<user_data value="" type="str" name="material_name" />
+      	</component>
+      	<component name="RigidBody" >
+			<user_data value="1" type="int" name="enabled_RB" />
+      		<user_data value="0.0" type="float" name="mass" />
+      		<user_data value="0.0" type="float" name="radius" />
+      		<user_data value="0.0" type="float" name="scale_x" />
+			<user_data value="0.0" type="float" name="scale_y" />
+			<user_data value="0.0" type="float" name="scale_z" />
+      	</component>
+    </entity>
+</archetype>

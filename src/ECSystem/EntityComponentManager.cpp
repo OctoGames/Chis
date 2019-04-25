@@ -95,6 +95,11 @@ Component* EntityComponentManager::getComponent(GameObject* game_object, const s
 	return nullptr;
 }
 
+Prototype * EntityComponentManager::getPrototype(const std::string & namePrototype)
+{
+	return prototypes_[namePrototype];
+}
+
 std::list<GameObject*> EntityComponentManager::findGameObjectsWithTag(const std::string& tag)
 {
 	return tags_[tag];

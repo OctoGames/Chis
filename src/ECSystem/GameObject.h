@@ -16,6 +16,7 @@ public:
 	inline std::string getGameObjectID() const { return unique_id_; }
 	inline bool isActive() const { return active_; }
 	inline void setActive(bool active) { active_ = active; }
+	inline void setName(const std::string& name) { name_ = name; }
 
 	GameObject* clone();
 

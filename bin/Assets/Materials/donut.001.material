@@ -1,15 +1,15 @@
-// donut_box genrated by blender2ogre 0.6.0
+// donut.001 genrated by blender2ogre 0.6.0
 
-material donut_box 
+material donut.001 
 {
     receive_shadows on 
 
     technique
     {
-        pass donut_box
+        pass donut.001
         {
-            ambient 0.8000000715255737 0.7286240458488464 0.3136199712753296 1.0
-            diffuse 0.640000066757203 0.5828992453649526 0.25089598075890507 1.0
+            ambient 0.8000000715255737 0.5344796180725098 0.28959551453590393 1.0
+            diffuse 0.640000066757203 0.42758370082950137 0.2316764150809707 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 

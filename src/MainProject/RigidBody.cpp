@@ -18,7 +18,7 @@ RigidBody::~RigidBody()
 
 void RigidBody::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled").b;
+	enabled_ = params.at("enabled_rb").b;
 	mass_ = params.at("mass").d;
 	radius_ = params.at("radius").d;
 	scale_ = Ogre::Vector3(params.at("scale_x").f, params.at("scale_y").f, params.at("scale_z").f);

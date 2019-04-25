@@ -18,7 +18,7 @@ Application::Application() :
 	EntityComponentManager::Instance()->addFactory("FirstPersonCamera", new FirstPersonCameraFactory());
 	EntityComponentManager::Instance()->addFactory("DirectionalLight", new DirectionalLightFactory());
 	EntityComponentManager::Instance()->addFactory("AudioSource", new AudioSourceFactory());
-	EntityComponentManager::Instance()->addFactory("Rigidbody", new RigidBodyFactory());
+	EntityComponentManager::Instance()->addFactory("RigidBody", new RigidBodyFactory());
 	EntityComponentManager::Instance()->addFactory("GunController", new GunControllerFactory());
 }
 
@@ -67,16 +67,16 @@ void Application::createScene()
 	object = new GameObject("Mouse", "", "Enemy", true);
 	
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
-	params["enabled"].b = true;
+	params["enabled_mr"].b = true;
 	params["mesh_name"].s = "mouse.mesh";
 	params["material_name"].s = "mouseMaterial";
 	component->load(params);
 	components.push_back(component);
 	params.clear();
 
-	component = EntityComponentManager::Instance()->getFactory("Rigidbody")->create();
-	params["enabled"].b = true;
-	params["mass"].d = 1.0;
+	component = EntityComponentManager::Instance()->getFactory("RigidBody")->create();
+	params["enabled_rb"].b = true;
+	params["mass"].d = 0.0;
 	params["radius"].d = 0.0;
 	params["scale_x"].d = 50.0;
 	params["scale_y"].d = 30.0;
@@ -89,7 +89,7 @@ void Application::createScene()
 	components.clear();
 
 	GameObject* mouse = EntityComponentManager::Instance()->instantiate("MouseEnemy");
-	mouse->transform()->setPosition(50.0, 50.0, 0.0);
+	mouse->transform()->setPosition(50.0, 60.0, 0.0);
 	mouse->transform()->setScale(30.0, 30.0, 30.0);
 
 
@@ -168,7 +168,7 @@ void Application::createScene()
 	object = new GameObject("Gun", "Player", "Gun", true);
 
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
-	params["enabled"].b = true;
+	params["enabled_mr"].b = true;
 	params["mesh_name"].s = "gun.mesh";
 	params["material_name"].s = "gunMaterial";
 	component->load(params);
@@ -203,7 +203,41 @@ void Application::createScene()
 
 	//--------------------SCENE--------------------//
 
-	//SceneLoader::Instance()->loadScene("Map1.scene");
+	ArchetypeLoader::Instance()->loadArchetypes();
+
+	//params["enabled_mr"].b = true;
+	//params["enabled_rb"].b = true;
+	//params["mesh_name"].s = "Donut.mesh";
+	//params["material_name"].s = "donut";
+	//params["mass"].f = 0.0f;
+	//params["radius"].f = 0.0f;
+	//params["scale_x"].f = 3.0f;
+	//params["scale_y"].f = 3.0f;
+	//params["scale_z"].f = 3.0f;
+
+	//Prototype* prototype = EntityComponentManager::Instance()->getPrototype("obstaculo");
+	//GameObject* clonedObject = prototype->getEntity()->clone();
+	//clonedObject->setName("obstaculo");
+	//clonedObject->transform()->setPosition(Ogre::Vector3(50.0, 50.0, 0.0));
+	//clonedObject->transform()->setScale(Ogre::Vector3(3.0,3.0,3.0));
+
+	//for (Component* c : prototype->getComponents()) {
+	//	Component* clonedComponent = c->clone();
+	//	clonedComponent->load(params);
+	//	clonedComponent->setContainer(clonedObject);
+	//	clonedComponent->init();
+	//}
+
+	//GameObject* obs = EntityComponentManager::Instance()->instantiate("obstaculo");
+	//obs->transform()->setPosition(Ogre::Vector3(50, 50, 0));
+	//obs->transform()->setScale(Ogre::Vector3(3.0, 3.0, 3.0));
+	
+	
+	
+	
+	
+	
+	SceneLoader::Instance()->loadScene("JaviGuapo.scene");
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
 	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
 	Physics::Instance()->setDebugMode(true);

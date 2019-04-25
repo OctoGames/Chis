@@ -1,12 +1,12 @@
-// tabla_de_quesos genrated by blender2ogre 0.6.0
+// tabladequesos genrated by blender2ogre 0.6.0
 
-material tabla_de_quesos 
+material tabladequesos 
 {
     receive_shadows on 
 
     technique
     {
-        pass tabla_de_quesos
+        pass tabladequesos
         {
             ambient 0.14238853752613068 0.06427600234746933 0.029756436124444008 1.0
             diffuse 0.11391083171830818 0.05142080264420512 0.023805149254279567 1.0

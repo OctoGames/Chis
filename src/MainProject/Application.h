@@ -7,6 +7,7 @@
 #include "UIManager.h"
 #include "Physics.h"
 #include "SceneLoader.h"
+#include "ArchetypeLoader.h"
 #include "GraphGenerator.h"
 
 class Application

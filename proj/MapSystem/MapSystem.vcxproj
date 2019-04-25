@@ -19,13 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\MapSystem\LoadArchetypes.cpp" />
-    <ClCompile Include="..\..\src\MapSystem\SceneLoader.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\MapSystem\LoadArchetypes.h" />
+    <ClInclude Include="..\..\src\MapSystem\ArchetypeLoader.h" />
     <ClInclude Include="..\..\src\MapSystem\rapidxml.hpp" />
     <ClInclude Include="..\..\src\MapSystem\SceneLoader.h" />
+    <ClInclude Include="..\..\src\MapSystem\XMLLoader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\MapSystem\ArchetypeLoader.cpp" />
+    <ClCompile Include="..\..\src\MapSystem\SceneLoader.cpp" />
+    <ClCompile Include="..\..\src\MapSystem\XMLLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

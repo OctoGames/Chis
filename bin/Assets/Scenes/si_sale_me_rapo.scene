@@ -1,0 +1,68 @@
+<scene previous_export_time="1554687632.1278691" exported_by="gonza" formatVersion="1.0.1" export_time="1556155263.9192147" >
+  <nodes >
+    <node name="Donut" >
+      <position z="677.151001" x="281.417999" y="11.324600" />
+      <rotation qy="-0.243893" qw="0.969802" qz="-0.000000" qx="0.000000" />
+      <scale z="3.386992" x="3.386990" y="3.386992" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <user_data name="pos_x" type="float" value="281.418" />
+      <user_data name="pos_y" type="float" value="-37.151" />
+      <user_data name="pos_z" type="float" value="11.3246" />
+      <user_data name="rot_w" type="float" value="0.969802" />
+      <user_data name="rot_z" type="float" value="-0.243893" />
+      <user_data name="scale_x" type="float" value="3.38699" />
+      <user_data name="scale_y" type="float" value="3.38699" />
+      <user_data name="scale_z" type="float" value="3.38699" />
+      <user_data name="mass" type="float" value="1.0" />
+      <user_data name="enabled_RB" type="int" value="1" />
+      <user_data name="enabled_MR" type="int" value="1" />
+      <user_data name="mesh_name" type="str" value="Donut.mesh" />
+      <user_data name="material_name" type="str" value="donut" />
+      <user_data value="0.0" type="float" name="radius" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity friction_x="1.0" lock_rot_x="False" mass_radius="1.0" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" friction_z="1.0" lock_rot_y="False" name="Donut" lock_trans_z="False" damping_rot="0.10000000149011612" actor="False" ghost="False" lock_trans_x="False" anisotropic_friction="False" lock_rot_z="False" velocity_min="0.0" friction_y="1.0" lock_trans_y="False" velocity_max="0.0" physics_type="STATIC" meshFile="Donut.mesh" mass="1.0" />
+    </node>
+    <node name="Mesa" >
+      <position z="677.151001" x="281.417999" y="11.324600" />
+      <rotation qy="-0.243893" qw="0.969802" qz="-0.000000" qx="0.000000" />
+      <scale z="3.386992" x="3.386990" y="3.386992" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <user_data name="pos_x" type="float" value="-55.65544" />
+      <user_data name="pos_y" type="float" value="-40.09903" />
+      <user_data name="pos_z" type="float" value="-76.85922" />
+      <user_data name="rot_w" type="float" value="-1" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <user_data name="scale_x" type="float" value="300.992" />
+      <user_data name="scale_y" type="float" value="300.992" />
+      <user_data name="scale_z" type="float" value="300.992" />
+      <user_data name="mass" type="float" value="1.0" />
+      <user_data name="enabled_RB" type="int" value="1" />
+      <user_data name="enabled_MR" type="int" value="1" />
+      <user_data name="mesh_name" type="str" value="Mesa.mesh" />
+      <user_data name="material_name" type="str" value="mesa" />
+      <user_data value="0.0" type="float" name="radius" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity friction_x="1.0" lock_rot_x="False" mass_radius="1.0" damping_trans="0.03999999910593033" inertia_tensor="0.4000000059604645" friction_z="1.0" lock_rot_y="False" name="Donut" lock_trans_z="False" damping_rot="0.10000000149011612" actor="False" ghost="False" lock_trans_x="False" anisotropic_friction="False" lock_rot_z="False" velocity_min="0.0" friction_y="1.0" lock_trans_y="False" velocity_max="0.0" physics_type="STATIC" meshFile="Donut.mesh" mass="1.0" />
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\gonza\Desktop\Chis\bin\Assets\Scenes\donut.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourBackground b="0.05087608844041824" g="0.05087608844041824" r="0.05087608844041824" />
+    <colourAmbient b="0.0" g="0.0" r="0.0" />
+    <colourDiffuse b="0.05087608844041824" g="0.05087608844041824" r="0.05087608844041824" />
+  </environment>
+</scene>
