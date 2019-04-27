@@ -36,7 +36,6 @@ void UIManager::init()
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
 	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("TaharezLook/Tooltip");
 
-
 	// Create CEGUI root object
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
 	CEGUI::Window* myRoot = wmgr.createWindow("DefaultWindow", "root");
@@ -135,11 +134,13 @@ void UIManager::quit()
 void UIManager::closeMenu()
 {
 	fWnd->hide();
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setVisible(false);
 	menuClosed_ = true;
 }
 
 void UIManager::openMenu()
 {
 	fWnd->show();
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setVisible(true);
 	menuClosed_ = false;
 }

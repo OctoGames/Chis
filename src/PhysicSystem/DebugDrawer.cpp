@@ -24,9 +24,9 @@ void debugDrawer::drawCube(btVector3 position, btVector3 scale)
 
 	scale *= 2;
 
-	pos.setX(pos.getX() - scale.getX());
-	pos.setY(pos.getY() - scale.getY());
-	pos.setZ(pos.getZ() - scale.getZ());
+	pos.setX(pos.getX() - scale.getX() / 2);
+	pos.setY(pos.getY() - scale.getY() / 2);
+	pos.setZ(pos.getZ() - scale.getZ() / 2);
 
 	btVector3 baseX = pos;
 	btVector3 baseY = pos;

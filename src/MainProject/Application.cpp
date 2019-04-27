@@ -7,6 +7,8 @@
 #include "RigidBody.h"
 #include "GunController.h"
 
+
+#include <OgreSkeleton.h>
 Application::Application() :
 	sceneCreated_(false)
 {
@@ -76,7 +78,7 @@ void Application::createScene()
 
 	component = EntityComponentManager::Instance()->getFactory("RigidBody")->create();
 	//params["enabled_rb"].b = true;
-	params["mass"].f = 10.0f;
+	params["mass"].f = 0.0f;
 	params["radius"].f = 0.0f;	
 	params["scale_rb_x"].f = 80.0f;
 	params["scale_rb_y"].f = 30.0f;
@@ -85,11 +87,12 @@ void Application::createScene()
 	components.push_back(component);
 	params.clear();
 
+	
+
 	EntityComponentManager::Instance()->addPrototype(new Prototype("MouseEnemy", object, components));	
 	components.clear();
 
 	GameObject* mouse = EntityComponentManager::Instance()->instantiate("MouseEnemy");
-	mouse->transform()->setPosition(0.0, 50.0, 0.0);
 	mouse->transform()->setScale(30.0, 30.0, 30.0);
 
 	//btTransform bt;
@@ -181,7 +184,7 @@ void Application::createScene()
 
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
 	//params["enabled_mr"].b = true;
-	params["mesh_name"].s = "gun.mesh";
+	params["mesh_name"].s = "Brazos.mesh";
 	params["material_name"].s = "gunMaterial";
 	component->load(params);
 	components.push_back(component);
@@ -208,9 +211,47 @@ void Application::createScene()
 	components.clear();
 
 	GameObject* gun = EntityComponentManager::Instance()->instantiate("Gun");
-	gun->transform()->setPosition(Ogre::Vector3(30, -50, -90));
-	gun->transform()->rotate(Ogre::Vector3(0, 1, 0), Ogre::Radian(Ogre::Degree(180.0f)));
+	gun->transform()->rotate(Ogre::Vector3(0, 1, 0), Ogre::Radian(Ogre::Degree(90.0)));
+	gun->transform()->setPosition(Ogre::Vector3(1.0, -2.5, -4.0));
+	//gun->transform()->rotate(Ogre::Vector3(0, 1, 0), Ogre::Radian(Ogre::Degree(180.0f)));
 
+
+	MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gun, "MeshRenderer"));
+
+	Ogre::Entity* ent = mr->getEntity();
+
+	std::cout << "Bones names: " << std::endl;
+
+	auto skeleton = ent->getMesh()->getSkeleton();
+	auto numBones = skeleton->getNumBones();
+	for (int i = 0; i < numBones; i++)
+	{
+		std::cout << skeleton->getBone(i)->getName() << std::endl;
+	}
+
+	Ogre::Entity* leftSword;
+
+	leftSword = RenderManager::Instance()->getSceneManager()->createEntity("PiezaArma1.mesh");
+
+	ent->attachObjectToBone("Bone.003", leftSword);
+
+	std::cout << "Animations names: " << std::endl;
+
+	Ogre::AnimationStateSet* aux = ent->getAllAnimationStates();
+	auto it = aux->getAnimationStateIterator().begin();
+	while (it != aux->getAnimationStateIterator().end())
+	{
+		auto s = it->first; ++it;
+		std::cout << s << std::endl;
+	}
+
+	Ogre::AnimationState* animationState;
+
+
+	animationState = ent->getAnimationState("my_animation");
+
+	animationState->setEnabled(true);
+	animationState->setLoop(true);
 
 
 	//--------------------SCENE--------------------//
@@ -244,12 +285,7 @@ void Application::createScene()
 	//obs->transform()->setPosition(Ogre::Vector3(50, 50, 0));
 	//obs->transform()->setScale(Ogre::Vector3(3.0, 3.0, 3.0));
 	
-	
-	
-	
-	
-	
-	//SceneLoader::Instance()->loadScene("JaviGuapo.scene");
+	SceneLoader::Instance()->loadScene("JaviGuapo.scene");
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
 	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
 	Physics::Instance()->setDebugMode(true);

@@ -14,6 +14,7 @@ public:
 	virtual std::string getName() const { return name_; }
 	virtual Component* clone();
 	virtual void init();
+	inline Ogre::Entity* getEntity(){ return entity_; }
 
 private:
 	static std::string name_;

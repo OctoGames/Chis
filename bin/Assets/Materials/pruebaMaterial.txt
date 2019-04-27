@@ -1,0 +1,5 @@
+for %%f in (*.gonzalo) do (
+
+    echo HOLA GONZALO
+)
+
