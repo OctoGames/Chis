@@ -17,7 +17,7 @@ MeshRenderer::~MeshRenderer()
 
 void MeshRenderer::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_mr").b;
+	//enabled_ = params.at("enabled_mr").b;
 	meshName_ = params.at("mesh_name").s;
 	materialName_ = params.at("material_name").s;
 }

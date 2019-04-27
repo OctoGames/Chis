@@ -34,7 +34,7 @@ FirstPersonCamera::~FirstPersonCamera()
 
 void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled").b;
+	//enabled_ = params.at("enabled").b;
 	farClipDistance_ = params.at("far_clip").f;
 	nearClipDistance_ = params.at("near_clip").f;
 	backgroundColour_ = Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f);

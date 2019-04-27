@@ -1,3 +1,6 @@
+#ifndef __PHYSICS_H__
+#define __PHYSICS_H__
+
 #include <vector>
 #include <map>
 
@@ -21,7 +24,7 @@ struct rayCast {
 class Physics {
 
 public:
-	
+
 	static Physics* Instance();
 
 	inline void addToPhysicWorld(btRigidBody * body) { dynamicsWorld->addRigidBody(body); numberOfRigidBodies_++; };
@@ -97,3 +100,5 @@ private:
 	std::vector<debugObjectsPropierties> debugObjects;
 
 };
+
+#endif // !__PHYSICS_H__

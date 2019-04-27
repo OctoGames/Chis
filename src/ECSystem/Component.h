@@ -9,9 +9,6 @@ struct ValueType
 {
 	int i = 0;
 	float f = 0.0f;
-	double d = 0.0;
-	bool b = false;
-	char c = ' ';
 	std::string s = "";
 };
 

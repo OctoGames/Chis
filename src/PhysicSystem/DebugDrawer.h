@@ -1,7 +1,10 @@
+#ifndef __DEBUG_DRAWER_H__
+#define __DEBUG_DRAWER_H__
+
 #include <btBulletDynamicsCommon.h>
 #include "RenderManager.h"
 
-class debugDrawer : public btIDebugDraw{
+class debugDrawer : public btIDebugDraw {
 
 public:
 
@@ -51,3 +54,5 @@ private:
 
 	int numberOfLines_;
 };
+
+#endif // !__DEBUG_DRAWER_H__

@@ -3,6 +3,7 @@
 
 #include "Component.h"
 #include "GameObject.h"
+#include "Physics.h"
 
 class RigidBody : public Component
 {
@@ -20,12 +21,15 @@ public:
 	virtual void addCollidedGameObject(GameObject* go) { collidedGameObjects_.push_back(go); };
 	virtual void clearCollidedGameObjects() { collidedGameObjects_.clear(); };
 
+	inline btRigidBody* rigidbody() { return rigidBody_; }
+
 private:
 	static std::string name_;
 
 	double mass_;
 	double radius_;
 	Ogre::Vector3 scale_;
+	btRigidBody* rigidBody_;
 	std::list<GameObject*> collidedGameObjects_;
 };
 

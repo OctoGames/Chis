@@ -73,11 +73,9 @@ GameObject * EntityComponentManager::instantiate(const std::string & gameObjectN
 	
 	GameObject* clonedGameObject = prototype->getEntity()->clone();
 	
-	std::list<Component*> clonedComponents;
 	for (Component* c : prototype->getComponents())
 	{
 		Component* clonedComponent = c->clone();
-		clonedComponents.push_back(clonedComponent);
 		clonedComponent->setContainer(clonedGameObject);
 		clonedComponent->init();
 	}

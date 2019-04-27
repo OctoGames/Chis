@@ -26,7 +26,7 @@ void GunController::update()
 
 void GunController::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled").b;
+	//enabled_ = params.at("enabled").b;
 	fireButton_ = static_cast<OIS::MouseButtonID>(params.at("fire_button").i);
 }
 

@@ -67,7 +67,7 @@ void Application::createScene()
 	object = new GameObject("Mouse", "", "Enemy", true);
 	
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
-	params["enabled_mr"].b = true;
+	//params["enabled_mr"].b = true;
 	params["mesh_name"].s = "mouse.mesh";
 	params["material_name"].s = "mouseMaterial";
 	component->load(params);
@@ -75,15 +75,12 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("RigidBody")->create();
-	params["enabled_rb"].b = true;
-	params["mass"].d = 0.0;
-	params["radius"].d = 0.0;
-	params["scale_x"].d = 50.0;
-	params["scale_y"].d = 30.0;
-	params["scale_z"].d = 30.0;	
-	params["scale_rb_x"].d = 80.0;
-	params["scale_rb_y"].d = 30.0;
-	params["scale_rb_z"].d = 30.0;
+	//params["enabled_rb"].b = true;
+	params["mass"].f = 10.0f;
+	params["radius"].f = 0.0f;	
+	params["scale_rb_x"].f = 80.0f;
+	params["scale_rb_y"].f = 30.0f;
+	params["scale_rb_z"].f = 30.0f;
 	component->load(params);
 	components.push_back(component);
 	params.clear();
@@ -92,17 +89,30 @@ void Application::createScene()
 	components.clear();
 
 	GameObject* mouse = EntityComponentManager::Instance()->instantiate("MouseEnemy");
-	mouse->transform()->setPosition(50.0, 60.0, 0.0);
+	mouse->transform()->setPosition(0.0, 50.0, 0.0);
 	mouse->transform()->setScale(30.0, 30.0, 30.0);
 
+	//btTransform bt;
 
+	//bt.setOrigin(btVector3(0.0, 50.0, 0.0));
+	//bt.setRotation(btQuaternion(0, 0, 0, 1));
 
+	//RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(mouse, "RigidBody"));
+
+	//rb->rigidbody()->setWorldTransform(bt);
+
+	//btTransform transform; //Declaration of the btTransform
+	//transform.setIdentity(); //This function put the variable of the object to default. The ctor of btTransform doesnt do it.
+	//transform.setOrigin(btVector3(0, 50, 0)); //Set the new position/origin
+	//RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(mouse, "RigidBody"));
+
+	//rb->rigidbody()->setWorldTransform(transform);
 	//-------------------LIGHT-----------------------//
 
 	object = new GameObject("MainLight", "", "Light", true);
 
 	component = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
-	params["enabled"].b = true;
+	//params["enabled"].b = true;
 	params["direction_x"].f = 0.55f;
 	params["direction_y"].f = -0.3f;
 	params["direction_z"].f = 0.75f;
@@ -123,13 +133,12 @@ void Application::createScene()
 	light->transform()->setPosition(0.0, 20.0, 0.0);
 
 
-
 	//--------------------PLAYER--------------------//
 
 	object = new GameObject("Player", "", "Player", true);
 
 	component = EntityComponentManager::Instance()->getFactory("FirstPersonCamera")->create();
-	params["enabled"].b = true;
+	//params["enabled"].b = true;
 	params["far_clip"].f = 10000.0f;
 	params["near_clip"].f = 1.5f;
 	params["color_r"].f = 1.0f;
@@ -147,7 +156,7 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("AudioSource")->create();
-	params["enabled"].b = true;
+	//params["enabled"].b = true;
 	params["filename"].s = "22-The Mouse's House.mp3";
 	params["audio_id"].s = "MouseMusic";
 	params["volume"].f = 1.0f;
@@ -171,7 +180,7 @@ void Application::createScene()
 	object = new GameObject("Gun", "Player", "Gun", true);
 
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
-	params["enabled_mr"].b = true;
+	//params["enabled_mr"].b = true;
 	params["mesh_name"].s = "gun.mesh";
 	params["material_name"].s = "gunMaterial";
 	component->load(params);
@@ -179,7 +188,7 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("AudioSource")->create();
-	params["enabled"].b = true;
+	//params["enabled"].b = true;
 	params["filename"].s = "shoot.wav";
 	params["audio_id"].s = "ShootSFX";
 	params["volume"].f = 1.0f;
@@ -189,7 +198,7 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("GunController")->create();
-	params["enabled"].b = true;
+	//params["enabled"].b = true;
 	params["fire_button"].i = OIS::MouseButtonID::MB_Left;
 	component->load(params);
 	components.push_back(component);
@@ -240,7 +249,7 @@ void Application::createScene()
 	
 	
 	
-	SceneLoader::Instance()->loadScene("JaviGuapo.scene");
+	//SceneLoader::Instance()->loadScene("JaviGuapo.scene");
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
 	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
 	Physics::Instance()->setDebugMode(true);
