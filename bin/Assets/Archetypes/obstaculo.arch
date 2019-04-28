@@ -6,5 +6,13 @@
       		<user_data value="" type="str" name="mesh_name" />
       		<user_data value="" type="str" name="material_name" />
       	</component>
+            <component name="RigidBody" >
+            <user_data value="1" type="int" name="enabled_RB" />
+                  <user_data value="0.0" type="float" name="mass" />
+                  <user_data value="0.0" type="float" name="radius" />
+                  <user_data value="0.0" type="float" name="scale_rb_x" />
+                  <user_data value="0.0" type="float" name="scale_rb_y" />
+                  <user_data value="0.0" type="float" name="scale_rb_z" />
+            </component>
     </entity>
 </archetype>

@@ -155,7 +155,7 @@
       <rotation qx="0.000000" qw="0.864470" qy="0.502684" qz="-0.000000" />
       <scale y="105.057625" x="105.057991" z="105.057991" />
       <user_data name="radius" type="float" value="0.0" />
-      <user_data name="mass" type="float" value="1.0" />
+      <user_data name="mass" type="float" value="0.0" />
       <user_data name="enabled_mr" type="float" value="1.0" />
       <user_data name="enabled_rb" type="float" value="1.0" />
       <user_data name="prototype_name" type="str" value="obstaculo" />

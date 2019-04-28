@@ -7,7 +7,7 @@
 
 struct ValueType
 {
-	int i = 0;
+	bool b = true;
 	float f = 0.0f;
 	std::string s = "";
 };

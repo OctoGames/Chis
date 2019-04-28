@@ -27,7 +27,7 @@ void GunController::update()
 void GunController::load(const std::map<std::string, ValueType>& params)
 {
 	//enabled_ = params.at("enabled").b;
-	fireButton_ = static_cast<OIS::MouseButtonID>(params.at("fire_button").i);
+	fireButton_ = (OIS::MouseButtonID)(int)params.at("fire_button").f;
 }
 
 Component * GunController::clone()

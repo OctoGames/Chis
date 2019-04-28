@@ -19,10 +19,10 @@ RigidBody::~RigidBody()
 
 void RigidBody::load(const std::map<std::string, ValueType>& params)
 {
-	//enabled_ = params.at("enabled_rb").b;
+	enabled_ = params.at("enabled_rb").b;
 	mass_ = params.at("mass").f;
 	radius_ = params.at("radius").f;
-	scale_ = Ogre::Vector3(params.at("scale_rb_x").f, params.at("scale_rb_y").f, params.at("scale_rb_z").f);
+	scale_ = Ogre::Vector3(params.at("scale_rb_x").f / 2.2f, params.at("scale_rb_y").f / 2.2f, params.at("scale_rb_z").f / 2.2f);
 }
 
 Component * RigidBody::clone()

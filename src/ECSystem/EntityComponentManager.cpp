@@ -123,3 +123,24 @@ GameObject* EntityComponentManager::findGameObjectWithName(const std::string & n
 
 	return auxGO;
 }
+
+GameObject* EntityComponentManager::findGameObjectWithID(const std::string & id)
+{
+	bool found = false;
+	GameObject* auxGO = nullptr;
+
+	std::list<GameObject*>::iterator it = entities_.begin();
+
+	while (it != entities_.end() && !found)
+	{
+		if ((*it)->getGameObjectID() == id)
+		{
+			auxGO = (*it);
+			found = true;
+		}
+
+		else it++;
+	}
+
+	return auxGO;
+}

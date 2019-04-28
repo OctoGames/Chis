@@ -122,8 +122,8 @@ void Physics::detectCollision()
 		std::string auxBname = obBname.substr(1, obBname.size());
 		std::string auxAname = obAname.substr(1, obAname.size());
 
-		GameObject* objA = EntityComponentManager::Instance()->findGameObjectWithName(auxAname);
-		GameObject* objB = EntityComponentManager::Instance()->findGameObjectWithName(auxBname);
+		GameObject* objA = EntityComponentManager::Instance()->findGameObjectWithID(auxAname);
+		GameObject* objB = EntityComponentManager::Instance()->findGameObjectWithID(auxBname);
 
 		EntityComponentManager::Instance()->getComponent(objA, "RigidBody")->addCollidedGameObject(objB);
 		EntityComponentManager::Instance()->getComponent(objB, "RigidBody")->addCollidedGameObject(objA);
@@ -233,7 +233,13 @@ btTransform Physics::setTransform(Ogre::SceneNode* node)
 
 	transform.setIdentity();
 	transform.setOrigin(v);
-	//Transform.setRotation(btQuaternion(1.0f, 1.0f, 1.0f, 0));
+
+	btQuaternion q;
+	q.setX(node->getOrientation().x);
+	q.setY(node->getOrientation().y);
+	q.setZ(node->getOrientation().z);
+	q.setW(node->getOrientation().w);
+	transform.setRotation(q);
 
 	return transform;
 }

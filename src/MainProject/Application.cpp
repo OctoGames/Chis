@@ -69,7 +69,7 @@ void Application::createScene()
 	object = new GameObject("Mouse", "", "Enemy", true);
 	
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
-	//params["enabled_mr"].b = true;
+	params["enabled_mr"].b = true;
 	params["mesh_name"].s = "mouse.mesh";
 	params["material_name"].s = "mouseMaterial";
 	component->load(params);
@@ -77,7 +77,7 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("RigidBody")->create();
-	//params["enabled_rb"].b = true;
+	params["enabled_rb"].b = true;
 	params["mass"].f = 0.0f;
 	params["radius"].f = 0.0f;	
 	params["scale_rb_x"].f = 80.0f;
@@ -115,7 +115,7 @@ void Application::createScene()
 	object = new GameObject("MainLight", "", "Light", true);
 
 	component = EntityComponentManager::Instance()->getFactory("DirectionalLight")->create();
-	//params["enabled"].b = true;
+	params["enabled"].b = true;
 	params["direction_x"].f = 0.55f;
 	params["direction_y"].f = -0.3f;
 	params["direction_z"].f = 0.75f;
@@ -139,9 +139,8 @@ void Application::createScene()
 	//--------------------PLAYER--------------------//
 
 	object = new GameObject("Player", "", "Player", true);
-
 	component = EntityComponentManager::Instance()->getFactory("FirstPersonCamera")->create();
-	//params["enabled"].b = true;
+	params["enabled"].b = true;
 	params["far_clip"].f = 10000.0f;
 	params["near_clip"].f = 1.5f;
 	params["color_r"].f = 1.0f;
@@ -149,11 +148,11 @@ void Application::createScene()
 	params["color_b"].f = 1.0f;
 	params["max_speed"].f = 200.0f;
 	params["pitch_limit"].f = 180.0f;
-	params["forward_key"].i = OIS::KC_W;
-	params["backward_key"].i = OIS::KC_S;
-	params["fast_key"].i = OIS::KC_LSHIFT;
-	params["left_key"].i = OIS::KC_A;
-	params["right_key"].i = OIS::KC_D;
+	params["forward_key"].f = OIS::KC_W;
+	params["backward_key"].f = OIS::KC_S;
+	params["fast_key"].f = OIS::KC_LSHIFT;
+	params["left_key"].f = OIS::KC_A;
+	params["right_key"].f = OIS::KC_D;
 	component->load(params);
 	components.push_back(component);
 	params.clear();
@@ -183,7 +182,7 @@ void Application::createScene()
 	object = new GameObject("Gun", "Player", "Gun", true);
 
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
-	//params["enabled_mr"].b = true;
+	params["enabled_mr"].b = true;
 	params["mesh_name"].s = "Brazos.mesh";
 	params["material_name"].s = "gunMaterial";
 	component->load(params);
@@ -191,7 +190,7 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("AudioSource")->create();
-	//params["enabled"].b = true;
+	params["enabled"].b = true;
 	params["filename"].s = "shoot.wav";
 	params["audio_id"].s = "ShootSFX";
 	params["volume"].f = 1.0f;
@@ -201,8 +200,8 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("GunController")->create();
-	//params["enabled"].b = true;
-	params["fire_button"].i = OIS::MouseButtonID::MB_Left;
+	params["enabled"].b = true;
+	params["fire_button"].f = OIS::MouseButtonID::MB_Left;
 	component->load(params);
 	components.push_back(component);
 	params.clear();

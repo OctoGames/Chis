@@ -47,6 +47,7 @@ public:
 	std::list<GameObject*> findGameObjectsWithTag(const std::string& tag);
 	
 	GameObject* findGameObjectWithName(const std::string& name);
+	GameObject* findGameObjectWithID(const std::string & name);
 
 private:
 	EntityComponentManager();
