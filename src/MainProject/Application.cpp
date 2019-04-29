@@ -165,6 +165,7 @@ void Application::createScene()
 	//--------------------PLAYER--------------------//
 
 	object = new GameObject("Player", "", "Player", true);
+
 	component = EntityComponentManager::Instance()->getFactory("FirstPersonCamera")->create();
 	params["enabled"].b = true;
 	params["far_clip"].f = 10000.0f;
@@ -174,11 +175,11 @@ void Application::createScene()
 	params["color_b"].f = 1.0f;
 	params["max_speed"].f = 200.0f;
 	params["pitch_limit"].f = 180.0f;
-	params["forward_key"].f = OIS::KC_W;
-	params["backward_key"].f = OIS::KC_S;
-	params["fast_key"].f = OIS::KC_LSHIFT;
-	params["left_key"].f = OIS::KC_A;
-	params["right_key"].f = OIS::KC_D;
+	params["forward_key"].i = OIS::KC_W;
+	params["backward_key"].i = OIS::KC_S;
+	params["fast_key"].i = OIS::KC_LSHIFT;
+	params["left_key"].i = OIS::KC_A;
+	params["right_key"].i = OIS::KC_D;
 	component->load(params);
 	components.push_back(component);
 	params.clear();

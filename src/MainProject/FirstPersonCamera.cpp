@@ -42,11 +42,11 @@ void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
 	maxSpeed_ = params.at("max_speed").f;
 	pitchLimit_ = params.at("pitch_limit").f;
 
-	moveForwardsKey_ = (OIS::KeyCode)(int)params.at("forward_key").f;
-	moveBackwardsKey_ = (OIS::KeyCode)(int)params.at("backward_key").f;
-	moveLeftKey_ = (OIS::KeyCode)(int)params.at("left_key").f;
-	moveRightKey_ = (OIS::KeyCode)(int)params.at("right_key").f;
-	fastMoveKey_ = (OIS::KeyCode)(int)params.at("fast_key").f;
+	moveForwardsKey_ = static_cast<OIS::KeyCode>(params.at("forward_key").i);
+	moveBackwardsKey_ = static_cast<OIS::KeyCode>(params.at("backward_key").i);
+	moveLeftKey_ = static_cast<OIS::KeyCode>(params.at("left_key").i);
+	moveRightKey_ = static_cast<OIS::KeyCode>(params.at("right_key").i);
+	fastMoveKey_ = static_cast<OIS::KeyCode>(params.at("fast_key").i);
 }
 
 Component * FirstPersonCamera::clone()
