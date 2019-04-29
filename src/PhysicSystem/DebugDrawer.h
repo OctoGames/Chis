@@ -2,19 +2,20 @@
 #define __DEBUG_DRAWER_H__
 
 #include <btBulletDynamicsCommon.h>
+
 #include "RenderManager.h"
 
-class debugDrawer : public btIDebugDraw {
-
+class DebugDrawer : public btIDebugDraw 
+{
 public:
 
-	static debugDrawer &getSingleton()
+	static DebugDrawer &getSingleton()
 	{
-		static debugDrawer instance_;
+		static DebugDrawer instance_;
 		return instance_;
 	}
 
-	static debugDrawer* Instance();
+	static DebugDrawer* Instance();
 
 	void init() {};
 
@@ -43,12 +44,10 @@ private:
 
 	DebugDrawModes debugModes;
 
-	static debugDrawer* instance_;
+	static DebugDrawer* instance_;
 
-	debugDrawer();
-	virtual ~debugDrawer() {};
-
-	//Ogre::SceneManager* sceneManager;
+	DebugDrawer();
+	virtual ~DebugDrawer() {};
 
 	bool isDebuggingPhysics;
 

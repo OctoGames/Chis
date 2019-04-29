@@ -6,11 +6,11 @@
 class GameObject
 {
 public:
-	GameObject(const std::string& name, const std::string& parent = "", const std::string& tag = "", bool active = true);
+	GameObject(const std::string& name, const std::string& parentTag = "", const std::string& tag = "", bool active = true);
 	~GameObject();
 
 	inline Ogre::SceneNode* transform() { return node_; }
-	inline std::string getParent() const { return parent_; }
+	inline std::string getParent() const { return parentTag_; }
 	inline std::string getName() const { return name_; }
 	inline std::string getTag() const { return tag_; }
 	inline std::string getGameObjectID() const { return unique_id_; }
@@ -22,7 +22,7 @@ public:
 
 private:
 	Ogre::SceneNode* node_;
-	std::string parent_;
+	std::string parentTag_;
 	std::string name_;
 	std::string tag_;
 	std::string unique_id_;

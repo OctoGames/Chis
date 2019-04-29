@@ -28,12 +28,6 @@ void EntityComponentManager::update()
 
 void EntityComponentManager::close()
 {
-	for (GameObject* o : entities_)
-	{
-		delete o;
-		o = nullptr;
-	}
-
 	for (Component* c : components_)
 	{
 		delete c;
@@ -43,7 +37,7 @@ void EntityComponentManager::close()
 
 void EntityComponentManager::addEntity(GameObject* entity)
 {
-	entities_.push_back(entity);
+	if (entity->getTag() != "") tags_[entity->getTag()].push_back(entity);
 }
 
 void EntityComponentManager::addComponent(Component* component)
@@ -52,26 +46,23 @@ void EntityComponentManager::addComponent(Component* component)
 	containers_[component->gameObject()->getGameObjectID()].push_back(component);
 }
 
-void EntityComponentManager::addFactory(const std::string & name, BaseFactory * f)
+void EntityComponentManager::registerFactory(const std::string & factoryName, BaseFactory * f)
 {
-	factories_[name] = f;
+	factories_[factoryName] = f;
 }
 
-void EntityComponentManager::addPrototype(Prototype * prototype)
+void EntityComponentManager::registerPrototype(const std::string & prototypeName, Prototype * prototype)
 {
-	prototypes_[prototype->getName()] = prototype;
+	prototypes_[prototypeName] = prototype;
 }
 
-void EntityComponentManager::addGameObjectWithTag(GameObject* game_object, const std::string& tag)
-{
-	tags_[game_object->getTag()].push_back(game_object);
-}
-
-GameObject * EntityComponentManager::instantiate(const std::string & gameObjectName)
+GameObject * EntityComponentManager::instantiate(const std::string & gameObjectName, const Ogre::Vector3& position, const Ogre::Quaternion& orientation)
 {
 	Prototype* prototype = prototypes_[gameObjectName];
 	
 	GameObject* clonedGameObject = prototype->getEntity()->clone();
+	clonedGameObject->transform()->setPosition(position);
+	clonedGameObject->transform()->setOrientation(orientation);
 	
 	for (Component* c : prototype->getComponents())
 	{
@@ -83,64 +74,12 @@ GameObject * EntityComponentManager::instantiate(const std::string & gameObjectN
 	return clonedGameObject;
 }
 
-Component* EntityComponentManager::getComponent(GameObject* game_object, const std::string& component_name)
+Component* EntityComponentManager::getComponent(GameObject* gameObject, const std::string& componentName)
 {
-	for (Component* c : containers_[game_object->getGameObjectID()])
+	for (Component* c : containers_[gameObject->getGameObjectID()])
 	{
-		if (c->getName() == component_name) return c;
+		if (c->getName() == componentName) return c;
 	}
 
 	return nullptr;
-}
-
-Prototype * EntityComponentManager::getPrototype(const std::string & namePrototype)
-{
-	return prototypes_[namePrototype];
-}
-
-std::list<GameObject*> EntityComponentManager::findGameObjectsWithTag(const std::string& tag)
-{
-	return tags_[tag];
-}
-
-GameObject* EntityComponentManager::findGameObjectWithName(const std::string & name)
-{
-	bool found = false;
-	GameObject* auxGO = nullptr;
-
-	std::list<GameObject*>::iterator it = entities_.begin();
-
-	while (it != entities_.end() && !found)
-	{
-		if ((*it)->getName() == name)
-		{
-			auxGO = (*it);
-			found = true;
-		}
-
-		else it++;
-	}
-
-	return auxGO;
-}
-
-GameObject* EntityComponentManager::findGameObjectWithID(const std::string & id)
-{
-	bool found = false;
-	GameObject* auxGO = nullptr;
-
-	std::list<GameObject*>::iterator it = entities_.begin();
-
-	while (it != entities_.end() && !found)
-	{
-		if ((*it)->getGameObjectID() == id)
-		{
-			auxGO = (*it);
-			found = true;
-		}
-
-		else it++;
-	}
-
-	return auxGO;
 }

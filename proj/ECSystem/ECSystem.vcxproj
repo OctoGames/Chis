@@ -22,11 +22,13 @@
     <ClCompile Include="..\..\src\ECSystem\Component.cpp" />
     <ClCompile Include="..\..\src\ECSystem\EntityComponentManager.cpp" />
     <ClCompile Include="..\..\src\ECSystem\GameObejct.cpp" />
+    <ClCompile Include="..\..\src\ECSystem\Prototype.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ECSystem\Component.h" />
     <ClInclude Include="..\..\src\ECSystem\EntityComponentManager.h" />
     <ClInclude Include="..\..\src\ECSystem\GameObject.h" />
+    <ClInclude Include="..\..\src\ECSystem\Prototype.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

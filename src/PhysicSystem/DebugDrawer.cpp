@@ -1,23 +1,23 @@
-#include "debugDrawer.h"
+#include "DebugDrawer.h"
 #include <iostream>
 
-debugDrawer* debugDrawer::instance_ = nullptr;
+DebugDrawer* DebugDrawer::instance_ = nullptr;
 
-debugDrawer::debugDrawer() : numberOfLines_(0)
+DebugDrawer::DebugDrawer() : numberOfLines_(0)
 {
 
 }
 
-debugDrawer* debugDrawer::Instance()
+DebugDrawer* DebugDrawer::Instance()
 {
 	if (instance_ == nullptr)
 	{
-		instance_ = new debugDrawer();
+		instance_ = new DebugDrawer();
 	}
 	return instance_;
 }
 
-void debugDrawer::drawCube(btVector3 position, btVector3 scale)
+void DebugDrawer::drawCube(btVector3 position, btVector3 scale)
 {
 
 	btVector3 pos = position;
@@ -67,7 +67,7 @@ void debugDrawer::drawCube(btVector3 position, btVector3 scale)
 	drawLine(topZ, baseZ, col);
 }
 
-void debugDrawer::drawLine(const btVector3 &from, const btVector3 &to, const btVector3 &color)
+void DebugDrawer::drawLine(const btVector3 &from, const btVector3 &to, const btVector3 &color)
 {
 	numberOfLines_++;
 
@@ -101,7 +101,7 @@ void debugDrawer::drawLine(const btVector3 &from, const btVector3 &to, const btV
 
 }
 
-void debugDrawer::resetLineNumber()
+void DebugDrawer::resetLineNumber()
 {
 
 	for (int i = 1; i < numberOfLines_ + 1; i++)

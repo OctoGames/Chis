@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\PhysicSystem\debugDrawer.cpp">
+    <ClCompile Include="..\..\src\PhysicSystem\Physics.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\PhysicSystem\Physics.cpp">
+    <ClCompile Include="..\..\src\PhysicSystem\DebugDrawer.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\PhysicSystem\debugDrawer.h">
+    <ClInclude Include="..\..\src\PhysicSystem\Physics.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\PhysicSystem\Physics.h">
+    <ClInclude Include="..\..\src\PhysicSystem\DebugDrawer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

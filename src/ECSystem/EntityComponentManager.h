@@ -1,28 +1,9 @@
-#ifndef _EC_MANAGER_H_
-#define _EC_MANAGER_H_
+#ifndef __EC_MANAGER_H__
+#define __EC_MANAGER_H__
 
 #include <map>
-#include <list>
 
-#include "GameObject.h"
-#include "Component.h"
-
-class Prototype
-{
-public:
-	Prototype(const std::string& name, GameObject* container, const std::list<Component*>& components) : 
-		name_(name), container_(container), components_(components) {}
-	~Prototype() {}
-
-	inline std::string getName() const { return name_; }
-	inline GameObject* getEntity() { return container_; }
-	inline std::list<Component*> getComponents() { return components_; }
-
-private:
-	std::string name_;
-	GameObject* container_;
-	std::list<Component*> components_;
-};
+#include "Prototype.h"
 
 class EntityComponentManager
 {
@@ -35,31 +16,29 @@ public:
 
 	void addEntity(GameObject* entity);
 	void addComponent(Component* component);
-	void addPrototype(Prototype* prototype);
-	void addFactory(const std::string& name, BaseFactory* f);
-	void addGameObjectWithTag(GameObject* game_object, const std::string& tag);
 
-	GameObject* instantiate(const std::string& gameObjectName);
+	void registerPrototype(const std::string& prototypeName, Prototype* prototype);
+	void registerFactory(const std::string& factoryName, BaseFactory* f);
 
-	BaseFactory* getFactory(const std::string& name) { return factories_[name]; }
-	Component* getComponent(GameObject* game_object, const std::string& component_name);
-	Prototype* getPrototype(const std::string& namePrototype);
-	std::list<GameObject*> findGameObjectsWithTag(const std::string& tag);
-	
-	GameObject* findGameObjectWithName(const std::string& name);
-	GameObject* findGameObjectWithID(const std::string & name);
+	Component* getComponent(GameObject* gameObject, const std::string& componentName);
+	GameObject* instantiate(const std::string& prototypeName, const Ogre::Vector3& position = Ogre::Vector3::ZERO, const Ogre::Quaternion& orientation = Ogre::Quaternion::IDENTITY);
+
+	BaseFactory* getFactory(const std::string& factoryName) { return factories_[factoryName]; }
+	Prototype* getPrototype(const std::string& prototypeName) { return prototypes_[prototypeName]; }
+	std::list<Component*> getComponents(const std::string& gameObjectID) { return containers_[gameObjectID]; }
+	std::list<GameObject*> findGameObjectsWithTag(const std::string& gameObjectTag) { return tags_[gameObjectTag]; }
+	GameObject* findGameObjectWithTag(const std::string& gameObjectTag) { return tags_[gameObjectTag].front(); }
 
 private:
 	EntityComponentManager();
 
 	static EntityComponentManager* instance_;
 
-	std::list<GameObject*> entities_;
 	std::list<Component*> components_;
-	std::map<std::string, BaseFactory*> factories_;
 	std::map<std::string, Prototype*> prototypes_;
+	std::map<std::string, BaseFactory*> factories_;
 	std::map<std::string, std::list<Component*>> containers_;
 	std::map<std::string, std::list<GameObject*>> tags_;
 };
 
-#endif
+#endif	// !__EC_MANAGER_H__

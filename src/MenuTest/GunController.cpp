@@ -1,9 +1,7 @@
 #include "GunController.h"
 
 #include "AudioSource.h"
-#include "FirstPersonCamera.h"
 #include "EntityComponentManager.h"
-#include "Physics.h"
 
 std::string GunController::name_ = "GunController";
 
@@ -58,23 +56,8 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 	if (id == OIS::MouseButtonID::MB_Left)
 	{
 		isFiring_ = true;
-
-		GameObject* player = EntityComponentManager::Instance()->findGameObjectWithTag("Player");
-		Ogre::Camera* cam = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent(player, "FirstPersonCamera"))->getCamera();
-		
-		Ogre::Vector3 f = cam->getRealPosition();
-		Ogre::Vector3 n = cam->getRealDirection();
-		btVector3 from(f.x, f.y, f.z);
-		btVector3 normal(n.x, n.y, n.z);
-		
-		RaycastHit hit;
-		if (Physics::Instance()->raycast(from, normal, 1000.0f, &hit))
-		{
-			std::cout << hit.gameObject->getName() << std::endl;
-		}
 	}
-
-	return true;
+	return false;
 }
 
 bool GunController::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)

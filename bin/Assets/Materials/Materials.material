@@ -93,6 +93,27 @@ material skyPlane
 	}
 }
 
+ material Kitchen 
+ { 
+ 	receive_shadows off
+
+	technique
+    {
+       pass
+       {
+          depth_write off
+          lighting off
+          fog_override true
+ 
+          texture_unit
+          {
+             texture SimpleSky.png
+          }
+       }
+    }
+}
+
+
 material mouse_mat 
 {
     receive_shadows on

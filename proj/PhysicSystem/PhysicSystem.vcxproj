@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\PhysicSystem\debugDrawer.cpp" />
+    <ClCompile Include="..\..\src\PhysicSystem\DebugDrawer.cpp" />
     <ClCompile Include="..\..\src\PhysicSystem\Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\PhysicSystem\debugDrawer.h" />
+    <ClInclude Include="..\..\src\PhysicSystem\DebugDrawer.h" />
     <ClInclude Include="..\..\src\PhysicSystem\Physics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -93,8 +93,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)src\RenderSystem;$(SolutionDir)src\ECSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)src\MainProject;$(SolutionDir)Dependencies\bullet3-2.88\src\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)bin\;$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)src\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)src\ECSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\bullet3-2.88\src\;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)bin\;$(SolutionDir)Dependencies\bullet3-2.88\build\lib\$(Configuration);$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

@@ -24,8 +24,6 @@ public:
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
-	inline Ogre::Camera* getCamera() { return camera_; }
-
 private:
 	void setCameraAcceleration(float deltaTime);
 	void setCameraVelocity(Ogre::Real topSpeed);

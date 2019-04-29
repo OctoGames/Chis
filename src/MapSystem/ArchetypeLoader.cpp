@@ -71,7 +71,8 @@ void ArchetypeLoader::processArchetypes(rapidxml::xml_node<>* XMLRoot, Ogre::Str
 	}
 }
 
-void ArchetypeLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError) {
+void ArchetypeLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError) 
+{
 	// Get the gameobject name
 	Ogre::String gameObjectName = getAttrib(XMLNode, "name", "invalid");
 	Ogre::StringUtil::toLowerCase(gameObjectName);
@@ -92,7 +93,7 @@ void ArchetypeLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::String 
 
 		processComponents(XMLNode, components, messageError);
 
-		EntityComponentManager::Instance()->addPrototype(new Prototype(gameObjectName, obj, components));
+		EntityComponentManager::Instance()->registerPrototype(gameObjectName, new Prototype(obj, components));
 	}
 }
 

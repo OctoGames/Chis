@@ -9,6 +9,7 @@ struct ValueType
 {
 	bool b = true;
 	float f = 0.0f;
+	bool b = false;
 	std::string s = "";
 };
 
@@ -28,8 +29,7 @@ public:
 	inline bool isEnabled() const { return enabled_; }
 	virtual void setEnabled(bool enabled);
 
-	virtual void addCollidedGameObject(GameObject* go) {}
-	virtual void clearCollidedGameObjects() {}
+	virtual void onCollision(GameObject* gameObject) {}
 
 	virtual void start() {}
 	virtual void fixedUpdate() {}

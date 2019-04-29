@@ -16,17 +16,21 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
-	virtual void onCollision(GameObject* gameObject);
+	virtual void fixedUpdate();
+
+	virtual void addCollidedGameObject(GameObject* go) { collidedGameObjects_.push_back(go); };
+	virtual void clearCollidedGameObjects() { collidedGameObjects_.clear(); };
 
 	inline btRigidBody* rigidbody() { return rigidBody_; }
 
 private:
 	static std::string name_;
 
-	float mass_;
-	float radius_;
-	Ogre::Vector3 colliderHalfExtent_;
+	double mass_;
+	double radius_;
+	Ogre::Vector3 scale_;
 	btRigidBody* rigidBody_;
+	std::list<GameObject*> collidedGameObjects_;
 };
 
 class RigidBodyFactory : public BaseFactory

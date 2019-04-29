@@ -1,31 +1,34 @@
 #include "Application.h"
 
 #include "MeshRenderer.h"
+#include "Application.h"
+
+#include "MeshRenderer.h"
 #include "FirstPersonCamera.h"
 #include "DirectionalLight.h"
 #include "AudioSource.h"
 #include "RigidBody.h"
 #include "GunController.h"
 
-
-#include <OgreSkeleton.h>
 Application::Application() :
 	sceneCreated_(false)
 {
 	RenderManager::Instance()->init();
 	InputManager::Instance()->init();
 	UIManager::Instance()->init();
+	Physics::Instance()->init();
 
-	EntityComponentManager::Instance()->addFactory("MeshRenderer", new MeshRendererFactory());
-	EntityComponentManager::Instance()->addFactory("FirstPersonCamera", new FirstPersonCameraFactory());
-	EntityComponentManager::Instance()->addFactory("DirectionalLight", new DirectionalLightFactory());
-	EntityComponentManager::Instance()->addFactory("AudioSource", new AudioSourceFactory());
-	EntityComponentManager::Instance()->addFactory("RigidBody", new RigidBodyFactory());
-	EntityComponentManager::Instance()->addFactory("GunController", new GunControllerFactory());
+	EntityComponentManager::Instance()->registerFactory("MeshRenderer", new MeshRendererFactory());
+	EntityComponentManager::Instance()->registerFactory("FirstPersonCamera", new FirstPersonCameraFactory());
+	EntityComponentManager::Instance()->registerFactory("DirectionalLight", new DirectionalLightFactory());
+	EntityComponentManager::Instance()->registerFactory("AudioSource", new AudioSourceFactory());
+	EntityComponentManager::Instance()->registerFactory("RigidBody", new RigidBodyFactory());
+	EntityComponentManager::Instance()->registerFactory("GunController", new GunControllerFactory());
 }
 
 Application::~Application()
 {
+	Physics::Instance()->close();
 	UIManager::Instance()->close();
 	InputManager::Instance()->close();
 	RenderManager::Instance()->close();
@@ -43,7 +46,7 @@ void Application::run()
 
 		if (sceneCreated_ && UIManager::Instance()->isMenuClosed())
 		{
-			Physics::Instance()->update();
+			Physics::Instance()->update(dt);
 			EntityComponentManager::Instance()->update();
 		}
 		else if (UIManager::Instance()->isMenuClosed())
@@ -63,11 +66,25 @@ void Application::createScene()
 	std::list<Component*> components;
 	std::map<std::string, ValueType> params;
 
+	//--------------------SCENE--------------------//
+
+	ArchetypeLoader::Instance()->loadArchetypes();
+	SceneLoader::Instance()->loadScene("JaviGuapo.scene");
+
+	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
+	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
+	
+#if _DEBUG
+	Physics::Instance()->setDebugMode(true);
+#else
+	Physics::Instance()->setDebugMode(false);
+#endif
+
 
 	//-------------------MOUSE---------------------//
-	
-	object = new GameObject("Mouse", "", "Enemy", true);
-	
+
+	object = new GameObject("MouseStatic", "", "Enemy", true);
+
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
 	params["enabled_mr"].b = true;
 	params["mesh_name"].s = "mouse.mesh";
@@ -79,37 +96,47 @@ void Application::createScene()
 	component = EntityComponentManager::Instance()->getFactory("RigidBody")->create();
 	params["enabled_rb"].b = true;
 	params["mass"].f = 0.0f;
-	params["radius"].f = 0.0f;	
-	params["scale_rb_x"].f = 80.0f;
+	params["radius"].f = 0.0f;
+	params["scale_rb_x"].f = 30.0f;
 	params["scale_rb_y"].f = 30.0f;
 	params["scale_rb_z"].f = 30.0f;
 	component->load(params);
 	components.push_back(component);
 	params.clear();
 
-	
-
-	EntityComponentManager::Instance()->addPrototype(new Prototype("MouseEnemy", object, components));	
+	EntityComponentManager::Instance()->registerPrototype(object->getName(), new Prototype(object, components));
 	components.clear();
 
-	GameObject* mouse = EntityComponentManager::Instance()->instantiate("MouseEnemy");
-	mouse->transform()->setScale(30.0, 30.0, 30.0);
+	GameObject* mouseStatic = EntityComponentManager::Instance()->instantiate("MouseStatic", { 0.0f, 50.0f, 0.0f });
+	mouseStatic->transform()->setScale(30.0, 30.0, 30.0);
 
-	//btTransform bt;
+	object = new GameObject("MouseDynamic", "", "Enemy", true);
 
-	//bt.setOrigin(btVector3(0.0, 50.0, 0.0));
-	//bt.setRotation(btQuaternion(0, 0, 0, 1));
+	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
+	params["enabled_mr"].b = true;
+	params["mesh_name"].s = "mouse.mesh";
+	params["material_name"].s = "mouseMaterial";
+	component->load(params);
+	components.push_back(component);
+	params.clear();
 
-	//RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(mouse, "RigidBody"));
+	component = EntityComponentManager::Instance()->getFactory("RigidBody")->create();
+	params["enabled_rb"].b = true;
+	params["mass"].f = 10.0f;
+	params["radius"].f = 0.0f;
+	params["scale_rb_x"].f = 30.0f;
+	params["scale_rb_y"].f = 30.0f;
+	params["scale_rb_z"].f = 30.0f;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
 
-	//rb->rigidbody()->setWorldTransform(bt);
+	EntityComponentManager::Instance()->registerPrototype(object->getName(), new Prototype(object, components));
+	components.clear();
 
-	//btTransform transform; //Declaration of the btTransform
-	//transform.setIdentity(); //This function put the variable of the object to default. The ctor of btTransform doesnt do it.
-	//transform.setOrigin(btVector3(0, 50, 0)); //Set the new position/origin
-	//RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(mouse, "RigidBody"));
+	GameObject* mouseDynamic = EntityComponentManager::Instance()->instantiate("MouseDynamic", { 26.0f, 150.0f, 0.0f });
+	mouseDynamic->transform()->setScale(30.0, 30.0, 30.0);
 
-	//rb->rigidbody()->setWorldTransform(transform);
 	//-------------------LIGHT-----------------------//
 
 	object = new GameObject("MainLight", "", "Light", true);
@@ -129,11 +156,10 @@ void Application::createScene()
 	components.push_back(component);
 	params.clear();
 
-	EntityComponentManager::Instance()->addPrototype(new Prototype("DirLight", object, components));
+	EntityComponentManager::Instance()->registerPrototype("DirLight", new Prototype(object, components));
 	components.clear();
 
-	GameObject* light = EntityComponentManager::Instance()->instantiate("DirLight");
-	light->transform()->setPosition(0.0, 20.0, 0.0);
+	GameObject* light = EntityComponentManager::Instance()->instantiate("DirLight", { 0.0, 20.0, 0.0 });
 
 
 	//--------------------PLAYER--------------------//
@@ -158,7 +184,7 @@ void Application::createScene()
 	params.clear();
 
 	component = EntityComponentManager::Instance()->getFactory("AudioSource")->create();
-	//params["enabled"].b = true;
+	params["enabled"].b = true;
 	params["filename"].s = "22-The Mouse's House.mp3";
 	params["audio_id"].s = "MouseMusic";
 	params["volume"].f = 1.0f;
@@ -167,12 +193,10 @@ void Application::createScene()
 	components.push_back(component);
 	params.clear();
 
-	EntityComponentManager::Instance()->addPrototype(new Prototype("Player", object, components));
+	EntityComponentManager::Instance()->registerPrototype("Player", new Prototype(object, components));
 	components.clear();
 
-	GameObject* player = EntityComponentManager::Instance()->instantiate("Player");
-	player->transform()->setPosition(200.0, 100.0, 400.0);
-	player->transform()->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+	GameObject* player = EntityComponentManager::Instance()->instantiate("Player", { 200.0, 100.0, 400.0 });
 	static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(player, "AudioSource"))->play();
 
 
@@ -201,41 +225,29 @@ void Application::createScene()
 
 	component = EntityComponentManager::Instance()->getFactory("GunController")->create();
 	params["enabled"].b = true;
-	params["fire_button"].f = OIS::MouseButtonID::MB_Left;
+	params["fire_button"].i = OIS::MouseButtonID::MB_Left;
 	component->load(params);
 	components.push_back(component);
 	params.clear();
 
-	EntityComponentManager::Instance()->addPrototype(new Prototype("Gun", object, components));
+	EntityComponentManager::Instance()->registerPrototype("Gun", new Prototype(object, components));
 	components.clear();
 
-	GameObject* gun = EntityComponentManager::Instance()->instantiate("Gun");
-	gun->transform()->rotate(Ogre::Vector3(0, 1, 0), Ogre::Radian(Ogre::Degree(90.0)));
-	gun->transform()->setPosition(Ogre::Vector3(1.0, -2.5, -4.0));
-	//gun->transform()->rotate(Ogre::Vector3(0, 1, 0), Ogre::Radian(Ogre::Degree(180.0f)));
-
+	GameObject* gun = EntityComponentManager::Instance()->instantiate("Gun", { 1.0, -2.5, -4.0 }, Ogre::Quaternion(Ogre::Radian(Ogre::Degree(90)), Ogre::Vector3::UNIT_Y));
 
 	MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gun, "MeshRenderer"));
-
 	Ogre::Entity* ent = mr->getEntity();
 
 	std::cout << "Bones names: " << std::endl;
-
 	auto skeleton = ent->getMesh()->getSkeleton();
 	auto numBones = skeleton->getNumBones();
-	for (int i = 0; i < numBones; i++)
-	{
-		std::cout << skeleton->getBone(i)->getName() << std::endl;
-	}
+	for (int i = 0; i < numBones; i++) std::cout << skeleton->getBone(i)->getName() << std::endl;
 
-	Ogre::Entity* leftSword;
 
-	leftSword = RenderManager::Instance()->getSceneManager()->createEntity("PiezaArma1.mesh");
-
+	Ogre::Entity* leftSword = RenderManager::Instance()->getSceneManager()->createEntity("PiezaArma1.mesh");
 	ent->attachObjectToBone("Bone.003", leftSword);
 
 	std::cout << "Animations names: " << std::endl;
-
 	Ogre::AnimationStateSet* aux = ent->getAllAnimationStates();
 	auto it = aux->getAnimationStateIterator().begin();
 	while (it != aux->getAnimationStateIterator().end())
@@ -244,48 +256,7 @@ void Application::createScene()
 		std::cout << s << std::endl;
 	}
 
-	Ogre::AnimationState* animationState;
-
-
-	animationState = ent->getAnimationState("my_animation");
-
+	Ogre::AnimationState* animationState = ent->getAnimationState("my_animation");
 	animationState->setEnabled(true);
 	animationState->setLoop(true);
-
-
-	//--------------------SCENE--------------------//
-
-	ArchetypeLoader::Instance()->loadArchetypes();
-
-	//params["enabled_mr"].b = true;
-	//params["enabled_rb"].b = true;
-	//params["mesh_name"].s = "Mesa.mesh";
-	//params["material_name"].s = "mesa";
-	//params["mass"].f = 0.0f;
-	//params["radius"].f = 0.0f;
-	//params["scale_x"].f = 1989.5f/2.2f;
-	//params["scale_y"].f = 20.0046f/2.2f;
-	//params["scale_z"].f = 2000.46f/2.2f;
-
-	//Prototype* prototype = EntityComponentManager::Instance()->getPrototype("obstaculo");
-	//GameObject* clonedObject = prototype->getEntity()->clone();
-	//clonedObject->setName("obstaculo");
-	//clonedObject->transform()->setPosition(Ogre::Vector3(50.0, 50.0, 0.0));
-	//clonedObject->transform()->setScale(Ogre::Vector3(10.0023, 10.0023, 10.0023));
-
-	//for (Component* c : prototype->getComponents()) {
-	//	Component* clonedComponent = c->clone();
-	//	clonedComponent->load(params);
-	//	clonedComponent->setContainer(clonedObject);
-	//	clonedComponent->init();
-	//}
-
-	//GameObject* obs = EntityComponentManager::Instance()->instantiate("obstaculo");
-	//obs->transform()->setPosition(Ogre::Vector3(50, 50, 0));
-	//obs->transform()->setScale(Ogre::Vector3(3.0, 3.0, 3.0));
-	
-	SceneLoader::Instance()->loadScene("JaviGuapo.scene");
-	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
-	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
-	Physics::Instance()->setDebugMode(true);
 }

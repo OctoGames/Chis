@@ -6,10 +6,9 @@ std::string RigidBody::name_ = "RigidBody";
 
 RigidBody::RigidBody() :
 	rigidBody_(nullptr),
-	mass_(0.0),
-	radius_(0.0),
-	scale_(Ogre::Vector3::ZERO),
-	collidedGameObjects_(std::list<GameObject*>())
+	mass_(0.0f),
+	radius_(0.0f),
+	colliderHalfExtent_(Ogre::Vector3::ZERO)
 {
 }
 
@@ -22,7 +21,7 @@ void RigidBody::load(const std::map<std::string, ValueType>& params)
 	enabled_ = params.at("enabled_rb").b;
 	mass_ = params.at("mass").f;
 	radius_ = params.at("radius").f;
-	scale_ = Ogre::Vector3(params.at("scale_rb_x").f / 2.2f, params.at("scale_rb_y").f / 2.2f, params.at("scale_rb_z").f / 2.2f);
+	colliderHalfExtent_ = Ogre::Vector3(params.at("scale_rb_x").f, params.at("scale_rb_y").f, params.at("scale_rb_z").f);
 }
 
 Component * RigidBody::clone()
@@ -32,24 +31,21 @@ Component * RigidBody::clone()
 	clonedComponent->enabled_ = this->enabled_;
 	clonedComponent->mass_ = this->mass_;
 	clonedComponent->radius_ = this->radius_;
-	clonedComponent->scale_ = this->scale_;
+	clonedComponent->colliderHalfExtent_ = this->colliderHalfExtent_;
 
 	return clonedComponent;
 }
 
 void RigidBody::init()
 {
-	gameObject()->transform();
+	if (radius_ > 0.0) rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, radius_);
+	else rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, btVector3(colliderHalfExtent_.x, colliderHalfExtent_.y, colliderHalfExtent_.z));
 
-	if (radius_ > 0.0) Physics::Instance()->createSphereRigidBody(gameObject()->transform(), mass_, radius_, "rb" + gameObject()->getGameObjectID());
-	else Physics::Instance()->createBoxRigidBody(gameObject()->transform(), mass_, scale_, "rb" + gameObject()->getGameObjectID());
-	rigidBody_ = Physics::Instance()->getRigidBodyByName("rb" + gameObject()->getGameObjectID());
-
-	collidedGameObjects_.clear();
 	setEnabled(enabled_);
 }
 
-void RigidBody::fixedUpdate()
+void RigidBody::onCollision(GameObject * gameObject)
 {
-	clearCollidedGameObjects();
+	std::cout << this->gameObject()->getGameObjectID() << " has collided with ";
+	std::cout << gameObject->getGameObjectID() << std::endl;
 }

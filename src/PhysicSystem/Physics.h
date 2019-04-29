@@ -1,104 +1,84 @@
 #ifndef __PHYSICS_H__
 #define __PHYSICS_H__
 
+#include <iostream>
 #include <vector>
 #include <map>
 
 #include <btBulletDynamicsCommon.h>
-
-#include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
-#include "BulletCollision/Gimpact/btGImpactShape.h"
-
-#include "debugDrawer.h"
+#include <BulletCollision/Gimpact/btGImpactShape.h>
+#include <BulletCollision/NarrowPhaseCollision/btRaycastCallback.h>
 
 #include "EntityComponentManager.h"
+#include "DebugDrawer.h"
 
-struct rayCast {
-	btVector3 from;
-	btVector3 to;
-	bool allHits;
-	std::string rayName;
-	Ogre::SceneNode* collision;
+struct RaycastHit 
+{
+	GameObject* gameObject;
+	btVector3 normal;
+	btVector3 point;
+	btScalar distance;
 };
 
-class Physics {
+struct DebugObject
+{
+	enum DebugObjectType { DEBUG_BOX, DEBUG_SPHERE, DEBUG_LINE };
+	DebugObjectType type;
+	btVector3 debugColor;
+	btVector3 dimension;
+	btVector3 from;
+	btVector3 to;
+	float radius;
+};
 
+class Physics 
+{
 public:
-
 	static Physics* Instance();
 
-	inline void addToPhysicWorld(btRigidBody * body) { dynamicsWorld->addRigidBody(body); numberOfRigidBodies_++; };
-	inline btDiscreteDynamicsWorld* getDynamicsWorld() { return dynamicsWorld; };
-	inline std::vector<btCollisionShape *> getCollisionShapes() { return collisionShapes; };
-	inline void trackRigidBodyWithName(btRigidBody* b, std::string n) { physicsAccessors.insert(std::pair<std::string, btRigidBody*>(n, b)); };
+	void init();
+	void update(float deltaTime);
+	void close();
 
-	bool update();
+	inline void addRigidBody(const std::string& rigidBodyName, btRigidBody* rigidBody) { rigidBodies_[rigidBodyName] = rigidBody; };
+	inline void addDebugObject(const std::string& debugObjectName, DebugObject* debugObject) { debugObjects_[debugObjectName] = debugObject; }
+	inline btRigidBody* getRigidBody(const std::string& rigidBodyName) { return rigidBodies_[rigidBodyName]; }
+	inline DebugObject* getDebugObject(const std::string& debugObjectName) { return debugObjects_[debugObjectName]; }
 
-	btRigidBody* getRigidBodyByName(std::string name);
+	btRigidBody* createRigidBody(GameObject * gameObject, float mass, btVector3 dimension);
+	btRigidBody* createRigidBody(GameObject * gameObject, float mass, float radius);
 
-	inline void setDebugMode(bool db) { debug_ = db; };
+	bool raycast(btVector3 from, btVector3 to, RaycastHit* hit = nullptr);
+	bool raycast(btVector3 from, btVector3 normal, float maxLength, RaycastHit* hit = nullptr);
 
-	void toggleDebug();
+	void toggleDebug() { if (debugMode_) drawDebugObjects_ = !drawDebugObjects_; }
+	void setDebugMode(bool active) { debugMode_ = active; };
 	void toggleDebugMode();
 
-
-	void createBoxRigidBody(Ogre::SceneNode * node, double mass, Ogre::Vector3 scale, std::string name);
-	void createSphereRigidBody(Ogre::SceneNode * node, double mass, double radious, std::string name);
-
-	void createRaycast(btVector3 from, btVector3 to, std::string name);
-
-	void getRaycastValuesByName(const std::string name, btVector3& from, btVector3& to);
-
-	Ogre::SceneNode* getRaycastCollisionByName(const std::string name);
-
-	void setRaycastByName(const std::string name, const btVector3 from, const btVector3 to);
-
 private:
-
-	Ogre::SceneNode * firstHitRaycast(btVector3 from, btVector3 to);
-
-	std::vector<rayCast> rayCasts_;
-
-	bool visibleDebug_;
-
-	Ogre::SceneNode * castRays();
-
-	struct debugObjectsPropierties {
-		Ogre::SceneNode* node;
-		btVector3 scale;
-		double radious;
-		std::string type;
-	};
-
-	void detectCollision();
-
 	Physics();
 	~Physics();
 
-	btTransform setTransform(Ogre::SceneNode* node);
-	void setRigidBody(btCollisionShape* shape, double mass, std::string name, Ogre::SceneNode* node, btTransform transform);
-	void setDebugObject(Ogre::SceneNode * node, std::string type, double radious, btVector3 scale);
-
-	void debugMode();
-
-	bool debug_;
-
-	debugDrawer* dbg_drawer;
+	void detectCollisions();
+	btTransform* createTransform(GameObject * gameObject);
+	DebugObject* createDebugObject(float radius);
+	DebugObject* createDebugObject(btVector3 dimension);
+	DebugObject* createDebugObject(btVector3 from, btVector3 to);
 
 	static Physics* instance_;
 
-	int numberOfRigidBodies_;
+	bool debugMode_;
+	bool drawDebugObjects_;
 
-	btDefaultCollisionConfiguration* collisionConfiguration;
-	btCollisionDispatcher* dispatcher;
-	btBroadphaseInterface* overlappingPairCache;
-	btSequentialImpulseConstraintSolver* solver;
-	btDiscreteDynamicsWorld* dynamicsWorld;
-	std::vector<btCollisionShape *> collisionShapes;
-	std::map<std::string, btRigidBody *> physicsAccessors;
+	DebugDrawer* debugDrawer_;
+	btCollisionDispatcher* dispatcher_;
+	btDiscreteDynamicsWorld* dynamicsWorld_;
+	btBroadphaseInterface* overlappingPairCache_;
+	btSequentialImpulseConstraintSolver* solver_;
+	btDefaultCollisionConfiguration* collisionConfiguration_;
 
-	std::vector<debugObjectsPropierties> debugObjects;
-
+	std::map<std::string, btRigidBody*> rigidBodies_;
+	std::map<std::string, DebugObject*> debugObjects_;
 };
 
 #endif // !__PHYSICS_H__
