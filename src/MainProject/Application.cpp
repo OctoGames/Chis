@@ -84,7 +84,7 @@ void Application::createScene()
 
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
 	params["enabled_mr"].b = true;
-	params["mesh_name"].s = "Bala.mesh";
+	params["mesh_name"].s = "Bala2.mesh";
 	params["material_name"].s = "";
 	component->load(params);
 	components.push_back(component);

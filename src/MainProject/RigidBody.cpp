@@ -21,7 +21,7 @@ void RigidBody::load(const std::map<std::string, ValueType>& params)
 	enabled_ = params.at("enabled_rb").b;
 	mass_ = params.at("mass").f;
 	radius_ = params.at("radius").f;
-	colliderHalfExtent_ = Ogre::Vector3(params.at("scale_rb_x").f, params.at("scale_rb_y").f, params.at("scale_rb_z").f);
+	colliderHalfExtent_ = Ogre::Vector3(params.at("scale_rb_x").f / 2.2f, params.at("scale_rb_y").f / 2.2f, params.at("scale_rb_z").f / 2.2f);
 }
 
 Component * RigidBody::clone()
@@ -50,6 +50,6 @@ void RigidBody::init()
 
 void RigidBody::onCollision(GameObject * gameObject)
 {
-	std::cout << this->gameObject()->getGameObjectID() << " has collided with ";
-	std::cout << gameObject->getGameObjectID() << std::endl;
+	//std::cout << this->gameObject()->getGameObjectID() << " has collided with ";
+	//std::cout << gameObject->getGameObjectID() << std::endl;
 }

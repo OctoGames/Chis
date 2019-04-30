@@ -69,7 +69,7 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		btVector3 from(f.x, f.y, f.z);
 		btVector3 normal(n.x, n.y, n.z);		
 		
-		GameObject* bullet = EntityComponentManager::Instance()->instantiate("Bullet", gameObject()->transform()->getPosition(), q);
+		GameObject* bullet = EntityComponentManager::Instance()->instantiate("Bullet", f, q);
 		//mouseStatic->transform()->setScale(30.0, 30.0, 30.0);
 
 		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(bullet, "RigidBody"));
