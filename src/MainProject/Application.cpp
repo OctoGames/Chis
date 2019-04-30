@@ -192,7 +192,7 @@ void Application::createScene()
 	component = EntityComponentManager::Instance()->getFactory("FirstPersonCamera")->create();
 	params["enabled"].b = true;
 	params["far_clip"].f = 10000.0f;
-	params["near_clip"].f = 1.5f;
+	params["near_clip"].f = 0.5f;
 	params["color_r"].f = 1.0f;
 	params["color_g"].f = 0.0f;
 	params["color_b"].f = 1.0f;
@@ -227,12 +227,12 @@ void Application::createScene()
 
 	//----------------------GUN----------------------//
 
-	object = new GameObject("Gun", "Player", "Gun", true);
+	object = new GameObject("Arms", "Player", "Gun", true);
 
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
 	params["enabled_mr"].b = true;
-	params["mesh_name"].s = "Brazos.mesh";
-	params["material_name"].s = "gunMaterial";
+	params["mesh_name"].s = "merge_brazos.mesh";
+	params["material_name"].s = "brazos.material";
 	component->load(params);
 	components.push_back(component);
 	params.clear();
@@ -254,33 +254,35 @@ void Application::createScene()
 	components.push_back(component);
 	params.clear();
 
-	EntityComponentManager::Instance()->registerPrototype("Gun", new Prototype(object, components));
+	EntityComponentManager::Instance()->registerPrototype(object->getName(), new Prototype(object, components));
 	components.clear();
 
-	GameObject* gun = EntityComponentManager::Instance()->instantiate("Gun", { 1.0, -2.5, -4.0 }, Ogre::Quaternion(Ogre::Radian(Ogre::Degree(90)), Ogre::Vector3::UNIT_Y));
+	// Colocar un poco los brazos
+	GameObject* gun = EntityComponentManager::Instance()->instantiate("Arms" , { 1.0, -0.3, -1.0 }, Ogre::Quaternion(Ogre::Radian(Ogre::Degree(90)), Ogre::Vector3::UNIT_Y));
+	//gun->transform()->setScale(1.0, 3.0, 3.0);
 
-	MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gun, "MeshRenderer"));
-	Ogre::Entity* ent = mr->getEntity();
+	//MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gun, "MeshRenderer"));
+	//Ogre::Entity* ent = mr->getEntity();
 
-	std::cout << "Bones names: " << std::endl;
-	auto skeleton = ent->getMesh()->getSkeleton();
-	auto numBones = skeleton->getNumBones();
-	for (int i = 0; i < numBones; i++) std::cout << skeleton->getBone(i)->getName() << std::endl;
+	//std::cout << "Bones names: " << std::endl;
+	//auto skeleton = ent->getMesh()->getSkeleton();
+	//auto numBones = skeleton->getNumBones();
+	//for (int i = 0; i < numBones; i++) std::cout << skeleton->getBone(i)->getName() << std::endl;
 
 
-	Ogre::Entity* leftSword = RenderManager::Instance()->getSceneManager()->createEntity("PiezaArma1.mesh");
-	ent->attachObjectToBone("Bone.003", leftSword);
+	//Ogre::Entity* leftSword = RenderManager::Instance()->getSceneManager()->createEntity("PiezaArma1.mesh");
+	//ent->attachObjectToBone("Bone.003", leftSword);
 
-	std::cout << "Animations names: " << std::endl;
-	Ogre::AnimationStateSet* aux = ent->getAllAnimationStates();
-	auto it = aux->getAnimationStateIterator().begin();
-	while (it != aux->getAnimationStateIterator().end())
-	{
-		auto s = it->first; ++it;
-		std::cout << s << std::endl;
-	}
+	//std::cout << "Animations names: " << std::endl;
+	//Ogre::AnimationStateSet* aux = ent->getAllAnimationStates();
+	//auto it = aux->getAnimationStateIterator().begin();
+	//while (it != aux->getAnimationStateIterator().end())
+	//{
+	//	auto s = it->first; ++it;
+	//	std::cout << s << std::endl;
+	//}
 
-	Ogre::AnimationState* animationState = ent->getAnimationState("my_animation");
-	animationState->setEnabled(true);
-	animationState->setLoop(true);
+	//Ogre::AnimationState* animationState = ent->getAnimationState("my_animation");
+	//animationState->setEnabled(true);
+	//animationState->setLoop(true);
 }
