@@ -1,5 +1,6 @@
 #include "GunController.h"
 
+#include "RigidBody.h"
 #include "AudioSource.h"
 #include "FirstPersonCamera.h"
 #include "EntityComponentManager.h"
@@ -64,9 +65,16 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		
 		Ogre::Vector3 f = cam->getRealPosition();
 		Ogre::Vector3 n = cam->getRealDirection();
+		Ogre::Quaternion q = cam->getRealOrientation();
 		btVector3 from(f.x, f.y, f.z);
-		btVector3 normal(n.x, n.y, n.z);
+		btVector3 normal(n.x, n.y, n.z);		
 		
+		GameObject* bullet = EntityComponentManager::Instance()->instantiate("Bullet", gameObject()->transform()->getPosition(), q);
+		//mouseStatic->transform()->setScale(30.0, 30.0, 30.0);
+
+		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(bullet, "RigidBody"));
+		rb->rigidbody()->applyCentralImpulse(normal * 1000.0f);
+
 		RaycastHit hit;
 		if (Physics::Instance()->raycast(from, normal, 1000.0f, &hit))
 		{

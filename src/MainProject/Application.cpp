@@ -75,11 +75,34 @@ void Application::createScene()
 	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
 	
 #if _DEBUG
-	Physics::Instance()->setDebugMode(true);
+	Physics::Instance()->setDebugMode(false);
 #else
 	Physics::Instance()->setDebugMode(false);
 #endif
 
+	object = new GameObject("Bullet", "", "Bullet", true);
+
+	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
+	params["enabled_mr"].b = true;
+	params["mesh_name"].s = "Bala.mesh";
+	params["material_name"].s = "";
+	component->load(params);
+	components.push_back(component);
+	params.clear();
+
+	component = EntityComponentManager::Instance()->getFactory("RigidBody")->create();
+	params["enabled_rb"].b = true;
+	params["mass"].f = 1.0f;
+	params["radius"].f = 1.0f;
+	params["scale_rb_x"].f = 0.0f;
+	params["scale_rb_y"].f = 0.0f;
+	params["scale_rb_z"].f = 0.0f;
+	component->load(params);
+	components.push_back(component);
+	params.clear();
+
+	EntityComponentManager::Instance()->registerPrototype(object->getName(), new Prototype(object, components));
+	components.clear();
 
 	//-------------------MOUSE---------------------//
 

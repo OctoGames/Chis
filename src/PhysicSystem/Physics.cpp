@@ -153,8 +153,8 @@ btRigidBody * Physics::createRigidBody(GameObject * gameObject, float mass, floa
 btTransform * Physics::createTransform(GameObject * gameObject)
 {
 	Ogre::SceneNode * node = gameObject->transform();
-	Ogre::Vector3 pos = node->convertLocalToWorldPosition(node->getPosition());
-	Ogre::Quaternion rot = node->convertLocalToWorldOrientation(node->getOrientation());
+	Ogre::Vector3 pos = node->getPosition();
+	Ogre::Quaternion rot = node->getOrientation();
 
 	btVector3 p = btVector3(pos.x, pos.y, pos.z);
 	btQuaternion q = btQuaternion(rot.x, rot.y, rot.z, rot.w);
