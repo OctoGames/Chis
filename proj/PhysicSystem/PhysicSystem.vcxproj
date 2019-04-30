@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\PhysicSystem\DebugDrawer.cpp" />
+    <ClCompile Include="..\..\src\PhysicSystem\MeshStrider.cpp" />
     <ClCompile Include="..\..\src\PhysicSystem\Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\PhysicSystem\DebugDrawer.h" />
+    <ClInclude Include="..\..\src\PhysicSystem\MeshStrider.h" />
     <ClInclude Include="..\..\src\PhysicSystem\Physics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

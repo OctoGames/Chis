@@ -231,8 +231,7 @@ void Application::createScene()
 
 	component = EntityComponentManager::Instance()->getFactory("MeshRenderer")->create();
 	params["enabled_mr"].b = true;
-	params["mesh_name"].s = "merge_brazos.mesh";
-	params["material_name"].s = "brazos.material";
+	params["mesh_name"].s = "arms.mesh";
 	component->load(params);
 	components.push_back(component);
 	params.clear();
@@ -258,8 +257,8 @@ void Application::createScene()
 	components.clear();
 
 	// Colocar un poco los brazos
-	GameObject* gun = EntityComponentManager::Instance()->instantiate("Arms" , { 1.0, -0.3, -1.0 }, Ogre::Quaternion(Ogre::Radian(Ogre::Degree(90)), Ogre::Vector3::UNIT_Y));
-	//gun->transform()->setScale(1.0, 3.0, 3.0);
+	GameObject* gun = EntityComponentManager::Instance()->instantiate("Arms" , { -3.0, -4.0, 0.0 }, Ogre::Quaternion(Ogre::Radian(Ogre::Degree(90)), Ogre::Vector3::UNIT_Y));
+	gun->transform()->setScale(0.1, 0.1, 0.1);
 
 	//MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gun, "MeshRenderer"));
 	//Ogre::Entity* ent = mr->getEntity();
