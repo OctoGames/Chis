@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+      <entity name="node" parent="" tag="IANode" active="1" >
+            <component >
+            </component>
+    </entity>
+</archetype>

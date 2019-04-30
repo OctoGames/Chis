@@ -24,6 +24,8 @@ Application::Application() :
 	EntityComponentManager::Instance()->registerFactory("AudioSource", new AudioSourceFactory());
 	EntityComponentManager::Instance()->registerFactory("RigidBody", new RigidBodyFactory());
 	EntityComponentManager::Instance()->registerFactory("GunController", new GunControllerFactory());
+
+
 }
 
 Application::~Application()
@@ -69,7 +71,7 @@ void Application::createScene()
 	//--------------------SCENE--------------------//
 
 	ArchetypeLoader::Instance()->loadArchetypes();
-	SceneLoader::Instance()->loadScene("JaviGuapo.scene");
+	SceneLoader::Instance()->loadScene("CeliaNoTanto.scene");
 
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
 	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
@@ -284,4 +286,27 @@ void Application::createScene()
 	//Ogre::AnimationState* animationState = ent->getAnimationState("my_animation");
 	//animationState->setEnabled(true);
 	//animationState->setLoop(true);
+
+		//IA //GraphGenerator::Instance()->init();
 }
+	//Prototype* prototype = EntityComponentManager::Instance()->getPrototype("obstaculo");
+	//GameObject* clonedObject = prototype->getEntity()->clone();
+	//clonedObject->setName("obstaculo");
+	//clonedObject->transform()->setPosition(Ogre::Vector3(50.0, 50.0, 0.0));
+	//clonedObject->transform()->setScale(Ogre::Vector3(10.0023, 10.0023, 10.0023));
+
+	//for (Component* c : prototype->getComponents()) {
+	//	Component* clonedComponent = c->clone();
+	//	clonedComponent->load(params);
+	//	clonedComponent->setContainer(clonedObject);
+	//	clonedComponent->init();
+	//}
+
+	//GameObject* obs = EntityComponentManager::Instance()->instantiate("obstaculo");
+	//obs->transform()->setPosition(Ogre::Vector3(50, 50, 0));
+	//obs->transform()->setScale(Ogre::Vector3(3.0, 3.0, 3.0));
+	
+	/*SceneLoader::Instance()->loadScene("JaviGuapo.scene");
+	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
+	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
+	Physics::Instance()->setDebugMode(true);*/
