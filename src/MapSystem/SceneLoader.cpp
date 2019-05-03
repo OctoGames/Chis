@@ -1,6 +1,4 @@
 #include "SceneLoader.h"
-//#include "gameobject.h"
-//#include <Transform.h>
 
 SceneLoader* SceneLoader::instance_ = nullptr;
 

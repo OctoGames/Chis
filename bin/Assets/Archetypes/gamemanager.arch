@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+      <entity name="GameManager" parent="" tag="GameManager" active="1" >
+        <component name="AudioSource" >
+              <user_data value="1" type="bool" name="enabled_as" />
+              <user_data value="22-The Mouse's House.mp3" type="str" name="filename" />
+              <user_data value="MouseMusic" type="str" name="audio_id" />
+              <user_data value="1.0" type="float" name="volume" />
+              <user_data value="1.0" type="float" name="pitch" />
+        </component>
+		<component name="GameManager" >
+			  <user_data value="1" type="bool" name="enabled_gm" />
+        </component>
+    </entity>
+</archetype>

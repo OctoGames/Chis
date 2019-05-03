@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+	<entity name="Player" parent="" tag="player" active="1" >
+      	<component name="FirstPersonCamera" >
+			<user_data value="1" type="bool" name="enabled_fpc" />
+            <user_data value="10000.0" type="float" name="far_clip" />
+            <user_data value="0.5" type="float" name="near_clip" />
+			<user_data value="1.0" type="float" name="color_r" />
+            <user_data value="0.0" type="float" name="color_g" />
+            <user_data value="1.0" type="float" name="color_b" />
+			<user_data value="200.0" type="float" name="max_speed" />
+            <user_data value="180.0" type="float" name="pitch_limit" />
+        </component>
+    </entity>
+</archetype>

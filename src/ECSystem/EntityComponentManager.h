@@ -5,6 +5,13 @@
 
 #include "Prototype.h"
 
+struct comp {
+	bool operator() (const std::string& lhs, const std::string& rhs) const {
+		return stricmp(lhs.c_str(), rhs.c_str()) < 0;
+	}
+};
+
+
 class EntityComponentManager
 {
 public:
@@ -35,10 +42,10 @@ private:
 	static EntityComponentManager* instance_;
 
 	std::list<Component*> components_;
-	std::map<std::string, Prototype*> prototypes_;
-	std::map<std::string, BaseFactory*> factories_;
-	std::map<std::string, std::list<Component*>> containers_;
-	std::map<std::string, std::list<GameObject*>> tags_;
+	std::map<std::string, Prototype*, comp> prototypes_;
+	std::map<std::string, BaseFactory*, comp> factories_;
+	std::map<std::string, std::list<Component*>, comp> containers_;
+	std::map<std::string, std::list<GameObject*>, comp> tags_;
 };
 
 #endif	// !__EC_MANAGER_H__

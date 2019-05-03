@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+	<entity name="DirLight" parent="" tag="light" active="1" >
+      	<component name="DirectionalLight" >
+			<user_data value="1" type="bool" name="enabled_dl" />
+            <user_data value="0.55" type="float" name="direction_x" />
+            <user_data value="-0.3" type="float" name="direction_y" />
+            <user_data value="0.75" type="float" name="direction_z" />
+			<user_data value="1.0" type="float" name="diffuse_r" />
+            <user_data value="1.0" type="float" name="diffuse_g" />
+            <user_data value="1.0" type="float" name="diffuse_b" />
+			<user_data value="0.4" type="float" name="specular_r" />
+            <user_data value="0.4" type="float" name="specular_g" />
+            <user_data value="0.4" type="float" name="specular_b" />
+        </component>
+    </entity>
+</archetype>

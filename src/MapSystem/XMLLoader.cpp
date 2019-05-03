@@ -144,8 +144,8 @@ void XMLLoader::processDataParametres(rapidxml::xml_node<>* XMLNode, Ogre::Strin
 	else {
 		if (typeProp == "str")
 			params[nameProp].s = getAttrib(XMLNode, "value");
-		else if (typeProp == "int")
-			params[nameProp].i = getAttribBool(XMLNode, "value");
+		else if (typeProp == "bool")
+			params[nameProp].b = getAttribBool(XMLNode, "value");
 		else if (typeProp == "float")
 			params[nameProp].f = getAttribReal(XMLNode, "value");
 	}

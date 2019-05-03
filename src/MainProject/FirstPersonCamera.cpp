@@ -34,7 +34,7 @@ FirstPersonCamera::~FirstPersonCamera()
 
 void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled").b;
+	enabled_ = params.at("enabled_fpc").b;
 	farClipDistance_ = params.at("far_clip").f;
 	nearClipDistance_ = params.at("near_clip").f;
 	backgroundColour_ = Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f);
@@ -42,11 +42,11 @@ void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
 	maxSpeed_ = params.at("max_speed").f;
 	pitchLimit_ = params.at("pitch_limit").f;
 
-	moveForwardsKey_ = static_cast<OIS::KeyCode>(params.at("forward_key").i);
-	moveBackwardsKey_ = static_cast<OIS::KeyCode>(params.at("backward_key").i);
-	moveLeftKey_ = static_cast<OIS::KeyCode>(params.at("left_key").i);
-	moveRightKey_ = static_cast<OIS::KeyCode>(params.at("right_key").i);
-	fastMoveKey_ = static_cast<OIS::KeyCode>(params.at("fast_key").i);
+	//moveForwardsKey_ = static_cast<OIS::KeyCode>(params.at("forward_key").i);
+	//moveBackwardsKey_ = static_cast<OIS::KeyCode>(params.at("backward_key").i);
+	//moveLeftKey_ = static_cast<OIS::KeyCode>(params.at("left_key").i);
+	//moveRightKey_ = static_cast<OIS::KeyCode>(params.at("right_key").i);
+	//fastMoveKey_ = static_cast<OIS::KeyCode>(params.at("fast_key").i);
 }
 
 Component * FirstPersonCamera::clone()

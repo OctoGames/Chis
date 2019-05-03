@@ -18,7 +18,7 @@ DirectionalLight::~DirectionalLight()
 
 void DirectionalLight::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled").b;
+	enabled_ = params.at("enabled_dl").b;
 	lightDirection_ = Ogre::Vector3(params.at("direction_x").f, params.at("direction_y").f, params.at("direction_z").f); 
 	diffuseColour_ = Ogre::ColourValue(params.at("diffuse_r").f, params.at("diffuse_g").f, params.at("diffuse_b").f);
 	specularColour_ = Ogre::ColourValue(params.at("specular_r").f, params.at("specular_g").f, params.at("specular_b").f);
