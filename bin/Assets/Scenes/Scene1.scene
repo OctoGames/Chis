@@ -551,25 +551,6 @@
 	  <user_data value="1.0" type="float" name="pitch" />
 	  <user_data value="1" type="bool" name="enabled_gc" />
     </node>
-    <node name="gamemanager" >
-      <user_data name="prototype_name" type="str" value="gamemanager" />
-      <user_data name="pos_x" type="float" value="0.0" />
-	  <user_data name="pos_y" type="float" value="0.0" />
-      <user_data name="pos_z" type="float" value="0.0" />
-      <user_data name="scale_x" type="float" value="1.0" />
-      <user_data name="scale_y" type="float" value="1.0" />
-      <user_data name="scale_z" type="float" value="1.0" />
-      <user_data name="rot_x" type="float" value="0.0" />
-      <user_data name="rot_y" type="float" value="0.0" />
-      <user_data name="rot_z" type="float" value="0.0" />
-      <user_data name="rot_w" type="float" value="1.0" />
-	  <user_data value="1" type="bool" name="enabled_as" />
-	  <user_data value="22-The Mouse's House.mp3" type="str" name="filename" />
-	  <user_data value="MouseMusic" type="str" name="audio_id" />
-	  <user_data value="1.0" type="float" name="volume" />
-	  <user_data value="1.0" type="float" name="pitch" />
-	  <user_data value="1" type="bool" name="enabled_gm" />
-    </node>
   </nodes>
   <externals >
     <item type="material" >

@@ -93,24 +93,32 @@ material skyPlane
 	}
 }
 
- material Kitchen 
- { 
- 	receive_shadows off
+material Cheese
+{
+	technique 
+	{
+		pass 
+		{ 
+			diffuse 2 2 2
+			ambient 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 68
 
-	technique
-    {
-       pass
-       {
-          depth_write off
-          lighting off
-          fog_override true
- 
-          texture_unit
-          {
-             texture SimpleSky.png
-          }
-       }
-    }
+			texture_unit 
+			{
+				texture cheese.jpg
+				scroll_anim 0.1 0.0
+				colour_op modulate
+			}
+		}
+	}
+
+	technique 
+	{
+		pass	
+		{
+			diffuse 0.5 0.5 0.5
+		}
+	}
 }
 
 
