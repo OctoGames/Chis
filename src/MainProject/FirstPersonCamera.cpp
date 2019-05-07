@@ -136,16 +136,6 @@ bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 	return true;
 }
 
-bool FirstPersonCamera::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
-{
-	return true;
-}
-
-bool FirstPersonCamera::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)
-{
-	return true;
-}
-
 void FirstPersonCamera::setCameraAcceleration(float deltaTime)
 {
 	Ogre::Vector3 accel = Ogre::Vector3::ZERO;

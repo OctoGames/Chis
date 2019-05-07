@@ -61,6 +61,8 @@ void GameManager::start()
 
 bool GameManager::keyPressed(const OIS::KeyEvent & e)
 {
+	GUIManager::Instance()->keyPressed(e);
+
 	// TEMPORARY STUFF ----------------------------------------------------
 	if (e.key == OIS::KC_O) Physics::Instance()->toggleDebugMode();
 	else if (e.key == OIS::KC_P) Physics::Instance()->toggleDebug();
@@ -76,21 +78,29 @@ bool GameManager::keyPressed(const OIS::KeyEvent & e)
 
 bool GameManager::keyReleased(const OIS::KeyEvent & e)
 {
+	GUIManager::Instance()->keyReleased(e);
+
 	return true;
 }
 
 bool GameManager::mouseMoved(const OIS::MouseEvent & e)
 {
+	GUIManager::Instance()->mouseMoved(e);
+
 	return true;
 }
 
 bool GameManager::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
+	GUIManager::Instance()->mousePressed(e, id);
+
 	return true;
 }
 
 bool GameManager::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
+	GUIManager::Instance()->mouseReleased(e, id);
+
 	return true;
 }
 

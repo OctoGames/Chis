@@ -25,9 +25,6 @@ void GUIManager::init()
 	CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
 	CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
 	CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
-	
-	InputManager::Instance()->addKeyListener(this, "GUI");
-	InputManager::Instance()->addMouseListener(this, "GUI");
 }
 
 void GUIManager::update(float deltaTime)

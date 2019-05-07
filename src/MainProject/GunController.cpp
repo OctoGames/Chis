@@ -4,6 +4,7 @@
 #include "AudioSource.h"
 #include "FirstPersonCamera.h"
 #include "EntityComponentManager.h"
+#include "InputManager.h"
 #include "Physics.h"
 
 std::string GunController::name_ = "GunController";
@@ -46,12 +47,8 @@ Component * GunController::clone()
 void GunController::init()
 {
 	InputManager::Instance()->addMouseListener(this, "GunController");
-	setEnabled(enabled_);
-}
 
-bool GunController::mouseMoved(const OIS::MouseEvent & e)
-{
-	return true;
+	setEnabled(enabled_);
 }
 
 bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
@@ -70,7 +67,6 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		btVector3 normal(n.x, n.y, n.z);		
 		
 		GameObject* bullet = EntityComponentManager::Instance()->instantiate("Bullet", f, q);
-		//mouseStatic->transform()->setScale(30.0, 30.0, 30.0);
 
 		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(bullet, "RigidBody"));
 		rb->rigidbody()->applyCentralImpulse(normal * 1000.0f);
@@ -82,10 +78,5 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		}
 	}
 
-	return true;
-}
-
-bool GunController::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)
-{
 	return true;
 }

@@ -1,11 +1,10 @@
 #ifndef __FIRST_PERSON_CAMERA_H__
 #define __FIRST_PERSON_CAMERA_H__
 
-#include "RenderManager.h"
-#include "InputManager.h"
 #include "Component.h"
+#include "RenderManager.h"
 
-class FirstPersonCamera : public Component, public OIS::KeyListener, public OIS::MouseListener
+class FirstPersonCamera : public Component
 {
 public:
 	FirstPersonCamera();
@@ -21,8 +20,6 @@ public:
 	virtual bool keyPressed(const OIS::KeyEvent &e);
 	virtual bool keyReleased(const OIS::KeyEvent &e);
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
-	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
-	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
 	inline Ogre::Camera* getCamera() { return camera_; }
 

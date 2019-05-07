@@ -1,10 +1,9 @@
 #ifndef __GUN_CONTROLLER_H__
 #define __GUN_CONTROLLER_H__
 
-#include "InputManager.h"
 #include "Component.h"
 
-class GunController : public Component, public OIS::MouseListener
+class GunController : public Component
 {
 public:
 	GunController();
@@ -17,9 +16,7 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
-	virtual bool mouseMoved(const OIS::MouseEvent &e);
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
-	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
 private:
 	static std::string name_;

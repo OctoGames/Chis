@@ -24,6 +24,7 @@ Application::Application()
 	EntityComponentManager::Instance()->registerFactory("RigidBody", new RigidBodyFactory());
 	EntityComponentManager::Instance()->registerFactory("GunController", new GunControllerFactory());
 	EntityComponentManager::Instance()->registerFactory("GameManager", new GameManagerFactory());
+	
 	ArchetypeLoader::Instance()->loadArchetypes();
 	EntityComponentManager::Instance()->instantiate("GameManager");
 }

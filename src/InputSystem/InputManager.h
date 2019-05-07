@@ -2,12 +2,11 @@
 #define __INPUT_MANAGER_H__
 
 #include <OIS/OISEvents.h>
-#include <OIS/OISMouse.h>
-#include <OIS/OISKeyboard.h>
-#include <OIS/OISJoystick.h>
 #include <OIS/OISInputManager.h>
 
-class InputManager : public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener
+#include "Component.h"
+
+class InputManager : public OIS::KeyListener, public OIS::MouseListener
 {
 public:
 	static InputManager* Instance();
@@ -16,29 +15,18 @@ public:
 	void update(float deltaTime);
 	void close();
 
-	void addKeyListener(OIS::KeyListener *keyListener, const std::string& instanceName);
-	void addMouseListener(OIS::MouseListener *mouseListener, const std::string& instanceName);
-	void addJoystickListener(OIS::JoyStickListener *joystickListener, const std::string& instanceName);
-
+	void addKeyListener(Component *keyListener, const std::string& instanceName);
+	void addMouseListener(Component *mouseListener, const std::string& instanceName);
 	void removeKeyListener(const std::string& instanceName);
 	void removeMouseListener(const std::string& instanceName);
-	void removeJoystickListener(const std::string& instanceName);
-
-	void removeKeyListener(OIS::KeyListener *keyListener);
-	void removeMouseListener(OIS::MouseListener *mouseListener);
-	void removeJoystickListener(OIS::JoyStickListener *joystickListener);
-
+	void removeKeyListener(Component *keyListener);
+	void removeMouseListener(Component *mouseListener);
 	void removeAllListeners();
 	void removeAllKeyListeners();
 	void removeAllMouseListeners();
-	void removeAllJoystickListeners();
-
-	void setWindowExtents(int width, int height);
 
 	inline OIS::Mouse* getMouse() { return mouse_; }
 	inline OIS::Keyboard* getKeyboard() { return keyboard_; }
-	inline OIS::JoyStick* getJoystick(unsigned int index) { if (index < getNumOfJoysticks()) return joysticks_[index]; }
-	inline int getNumOfJoysticks() const { return joysticks_.size(); }
 
 private:
 	InputManager();
@@ -52,23 +40,14 @@ private:
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
-	// OIS::JoystickListener
-	virtual bool povMoved(const OIS::JoyStickEvent &e, int pov);
-	virtual bool axisMoved(const OIS::JoyStickEvent &e, int axis);
-	virtual bool sliderMoved(const OIS::JoyStickEvent &e, int sliderID);
-	virtual bool buttonPressed(const OIS::JoyStickEvent &e, int button);
-	virtual bool buttonReleased(const OIS::JoyStickEvent &e, int button);
-
 	static InputManager* instance_;
 
 	OIS::Mouse* mouse_;
 	OIS::Keyboard* keyboard_;
 	OIS::InputManager* inputManager_;
-	std::vector<OIS::JoyStick*> joysticks_;
 
-	std::map<std::string, OIS::KeyListener*> keyListeners_;
-	std::map<std::string, OIS::MouseListener*> mouseListeners_;
-	std::map<std::string, OIS::JoyStickListener*> joystickListeners_;
+	std::map<std::string, Component*> keyListeners_;
+	std::map<std::string, Component*> mouseListeners_;
 };
 
 

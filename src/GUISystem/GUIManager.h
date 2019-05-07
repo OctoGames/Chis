@@ -7,7 +7,7 @@
 #include "InputManager.h"
 #include "RenderManager.h"
 
-class GUIManager : public OIS::KeyListener, public OIS::MouseListener
+class GUIManager
 {
 public:
 	static GUIManager* Instance();
@@ -16,11 +16,11 @@ public:
 	void update(float deltaTime);
 	void close();
 
-	virtual bool keyPressed(const OIS::KeyEvent &e);
-	virtual bool keyReleased(const OIS::KeyEvent &e);
-	virtual bool mouseMoved(const OIS::MouseEvent &e);
-	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
-	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+	bool keyPressed(const OIS::KeyEvent &e);
+	bool keyReleased(const OIS::KeyEvent &e);
+	bool mouseMoved(const OIS::MouseEvent &e);
+	bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+	bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
 	CEGUI::GUIContext& getContext() { return CEGUI::System::getSingleton().getDefaultGUIContext(); }
 	inline CEGUI::OgreRenderer* getOgreRenderer() { return renderer_; }

@@ -2,12 +2,11 @@
 #define __GAME_MANAGER_H__
 
 #include "Component.h"
-#include "InputManager.h"
 #include "GUIManager.h"
 
 enum GUIContext { MAIN_MENU, GAME, END_MENU };
 
-class GameManager : public Component, public OIS::KeyListener, public OIS::MouseListener
+class GameManager : public Component
 {
 public:
 	GameManager();

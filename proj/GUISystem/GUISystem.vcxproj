@@ -81,7 +81,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)src\InputSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\ECSystem;$(SolutionDir)src\InputSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
     <ExtensionsToDeleteOnClean>*.log,*.cdf;*.cache;*.obj;*.obj.enc;*.ilk;*.ipdb;*.iobj;*.resources;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*.tlog;*.manifest;*.res;*.pch;*.exp;*.idb;*.rep;*.xdc;*.pdb;*_manifest.rc;*.bsc;*.sbr;*.xml;*.metagen;*.bi</ExtensionsToDeleteOnClean>
   </PropertyGroup>
@@ -92,7 +92,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)src\InputSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\ECSystem;$(SolutionDir)src\InputSystem;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\cegui-0.8.7\cegui\include;$(SolutionDir)Dependencies\cegui-0.8.7\build\cegui\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin;$(SolutionDir)Dependencies\ogre-1.11.5\build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
     <ExtensionsToDeleteOnClean>*.log,*.cdf;*.cache;*.obj;*.obj.enc;*.ilk;*.ipdb;*.iobj;*.resources;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*.tlog;*.manifest;*.res;*.pch;*.exp;*.idb;*.rep;*.xdc;*.pdb;*_manifest.rc;*.bsc;*.sbr;*.xml;*.metagen;*.bi</ExtensionsToDeleteOnClean>
   </PropertyGroup>
