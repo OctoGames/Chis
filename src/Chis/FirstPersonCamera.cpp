@@ -1,5 +1,6 @@
 #include "FirstPersonCamera.h"
 
+
 std::string FirstPersonCamera::name_ = "FirstPersonCamera";
 
 FirstPersonCamera::FirstPersonCamera() :
@@ -68,7 +69,7 @@ Component * FirstPersonCamera::clone()
 
 void FirstPersonCamera::init()
 {
-	camera_ = RenderManager::Instance()->getSceneManager()->createCamera("FirstPersonCamera_" + gameObject()->getName());
+	camera_ = RenderManager::Instance()->getSceneManager()->createCamera("FirstPersonCamera_" + gameObject()->getGameObjectID());
 	gameObject()->transform()->attachObject(camera_);
 	gameObject()->transform()->setFixedYawAxis(true);
 

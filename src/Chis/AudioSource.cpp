@@ -40,21 +40,21 @@ Component * AudioSource::clone()
 
 void AudioSource::init()
 {
-	AudioSystem::Instance()->addSound(audioId_, filename_);
+	AudioManager::Instance()->addSound(audioId_, filename_);
 	setEnabled(enabled_);
 }
 
 void AudioSource::play()
 {
-	AudioSystem::Instance()->play(audioId_, channel_, volume_, pitch_);
+	AudioManager::Instance()->play(audioId_, channel_, volume_, pitch_);
 }
 
 void AudioSource::pause()
 {
-	AudioSystem::Instance()->pause(channel_);
+	AudioManager::Instance()->pause(channel_);
 }
 
 void AudioSource::stop()
 {
-	AudioSystem::Instance()->stop(channel_);
+	AudioManager::Instance()->stop(channel_);
 }

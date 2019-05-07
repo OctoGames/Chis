@@ -4,8 +4,12 @@
 #include "XMLLoader.h"
 
 // Read the scene and create the objects from the list of components of each one
-class SceneLoader : public XMLLoader {
+class SceneLoader : public XMLLoader 
+{
+public:
+	static SceneLoader* Instance();
 
+	void loadScene(const Ogre::String& SceneName);
 
 private:
 	SceneLoader();
@@ -18,10 +22,5 @@ private:
 	static SceneLoader* instance_;
 
 	const char* PATH_ = "Assets/Scenes/";
-
-public:
-	static SceneLoader* Instance();
-
-	void loadScene(const Ogre::String& SceneName);
 };
 #endif SCENELOADER_H_

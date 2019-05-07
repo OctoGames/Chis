@@ -1,9 +1,6 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
 
-#include <OIS/OISEvents.h>
-#include <OIS/OISInputManager.h>
-
 #include "Component.h"
 
 class InputManager : public OIS::KeyListener, public OIS::MouseListener

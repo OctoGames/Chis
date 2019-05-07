@@ -1,5 +1,6 @@
 #include "DirectionalLight.h"
 
+
 std::string DirectionalLight::name_ = "Light";
 
 DirectionalLight::DirectionalLight() :

@@ -25,7 +25,7 @@ void Application::run()
 		float dt = RenderManager::Instance()->time()->tick();
 		if (dt == 0.0f) continue;
 
-		AudioSystem::Instance()->update();
+		AudioManager::Instance()->update();
 		InputManager::Instance()->update(dt);
 		Physics::Instance()->update(dt);
 		EntityComponentManager::Instance()->update();

@@ -1,13 +1,10 @@
 #include "TimeManager.h"
 
-#include "RenderManager.h"
-
-TimeManager::TimeManager() :
-	timer_(nullptr),
+TimeManager::TimeManager(Ogre::Timer* timer) :
+	timer_(timer),
 	lastTime_(0.0f),
 	deltaTime_(0.0f)
 {
-	timer_ = RenderManager::Instance()->getRoot()->getTimer();
 	timer_->reset();
 }
 

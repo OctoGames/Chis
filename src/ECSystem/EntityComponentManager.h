@@ -11,7 +11,6 @@ struct comp {
 	}
 };
 
-
 class EntityComponentManager
 {
 public:

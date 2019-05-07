@@ -1,9 +1,9 @@
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
 
-#include <SDL.h>
-#include <SDL_video.h>
-#include <SDL_syswm.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_video.h>
+#include <SDL2/SDL_syswm.h>
 
 #include <OgreRenderWindow.h>
 #include <OgreWindowEventUtilities.h>

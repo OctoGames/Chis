@@ -1,15 +1,15 @@
-#ifndef GRAPH_GENERATOR_H_
-#define GRAPH_GENERATOR_H_
+#ifndef __GRAPH_GENERATOR_H__
+#define __GRAPH_GENERATOR_H__
 
-#include "Grafo.h"
-#include "BFS.h"
-#include "EntityComponentManager.h"
-#include "GameObject.h"
-#include <vector>
 #include <string>
-#include <iostream>
 #include <fstream>
-#include <Ogre.h>
+
+#include "BFS.h"
+#include "Grafo.h"
+
+#include "RenderManager.h"
+#include "EntityComponentManager.h"
+
 class GraphGenerator
 {
 private:
@@ -24,6 +24,7 @@ private:
 	void getVertexVector();
 	void readFile(const std::string& filename);
 	int nextNode(int& current);
+
 public:
 	inline Grafo* getGraph() {
 		return graph;
@@ -31,11 +32,13 @@ public:
 	inline BFS* getBFS() {
 		return bfs;
 	}
+
 	void nextNodePosition(int& currentNode);
 	static GraphGenerator* Instance();
 	void init();
+
 	GraphGenerator() {};
 	~GraphGenerator() {};
 };
 
-#endif 
+#endif	// !__GRAPH_GENERATOR_H__

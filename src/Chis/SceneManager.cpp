@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "AudioSource.h"
 
+
 std::string SceneManager::name_ = "SceneManager";
 
 SceneManager::SceneManager()

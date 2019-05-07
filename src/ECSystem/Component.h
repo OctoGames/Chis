@@ -1,10 +1,10 @@
-#ifndef _COMPONENT_H_
-#define _COMPONENT_H_
-
-#include <map>
+#ifndef __COMPONENT_H__
+#define __COMPONENT_H__
 
 #include <OIS/OISMouse.h>
 #include <OIS/OISKeyboard.h>
+#include <OIS/OISEvents.h>
+#include <OIS/OISInputManager.h>
 
 #include "GameObject.h"
 
@@ -62,4 +62,4 @@ public:
 	virtual Component* create() = 0;
 };
 
-#endif
+#endif	// !__COMPONENT_H__

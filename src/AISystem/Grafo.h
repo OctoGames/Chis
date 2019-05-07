@@ -9,8 +9,8 @@
 //  Copyright (c) 2015-2018  Alberto Verdejo
 //
 
-#ifndef GRAFO_H_
-#define GRAFO_H_
+#ifndef __GRAFO_H__
+#define __GRAFO_H__
 
 #include <iostream>
 #include <vector>
@@ -91,4 +91,4 @@ inline std::ostream & operator<<(std::ostream & o, Grafo const& g){
 }
 
 
-#endif /* GRAFO_H_ */
+#endif // !__GRAFO_H__

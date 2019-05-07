@@ -5,7 +5,6 @@
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 #include "InputManager.h"
-#include "RenderManager.h"
 
 class GUIManager
 {

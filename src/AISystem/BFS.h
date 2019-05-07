@@ -1,9 +1,11 @@
-#ifndef _BFS_H_
-#define _BFS_H_
+#ifndef __BFS_H__
+#define __BFS_H__
 
-#include "Grafo.h"
 #include <queue>
 #include <vector>
+
+#include "Grafo.h"
+
 class BFS
 {
 public:
@@ -20,7 +22,6 @@ private:
 	void bfs(Grafo const& G, int s);
 	std::vector<bool> marked; // marked[v] = ¿hay camino de s a v?
 	std::vector<int> distTo;
-	
 };
 
-#endif
+#endif	// !__BFS_H__

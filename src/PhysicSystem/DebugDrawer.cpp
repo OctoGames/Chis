@@ -1,5 +1,6 @@
 #include "DebugDrawer.h"
-#include <iostream>
+
+#include "RenderManager.h"
 
 DebugDrawer* DebugDrawer::instance_ = nullptr;
 

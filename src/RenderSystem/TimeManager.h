@@ -6,7 +6,7 @@
 class TimeManager
 {
 public:
-	TimeManager();
+	TimeManager(Ogre::Timer* timer = nullptr);
 	~TimeManager();
 
 	float tick();

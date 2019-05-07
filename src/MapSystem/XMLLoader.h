@@ -1,11 +1,14 @@
-#pragma once
+#ifndef __XML_LOADER_H__
+#define __XML_LOADER_H__
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <list>
 #include <map>
-#include <Ogre.h>
+
 #include "rapidxml.hpp"
+#include "RenderManager.h"
 #include "EntityComponentManager.h"
 
 class XMLLoader
@@ -13,6 +16,7 @@ class XMLLoader
 public:
 	XMLLoader();
 	~XMLLoader();
+
 protected:
 	Ogre::String getAttrib(rapidxml::xml_node<>* XMLNode, const Ogre::String &attrib, const Ogre::String &defaultValue = "");
 	Ogre::Real getAttribReal(rapidxml::xml_node<>* XMLNode, const Ogre::String &attrib, Ogre::Real defaultValue = 0);
@@ -26,3 +30,4 @@ protected:
 	std::map<std::string, ValueType> params;
 };
 
+#endif // !__XML_LOADER_H__

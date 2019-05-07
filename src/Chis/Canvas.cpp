@@ -2,6 +2,7 @@
 
 #include "SceneManager.h"
 
+
 std::string Canvas::name_ = "Canvas";
 
 Canvas::Canvas() :
@@ -73,6 +74,10 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 	{
 		if (GUIManager::Instance()->getContext().getMouseCursor().isVisible()) RenderManager::Instance()->setRunning(false);
 		else toMainMenu();
+	}
+	else if (e.key == OIS::KC_NUMPADENTER)
+	{
+		if (currentGUIContext_ == GUIContext::MAIN_MENU) toGame();
 	}
 
 	return true;

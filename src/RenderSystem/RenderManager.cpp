@@ -32,7 +32,7 @@ void RenderManager::init()
 
 	loadResources();
 
-	time_ = new TimeManager();
+	time_ = new TimeManager(root_->getTimer());
 
 	sceneManager_ = root_->createSceneManager();
 
