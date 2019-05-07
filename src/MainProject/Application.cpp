@@ -8,6 +8,8 @@
 #include "GunController.h"
 #include "GameManager.h"
 #include "Camera.h"
+#include "Canvas.h"
+#include "SceneManager.h"
 
 Application::Application()
 {
@@ -26,6 +28,8 @@ Application::Application()
 	EntityComponentManager::Instance()->registerFactory("GunController", new GunControllerFactory());
 	EntityComponentManager::Instance()->registerFactory("GameManager", new GameManagerFactory());
 	EntityComponentManager::Instance()->registerFactory("Camera", new CameraFactory());
+	EntityComponentManager::Instance()->registerFactory("Canvas", new CanvasFactory());
+	EntityComponentManager::Instance()->registerFactory("SceneManager", new SceneManagerFactory());
 	
 	ArchetypeLoader::Instance()->loadArchetypes();
 	EntityComponentManager::Instance()->instantiate("GameManager", { 200.0, 100.0, 400.0 });

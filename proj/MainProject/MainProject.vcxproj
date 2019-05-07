@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\src\MainProject\Application.cpp" />
     <ClCompile Include="..\..\src\MainProject\AudioSource.cpp" />
     <ClCompile Include="..\..\src\MainProject\Camera.cpp" />
+    <ClCompile Include="..\..\src\MainProject\Canvas.cpp" />
     <ClCompile Include="..\..\src\MainProject\FirstPersonCamera.cpp" />
     <ClCompile Include="..\..\src\MainProject\GameManager.cpp" />
     <ClCompile Include="..\..\src\MainProject\GunController.cpp" />
@@ -29,17 +30,20 @@
     <ClCompile Include="..\..\src\MainProject\DirectionalLight.cpp" />
     <ClCompile Include="..\..\src\MainProject\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\MainProject\RigidBody.cpp" />
+    <ClCompile Include="..\..\src\MainProject\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\MainProject\Application.h" />
     <ClInclude Include="..\..\src\MainProject\AudioSource.h" />
     <ClInclude Include="..\..\src\MainProject\Camera.h" />
+    <ClInclude Include="..\..\src\MainProject\Canvas.h" />
     <ClInclude Include="..\..\src\MainProject\FirstPersonCamera.h" />
     <ClInclude Include="..\..\src\MainProject\DirectionalLight.h" />
     <ClInclude Include="..\..\src\MainProject\GameManager.h" />
     <ClInclude Include="..\..\src\MainProject\GunController.h" />
     <ClInclude Include="..\..\src\MainProject\MeshRenderer.h" />
     <ClInclude Include="..\..\src\MainProject\RigidBody.h" />
+    <ClInclude Include="..\..\src\MainProject\SceneManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

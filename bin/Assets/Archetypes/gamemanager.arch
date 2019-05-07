@@ -19,5 +19,11 @@
             <user_data value="0.0" type="float" name="color_g" />
             <user_data value="1.0" type="float" name="color_b" />
         </component>
+        <component name="Canvas" >
+            <user_data value="1" type="bool" name="enabled_cv" />
+        </component>
+        <component name="SceneManager" >
+            <user_data value="1" type="bool" name="enabled_sm" />
+        </component>
     </entity>
 </archetype>
