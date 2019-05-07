@@ -37,6 +37,13 @@ void Physics::init()
 	dynamicsWorld_ = new btDiscreteDynamicsWorld(dispatcher_, overlappingPairCache_, solver_, collisionConfiguration_);
 
 	dynamicsWorld_->setGravity(btVector3(0, -9.8, 0));
+
+#if _DEBUG
+	// If true the framerate drops drastically
+	setDebugMode(false);
+#else
+	setDebugMode(false);
+#endif
 }
 
 void Physics::update(float deltaTime)

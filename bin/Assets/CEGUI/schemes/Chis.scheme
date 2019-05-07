@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" name="Chis">
+	<Imageset filename="Chis.imageset" />
+	<Imageset filename="TaharezLook.imageset" />
+	<Font filename="Jura-18.font" />
+	<LookNFeel filename="TaharezLook.looknfeel" />
+	<LookNFeel filename="Chis.looknfeel" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
+
+	<FalagardMapping windowType="TaharezLook/Button"	targetType="CEGUI/PushButton"	renderer="Core/Button"      lookNFeel="TaharezLook/Button" />
+	<FalagardMapping windowType="Chis/StaticImage"		targetType="DefaultWindow"		renderer="Core/StaticImage"	lookNFeel="Chis/StaticImage" />
+</GUIScheme>

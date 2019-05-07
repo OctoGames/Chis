@@ -27,7 +27,7 @@ public:
 	inline CEGUI::Window* getCurrentRoot() { return currentRoot_; }
 
 	CEGUI::Window* createWidget(const CEGUI::String& widgetType, const CEGUI::String& widgetName, CEGUI::Window* parent = nullptr);
-	CEGUI::Window* createRootWidget(const CEGUI::String& rootName);
+	CEGUI::Window* createRootWidget(const CEGUI::String& layoutFile);
 	void setRootWidget(CEGUI::Window* root);
 
 private:

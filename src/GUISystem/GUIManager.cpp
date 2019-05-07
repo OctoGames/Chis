@@ -101,10 +101,10 @@ CEGUI::Window* GUIManager::createWidget(const CEGUI::String & widgetType, const 
 	return widget;
 }
 
-CEGUI::Window * GUIManager::createRootWidget(const CEGUI::String& rootName)
+CEGUI::Window * GUIManager::createRootWidget(const CEGUI::String& layoutFile)
 {
 	CEGUI::WindowManager& windowManager = CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* root = windowManager.createWindow("DefaultWindow", rootName);
+	CEGUI::Window* root = windowManager.loadLayoutFromFile(layoutFile);
 	if (!currentRoot_) setRootWidget(root);
 	return root;
 }

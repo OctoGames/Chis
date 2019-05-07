@@ -35,16 +35,18 @@ Component * GameManager::clone()
 void GameManager::init()
 {
 	// Set default GUI resources
-	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
-	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-10.font");
-	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DejaVuSans-10");
-	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
-	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("TaharezLook/Tooltip");
+	CEGUI::SchemeManager::getSingleton().createFromFile("Chis.scheme");
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("Chis/MouseArrow");
 
 	// Create a root for every game state
-	roots_.push_back(GUIManager::Instance()->createRootWidget("rootMainMenu"));
-	roots_.push_back(GUIManager::Instance()->createRootWidget("rootGame"));
-	roots_.push_back(GUIManager::Instance()->createRootWidget("rootEndMenu"));
+	roots_.push_back(GUIManager::Instance()->createRootWidget("MainMenu.layout"));
+	roots_.push_back(GUIManager::Instance()->createRootWidget("Game.layout"));
+	roots_.push_back(GUIManager::Instance()->createRootWidget("EndMenu.layout"));
+
+	// Init all GUI widgets for all game states
+	createMainMenuGUI();
+	createGameGUI();
+	createEndMenuGUI();
 
 	InputManager::Instance()->addKeyListener(this, "GameManager");
 	InputManager::Instance()->addMouseListener(this, "GameManager");
@@ -54,23 +56,20 @@ void GameManager::init()
 
 void GameManager::start()
 {
-	// Create all GUI widgets for all game states
-	createMainMenuGUI();
-	createGameGUI();
-	createEndMenuGUI();
-
 	createMenuScene();
 }
 
 bool GameManager::keyPressed(const OIS::KeyEvent & e)
 {
 	GUIManager::Instance()->keyPressed(e);
-
-	// TEMPORARY STUFF ----------------------------------------------------
+	
+#ifdef _DEBUG
 	if (e.key == OIS::KC_O) Physics::Instance()->toggleDebugMode();
 	else if (e.key == OIS::KC_P) Physics::Instance()->toggleDebug();
 	else if (e.key == OIS::KC_F) RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
-	else if (e.key == OIS::KC_ESCAPE)
+#endif
+	
+	if (e.key == OIS::KC_ESCAPE)
 	{
 		if (GUIManager::Instance()->getContext().getMouseCursor().isVisible()) RenderManager::Instance()->setRunning(false);
 		else toMainMenu();
@@ -138,17 +137,8 @@ void GameManager::createGameScene()
 // CANVAS component aux functions
 void GameManager::createMainMenuGUI()
 {
-	CEGUI::Window *start = GUIManager::Instance()->createWidget("TaharezLook/Button", "MainMenu/StartButton");
-	start->setPosition(CEGUI::UVector2(CEGUI::UDim(0.45f, 0.0f), CEGUI::UDim(0.35f, 0.0f)));
-	start->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
-	start->setText("Start");
-	start->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&GameManager::toGame, this));
-
-	CEGUI::Window *quit = GUIManager::Instance()->createWidget("TaharezLook/Button", "MainMenu/QuitButton");
-	quit->setPosition(CEGUI::UVector2(CEGUI::UDim(0.45f, 0.0f), CEGUI::UDim(0.5f, 0.0f)));
-	quit->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
-	quit->setText("Quit");
-	quit->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&GameManager::quit, this));
+	GUIManager::Instance()->getCurrentRoot()->getChild("StartButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&GameManager::toGame, this));
+	GUIManager::Instance()->getCurrentRoot()->getChild("QuitButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&GameManager::quit, this));
 }
 
 void GameManager::createGameGUI()
