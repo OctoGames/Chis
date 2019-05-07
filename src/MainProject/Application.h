@@ -4,7 +4,7 @@
 #include "EntityComponentManager.h"
 #include "RenderManager.h"
 #include "InputManager.h"
-#include "UIManager.h"
+#include "GUIManager.h"
 #include "Physics.h"
 #include "SceneLoader.h"
 #include "ArchetypeLoader.h"
@@ -17,12 +17,6 @@ public:
 	~Application();
 
 	void run();
-
-private:
-	void createScene();
-	void updateScene();
-
-	bool sceneCreated_;
 };
 
 #endif // !__APPLICATION_H__

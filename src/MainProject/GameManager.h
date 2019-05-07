@@ -2,8 +2,12 @@
 #define __GAME_MANAGER_H__
 
 #include "Component.h"
+#include "InputManager.h"
+#include "GUIManager.h"
 
-class GameManager : public Component
+enum GUIContext { MAIN_MENU, GAME, END_MENU };
+
+class GameManager : public Component, public OIS::KeyListener, public OIS::MouseListener
 {
 public:
 	GameManager();
@@ -16,8 +20,31 @@ public:
 
 	virtual void start();
 
+	virtual bool keyPressed(const OIS::KeyEvent &e);
+	virtual bool keyReleased(const OIS::KeyEvent &e);
+	virtual bool mouseMoved(const OIS::MouseEvent &e);
+	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+
 private:
+	// Scene functions
+	void createScene();
+
+	// GUI building functions
+	void createMainMenuGUI();
+	void createGameGUI();
+	void createEndMenuGUI();
+
+	// Button callbacks
+	void quit();
+	void toGame();
+	void toMainMenu();
+	void toEndMenu();
+
 	static std::string name_;
+
+	GUIContext currentGUIContext_;
+	std::vector<CEGUI::Window*> roots_;
 };
 
 class GameManagerFactory : public BaseFactory

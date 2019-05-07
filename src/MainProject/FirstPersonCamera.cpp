@@ -1,7 +1,7 @@
 #include "FirstPersonCamera.h"
 
 #include "EntityComponentManager.h"
-#include "UIManager.h"
+#include "GUIManager.h"
 #include "Physics.h"
 
 std::string FirstPersonCamera::name_ = "FirstPersonCamera";
@@ -109,17 +109,6 @@ bool FirstPersonCamera::keyPressed(const OIS::KeyEvent & e)
 	else if (e.key == moveBackwardsKey_) goingBack_ = true;
 	else if (e.key == moveLeftKey_) goingLeft_ = true;
 	else if (e.key == moveRightKey_) goingRight_ = true;
-
-	// TEMPORARY STUFF ----------------------------------------------------
-	// We need a generic game controller to switch states, debug tools, etc.
-	else if (e.key == OIS::KC_O) Physics::Instance()->toggleDebugMode();
-	else if (e.key == OIS::KC_P) Physics::Instance()->toggleDebug();
-	else if (e.key == OIS::KC_F) RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
-	else if (e.key == OIS::KC_ESCAPE)
-	{
-		if (UIManager::Instance()->isMenuClosed()) UIManager::Instance()->openMenu();
-		else RenderManager::Instance()->setRunning(false);
-	}
 
 	return true;
 }
