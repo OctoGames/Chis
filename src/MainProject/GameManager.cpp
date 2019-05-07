@@ -1,5 +1,6 @@
 #include "GameManager.h"
 
+#include "Camera.h"
 #include "AudioSource.h"
 #include "Physics.h"
 #include "SceneLoader.h"
@@ -57,6 +58,8 @@ void GameManager::start()
 	createMainMenuGUI();
 	createGameGUI();
 	createEndMenuGUI();
+
+	createMenuScene();
 }
 
 bool GameManager::keyPressed(const OIS::KeyEvent & e)
@@ -104,12 +107,16 @@ bool GameManager::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id
 	return true;
 }
 
-// SCENE MANAGER component functions
-void GameManager::createScene()
-{
-	//RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
-	//RenderManager::Instance()->getSceneManager()->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50), "Cheese", 1, 1, true, 1.0, 100, 100);
 
+// SCENE MANAGER component functions
+void GameManager::createMenuScene()
+{
+	RenderManager::Instance()->getSceneManager()->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50), "Cheese", 1, 1, true, 1.0, 100, 100);
+	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
+}
+
+void GameManager::createGameScene()
+{
 	SceneLoader::Instance()->loadScene("Scene1.scene");
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
 	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
@@ -127,22 +134,17 @@ void GameManager::createScene()
 #endif
 }
 
+
 // CANVAS component aux functions
 void GameManager::createMainMenuGUI()
 {
-	CEGUI::FrameWindow* fWnd = static_cast<CEGUI::FrameWindow*>(GUIManager::Instance()->createWidget("TaharezLook/FrameWindow", "Window"));
-	fWnd->setPosition(CEGUI::UVector2(CEGUI::UDim(-0.2f, -0.2f), CEGUI::UDim(-0.2f, -0.2f)));
-	fWnd->setSize(CEGUI::USize(CEGUI::UDim(1.3f, 1.3f), CEGUI::UDim(1.3f, 1.3f)));
-	fWnd->setTitleBarEnabled(false);
-	fWnd->setCloseButtonEnabled(false);
-
-	CEGUI::Window *start = GUIManager::Instance()->createWidget("TaharezLook/Button", "MainMenu/StartButton", fWnd);
+	CEGUI::Window *start = GUIManager::Instance()->createWidget("TaharezLook/Button", "MainMenu/StartButton");
 	start->setPosition(CEGUI::UVector2(CEGUI::UDim(0.45f, 0.0f), CEGUI::UDim(0.35f, 0.0f)));
 	start->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
 	start->setText("Start");
 	start->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&GameManager::toGame, this));
 
-	CEGUI::Window *quit = GUIManager::Instance()->createWidget("TaharezLook/Button", "MainMenu/QuitButton", fWnd);
+	CEGUI::Window *quit = GUIManager::Instance()->createWidget("TaharezLook/Button", "MainMenu/QuitButton");
 	quit->setPosition(CEGUI::UVector2(CEGUI::UDim(0.45f, 0.0f), CEGUI::UDim(0.5f, 0.0f)));
 	quit->setSize(CEGUI::USize(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.05, 0)));
 	quit->setText("Quit");
@@ -170,7 +172,10 @@ void GameManager::toGame()
 	GUIManager::Instance()->getContext().getMouseCursor().setVisible(false);
 
 	GUIManager::Instance()->setRootWidget(roots_[GUIContext::GAME]);
-	createScene();
+
+	createGameScene();
+
+	RenderManager::Instance()->getSceneManager()->setSkyPlaneEnabled(false);
 }
 
 void GameManager::toMainMenu()

@@ -7,6 +7,7 @@
 #include "RigidBody.h"
 #include "GunController.h"
 #include "GameManager.h"
+#include "Camera.h"
 
 Application::Application()
 {
@@ -24,9 +25,10 @@ Application::Application()
 	EntityComponentManager::Instance()->registerFactory("RigidBody", new RigidBodyFactory());
 	EntityComponentManager::Instance()->registerFactory("GunController", new GunControllerFactory());
 	EntityComponentManager::Instance()->registerFactory("GameManager", new GameManagerFactory());
+	EntityComponentManager::Instance()->registerFactory("Camera", new CameraFactory());
 	
 	ArchetypeLoader::Instance()->loadArchetypes();
-	EntityComponentManager::Instance()->instantiate("GameManager");
+	EntityComponentManager::Instance()->instantiate("GameManager", { 200.0, 100.0, 400.0 });
 }
 
 Application::~Application()

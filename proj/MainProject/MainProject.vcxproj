@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\MainProject\Application.cpp" />
     <ClCompile Include="..\..\src\MainProject\AudioSource.cpp" />
+    <ClCompile Include="..\..\src\MainProject\Camera.cpp" />
     <ClCompile Include="..\..\src\MainProject\FirstPersonCamera.cpp" />
     <ClCompile Include="..\..\src\MainProject\GameManager.cpp" />
     <ClCompile Include="..\..\src\MainProject\GunController.cpp" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\MainProject\Application.h" />
     <ClInclude Include="..\..\src\MainProject\AudioSource.h" />
+    <ClInclude Include="..\..\src\MainProject\Camera.h" />
     <ClInclude Include="..\..\src\MainProject\FirstPersonCamera.h" />
     <ClInclude Include="..\..\src\MainProject\DirectionalLight.h" />
     <ClInclude Include="..\..\src\MainProject\GameManager.h" />

@@ -38,7 +38,7 @@ Component * DirectionalLight::clone()
 
 void DirectionalLight::init()
 {
-	light_ = RenderManager::Instance()->getSceneManager()->createLight("DirectionalLight_" + gameObject()->getName());
+	light_ = RenderManager::Instance()->getSceneManager()->createLight("DirectionalLight_" + gameObject()->getGameObjectID());
 	light_->setType(Ogre::Light::LT_DIRECTIONAL);
 	light_->setDirection(lightDirection_);
 	lightDirection_.normalise();

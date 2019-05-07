@@ -76,7 +76,7 @@ void FirstPersonCamera::init()
 	gameObject()->transform()->attachObject(camera_);
 	gameObject()->transform()->setFixedYawAxis(true);
 
-	viewport_ = RenderManager::Instance()->getWindow()->addViewport(camera_);
+	viewport_ = RenderManager::Instance()->getWindow()->addViewport(camera_, 1);
 	viewport_->setBackgroundColour(backgroundColour_);
 	viewport_->setAutoUpdated(true);
 

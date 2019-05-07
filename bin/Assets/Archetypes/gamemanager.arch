@@ -8,8 +8,16 @@
               <user_data value="1.0" type="float" name="volume" />
               <user_data value="1.0" type="float" name="pitch" />
         </component>
-		<component name="GameManager" >
-			  <user_data value="1" type="bool" name="enabled_gm" />
+		    <component name="GameManager" >
+		    	    <user_data value="1" type="bool" name="enabled_gm" />
+        </component>
+        <component name="Camera" >
+            <user_data value="1" type="bool" name="enabled_c" />
+            <user_data value="10000.0" type="float" name="far_clip" />
+            <user_data value="0.5" type="float" name="near_clip" />
+            <user_data value="1.0" type="float" name="color_r" />
+            <user_data value="0.0" type="float" name="color_g" />
+            <user_data value="1.0" type="float" name="color_b" />
         </component>
     </entity>
 </archetype>

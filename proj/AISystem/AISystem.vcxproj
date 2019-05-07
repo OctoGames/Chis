@@ -84,7 +84,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)src\MapSystem;$(SolutionDir)src\ECSystem;$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)src\MapSystem;$(SolutionDir)src\ECSystem;$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -94,7 +94,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)src\MapSystem;$(SolutionDir)src\ECSystem;$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(SolutionDir)src\MapSystem;$(SolutionDir)src\ECSystem;$(SolutionDir)src\MainProject;$(SolutionDir)src\RenderSystem;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Bites\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

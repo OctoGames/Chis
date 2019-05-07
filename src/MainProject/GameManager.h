@@ -27,7 +27,8 @@ public:
 
 private:
 	// Scene functions
-	void createScene();
+	void createMenuScene();
+	void createGameScene();
 
 	// GUI building functions
 	void createMainMenuGUI();
@@ -44,6 +45,7 @@ private:
 
 	GUIContext currentGUIContext_;
 	std::vector<CEGUI::Window*> roots_;
+
 };
 
 class GameManagerFactory : public BaseFactory
