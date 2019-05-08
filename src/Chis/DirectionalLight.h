@@ -1,7 +1,7 @@
 #ifndef __DIRECTIONAL_LIGHT_H__
 #define __DIRECTIONAL_LIGHT_H__
 
-#include "Engine.h"
+#include <Engine.h>
 
 class DirectionalLight : public Component
 {

@@ -8,7 +8,7 @@
 #include <OgreRenderWindow.h>
 #include <OgreWindowEventUtilities.h>
 
-class Window : public Ogre::WindowEventListener
+class Window
 {
 public:
 	Window(Ogre::String windowName = "Ogre Application");
@@ -20,9 +20,6 @@ public:
 	void update();
 
 private:
-	virtual void windowResized(Ogre::RenderWindow* rw);
-	virtual void windowClosed(Ogre::RenderWindow* rw);
-
 	SDL_Window* nativeWindow_;
 	Ogre::RenderWindow* renderWindow_;
 };

@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\AISystem\BFS.cpp">
+    <ClCompile Include="..\..\src\AISystem\GraphGenerator.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\AISystem\GraphGenerator.cpp">
+    <ClCompile Include="..\..\src\AISystem\GraphSolver.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\AISystem\BFS.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\AISystem\Grafo.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\AISystem\GraphGenerator.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AISystem\Graph.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AISystem\GraphSolver.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

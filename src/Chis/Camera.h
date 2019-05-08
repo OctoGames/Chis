@@ -1,7 +1,7 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include "Engine.h"
+#include <Engine.h>
 
 class Camera : public Component
 {

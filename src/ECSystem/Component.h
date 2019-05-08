@@ -48,6 +48,7 @@ public:
 	virtual void onDisabled() {}
 	virtual void onDestroy() {}
 
+protected:
 	GameObject* container_;
 	bool first_enabled_;
 	bool enabled_;

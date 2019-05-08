@@ -24,7 +24,7 @@ RenderManager::RenderManager() :
 
 void RenderManager::init()
 {
-	appName_ = "CHIS v0.5.0";
+	appName_ = "CHIS v1.0";
 
 	initRoot();
 

@@ -95,16 +95,16 @@ void SceneLoader::processGameObject(rapidxml::xml_node<>* XMLNode, Ogre::String 
 	else {
 		processComponentsData(XMLNode, messageError);
 
-		Prototype* prototype = EntityComponentManager::Instance()->getPrototype(params.at("prototype_name").s);
+		Prototype* prototype = EntityComponentManager::Instance()->getPrototype(params_.at("prototype_name").s);
 		GameObject* clonedObject = prototype->getEntity()->clone();
 		clonedObject->setName(gameObjectName);
-		clonedObject->transform()->setPosition(params.at("pos_x").f, params.at("pos_y").f, params.at("pos_z").f);
-		clonedObject->transform()->setScale(params.at("scale_x").f, params.at("scale_y").f, params.at("scale_z").f);
-		clonedObject->transform()->setOrientation(params.at("rot_w").f, params.at("rot_x").f, params.at("rot_y").f, params.at("rot_z").f);
+		clonedObject->transform()->setPosition(params_.at("pos_x").f, params_.at("pos_y").f, params_.at("pos_z").f);
+		clonedObject->transform()->setScale(params_.at("scale_x").f, params_.at("scale_y").f, params_.at("scale_z").f);
+		clonedObject->transform()->setOrientation(params_.at("rot_w").f, params_.at("rot_x").f, params_.at("rot_y").f, params_.at("rot_z").f);
 		
 		for (Component* c : prototype->getComponents()) {
 			Component* clonedComponent = c->clone();
-			clonedComponent->load(params);
+			clonedComponent->load(params_);
 			clonedComponent->setContainer(clonedObject);
 			clonedComponent->init();
 		}
@@ -115,7 +115,7 @@ void SceneLoader::processComponentsData(rapidxml::xml_node<>* XMLNode, Ogre::Str
 
 	rapidxml::xml_node<>* pElement;
 	pElement = XMLNode->first_node("user_data");
-	params.clear();
+	params_.clear();
 	while (pElement)
 	{
 		processDataParametres(pElement, messageError);

@@ -8,7 +8,7 @@
 class MeshStrider : public btStridingMeshInterface 
 {
 public:
-	MeshStrider(Ogre::Mesh * m = 0) : mesh_(m) {}
+	MeshStrider(Ogre::Mesh * m = nullptr) : mesh_(m) {}
 
 	void setMesh(Ogre::Mesh * m) { if(m) mesh_ = m; }
 

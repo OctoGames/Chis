@@ -81,7 +81,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <IncludePath>$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -91,7 +91,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include\;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\FMOD\lowlevel\inc;$(SolutionDir)Dependencies\FMOD\fsbank\inc;$(SolutionDir)Dependencies\FMOD\studio\inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

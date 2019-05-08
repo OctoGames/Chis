@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\AISystem\BFS.cpp" />
+    <ClCompile Include="..\..\src\AISystem\GraphSolver.cpp" />
     <ClCompile Include="..\..\src\AISystem\GraphGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\AISystem\BFS.h" />
-    <ClInclude Include="..\..\src\AISystem\Grafo.h" />
+    <ClInclude Include="..\..\src\AISystem\GraphSolver.h" />
+    <ClInclude Include="..\..\src\AISystem\Graph.h" />
     <ClInclude Include="..\..\src\AISystem\GraphGenerator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

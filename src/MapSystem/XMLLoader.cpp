@@ -143,10 +143,10 @@ void XMLLoader::processDataParametres(rapidxml::xml_node<>* XMLNode, Ogre::Strin
 		messageError = messageError + " [SceneLoader] Error: Incorrect loading of the user_data attributes \n";
 	else {
 		if (typeProp == "str")
-			params[nameProp].s = getAttrib(XMLNode, "value");
+			params_[nameProp].s = getAttrib(XMLNode, "value");
 		else if (typeProp == "bool")
-			params[nameProp].b = getAttribBool(XMLNode, "value");
+			params_[nameProp].b = getAttribBool(XMLNode, "value");
 		else if (typeProp == "float")
-			params[nameProp].f = getAttribReal(XMLNode, "value");
+			params_[nameProp].f = getAttribReal(XMLNode, "value");
 	}
 }

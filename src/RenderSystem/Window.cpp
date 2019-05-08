@@ -1,7 +1,6 @@
 #include "Window.h"
 
 #include "RenderManager.h"
-//#include "InputManager.h"
 
 Window::Window(Ogre::String windowName) :
 	nativeWindow_(nullptr),
@@ -32,7 +31,6 @@ Window::Window(Ogre::String windowName) :
 	SDL_ShowCursor(false);
 
 	renderWindow_ = RenderManager::Instance()->getRoot()->createRenderWindow(windowName, w, h, flags, &miscParams);
-	Ogre::WindowEventUtilities::addWindowEventListener(renderWindow_, this);
 }
 
 Window::~Window()
@@ -53,33 +51,10 @@ void Window::update()
 		switch (e.type)
 		{
 		case SDL_QUIT:
-			windowClosed(renderWindow_);
-			break;
-
-		case SDL_WINDOWEVENT_RESIZED:
-			windowResized(renderWindow_);
+			RenderManager::Instance()->setRunning(false);
 			break;
 		}
 	}
 
 	Ogre::WindowEventUtilities::messagePump();
-}
-
-void Window::windowResized(Ogre::RenderWindow * rw)
-{
-	if (rw == renderWindow_)
-	{
-		int left, top;
-		unsigned int width, height, depth;
-		rw->getMetrics(width, height, depth, left, top);
-		//if (InputManager::Instance()->getMouse()) InputManager::Instance()->setWindowExtents(width, height);
-	}
-}
-
-void Window::windowClosed(Ogre::RenderWindow * rw)
-{
-	if (rw == renderWindow_)
-	{
-		RenderManager::Instance()->setRunning(false);
-	}
 }

@@ -1,7 +1,7 @@
 #ifndef __CANVAS_H__
 #define __CANVAS_H__
 
-#include "Engine.h"
+#include <Engine.h>
 
 enum GUIContext { MAIN_MENU, GAME, END_MENU };
 

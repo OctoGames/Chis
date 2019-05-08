@@ -10,18 +10,6 @@
 
 class AudioManager 
 {
-private:
-	AudioManager();
-
-	void ERRCHECK(FMOD_RESULT result);
-
-	static AudioManager* instance_;
-	const char* PATH_ = "Assets/Sounds/";
-	std::map<std::string, FMOD::Sound*> sounds_;
-
-	FMOD_RESULT result_;
-	FMOD::System* system_;
-
 public:
 	static AudioManager* Instance();
 
@@ -33,6 +21,18 @@ public:
 	void stop(FMOD::Channel* channel);
 
 	void release(std::string audioId);
+
+private:
+	AudioManager();
+
+	void ERRCHECK(FMOD_RESULT result);
+
+	static AudioManager* instance_;
+	const char* PATH_ = "Assets/Sounds/";
+	std::map<std::string, FMOD::Sound*> sounds_;
+
+	FMOD_RESULT result_;
+	FMOD::System* system_;
 };
 
 #endif	// !__AUDIO_MANAGER_H__

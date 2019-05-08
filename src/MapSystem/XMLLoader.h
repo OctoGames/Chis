@@ -27,7 +27,7 @@ protected:
 	Ogre::String getGameObjectTag(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError);
 	void processDataParametres(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError);
 
-	std::map<std::string, ValueType> params;
+	std::map<std::string, ValueType> params_;
 };
 
 #endif // !__XML_LOADER_H__

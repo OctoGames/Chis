@@ -1,22 +1,23 @@
 #include "AudioManager.h"
 
+
 AudioManager* AudioManager::instance_ = nullptr;
 
-AudioManager::AudioManager()
+AudioManager* AudioManager::Instance()
+{
+	if (instance_ == nullptr) instance_ = new AudioManager();
+	return instance_;
+}
+
+AudioManager::AudioManager() :
+	system_(nullptr),
+	result_(FMOD_RESULT::FMOD_OK)
 {
 	result_ = FMOD::System_Create(&system_);
 	ERRCHECK(result_);
 
 	result_ = system_->init(128, FMOD_INIT_NORMAL, 0);
 	ERRCHECK(result_);
-}
-
-AudioManager* AudioManager::Instance() 
-{
-	if (instance_ == nullptr) {
-		instance_ = new AudioManager();
-	}
-	return instance_;
 }
 
 void AudioManager::ERRCHECK(FMOD_RESULT result)

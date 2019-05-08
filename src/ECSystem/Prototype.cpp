@@ -1,7 +1,8 @@
 #include "Prototype.h"
 
 Prototype::Prototype(GameObject * container, const std::list<Component*>& components) :
-	container_(container), components_(components)
+	container_(container), 
+	components_(components)
 {
 }
 

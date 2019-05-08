@@ -119,14 +119,14 @@ void ArchetypeLoader::processComponent(rapidxml::xml_node<>* XMLNode, std::list<
 
 		rapidxml::xml_node<>* pElement;
 		pElement = XMLNode->first_node("user_data");
-		params.clear();
+		params_.clear();
 
 		while (pElement)
 		{
 			processDataParametres(pElement, messageError);
 			pElement = pElement->next_sibling("user_data");
 		}
-		component->load(params);
+		component->load(params_);
 		components.push_back(component);
 	}
 }

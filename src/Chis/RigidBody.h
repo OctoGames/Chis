@@ -1,7 +1,7 @@
 #ifndef __RIGIDBODY_H__
 #define __RIGIDBODY_H__
 
-#include "Engine.h"
+#include <Engine.h>
 
 class RigidBody : public Component
 {

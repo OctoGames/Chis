@@ -1,7 +1,7 @@
 #ifndef __CHIS_APP_H__
 #define __CHIS_APP_H__
 
-#include "Engine.h"
+#include <Engine.h>
 
 class ChisApp : public Application
 {

@@ -4,7 +4,10 @@
 
 DebugDrawer* DebugDrawer::instance_ = nullptr;
 
-DebugDrawer::DebugDrawer() : numberOfLines_(0)
+DebugDrawer::DebugDrawer() : 
+	numberOfLines_(0),
+	isDebuggingPhysics_(false),
+	debugModes_(DebugDrawModes::DBG_DrawAabb)
 {
 
 }

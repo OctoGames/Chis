@@ -1,7 +1,7 @@
 #ifndef __FIRST_PERSON_CAMERA_H__
 #define __FIRST_PERSON_CAMERA_H__
 
-#include "Engine.h"
+#include <Engine.h>
 
 class FirstPersonCamera : public Component
 {

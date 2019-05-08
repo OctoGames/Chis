@@ -1,7 +1,7 @@
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
 
-#include "Engine.h"
+#include <Engine.h>
 
 class SceneManager : public Component
 {
