@@ -2,6 +2,7 @@
 #define __RIGIDBODY_H__
 
 #include <Engine.h>
+#include "MeshRenderer.h"
 
 class RigidBody : public Component
 {
@@ -20,7 +21,7 @@ public:
 
 private:
 	static std::string name_;
-
+	
 	float mass_;
 	float radius_;
 	Ogre::Vector3 colliderHalfExtent_;

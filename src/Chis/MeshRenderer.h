@@ -14,6 +14,7 @@ public:
 	virtual Component* clone();
 	virtual void init();
 	inline Ogre::Entity* getEntity(){ return entity_; }
+	Ogre::MeshPtr getMesh() { return entity_->getMesh(); }
 
 private:
 	static std::string name_;

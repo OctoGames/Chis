@@ -157,6 +157,32 @@ btRigidBody * Physics::createRigidBody(GameObject * gameObject, float mass, floa
 	return rigidBody;
 }
 
+btRigidBody * Physics::createRigidBody(GameObject * gameObject, float mass, Ogre::MeshPtr mesh)
+{
+	// Define the initial Transform, Motion State and Debug Object for the RigidBody
+	btTransform* rbTransform = createTransform(gameObject);
+	btDefaultMotionState* rbMotionState = new btDefaultMotionState(*rbTransform);
+	//DebugObject* debugObject = createDebugObject(radius);
+
+	// Define the Shape, Mass and Local Inertia for the RigidBody
+	btScalar rbMass(mass); btVector3 rbLocalInertia(0.0, 0.0, 0.0);
+	MeshStrider* Strider = new MeshStrider(mesh.getPointer());
+	btCollisionShape* rbShape = new btBvhTriangleMeshShape(Strider, true, true);
+	rbShape->calculateLocalInertia(rbMass, rbLocalInertia);
+
+	// Create the RigidBody with all the previous data and store a reference to the GameObject
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(rbMass, rbMotionState, rbShape, rbLocalInertia);
+	btRigidBody* rigidBody = new btRigidBody(rbInfo);
+	rigidBody->setUserPointer(gameObject);
+
+	// Register the new RigidBody in the Physics Manager data structures
+	addRigidBody("rb" + gameObject->getGameObjectID(), rigidBody);
+	//addDebugObject("rb" + gameObject->getGameObjectID(), debugObject);
+
+	dynamicsWorld_->addRigidBody(rigidBody);
+	return rigidBody;
+}
+
 btTransform * Physics::createTransform(GameObject * gameObject)
 {
 	Ogre::SceneNode * node = gameObject->transform();
