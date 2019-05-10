@@ -3,4 +3,5 @@
 	<Image name="Logo" xPos="0" yPos="0"  width="512" height="128" />
 	<Image name="MouseArrow" xPos="512" yPos="0"  width="32" height="32" />
 	<Image name="Reticle" xPos="512" yPos="32"  width="32" height="32" />
+	<Image name="ReticleShotgun" xPos="512" yPos="64"  width="32" height="32" />
 </Imageset>

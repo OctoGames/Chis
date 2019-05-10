@@ -58,6 +58,8 @@ void RenderManager::close()
 	if (root_)
 	{
 		root_->saveConfig();
+		sceneManager_->clearScene();
+		sceneManager_->destroyAllCameras();
 		root_->destroySceneManager(sceneManager_);
 		delete fileSystemLayer_;
 		delete root_;

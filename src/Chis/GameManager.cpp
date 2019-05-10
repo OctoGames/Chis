@@ -28,5 +28,6 @@ Component * GameManager::clone()
 
 void GameManager::init()
 {
+	gameObject()->setDestroyable(false);
 	setEnabled(enabled_);
 }

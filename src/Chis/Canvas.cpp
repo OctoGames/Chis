@@ -47,6 +47,7 @@ void Canvas::init()
 	// Init all GUI widgets for all game states
 	GUIManager::Instance()->getCurrentRoot()->getChild("StartButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::toGame, this));
 	GUIManager::Instance()->getCurrentRoot()->getChild("QuitButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::quit, this));
+	roots_[GUIContext::END_MENU]->getChild("QuitButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::quit, this));
 
 	InputManager::Instance()->addKeyListener(this, "Canvas");
 	InputManager::Instance()->addMouseListener(this, "Canvas");
@@ -73,7 +74,7 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 	if (e.key == OIS::KC_ESCAPE)
 	{
 		if (GUIManager::Instance()->getContext().getMouseCursor().isVisible()) RenderManager::Instance()->setRunning(false);
-		else toMainMenu();
+		else toEndMenu();
 	}
 	else if (e.key == OIS::KC_NUMPADENTER)
 	{
@@ -101,6 +102,12 @@ bool Canvas::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
 	GUIManager::Instance()->mousePressed(e, id);
 
+	if (id == OIS::MB_Right)
+	{
+		roots_[GUIContext::GAME]->getChild("Reticle")->hide();
+		roots_[GUIContext::GAME]->getChild("ReticleShotgun")->show();
+	}
+
 	return true;
 }
 
@@ -124,7 +131,8 @@ void Canvas::toGame()
 	GUIManager::Instance()->getContext().getMouseCursor().setVisible(false);
 
 	GUIManager::Instance()->setRootWidget(roots_[GUIContext::GAME]);
-
+	roots_[GUIContext::GAME]->getChild("Reticle")->show();
+	roots_[GUIContext::GAME]->getChild("ReticleShotgun")->hide();
 	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
 	sceneManager_->createGameScene();
 }
@@ -138,7 +146,7 @@ void Canvas::toMainMenu()
 
 	GUIManager::Instance()->setRootWidget(roots_[GUIContext::MAIN_MENU]);
 
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
+	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "scenemanager"));
 	sceneManager_->createMenuScene();
 }
 

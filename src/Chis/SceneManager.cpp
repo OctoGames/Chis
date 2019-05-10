@@ -41,7 +41,8 @@ void SceneManager::createMenuScene()
 
 void SceneManager::createGameScene()
 {
-	//SceneLoader::Instance()->loadScene("JaviGuapo.scene");
+	EntityComponentManager::Instance()->clear();
+	RenderManager::Instance()->getSceneManager()->clearScene();
 	SceneLoader::Instance()->loadScene("Scene1.scene");
 	RenderManager::Instance()->getSceneManager()->setSkyPlaneEnabled(false);
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");

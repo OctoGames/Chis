@@ -14,6 +14,11 @@ Camera::Camera() :
 
 Camera::~Camera()
 {
+	if (camera_)
+	{
+		RenderManager::Instance()->getSceneManager()->destroyCamera(camera_);
+		camera_ = nullptr;
+	}
 }
 
 void Camera::load(const std::map<std::string, ValueType>& params)

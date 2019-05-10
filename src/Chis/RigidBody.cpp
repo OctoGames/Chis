@@ -12,6 +12,8 @@ RigidBody::RigidBody() :
 
 RigidBody::~RigidBody()
 {
+	//delete rigidBody_;
+	//rigidBody_ = nullptr;
 }
 
 void RigidBody::load(const std::map<std::string, ValueType>& params)

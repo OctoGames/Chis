@@ -13,7 +13,8 @@ AudioSource::AudioSource() :
 
 AudioSource::~AudioSource()
 {
-
+	//delete channel_;
+	//channel_ = nullptr;
 }
 
 void AudioSource::load(const std::map<std::string, ValueType>& params)

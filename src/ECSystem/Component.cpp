@@ -10,7 +10,6 @@ Component::Component() :
 
 Component::~Component()
 {
-	onDestroy();
 }
 
 void Component::setEnabled(bool enabled)

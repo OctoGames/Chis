@@ -2,9 +2,16 @@
 <GUILayout version="4">
     <Window type="DefaultWindow" name="MainMenu">
         <Window type="Chis/StaticImage" name="Reticle">
-            <Property name="Position" value="{ {0.5, 0}, {0.5, 0} }" />
-            <Property name="Size" value="{ {0, 60}, {0, 60} }" />
+            <Property name="Position" value="{ {0.5, -16}, {0.5, -16} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 32}, {0, 32} }" /> <!-- {escala en eje, posicion en eje} -->
             <Property name="Image" value="Chis/Reticle" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
+        <Window type="Chis/StaticImage" name="ReticleShotgun">
+            <Property name="Position" value="{ {0.5, -16}, {0.5, -16} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 32}, {0, 32} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Image" value="Chis/ReticleShotgun" />
             <Property name="BackgroundEnabled" value="false" />
             <Property name="FrameEnabled" value="false" />
         </Window>

@@ -20,26 +20,31 @@ public:
 	void update();
 	void close();
 
-	void addEntity(GameObject* entity);
-	void addComponent(Component* component);
-
-	void registerPrototype(const std::string& prototypeName, Prototype* prototype);
 	void registerFactory(const std::string& factoryName, BaseFactory* f);
+	void registerPrototype(const std::string& prototypeName, Prototype* prototype);
 
-	Component* getComponent(GameObject* gameObject, const std::string& componentName);
+	void addComponent(Component* component);
+	void addEntity(GameObject* entity);
+
 	GameObject* instantiate(const std::string& prototypeName, const Ogre::Vector3& position = Ogre::Vector3::ZERO, const Ogre::Quaternion& orientation = Ogre::Quaternion::IDENTITY);
+	void destroy(GameObject* gameObject);
+	void clean();
 
-	BaseFactory* getFactory(const std::string& factoryName) { return factories_[factoryName]; }
-	Prototype* getPrototype(const std::string& prototypeName) { return prototypes_[prototypeName]; }
-	std::list<Component*> getComponents(const std::string& gameObjectID) { return containers_[gameObjectID]; }
-	std::list<GameObject*> findGameObjectsWithTag(const std::string& gameObjectTag) { return tags_[gameObjectTag]; }
-	GameObject* findGameObjectWithTag(const std::string& gameObjectTag) { return tags_[gameObjectTag].front(); }
+	void clear();
+
+	BaseFactory* getFactory(const std::string& factoryName);
+	Prototype* getPrototype(const std::string& prototypeName);	
+	Component* getComponent(GameObject* gameObject, const std::string& componentName);
+	std::list<Component*> getComponents(const std::string& gameObjectID);
+	std::list<GameObject*> findGameObjectsWithTag(const std::string& gameObjectTag);
+	GameObject* findGameObjectWithTag(const std::string& gameObjectTag);
 
 private:
 	EntityComponentManager();
 
 	static EntityComponentManager* instance_;
 
+	std::list<GameObject*> entities_;
 	std::list<Component*> components_;
 	std::map<std::string, Prototype*, comp> prototypes_;
 	std::map<std::string, BaseFactory*, comp> factories_;

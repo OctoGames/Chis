@@ -27,6 +27,11 @@ FirstPersonCamera::FirstPersonCamera() :
 
 FirstPersonCamera::~FirstPersonCamera()
 {
+	if (camera_)
+	{
+		RenderManager::Instance()->getSceneManager()->destroyCamera(camera_);
+		camera_ = nullptr;
+	}
 }
 
 void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
