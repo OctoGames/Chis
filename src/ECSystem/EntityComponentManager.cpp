@@ -1,5 +1,6 @@
 #include "EntityComponentManager.h"
 
+
 bool disposableEntity(GameObject* o) { return o->isDisposable(); }
 
 EntityComponentManager* EntityComponentManager::instance_ = nullptr;
@@ -47,7 +48,6 @@ void EntityComponentManager::close()
 		delete c;
 		c = nullptr;
 	}
-
 	components_.clear();
 
 	std::cout << "[ECSystem]: Destroying entities...\n";
@@ -73,6 +73,9 @@ void EntityComponentManager::close()
 		a.second = nullptr;
 	}
 	factories_.clear();
+
+	containers_.clear();
+	tags_.clear();
 
 	std::cout << "[ECSystem]: Shutting down...\n\n";
 }
