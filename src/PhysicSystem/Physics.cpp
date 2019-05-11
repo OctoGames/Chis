@@ -57,14 +57,17 @@ void Physics::update(float deltaTime)
 	for (auto a : rigidBodies_)
 	{
 		btRigidBody* rb = a.second;
-		Ogre::SceneNode* n = static_cast<GameObject*>(rb->getUserPointer())->transform();
+		if (static_cast<GameObject*>(rb->getUserPointer())->isActive())
+		{
+			Ogre::SceneNode* n = static_cast<GameObject*>(rb->getUserPointer())->transform();
 
-		btVector3 rbPos = rb->getCenterOfMassPosition();
-		btQuaternion rbRot = rb->getOrientation();
-		Ogre::Vector3 nPos(rbPos.x(), rbPos.y(), rbPos.z());
-		Ogre::Quaternion nRot(rbRot.w(), rbRot.x(), rbRot.y(), rbRot.z());
-		n->setPosition(nPos);
-		n->setOrientation(nRot);
+			btVector3 rbPos = rb->getCenterOfMassPosition();
+			btQuaternion rbRot = rb->getOrientation();
+			Ogre::Vector3 nPos(rbPos.x(), rbPos.y(), rbPos.z());
+			Ogre::Quaternion nRot(rbRot.w(), rbRot.x(), rbRot.y(), rbRot.z());
+			n->setPosition(nPos);
+			n->setOrientation(nRot);
+		}
 	}
 
 	// Proccess all the collisions
@@ -102,8 +105,42 @@ void Physics::update(float deltaTime)
 
 void Physics::close()
 {
+	for (auto a : debugObjects_)
+	{
+		delete a.second;
+	}
+	debugObjects_.clear();
+
+	for (int i = dynamicsWorld_->getNumCollisionObjects() - 1; i >= 0; i--)
+	{
+		btCollisionObject* obj = dynamicsWorld_->getCollisionObjectArray()[i];
+		dynamicsWorld_->removeCollisionObject(obj);
+		btCollisionShape* shape = obj->getCollisionShape();
+		delete shape;
+		delete obj;
+	}
+	rigidBodies_.clear();
+
+	delete dynamicsWorld_;
+	delete solver_;
+	delete overlappingPairCache_;
+	delete dispatcher_;
+	delete collisionConfiguration_;
 }
 
+void Physics::removeRigidbody(btRigidBody* rigidbody)
+{
+	std::string id = static_cast<GameObject*>(rigidbody->getUserPointer())->getGameObjectID();
+	rigidBodies_.erase("rb" + id);
+	
+	delete debugObjects_["rb" + id];
+	debugObjects_.erase("rb" + id);
+
+	dynamicsWorld_->removeCollisionObject(rigidbody);
+	btCollisionShape* shape = rigidbody->getCollisionShape();
+	delete shape;
+	delete rigidbody;
+}
 
 
 // RIGIDBODY FUNCTIONS---------------------------------------------------------
@@ -152,6 +189,32 @@ btRigidBody * Physics::createRigidBody(GameObject * gameObject, float mass, floa
 	// Register the new RigidBody in the Physics Manager data structures
 	addRigidBody("rb" + gameObject->getGameObjectID(), rigidBody);
 	addDebugObject("rb" + gameObject->getGameObjectID(), debugObject);
+
+	dynamicsWorld_->addRigidBody(rigidBody);
+	return rigidBody;
+}
+
+btRigidBody * Physics::createRigidBody(GameObject * gameObject, float mass, Ogre::MeshPtr mesh)
+{
+	// Define the initial Transform, Motion State and Debug Object for the RigidBody
+	btTransform* rbTransform = createTransform(gameObject);
+	btDefaultMotionState* rbMotionState = new btDefaultMotionState(*rbTransform);
+	//DebugObject* debugObject = createDebugObject(radius);
+
+	// Define the Shape, Mass and Local Inertia for the RigidBody
+	btScalar rbMass(mass); btVector3 rbLocalInertia(0.0, 0.0, 0.0);
+	MeshStrider* Strider = new MeshStrider(mesh.getPointer());
+	btCollisionShape* rbShape = new btBvhTriangleMeshShape(Strider, true, true);
+	rbShape->calculateLocalInertia(rbMass, rbLocalInertia);
+
+	// Create the RigidBody with all the previous data and store a reference to the GameObject
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(rbMass, rbMotionState, rbShape, rbLocalInertia);
+	btRigidBody* rigidBody = new btRigidBody(rbInfo);
+	rigidBody->setUserPointer(gameObject);
+
+	// Register the new RigidBody in the Physics Manager data structures
+	addRigidBody("rb" + gameObject->getGameObjectID(), rigidBody);
+	//addDebugObject("rb" + gameObject->getGameObjectID(), debugObject);
 
 	dynamicsWorld_->addRigidBody(rigidBody);
 	return rigidBody;

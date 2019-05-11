@@ -15,6 +15,10 @@ EntityComponentManager::EntityComponentManager()
 {
 }
 
+EntityComponentManager::~EntityComponentManager()
+{
+}
+
 void EntityComponentManager::init()
 {
 	std::cout << "\n[ECSystem]: Initializing...\n";
@@ -24,10 +28,15 @@ void EntityComponentManager::update()
 {
 	for (Component* c : components_)
 	{
-		c->fixedUpdate();
-		c->update();
-		c->lateUpdate();
+		if (c->gameObject()->isActive() && c->isEnabled())
+		{
+			c->fixedUpdate();
+			c->update();
+			c->lateUpdate();
+		}
 	}
+
+	clean();
 }
 
 void EntityComponentManager::close()
@@ -38,7 +47,8 @@ void EntityComponentManager::close()
 		delete c;
 		c = nullptr;
 	}
-	entities_.clear();
+
+	components_.clear();
 
 	std::cout << "[ECSystem]: Destroying entities...\n";
 	for (GameObject* o : entities_)
@@ -46,7 +56,7 @@ void EntityComponentManager::close()
 		delete o;
 		o = nullptr;
 	}
-	components_.clear();
+	entities_.clear();
 
 	for (auto a : prototypes_)
 	{
@@ -120,6 +130,16 @@ void EntityComponentManager::destroy(GameObject * gameObject)
 	gameObject->setActive(false);
 }
 
+void EntityComponentManager::destroyAll()
+{
+	std::cout << "[ECSystem]: Clearing...\n";
+
+	for (GameObject* o : entities_)
+	{
+		if (o->isDestroyable()) destroy(o);
+	}
+}
+
 void EntityComponentManager::clean()
 {
 	for (GameObject* o : entities_)
@@ -185,6 +205,7 @@ std::list<GameObject*> EntityComponentManager::findGameObjectsWithTag(const std:
 Component* EntityComponentManager::getComponent(GameObject* gameObject, const std::string& componentName)
 {
 	std::string id = gameObject->getGameObjectID();
+
 	auto it = containers_.find(id);
 	if (it == containers_.end())
 	{

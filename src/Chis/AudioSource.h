@@ -23,6 +23,8 @@ public:
 	inline void setVolume(float volume) { volume_ = volume; }
 	inline void setPitch(float pitch) { pitch_ = pitch; }
 
+	void changeSource(const std::string& filename);
+
 private:
 	static std::string name_;
 
@@ -31,6 +33,7 @@ private:
 	std::string audioId_;
 	float volume_;
 	float pitch_;
+	bool loop_;
 };
 
 class AudioSourceFactory : public BaseFactory

@@ -28,7 +28,8 @@ public:
 
 	GameObject* instantiate(const std::string& prototypeName, const Ogre::Vector3& position = Ogre::Vector3::ZERO, const Ogre::Quaternion& orientation = Ogre::Quaternion::IDENTITY);
 	void destroy(GameObject* gameObject);
-	void clean();
+
+	void destroyAll();
 
 	BaseFactory* getFactory(const std::string& factoryName);
 	Prototype* getPrototype(const std::string& prototypeName);	
@@ -39,6 +40,9 @@ public:
 
 private:
 	EntityComponentManager();
+	~EntityComponentManager();
+
+	void clean();
 
 	static EntityComponentManager* instance_;
 

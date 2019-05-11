@@ -9,11 +9,14 @@ public:
 	MeshRenderer();
 	virtual ~MeshRenderer();
 
+	virtual void onDisable();
+
 	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
 	virtual Component* clone();
 	virtual void init();
 	inline Ogre::Entity* getEntity(){ return entity_; }
+	Ogre::MeshPtr getMesh() { return entity_->getMesh(); }
 
 private:
 	static std::string name_;

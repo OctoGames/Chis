@@ -12,6 +12,8 @@
 #include "Canvas.h"
 #include "SceneManager.h"
 
+bool ChisApp::reset_ = false;
+
 ChisApp::ChisApp()
 {
 }
@@ -40,9 +42,26 @@ void ChisApp::init()
 	EntityComponentManager::Instance()->instantiate("GameManager", { 200.0, 100.0, 400.0 });
 }
 
+void ChisApp::run()
+{
+	Application::run();
+	if (reset_)
+	{
+		reset_ = false;
+		reset();
+	}
+}
+
 void ChisApp::close()
 {
 	Application::close();
+}
+
+void ChisApp::reset()
+{
+	close();
+	init();
+	run();
 }
 
 //void Application::createScene()

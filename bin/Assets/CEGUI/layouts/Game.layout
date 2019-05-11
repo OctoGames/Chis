@@ -2,11 +2,47 @@
 <GUILayout version="4">
     <Window type="DefaultWindow" name="MainMenu">
         <Window type="Chis/StaticImage" name="Reticle">
-            <Property name="Position" value="{ {0.5, 0}, {0.5, 0} }" />
-            <Property name="Size" value="{ {0, 60}, {0, 60} }" />
+            <Property name="Position" value="{ {0.5, -16}, {0.5, -16} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 32}, {0, 32} }" /> <!-- {escala en eje, posicion en eje} -->
             <Property name="Image" value="Chis/Reticle" />
             <Property name="BackgroundEnabled" value="false" />
             <Property name="FrameEnabled" value="false" />
         </Window>
+        <Window type="Chis/StaticImage" name="ReticleShotgun">
+            <Property name="Position" value="{ {0.5, -16}, {0.5, -16} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 32}, {0, 32} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Image" value="Chis/ReticleShotgun" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
+        <Window type="Chis/StaticImage" name="Life4">
+            <Property name="Position" value="{ {0.01, 0}, {0.01, 0} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 114}, {0, 64} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Image" value="Chis/Life4" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
+        <Window type="Chis/StaticImage" name="Life3">
+            <Property name="Position" value="{ {0.01, 0}, {0.01, 0} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 114}, {0, 64} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Image" value="Chis/Life3" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
+        <Window type="Chis/StaticImage" name="Life2">
+            <Property name="Position" value="{ {0.01, 0}, {0.01, 0} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 114}, {0, 64} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Image" value="Chis/Life2" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
+        <Window type="Chis/StaticImage" name="Life1">
+            <Property name="Position" value="{ {0.01, 0}, {0.01, 0} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 114}, {0, 64} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Image" value="Chis/Life1" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
+
     </Window>
 </GUILayout>

@@ -175,7 +175,7 @@ bool InputManager::keyPressed(const OIS::KeyEvent &e)
 	auto itKeyListenerEnd = keyListeners_.end();
 	for (; itKeyListener != itKeyListenerEnd; ++itKeyListener) 
 	{
-		if (!itKeyListener->second->keyPressed(e)) break;
+		if (itKeyListener->second->isEnabled() && !itKeyListener->second->keyPressed(e)) break;
 	}
 
 	return true;
@@ -187,7 +187,7 @@ bool InputManager::keyReleased(const OIS::KeyEvent &e)
 	auto itKeyListenerEnd = keyListeners_.end();
 	for (; itKeyListener != itKeyListenerEnd; ++itKeyListener) 
 	{
-		if (!itKeyListener->second->keyReleased(e)) break;
+		if (itKeyListener->second->isEnabled() && !itKeyListener->second->keyReleased(e)) break;
 	}
 
 	return true;
@@ -199,7 +199,7 @@ bool InputManager::mouseMoved(const OIS::MouseEvent &e)
 	auto itMouseListenerEnd = mouseListeners_.end();
 	for (; itMouseListener != itMouseListenerEnd; ++itMouseListener) 
 	{
-		if (!itMouseListener->second->mouseMoved(e)) break;
+		if (itMouseListener->second->isEnabled() && !itMouseListener->second->mouseMoved(e)) break;
 	}
 
 	return true;
@@ -211,7 +211,7 @@ bool InputManager::mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id)
 	auto itMouseListenerEnd = mouseListeners_.end();
 	for (; itMouseListener != itMouseListenerEnd; ++itMouseListener)
 	{
-		if (!itMouseListener->second->mousePressed(e, id)) break;
+		if (itMouseListener->second->isEnabled() && !itMouseListener->second->mousePressed(e, id)) break;
 	}
 
 	return true;
@@ -223,7 +223,7 @@ bool InputManager::mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id
 	auto itMouseListenerEnd = mouseListeners_.end();
 	for (; itMouseListener != itMouseListenerEnd; ++itMouseListener)
 	{
-		if (!itMouseListener->second->mouseReleased(e, id)) break;
+		if (itMouseListener->second->isEnabled() && !itMouseListener->second->mouseReleased(e, id)) break;
 	}
 
 	return true;

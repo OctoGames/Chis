@@ -2,6 +2,7 @@
 #define __RIGIDBODY_H__
 
 #include <Engine.h>
+#include "MeshRenderer.h"
 
 class RigidBody : public Component
 {
@@ -14,13 +15,14 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
+	virtual void onDisable();
 	virtual void onCollision(GameObject* gameObject);
 
 	inline btRigidBody* rigidbody() { return rigidBody_; }
 
 private:
 	static std::string name_;
-
+	
 	float mass_;
 	float radius_;
 	Ogre::Vector3 colliderHalfExtent_;

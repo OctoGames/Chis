@@ -15,6 +15,7 @@ void Application::init()
 	RenderManager::Instance()->init();
 	InputManager::Instance()->init();
 	GUIManager::Instance()->init();
+	AudioManager::Instance()->init();
 	Physics::Instance()->init();
 	EntityComponentManager::Instance()->init();
 }
@@ -39,6 +40,7 @@ void Application::close()
 {
 	EntityComponentManager::Instance()->close();
 	Physics::Instance()->close();
+	AudioManager::Instance()->close();
 	GUIManager::Instance()->close();
 	InputManager::Instance()->close();
 	RenderManager::Instance()->close();

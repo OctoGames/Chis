@@ -30,6 +30,9 @@ private:
 	void toGame();
 	void toMainMenu();
 	void toEndMenu();
+	void restart();
+
+	void hitPlayer();
 
 	static std::string name_;
 
@@ -41,6 +44,8 @@ private:
 	std::string mainmenuLayout_;
 	std::string gameLayout_;
 	std::string endmenuLayout_;
+
+	int lives_;
 
 };
 

@@ -33,19 +33,46 @@ void SceneManager::init()
 	setEnabled(enabled_);
 }
 
+void SceneManager::start()
+{
+	AudioSource* song = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	song->changeSource("MusicaFondo.wav");
+	song->play();
+}
+
 void SceneManager::createMenuScene()
 {
+	clearScene();
 	RenderManager::Instance()->getSceneManager()->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50), "Cheese", 1, 1, true, 1.0, 100, 100);
-	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
 }
 
 void SceneManager::createGameScene()
 {
-	SceneLoader::Instance()->loadScene("Scene1.scene");
-	RenderManager::Instance()->getSceneManager()->setSkyPlaneEnabled(false);
+	clearScene();
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
-	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(0.8f, 0.8f, 0.8f));
+
+	SceneLoader::Instance()->loadScene("Scene1.scene");
 
 	AudioSource* song = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	song->stop();
+	song->changeSource("22-The Mouse's House.mp3");
 	song->play();
+}
+
+void SceneManager::createEndScene()
+{
+	clearScene();
+	RenderManager::Instance()->getSceneManager()->setSkyPlane(true, Ogre::Plane(Ogre::Vector3::UNIT_Z, -50), "Cheese", 1, 1, true, 1.0, 100, 100);
+
+	AudioSource* song = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	song->stop();
+	song->changeSource("MusicaFondo.wav");
+	song->play();
+}
+
+void SceneManager::clearScene()
+{
+	EntityComponentManager::Instance()->destroyAll();
+	RenderManager::Instance()->getSceneManager()->clearScene();
+	RenderManager::Instance()->getSceneManager()->setAmbientLight(Ogre::ColourValue(1.0f, 1.0f, 1.0f));
 }

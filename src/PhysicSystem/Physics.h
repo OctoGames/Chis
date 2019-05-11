@@ -11,6 +11,7 @@
 
 #include "EntityComponentManager.h"
 #include "DebugDrawer.h"
+#include "MeshStrider.h"
 
 struct RaycastHit 
 {
@@ -40,6 +41,7 @@ public:
 	void update(float deltaTime);
 	void close();
 
+	void removeRigidbody(btRigidBody* rigidbody);
 	inline void addRigidBody(const std::string& rigidBodyName, btRigidBody* rigidBody) { rigidBodies_[rigidBodyName] = rigidBody; };
 	inline void addDebugObject(const std::string& debugObjectName, DebugObject* debugObject) { debugObjects_[debugObjectName] = debugObject; }
 	inline btRigidBody* getRigidBody(const std::string& rigidBodyName) { return rigidBodies_[rigidBodyName]; }
@@ -47,6 +49,7 @@ public:
 
 	btRigidBody* createRigidBody(GameObject * gameObject, float mass, btVector3 dimension);
 	btRigidBody* createRigidBody(GameObject * gameObject, float mass, float radius);
+	btRigidBody* createRigidBody(GameObject * gameObject, float mass, Ogre::MeshPtr mesh);
 
 	bool raycast(btVector3 from, btVector3 to, RaycastHit* hit = nullptr);
 	bool raycast(btVector3 from, btVector3 normal, float maxLength, RaycastHit* hit = nullptr);

@@ -1,17 +1,20 @@
 #include "Canvas.h"
 
 #include "SceneManager.h"
+#include "ChisApp.h"
 
 
 std::string Canvas::name_ = "Canvas";
 
+// COMPONENT FUNCTIONS --------------------------------------------------------
 Canvas::Canvas() :
 	currentGUIContext_(GUIContext::MAIN_MENU),
 	defaultScheme_("Chis.scheme"),
 	defaultCursor_("Chis/MouseArrow"),
 	mainmenuLayout_("MainMenu.layout"),
 	gameLayout_("Game.layout"),
-	endmenuLayout_("EndMenu.layout")
+	endmenuLayout_("EndMenu.layout"),
+	lives_(4)
 {
 }
 
@@ -45,8 +48,10 @@ void Canvas::init()
 	roots_.push_back(GUIManager::Instance()->createRootWidget(endmenuLayout_));
 
 	// Init all GUI widgets for all game states
-	GUIManager::Instance()->getCurrentRoot()->getChild("StartButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::toGame, this));
-	GUIManager::Instance()->getCurrentRoot()->getChild("QuitButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::quit, this));
+	roots_[GUIContext::MAIN_MENU]->getChild("StartButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::toGame, this));
+	roots_[GUIContext::MAIN_MENU]->getChild("QuitButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::quit, this));
+	roots_[GUIContext::END_MENU]->getChild("ReplayButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::restart, this));
+	roots_[GUIContext::END_MENU]->getChild("QuitButton")->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Canvas::quit, this));
 
 	InputManager::Instance()->addKeyListener(this, "Canvas");
 	InputManager::Instance()->addMouseListener(this, "Canvas");
@@ -56,10 +61,11 @@ void Canvas::init()
 
 void Canvas::start()
 {
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
-	sceneManager_->createMenuScene();
+	toMainMenu();
 }
 
+
+// INPUT FUNCTIONS ------------------------------------------------------------
 bool Canvas::keyPressed(const OIS::KeyEvent & e)
 {
 	GUIManager::Instance()->keyPressed(e);
@@ -72,12 +78,18 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 
 	if (e.key == OIS::KC_ESCAPE)
 	{
-		if (GUIManager::Instance()->getContext().getMouseCursor().isVisible()) RenderManager::Instance()->setRunning(false);
-		else toMainMenu();
+		if (GUIManager::Instance()->getContext().getMouseCursor().isVisible()) quit();
+		else toEndMenu();
 	}
 	else if (e.key == OIS::KC_NUMPADENTER)
 	{
 		if (currentGUIContext_ == GUIContext::MAIN_MENU) toGame();
+		if (currentGUIContext_ == GUIContext::END_MENU) restart();
+	}
+	else if (e.key == OIS::KC_SPACE)
+	{
+		lives_--;
+		hitPlayer();
 	}
 
 	return true;
@@ -101,6 +113,12 @@ bool Canvas::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
 	GUIManager::Instance()->mousePressed(e, id);
 
+	if (id == OIS::MB_Right)
+	{
+		roots_[GUIContext::GAME]->getChild("Reticle")->hide();
+		roots_[GUIContext::GAME]->getChild("ReticleShotgun")->show();
+	}
+
 	return true;
 }
 
@@ -111,22 +129,11 @@ bool Canvas::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 	return true;
 }
 
+
+// BUTTON CALLBACKS -----------------------------------------------------------
 void Canvas::quit()
 {
 	RenderManager::Instance()->setRunning(false);
-}
-
-void Canvas::toGame()
-{
-	roots_[GUIContext::GAME]->show();
-	roots_[GUIContext::END_MENU]->hide();
-	roots_[GUIContext::MAIN_MENU]->hide();
-	GUIManager::Instance()->getContext().getMouseCursor().setVisible(false);
-
-	GUIManager::Instance()->setRootWidget(roots_[GUIContext::GAME]);
-
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
-	sceneManager_->createGameScene();
 }
 
 void Canvas::toMainMenu()
@@ -136,10 +143,28 @@ void Canvas::toMainMenu()
 	roots_[GUIContext::MAIN_MENU]->show();
 	GUIManager::Instance()->getContext().getMouseCursor().setVisible(true);
 
-	GUIManager::Instance()->setRootWidget(roots_[GUIContext::MAIN_MENU]);
+	currentGUIContext_ = GUIContext::MAIN_MENU;
+	GUIManager::Instance()->setRootWidget(roots_[currentGUIContext_]);
 
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "scenemanager"));
+	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
 	sceneManager_->createMenuScene();
+}
+
+void Canvas::toGame()
+{
+	roots_[GUIContext::GAME]->show();
+	roots_[GUIContext::END_MENU]->hide();
+	roots_[GUIContext::MAIN_MENU]->hide();
+	GUIManager::Instance()->getContext().getMouseCursor().setVisible(false);
+
+	currentGUIContext_ = GUIContext::GAME;
+	GUIManager::Instance()->setRootWidget(roots_[currentGUIContext_]);
+	roots_[currentGUIContext_]->getChild("Reticle")->show();
+	roots_[currentGUIContext_]->getChild("ReticleShotgun")->hide();
+
+	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
+	sceneManager_->createGameScene();
+
 }
 
 void Canvas::toEndMenu()
@@ -149,7 +174,23 @@ void Canvas::toEndMenu()
 	roots_[GUIContext::MAIN_MENU]->hide();
 	GUIManager::Instance()->getContext().getMouseCursor().setVisible(true);
 
-	GUIManager::Instance()->setRootWidget(roots_[GUIContext::END_MENU]);
+	currentGUIContext_ = GUIContext::END_MENU;
+	GUIManager::Instance()->setRootWidget(roots_[currentGUIContext_]);
 
-	// Call to SceneManager to change scene setup
+	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
+	sceneManager_->createEndScene();
+}
+
+void Canvas::restart()
+{
+	ChisApp::reset_ = true;
+	RenderManager::Instance()->setRunning(false);
+}
+
+void Canvas::hitPlayer()
+{
+	if (lives_ == 3) roots_[GUIContext::GAME]->getChild("Life4")->hide();
+	else if (lives_ == 2) roots_[GUIContext::GAME]->getChild("Life3")->hide();
+	else if (lives_ == 1) roots_[GUIContext::GAME]->getChild("Life2")->hide();
+	else toEndMenu();
 }

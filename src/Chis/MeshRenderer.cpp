@@ -18,6 +18,12 @@ MeshRenderer::~MeshRenderer()
 	}
 }
 
+void MeshRenderer::onDisable()
+{
+	RenderManager::Instance()->getSceneManager()->destroyEntity(entity_);
+	entity_ = nullptr;
+}
+
 void MeshRenderer::load(const std::map<std::string, ValueType>& params)
 {
 	std::map<std::string, ValueType>::const_iterator it;
