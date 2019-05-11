@@ -41,6 +41,7 @@ public:
 	void update(float deltaTime);
 	void close();
 
+	void removeRigidbody(btRigidBody* rigidbody);
 	inline void addRigidBody(const std::string& rigidBodyName, btRigidBody* rigidBody) { rigidBodies_[rigidBodyName] = rigidBody; };
 	inline void addDebugObject(const std::string& debugObjectName, DebugObject* debugObject) { debugObjects_[debugObjectName] = debugObject; }
 	inline btRigidBody* getRigidBody(const std::string& rigidBodyName) { return rigidBodies_[rigidBodyName]; }

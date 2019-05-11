@@ -25,7 +25,7 @@ GameObject::~GameObject()
 void GameObject::setActive(bool active)
 {
 	active_ = active;
-	if (!active_) node_->setVisible(false);
+	//if (!active_) node_->setVisible(false);
 }
 
 GameObject * GameObject::clone()

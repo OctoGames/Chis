@@ -10,7 +10,12 @@ public:
 	~ChisApp();
 
 	virtual void init();
+	virtual void run();
 	virtual void close();
+
+	void reset();
+
+	static bool reset_;
 };
 
 #endif // !__CHIS_APP_H__

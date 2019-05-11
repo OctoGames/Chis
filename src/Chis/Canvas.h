@@ -30,6 +30,7 @@ private:
 	void toGame();
 	void toMainMenu();
 	void toEndMenu();
+	void restart();
 
 	static std::string name_;
 

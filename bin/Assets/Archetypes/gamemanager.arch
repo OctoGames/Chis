@@ -7,6 +7,7 @@
               <user_data value="MouseMusic" type="str" name="audio_id" />
               <user_data value="1.0" type="float" name="volume" />
               <user_data value="1.0" type="float" name="pitch" />
+              <user_data value="1" type="bool" name="loop" />
         </component>
 		    <component name="GameManager" >
 		    	    <user_data value="1" type="bool" name="enabled_gm" />

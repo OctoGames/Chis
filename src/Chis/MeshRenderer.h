@@ -9,6 +9,8 @@ public:
 	MeshRenderer();
 	virtual ~MeshRenderer();
 
+	virtual void onDisable();
+
 	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
 	virtual Component* clone();

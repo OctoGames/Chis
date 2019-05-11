@@ -12,8 +12,6 @@ RigidBody::RigidBody() :
 
 RigidBody::~RigidBody()
 {
-	//delete rigidBody_;
-	//rigidBody_ = nullptr;
 }
 
 void RigidBody::load(const std::map<std::string, ValueType>& params)
@@ -62,6 +60,12 @@ void RigidBody::init()
 			btVector3(colliderHalfExtent_.x, colliderHalfExtent_.y, colliderHalfExtent_.z));
 
 	setEnabled(enabled_);
+}
+
+void RigidBody::onDisable()
+{
+	Physics::Instance()->removeRigidbody(rigidBody_);
+	rigidBody_ = nullptr;
 }
 
 void RigidBody::onCollision(GameObject * gameObject)

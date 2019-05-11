@@ -105,8 +105,42 @@ void Physics::update(float deltaTime)
 
 void Physics::close()
 {
+	for (auto a : debugObjects_)
+	{
+		delete a.second;
+	}
+	debugObjects_.clear();
+
+	for (int i = dynamicsWorld_->getNumCollisionObjects() - 1; i >= 0; i--)
+	{
+		btCollisionObject* obj = dynamicsWorld_->getCollisionObjectArray()[i];
+		dynamicsWorld_->removeCollisionObject(obj);
+		btCollisionShape* shape = obj->getCollisionShape();
+		delete shape;
+		delete obj;
+	}
+	rigidBodies_.clear();
+
+	delete dynamicsWorld_;
+	delete solver_;
+	delete overlappingPairCache_;
+	delete dispatcher_;
+	delete collisionConfiguration_;
 }
 
+void Physics::removeRigidbody(btRigidBody* rigidbody)
+{
+	std::string id = static_cast<GameObject*>(rigidbody->getUserPointer())->getGameObjectID();
+	rigidBodies_.erase("rb" + id);
+	
+	delete debugObjects_["rb" + id];
+	debugObjects_.erase("rb" + id);
+
+	dynamicsWorld_->removeCollisionObject(rigidbody);
+	btCollisionShape* shape = rigidbody->getCollisionShape();
+	delete shape;
+	delete rigidbody;
+}
 
 
 // RIGIDBODY FUNCTIONS---------------------------------------------------------

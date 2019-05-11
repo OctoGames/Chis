@@ -209,29 +209,16 @@ Component* EntityComponentManager::getComponent(GameObject* gameObject, const st
 {
 	std::string id = gameObject->getGameObjectID();
 
-	Component* comp = nullptr;
-
-	for (Component* c : containers_[id])
+	auto it = containers_.find(id);
+	if (it == containers_.end())
 	{
-		if (c->getName() == componentName)
-		{
-			comp = c;
-			break;
-		}
+		std::cout << "[ECSystem]: Cannot find " << id << " entity!\n";
+		return nullptr;
 	}
-
-	return comp;
-
-	//auto it = containers_.find(id);
-	//if (it == containers_.end())
-	//{
-	//	std::cout << "[ECSystem]: Cannot find " << id << " entity!\n";
-	//	return nullptr;
-	//}
-	//auto iter = containers_[id].begin();
-	//while (iter != containers_[id].end() && (*iter)->getName() != componentName) iter++;
-	//if (iter != containers_[id].end()) return (*iter);
-	//else return nullptr;
+	auto iter = containers_[id].begin();
+	while (iter != containers_[id].end() && (*iter)->getName() != componentName) iter++;
+	if (iter != containers_[id].end()) return (*iter);
+	else return nullptr;
 }
 
 std::list<Component*> EntityComponentManager::getComponents(const std::string & gameObjectID)

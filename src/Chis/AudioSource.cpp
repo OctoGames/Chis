@@ -7,23 +7,25 @@ AudioSource::AudioSource() :
 	filename_(""),
 	audioId_(""),
 	volume_(0.0f),
-	pitch_(0.0f)
+	pitch_(0.0f),
+	loop_(false)
 {
 }
 
 AudioSource::~AudioSource()
 {
-	//delete channel_;
-	//channel_ = nullptr;
 }
 
 void AudioSource::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_as").b;
-	filename_ = params.at("filename").s;
-	audioId_ = params.at("audio_id").s;
-	volume_ = params.at("volume").f;
-	pitch_ = params.at("pitch").f;
+	auto it = params.begin();
+
+	it = params.find("enabled_as"); if (it != params.end()) enabled_ = params.at("enabled_as").b;
+	it = params.find("filename"); if (it != params.end()) filename_ = params.at("filename").s;
+	it = params.find("audio_id"); if (it != params.end()) audioId_ = params.at("audio_id").s;
+	it = params.find("volume"); if (it != params.end()) volume_ = params.at("volume").f;
+	it = params.find("pitch"); if (it != params.end()) pitch_ = params.at("pitch").f;
+	it = params.find("loop"); if (it != params.end()) loop_ = params.at("loop").b;
 }
 
 Component * AudioSource::clone()
@@ -35,6 +37,7 @@ Component * AudioSource::clone()
 	clonedComponent->audioId_ = this->audioId_;
 	clonedComponent->volume_ = this->volume_;
 	clonedComponent->pitch_ = this->pitch_;
+	clonedComponent->loop_ = this->loop_;
 
 	return clonedComponent;
 }
@@ -47,7 +50,7 @@ void AudioSource::init()
 
 void AudioSource::play()
 {
-	AudioManager::Instance()->play(audioId_, channel_, volume_, pitch_);
+	channel_ = AudioManager::Instance()->play(audioId_, volume_, pitch_, loop_);
 }
 
 void AudioSource::pause()
