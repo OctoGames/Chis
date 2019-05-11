@@ -62,3 +62,9 @@ void AudioSource::stop()
 {
 	AudioManager::Instance()->stop(channel_);
 }
+
+void AudioSource::changeSource(const std::string& filename)
+{
+	filename_ = filename;
+	AudioManager::Instance()->addSound(audioId_, filename_);
+}

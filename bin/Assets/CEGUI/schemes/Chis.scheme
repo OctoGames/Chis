@@ -7,6 +7,7 @@
 	<LookNFeel filename="Chis.looknfeel" />
 	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
 
-	<FalagardMapping windowType="TaharezLook/Button"	targetType="CEGUI/PushButton"	renderer="Core/Button"      lookNFeel="TaharezLook/Button" />
+	<FalagardMapping windowType="Chis/Button"	targetType="CEGUI/PushButton"	renderer="Core/Button"      lookNFeel="Chis/Button" />
 	<FalagardMapping windowType="Chis/StaticImage"		targetType="DefaultWindow"		renderer="Core/StaticImage"	lookNFeel="Chis/StaticImage" />
+	<FalagardMapping windowType="TaharezLook/StaticText"  targetType="DefaultWindow" renderer="Core/StaticText"  lookNFeel="TaharezLook/StaticText" />
 </GUIScheme>

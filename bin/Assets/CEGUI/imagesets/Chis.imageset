@@ -4,4 +4,8 @@
 	<Image name="MouseArrow" xPos="512" yPos="0"  width="32" height="32" />
 	<Image name="Reticle" xPos="512" yPos="32"  width="32" height="32" />
 	<Image name="ReticleShotgun" xPos="512" yPos="64"  width="32" height="32" />
+	<Image name="Life4" xPos="544" yPos="0"  width="106" height="64" />
+	<Image name="Life3" xPos="544" yPos="64"  width="106" height="64" />
+	<Image name="Life2" xPos="650" yPos="0"  width="106" height="64" />
+	<Image name="Life1" xPos="650" yPos="64"  width="106" height="64" />
 </Imageset>

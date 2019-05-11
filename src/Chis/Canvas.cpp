@@ -13,7 +13,8 @@ Canvas::Canvas() :
 	defaultCursor_("Chis/MouseArrow"),
 	mainmenuLayout_("MainMenu.layout"),
 	gameLayout_("Game.layout"),
-	endmenuLayout_("EndMenu.layout")
+	endmenuLayout_("EndMenu.layout"),
+	lives_(4)
 {
 }
 
@@ -84,6 +85,11 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 	{
 		if (currentGUIContext_ == GUIContext::MAIN_MENU) toGame();
 		if (currentGUIContext_ == GUIContext::END_MENU) restart();
+	}
+	else if (e.key == OIS::KC_SPACE)
+	{
+		lives_--;
+		hitPlayer();
 	}
 
 	return true;
@@ -178,4 +184,12 @@ void Canvas::restart()
 {
 	ChisApp::reset_ = true;
 	RenderManager::Instance()->setRunning(false);
+}
+
+void Canvas::hitPlayer()
+{
+	if (lives_ == 3) roots_[GUIContext::GAME]->getChild("Life4")->hide();
+	else if (lives_ == 2) roots_[GUIContext::GAME]->getChild("Life3")->hide();
+	else if (lives_ == 1) roots_[GUIContext::GAME]->getChild("Life2")->hide();
+	else toEndMenu();
 }

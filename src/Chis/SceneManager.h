@@ -14,6 +14,8 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
+	virtual void start();
+
 	void createMenuScene();
 	void createGameScene();
 	void createEndScene();

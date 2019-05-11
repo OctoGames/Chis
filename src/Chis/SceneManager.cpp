@@ -33,6 +33,13 @@ void SceneManager::init()
 	setEnabled(enabled_);
 }
 
+void SceneManager::start()
+{
+	AudioSource* song = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	song->changeSource("MusicaFondo.wav");
+	song->play();
+}
+
 void SceneManager::createMenuScene()
 {
 	clearScene();
@@ -47,6 +54,8 @@ void SceneManager::createGameScene()
 	SceneLoader::Instance()->loadScene("Scene1.scene");
 
 	AudioSource* song = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	song->stop();
+	song->changeSource("22-The Mouse's House.mp3");
 	song->play();
 }
 
@@ -57,6 +66,8 @@ void SceneManager::createEndScene()
 
 	AudioSource* song = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
 	song->stop();
+	song->changeSource("MusicaFondo.wav");
+	song->play();
 }
 
 void SceneManager::clearScene()
