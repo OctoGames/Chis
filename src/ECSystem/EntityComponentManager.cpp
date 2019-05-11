@@ -1,8 +1,7 @@
 #include "EntityComponentManager.h"
 
+
 bool disposableEntity(GameObject* o) { return o->isDisposable(); }
-bool destroyableComponent(Component* c) { return c->gameObject()->isDestroyable(); }
-bool destroyableGameObject(GameObject* o) { return o->isDestroyable(); }
 
 EntityComponentManager* EntityComponentManager::instance_ = nullptr;
 
@@ -17,6 +16,10 @@ EntityComponentManager::EntityComponentManager()
 {
 }
 
+EntityComponentManager::~EntityComponentManager()
+{
+}
+
 void EntityComponentManager::init()
 {
 	std::cout << "\n[ECSystem]: Initializing...\n";
@@ -26,10 +29,15 @@ void EntityComponentManager::update()
 {
 	for (Component* c : components_)
 	{
-		c->fixedUpdate();
-		c->update();
-		c->lateUpdate();
+		if (c->gameObject()->isActive() && c->isEnabled())
+		{
+			c->fixedUpdate();
+			c->update();
+			c->lateUpdate();
+		}
 	}
+
+	clean();
 }
 
 void EntityComponentManager::close()
@@ -66,8 +74,8 @@ void EntityComponentManager::close()
 	}
 	factories_.clear();
 
-	tags_.clear();
 	containers_.clear();
+	tags_.clear();
 
 	std::cout << "[ECSystem]: Shutting down...\n\n";
 }
@@ -125,6 +133,16 @@ void EntityComponentManager::destroy(GameObject * gameObject)
 	gameObject->setActive(false);
 }
 
+void EntityComponentManager::destroyAll()
+{
+	std::cout << "[ECSystem]: Clearing...\n";
+
+	for (GameObject* o : entities_)
+	{
+		if (o->isDestroyable()) destroy(o);
+	}
+}
+
 void EntityComponentManager::clean()
 {
 	for (GameObject* o : entities_)
@@ -138,36 +156,6 @@ void EntityComponentManager::clean()
 			if (tag != "") tags_[tag].remove_if(disposableEntity);
 		}
 	}
-}
-
-void EntityComponentManager::clear()
-{
-	std::cout << "[ECSystem]: Destroying components...\n";
-	for (Component* c : components_)
-	{
-		if (c->gameObject()->isDestroyable())
-		{
-			delete c;
-			c = nullptr;
-		}
-	}
-	components_.remove_if(destroyableComponent);
-
-	std::cout << "[ECSystem]: Destroying entities...\n";
-	for (GameObject* o : entities_)
-	{
-		if (o->isDestroyable())
-		{
-			delete o;
-			o = nullptr;
-		}
-	}
-	entities_.remove_if(destroyableGameObject);
-
-	tags_.clear();
-	containers_.clear();
-
-	std::cout << "[ECSystem]: Cleared\n";
 }
 
 
@@ -220,16 +208,30 @@ std::list<GameObject*> EntityComponentManager::findGameObjectsWithTag(const std:
 Component* EntityComponentManager::getComponent(GameObject* gameObject, const std::string& componentName)
 {
 	std::string id = gameObject->getGameObjectID();
-	auto it = containers_.find(id);
-	if (it == containers_.end())
+
+	Component* comp = nullptr;
+
+	for (Component* c : containers_[id])
 	{
-		std::cout << "[ECSystem]: Cannot find " << id << " entity!\n";
-		return nullptr;
+		if (c->getName() == componentName)
+		{
+			comp = c;
+			break;
+		}
 	}
-	auto iter = containers_[id].begin();
-	while (iter != containers_[id].end() && (*iter)->getName() != componentName) iter++;
-	if (iter != containers_[id].end()) return (*iter);
-	else return nullptr;
+
+	return comp;
+
+	//auto it = containers_.find(id);
+	//if (it == containers_.end())
+	//{
+	//	std::cout << "[ECSystem]: Cannot find " << id << " entity!\n";
+	//	return nullptr;
+	//}
+	//auto iter = containers_[id].begin();
+	//while (iter != containers_[id].end() && (*iter)->getName() != componentName) iter++;
+	//if (iter != containers_[id].end()) return (*iter);
+	//else return nullptr;
 }
 
 std::list<Component*> EntityComponentManager::getComponents(const std::string & gameObjectID)

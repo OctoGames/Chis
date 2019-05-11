@@ -10,30 +10,35 @@ public:
 	~GameObject();
 
 	inline Ogre::SceneNode* transform() { return node_; }
-	inline std::string getParent() const { return parentTag_; }
+
+	inline void setName(const std::string& name) { name_ = name; }
 	inline std::string getName() const { return name_; }
+	inline std::string getGameObjectID() const { return uniqueId_; }
 	inline std::string getTag() const { return tag_; }
-	inline std::string getGameObjectID() const { return unique_id_; }
-	inline bool isActive() const { return active_; }
-	void setActive(bool active);
+	inline std::string getParent() const { return parentTag_; }
+
 	inline bool isDisposable() const { return disposable_; }
 	inline void setDisposable(bool disposable) { disposable_ = disposable; }
-	inline void setName(const std::string& name) { name_ = name; }
-	inline bool isDestroyable() const { return !dontDestroyOnLoad_; }
-	inline void setDestroyable(bool destroyable) { dontDestroyOnLoad_ == !destroyable; }
+	inline bool isDestroyable() const { return destroyable_; }
+	inline void setDestroyable(bool destroyable) { destroyable_ = destroyable; }
+	inline bool isActive() const { return active_; }
+	void setActive(bool active);
+
 	GameObject* clone();
 
 private:
+	static int gameObjectId_;
+
 	Ogre::SceneNode* node_;
-	std::string parentTag_;
+	
 	std::string name_;
+	std::string uniqueId_;
 	std::string tag_;
-	std::string unique_id_;
+	std::string parentTag_;
+
 	bool active_;
 	bool disposable_;
-	bool dontDestroyOnLoad_;
-
-	static int game_object_count_;
+	bool destroyable_;
 };
 
 #endif

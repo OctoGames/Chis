@@ -11,11 +11,6 @@ MeshRenderer::MeshRenderer() :
 
 MeshRenderer::~MeshRenderer()
 {
-	if (entity_)
-	{
-		RenderManager::Instance()->getSceneManager()->destroyEntity(entity_);
-		entity_ = nullptr;
-	}
 }
 
 void MeshRenderer::load(const std::map<std::string, ValueType>& params)

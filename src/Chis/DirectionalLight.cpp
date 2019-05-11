@@ -13,11 +13,6 @@ DirectionalLight::DirectionalLight() :
 
 DirectionalLight::~DirectionalLight()
 {
-	if (light_)
-	{
-		RenderManager::Instance()->getSceneManager()->destroyLight(light_);
-		light_ = nullptr;
-	}
 }
 
 void DirectionalLight::load(const std::map<std::string, ValueType>& params)

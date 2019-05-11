@@ -38,20 +38,29 @@ Component * RigidBody::clone()
 
 void RigidBody::init()
 {
-	if (mass_ == 0) 
-	{
-		MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(container_, "MeshRenderer"));
-		rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, mr->getMesh());
-	}
-	else {
-		// Sphere Shape
-		if (radius_ > 0.0)
-			rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, radius_);
-		// Box Shape
-		else
-			rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_,
-				btVector3(colliderHalfExtent_.x, colliderHalfExtent_.y, colliderHalfExtent_.z));
-	}
+	//if (mass_ == 0) 
+	//{
+	//	MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(container_, "MeshRenderer"));
+	//	rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, mr->getMesh());
+	//}
+	//else {
+	//	// Sphere Shape
+	//	if (radius_ > 0.0)
+	//		rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, radius_);
+	//	// Box Shape
+	//	else
+	//		rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_,
+	//			btVector3(colliderHalfExtent_.x, colliderHalfExtent_.y, colliderHalfExtent_.z));
+	//}
+
+	// Sphere Shape
+	if (radius_ > 0.0)
+		rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, radius_);
+	// Box Shape
+	else
+		rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_,
+			btVector3(colliderHalfExtent_.x, colliderHalfExtent_.y, colliderHalfExtent_.z));
+
 	setEnabled(enabled_);
 }
 

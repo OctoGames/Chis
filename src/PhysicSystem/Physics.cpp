@@ -57,14 +57,17 @@ void Physics::update(float deltaTime)
 	for (auto a : rigidBodies_)
 	{
 		btRigidBody* rb = a.second;
-		Ogre::SceneNode* n = static_cast<GameObject*>(rb->getUserPointer())->transform();
+		if (static_cast<GameObject*>(rb->getUserPointer())->isActive())
+		{
+			Ogre::SceneNode* n = static_cast<GameObject*>(rb->getUserPointer())->transform();
 
-		btVector3 rbPos = rb->getCenterOfMassPosition();
-		btQuaternion rbRot = rb->getOrientation();
-		Ogre::Vector3 nPos(rbPos.x(), rbPos.y(), rbPos.z());
-		Ogre::Quaternion nRot(rbRot.w(), rbRot.x(), rbRot.y(), rbRot.z());
-		n->setPosition(nPos);
-		n->setOrientation(nRot);
+			btVector3 rbPos = rb->getCenterOfMassPosition();
+			btQuaternion rbRot = rb->getOrientation();
+			Ogre::Vector3 nPos(rbPos.x(), rbPos.y(), rbPos.z());
+			Ogre::Quaternion nRot(rbRot.w(), rbRot.x(), rbRot.y(), rbRot.z());
+			n->setPosition(nPos);
+			n->setOrientation(nRot);
+		}
 	}
 
 	// Proccess all the collisions

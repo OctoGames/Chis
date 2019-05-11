@@ -16,9 +16,12 @@ public:
 
 	void createMenuScene();
 	void createGameScene();
+	void createEndScene();
 
 private:
 	static std::string name_;
+
+	void clearScene();
 };
 
 class SceneManagerFactory : public BaseFactory
