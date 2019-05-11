@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\src\Chis\Canvas.cpp" />
     <ClCompile Include="..\..\src\Chis\ChisApp.cpp" />
     <ClCompile Include="..\..\src\Chis\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\..\src\Chis\FirstPersonMovement.cpp" />
     <ClCompile Include="..\..\src\Chis\GameManager.cpp" />
     <ClCompile Include="..\..\src\Chis\GunController.cpp" />
     <ClCompile Include="..\..\src\Chis\Main.cpp" />
@@ -39,6 +40,7 @@
     <ClInclude Include="..\..\src\Chis\ChisApp.h" />
     <ClInclude Include="..\..\src\Chis\FirstPersonCamera.h" />
     <ClInclude Include="..\..\src\Chis\DirectionalLight.h" />
+    <ClInclude Include="..\..\src\Chis\FirstPersonMovement.h" />
     <ClInclude Include="..\..\src\Chis\GameManager.h" />
     <ClInclude Include="..\..\src\Chis\GunController.h" />
     <ClInclude Include="..\..\src\Chis\MeshRenderer.h" />

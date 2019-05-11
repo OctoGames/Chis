@@ -11,5 +11,9 @@
 			<user_data value="200.0" type="float" name="max_speed" />
             <user_data value="180.0" type="float" name="pitch_limit" />
         </component>
+        <component name="FirstPersonMovement" >
+            <user_data value="1" type="bool" name="enabled_fpm" />
+            <user_data value="200.0" type="float" name="max_speed" />
+        </component>
     </entity>
 </archetype>

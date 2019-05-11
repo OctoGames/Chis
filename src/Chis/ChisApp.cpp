@@ -2,6 +2,7 @@
 
 #include "MeshRenderer.h"
 #include "FirstPersonCamera.h"
+#include "FirstPersonMovement.h"
 #include "DirectionalLight.h"
 #include "AudioSource.h"
 #include "RigidBody.h"
@@ -33,6 +34,7 @@ void ChisApp::init()
 	EntityComponentManager::Instance()->registerFactory("Camera", new CameraFactory());
 	EntityComponentManager::Instance()->registerFactory("Canvas", new CanvasFactory());
 	EntityComponentManager::Instance()->registerFactory("SceneManager", new SceneManagerFactory());
+	EntityComponentManager::Instance()->registerFactory("FirstPersonMovement", new FirstPersonMovementFactory());
 
 	ArchetypeLoader::Instance()->loadArchetypes();
 	EntityComponentManager::Instance()->instantiate("GameManager", { 200.0, 100.0, 400.0 });

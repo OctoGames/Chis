@@ -16,8 +16,6 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
-	virtual bool keyPressed(const OIS::KeyEvent &e);
-	virtual bool keyReleased(const OIS::KeyEvent &e);
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
 
 	inline Ogre::Camera* getCamera() { return camera_; }

@@ -529,6 +529,7 @@
 	  <user_data value="1.0" type="float" name="color_b" />
 	  <user_data value="200.0" type="float" name="max_speed" />
 	  <user_data value="180.0" type="float" name="pitch_limit" />
+    <user_data value="1" type="bool" name="enabled_fpm" />
     </node>
 	<node name="arms" >
       <user_data name="prototype_name" type="str" value="arms" />

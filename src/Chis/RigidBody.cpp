@@ -12,6 +12,8 @@ RigidBody::RigidBody() :
 
 RigidBody::~RigidBody()
 {
+	//delete rigidBody_;
+	//rigidBody_ = nullptr;
 }
 
 void RigidBody::load(const std::map<std::string, ValueType>& params)
@@ -50,4 +52,5 @@ void RigidBody::onCollision(GameObject * gameObject)
 {
 	//std::cout << this->gameObject()->getGameObjectID() << " has collided with ";
 	//std::cout << gameObject->getGameObjectID() << std::endl;
+	if (gameObject->getTag() == "bullet") EntityComponentManager::Instance()->destroy(gameObject);
 }

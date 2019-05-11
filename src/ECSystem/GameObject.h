@@ -15,7 +15,9 @@ public:
 	inline std::string getTag() const { return tag_; }
 	inline std::string getGameObjectID() const { return unique_id_; }
 	inline bool isActive() const { return active_; }
-	inline void setActive(bool active) { active_ = active; }
+	void setActive(bool active);
+	inline bool isDisposable() const { return disposable_; }
+	inline void setDisposable(bool disposable) { disposable_ = disposable; }
 	inline void setName(const std::string& name) { name_ = name; }
 
 	GameObject* clone();
@@ -27,6 +29,7 @@ private:
 	std::string tag_;
 	std::string unique_id_;
 	bool active_;
+	bool disposable_;
 
 	static int game_object_count_;
 };

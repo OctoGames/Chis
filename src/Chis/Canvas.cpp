@@ -138,7 +138,7 @@ void Canvas::toMainMenu()
 
 	GUIManager::Instance()->setRootWidget(roots_[GUIContext::MAIN_MENU]);
 
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
+	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "scenemanager"));
 	sceneManager_->createMenuScene();
 }
 

@@ -27,6 +27,11 @@ FirstPersonCamera::FirstPersonCamera() :
 
 FirstPersonCamera::~FirstPersonCamera()
 {
+	if (camera_)
+	{
+		RenderManager::Instance()->getSceneManager()->destroyCamera(camera_);
+		camera_ = nullptr;
+	}
 }
 
 void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
@@ -83,7 +88,6 @@ void FirstPersonCamera::init()
 	else camera_->setFarClipDistance(farClipDistance_);
 	camera_->setNearClipDistance(nearClipDistance_);
 
-	InputManager::Instance()->addKeyListener(this, "FirstPersonCamera");
 	InputManager::Instance()->addMouseListener(this, "FirstPersonCamera");
 
 	setEnabled(enabled_);
@@ -92,32 +96,6 @@ void FirstPersonCamera::init()
 void FirstPersonCamera::update()
 {
 	float deltaTime = RenderManager::Instance()->time()->deltaTime();
-	setCameraAcceleration(deltaTime);	
-
-	if (velocity_ != Ogre::Vector3::ZERO)
-	{
-		gameObject()->transform()->translate(velocity_ * deltaTime);
-	}
-}
-
-bool FirstPersonCamera::keyPressed(const OIS::KeyEvent & e)
-{
-	if (e.key == moveForwardsKey_) goingForward_ = true;
-	else if (e.key == moveBackwardsKey_) goingBack_ = true;
-	else if (e.key == moveLeftKey_) goingLeft_ = true;
-	else if (e.key == moveRightKey_) goingRight_ = true;
-
-	return true;
-}
-
-bool FirstPersonCamera::keyReleased(const OIS::KeyEvent & e)
-{
-	if (e.key == moveForwardsKey_) goingForward_ = false;
-	else if (e.key == moveBackwardsKey_) goingBack_ = false;
-	else if (e.key == moveLeftKey_) goingLeft_ = false;
-	else if (e.key == moveRightKey_) goingRight_ = false;
-
-	return true;
 }
 
 bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
@@ -131,44 +109,4 @@ bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 	gameObject()->transform()->yaw(Ogre::Degree(relX * 0.15f), Ogre::Node::TS_PARENT);
 
 	return true;
-}
-
-void FirstPersonCamera::setCameraAcceleration(float deltaTime)
-{
-	Ogre::Vector3 accel = Ogre::Vector3::ZERO;
-	Ogre::Matrix3 axes = gameObject()->transform()->getLocalAxes();
-	if (goingForward_) accel -= axes.GetColumn(2);
-	if (goingBack_) accel += axes.GetColumn(2);
-	if (goingRight_) accel += axes.GetColumn(0);
-	if (goingLeft_) accel -= axes.GetColumn(0);
-
-	Ogre::Real topSpeed = fastMove_ ? maxSpeed_ * 20 : maxSpeed_;
-	if (accel.squaredLength() != 0)
-	{
-		accel.normalise();
-		velocity_ += accel * topSpeed * deltaTime * 10;
-	}
-	else
-	{
-		velocity_ -= velocity_ * deltaTime * 10;
-	}
-
-	setCameraVelocity(topSpeed);
-}
-
-void FirstPersonCamera::setCameraVelocity(Ogre::Real topSpeed)
-{
-	Ogre::Real tooSmall = std::numeric_limits<Ogre::Real>::epsilon();
-
-	if (velocity_.squaredLength() > topSpeed * topSpeed)
-	{
-		velocity_.normalise();
-		velocity_ *= topSpeed;
-	}
-	else if (velocity_.squaredLength() < tooSmall * tooSmall)
-	{
-		velocity_ = Ogre::Vector3::ZERO;
-	}
-
-	velocity_.y = 0.0f;
 }
