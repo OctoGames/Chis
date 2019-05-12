@@ -14,6 +14,8 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
+	inline Ogre::Camera* getCamera() { return camera_; }
+
 private:
 	static std::string name_;
 

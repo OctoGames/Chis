@@ -15,8 +15,8 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
-	virtual void onDisable();
-	virtual void onCollision(GameObject* gameObject);
+	virtual void onDestroy();
+	virtual void onCollision(GameObject* other);
 
 	inline btRigidBody* rigidbody() { return rigidBody_; }
 

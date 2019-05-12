@@ -72,7 +72,7 @@ void RigidBody::init()
 	setEnabled(enabled_);
 }
 
-void RigidBody::onDisable()
+void RigidBody::onDestroy()
 {
 	Physics::Instance()->removeRigidbody(rigidBody_);
 	rigidBody_ = nullptr;
@@ -80,8 +80,13 @@ void RigidBody::onDisable()
 
 void RigidBody::onCollision(GameObject * other)
 {
-	if (other->getTag() == "bullet" && gameObject()->getTag() != "enemy")
+	std::cout << this->gameObject()->getGameObjectID() << " has collided with ";
+	std::cout << other->getGameObjectID() << std::endl;
+
+	if (other->getTag() == "bullet")
 	{
 		EntityComponentManager::Instance()->destroy(other);
+		if (gameObject()->getTag() == "enemy") 
+			EntityComponentManager::Instance()->destroy(gameObject());
 	}
 }

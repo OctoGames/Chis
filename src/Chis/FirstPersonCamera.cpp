@@ -51,7 +51,7 @@ Component * FirstPersonCamera::clone()
 
 void FirstPersonCamera::init()
 {
-	camera_ = RenderManager::Instance()->getSceneManager()->createCamera("FirstPersonCamera_" + gameObject()->getGameObjectID());
+	camera_ = RenderManager::Instance()->getSceneManager()->createCamera("FirstPersonCamera");
 	gameObject()->transform()->attachObject(camera_);
 	gameObject()->transform()->setFixedYawAxis(true);
 

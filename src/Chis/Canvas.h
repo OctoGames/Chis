@@ -24,11 +24,12 @@ public:
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
+	void toMainMenu();
+
 private:
 	// Button callbacks
 	void quit();
 	void toGame();
-	void toMainMenu();
 	void toEndMenu();
 	void restart();
 

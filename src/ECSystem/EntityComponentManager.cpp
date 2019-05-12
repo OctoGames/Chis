@@ -152,6 +152,8 @@ void EntityComponentManager::clean()
 			std::string id = o->getGameObjectID();
 			std::string tag = o->getTag();
 
+			for (Component* c : containers_[id]) c->onDestroy();
+
 			containers_.erase(id);
 			if (tag != "") tags_[tag].remove_if(disposableEntity);
 		}

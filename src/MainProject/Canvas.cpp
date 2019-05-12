@@ -56,8 +56,6 @@ void Canvas::init()
 
 void Canvas::start()
 {
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
-	sceneManager_->createMenuScene();
 }
 
 bool Canvas::keyPressed(const OIS::KeyEvent & e)

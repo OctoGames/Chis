@@ -74,7 +74,6 @@ void Canvas::init()
 
 void Canvas::start()
 {
-	toMainMenu();
 }
 
 
