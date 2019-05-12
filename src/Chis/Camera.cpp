@@ -14,19 +14,24 @@ Camera::Camera() :
 
 Camera::~Camera()
 {
-	if (camera_)
-	{
-		RenderManager::Instance()->getSceneManager()->destroyCamera(camera_);
-		camera_ = nullptr;
-	}
 }
 
 void Camera::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_c").b;
-	farClipDistance_ = params.at("far_clip").f;
-	nearClipDistance_ = params.at("near_clip").f;
-	backgroundColour_ = Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f);
+	auto it = params.begin();
+	it = params.find("enabled_c"); if (it != params.end()) enabled_ = params.at("enabled_c").b;
+	it = params.find("far_clip"); if (it != params.end()) farClipDistance_ = params.at("far_clip").f;
+	it = params.find("near_clip"); if (it != params.end()) nearClipDistance_ = params.at("near_clip").f;
+	it = params.find("color_r"); if (it != params.end())
+	{
+		it = params.find("color_g"); if (it != params.end())
+		{
+			it = params.find("color_b"); if (it != params.end())
+			{
+				backgroundColour_ = Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f);
+			}
+		}
+	}
 }
 
 Component * Camera::clone()

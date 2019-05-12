@@ -27,8 +27,8 @@ void GunController::update()
 
 void GunController::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_gc").b;
-	//fireButton_ = static_cast<OIS::MouseButtonID>(params.at("fire_button").i);
+	auto it = params.begin();
+	it = params.find("enabled_gc"); if (it != params.end()) enabled_ = params.at("enabled_gc").b;
 }
 
 Component * GunController::clone()
@@ -68,11 +68,11 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(bullet, "RigidBody"));
 		rb->rigidbody()->applyCentralImpulse(normal * 1000.0f);
 
-		RaycastHit hit;
-		if (Physics::Instance()->raycast(from, normal, 1000.0f, &hit))
-		{
-			std::cout << hit.gameObject->getName() << std::endl;
-		}
+		//RaycastHit hit;
+		//if (Physics::Instance()->raycast(from, normal, 1000.0f, &hit))
+		//{
+		//	std::cout << hit.gameObject->getName() << std::endl;
+		//}
 	}
 
 	return true;

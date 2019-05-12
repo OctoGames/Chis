@@ -19,7 +19,6 @@ AudioSource::~AudioSource()
 void AudioSource::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
-
 	it = params.find("enabled_as"); if (it != params.end()) enabled_ = params.at("enabled_as").b;
 	it = params.find("filename"); if (it != params.end()) filename_ = params.at("filename").s;
 	it = params.find("audio_id"); if (it != params.end()) audioId_ = params.at("audio_id").s;

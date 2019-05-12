@@ -24,7 +24,14 @@ Canvas::~Canvas()
 
 void Canvas::load(const std::map<std::string, ValueType>& params)
 {
-	return;
+	auto it = params.begin();
+	it = params.find("enabled_c"); if (it != params.end()) enabled_ = params.at("enabled_c").b;
+	it = params.find("scheme"); if (it != params.end()) defaultScheme_ = params.at("scheme").s;
+	it = params.find("cursor"); if (it != params.end()) defaultCursor_ = params.at("cursor").s;
+	it = params.find("menu_layout"); if (it != params.end()) mainmenuLayout_ = params.at("menu_layout").s;
+	it = params.find("game_layout"); if (it != params.end()) gameLayout_ = params.at("game_layout").s;
+	it = params.find("end_layout"); if (it != params.end()) endmenuLayout_ = params.at("end_layout").s;
+	it = params.find("lives"); if (it != params.end()) lives_ = params.at("lives").f;
 }
 
 Component * Canvas::clone()
@@ -32,6 +39,12 @@ Component * Canvas::clone()
 	Canvas* clonedComponent = new Canvas();
 
 	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->defaultScheme_ = this->defaultScheme_;
+	clonedComponent->defaultCursor_ = this->defaultCursor_;
+	clonedComponent->mainmenuLayout_ = this->mainmenuLayout_;
+	clonedComponent->gameLayout_ = this->gameLayout_;
+	clonedComponent->endmenuLayout_ = this->endmenuLayout_;
+	clonedComponent->lives_ = this->lives_;
 
 	return clonedComponent;
 }
@@ -164,7 +177,6 @@ void Canvas::toGame()
 
 	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
 	sceneManager_->createGameScene();
-
 }
 
 void Canvas::toEndMenu()

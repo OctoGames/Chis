@@ -16,7 +16,8 @@ SceneManager::~SceneManager()
 
 void SceneManager::load(const std::map<std::string, ValueType>& params)
 {
-	return;
+	auto it = params.begin();
+	it = params.find("enabled_sm"); if (it != params.end()) enabled_ = params.at("enabled_sm").b;
 }
 
 Component * SceneManager::clone()

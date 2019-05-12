@@ -6,49 +6,34 @@ std::string FirstPersonCamera::name_ = "FirstPersonCamera";
 FirstPersonCamera::FirstPersonCamera() :
 	camera_(nullptr),
 	viewport_(nullptr),
-	farClipDistance_(0.0f),	
-	nearClipDistance_(0.0f),	
-	backgroundColour_(Ogre::ColourValue::ZERO),	
-	maxSpeed_(0.0f),	
 	pitchLimit_(0.0f),
-	velocity_(Ogre::Vector3::ZERO),
-	moveForwardsKey_(OIS::KC_W),
-	moveBackwardsKey_(OIS::KC_S),
-	moveLeftKey_(OIS::KC_A),
-	moveRightKey_(OIS::KC_D),
-	fastMoveKey_(OIS::KC_LSHIFT),
-	goingForward_(false),
-	goingBack_(false),
-	goingLeft_(false),
-	goingRight_(false),
-	fastMove_(false)
+	farClipDistance_(0.0f),
+	nearClipDistance_(0.0f),
+	backgroundColour_(Ogre::ColourValue::ZERO)
 {
 }
 
 FirstPersonCamera::~FirstPersonCamera()
 {
-	if (camera_)
-	{
-		RenderManager::Instance()->getSceneManager()->destroyCamera(camera_);
-		camera_ = nullptr;
-	}
 }
 
 void FirstPersonCamera::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_fpc").b;
-	farClipDistance_ = params.at("far_clip").f;
-	nearClipDistance_ = params.at("near_clip").f;
-	backgroundColour_ = Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f);
-
-	maxSpeed_ = params.at("max_speed").f;
-	pitchLimit_ = params.at("pitch_limit").f;
-
-	//moveForwardsKey_ = static_cast<OIS::KeyCode>(params.at("forward_key").i);
-	//moveBackwardsKey_ = static_cast<OIS::KeyCode>(params.at("backward_key").i);
-	//moveLeftKey_ = static_cast<OIS::KeyCode>(params.at("left_key").i);
-	//moveRightKey_ = static_cast<OIS::KeyCode>(params.at("right_key").i);
-	//fastMoveKey_ = static_cast<OIS::KeyCode>(params.at("fast_key").i);
+	auto it = params.begin();
+	it = params.find("enabled_fpc"); if (it != params.end()) enabled_ = params.at("enabled_fpc").b;
+	it = params.find("far_clip"); if (it != params.end()) farClipDistance_ = params.at("far_clip").f;
+	it = params.find("near_clip"); if (it != params.end()) nearClipDistance_ = params.at("near_clip").f;
+	it = params.find("pitch_limit"); if (it != params.end()) pitchLimit_ = params.at("pitch_limit").f;
+	it = params.find("color_r"); if (it != params.end())
+	{
+		it = params.find("color_g"); if (it != params.end())
+		{
+			it = params.find("color_b"); if (it != params.end())
+			{
+				backgroundColour_ = Ogre::ColourValue(params.at("color_r").f, params.at("color_g").f, params.at("color_b").f);
+			}
+		}
+	}
 }
 
 Component * FirstPersonCamera::clone()
@@ -59,15 +44,7 @@ Component * FirstPersonCamera::clone()
 	clonedComponent->farClipDistance_ = this->farClipDistance_;
 	clonedComponent->nearClipDistance_ = this->nearClipDistance_;
 	clonedComponent->backgroundColour_ = this->backgroundColour_;
-
-	clonedComponent->maxSpeed_ = this->maxSpeed_;
 	clonedComponent->pitchLimit_ = this->pitchLimit_;
-
-	clonedComponent->moveForwardsKey_ = this->moveForwardsKey_;
-	clonedComponent->moveBackwardsKey_ = this->moveBackwardsKey_;
-	clonedComponent->moveLeftKey_ = this->moveLeftKey_;
-	clonedComponent->moveRightKey_ = this->moveRightKey_;
-	clonedComponent->fastMoveKey_ = this->fastMoveKey_;
 
 	return clonedComponent;
 }
@@ -88,15 +65,12 @@ void FirstPersonCamera::init()
 	else camera_->setFarClipDistance(farClipDistance_);
 	camera_->setNearClipDistance(nearClipDistance_);
 
+	InputManager::Instance()->addKeyListener(this, "FirstPersonCamera");
 	InputManager::Instance()->addMouseListener(this, "FirstPersonCamera");
 
 	setEnabled(enabled_);
 }
 
-void FirstPersonCamera::update()
-{
-	float deltaTime = RenderManager::Instance()->time()->deltaTime();
-}
 
 bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 {

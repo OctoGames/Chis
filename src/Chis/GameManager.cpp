@@ -14,7 +14,8 @@ GameManager::~GameManager()
 
 void GameManager::load(const std::map<std::string, ValueType>& params)
 {
-	return;
+	auto it = params.begin();
+	it = params.find("enabled_gm"); if (it != params.end()) enabled_ = params.at("enabled_gm").b;
 }
 
 Component * GameManager::clone()

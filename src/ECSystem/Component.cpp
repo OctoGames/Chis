@@ -24,6 +24,6 @@ void Component::setEnabled(bool enabled)
 	}
 	else
 	{
-		enabled_ ? onEnabled() : onDisabled();
+		enabled_ ? onEnable() : onDisable();
 	}
 }

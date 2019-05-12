@@ -34,7 +34,6 @@ private:
 	std::string name_;
 	std::string uniqueId_;
 	std::string tag_;
-
 	std::string parentTag_;
 
 	bool active_;

@@ -13,6 +13,7 @@ public:
 	virtual std::string getName() const { return name_; }
 	virtual Component* clone();
 	virtual void init();
+
 	virtual void update();
 
 	virtual bool keyPressed(const OIS::KeyEvent &e);

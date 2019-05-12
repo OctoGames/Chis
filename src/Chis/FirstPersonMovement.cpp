@@ -25,9 +25,9 @@ FirstPersonMovement::~FirstPersonMovement()
 
 void FirstPersonMovement::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_fpm").b;
-	maxSpeed_ = params.at("max_speed").f;
-	return;
+	auto it = params.begin();
+	it = params.find("enabled_fpm"); if (it != params.end()) enabled_ = params.at("enabled_fpm").b;
+	it = params.find("max_speed"); if (it != params.end()) maxSpeed_ = params.at("max_speed").f;
 }
 
 Component * FirstPersonMovement::clone()

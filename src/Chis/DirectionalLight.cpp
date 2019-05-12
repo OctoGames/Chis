@@ -13,19 +13,45 @@ DirectionalLight::DirectionalLight() :
 
 DirectionalLight::~DirectionalLight()
 {
-	if (light_)
-	{
-		RenderManager::Instance()->getSceneManager()->destroyLight(light_);
-		light_ = nullptr;
-	}
 }
 
 void DirectionalLight::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_dl").b;
-	lightDirection_ = Ogre::Vector3(params.at("direction_x").f, params.at("direction_y").f, params.at("direction_z").f); 
-	diffuseColour_ = Ogre::ColourValue(params.at("diffuse_r").f, params.at("diffuse_g").f, params.at("diffuse_b").f);
-	specularColour_ = Ogre::ColourValue(params.at("specular_r").f, params.at("specular_g").f, params.at("specular_b").f);
+	auto it = params.begin();
+	it = params.find("enabled_dl"); if (it != params.end()) enabled_ = params.at("enabled_dl").b;
+
+	it = params.find("direction_x"); if (it != params.end())
+	{
+		it = params.find("direction_y"); if (it != params.end())
+		{
+			it = params.find("direction_z"); if (it != params.end())
+			{
+				lightDirection_ = Ogre::Vector3(params.at("direction_x").f, params.at("direction_y").f, params.at("direction_z").f);
+			}
+		}
+	}
+
+	it = params.find("diffuse_r"); if (it != params.end())
+	{
+		it = params.find("diffuse_g"); if (it != params.end())
+		{
+			it = params.find("diffuse_b"); if (it != params.end())
+			{
+				diffuseColour_ = Ogre::ColourValue(params.at("diffuse_r").f, params.at("diffuse_g").f, params.at("diffuse_b").f);
+			}
+		}
+	}
+
+	it = params.find("specular_r"); if (it != params.end())
+	{
+		it = params.find("specular_g"); if (it != params.end())
+		{
+			it = params.find("specular_b"); if (it != params.end())
+			{
+				specularColour_ = Ogre::ColourValue(params.at("specular_r").f, params.at("specular_g").f, params.at("specular_b").f);
+			}
+		}
+	}	
 }
 
 Component * DirectionalLight::clone()

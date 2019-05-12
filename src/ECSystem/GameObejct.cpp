@@ -11,10 +11,8 @@ GameObject::GameObject(const std::string& name, const std::string& parentTag, co
 	name_(name),
 	tag_(tag),
 	active_(active),
-
 	disposable_(false),
 	destroyable_(true)
-
 {
 	uniqueId_ = name_ + std::to_string(gameObjectId_);
 	gameObjectId_++;
@@ -22,13 +20,6 @@ GameObject::GameObject(const std::string& name, const std::string& parentTag, co
 
 GameObject::~GameObject()
 {
-	if (node_)
-	{
-		node_->detachAllObjects();
-		node_->removeAndDestroyAllChildren();
-		RenderManager::Instance()->getSceneManager()->destroySceneNode(node_);
-		node_ = nullptr;
-	}
 }
 
 void GameObject::setActive(bool active)
@@ -36,12 +27,6 @@ void GameObject::setActive(bool active)
 	active_ = active;
 	//if (!active_) node_->setVisible(false);
 }
-
-//void GameObject::setActive(bool active)
-//{
-//	active_ = active;
-//	//if (!active_) node_->setVisible(false);
-//}
 
 GameObject * GameObject::clone()
 {

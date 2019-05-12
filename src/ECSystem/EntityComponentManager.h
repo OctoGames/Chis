@@ -28,7 +28,6 @@ public:
 
 	GameObject* instantiate(const std::string& prototypeName, const Ogre::Vector3& position = Ogre::Vector3::ZERO, const Ogre::Quaternion& orientation = Ogre::Quaternion::IDENTITY);
 	void destroy(GameObject* gameObject);
-
 	void destroyAll();
 
 	BaseFactory* getFactory(const std::string& factoryName);

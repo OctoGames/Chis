@@ -38,14 +38,14 @@ public:
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id) { return true; }
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id) { return true; }
 
-	virtual void onCollision(GameObject* gameObject) {}
+	virtual void onCollision(GameObject* other) {}
 
 	virtual void start() {}
 	virtual void fixedUpdate() {}
 	virtual void update() {}
 	virtual void lateUpdate() {}
-	virtual void onEnabled() {}
-	virtual void onDisabled() {}
+	virtual void onEnable() {}
+	virtual void onDisable() {}
 	virtual void onDestroy() {}
 
 protected:

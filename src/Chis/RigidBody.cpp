@@ -12,16 +12,24 @@ RigidBody::RigidBody() :
 
 RigidBody::~RigidBody()
 {
-	//delete rigidBody_;
-	//rigidBody_ = nullptr;
 }
 
 void RigidBody::load(const std::map<std::string, ValueType>& params)
 {
-	enabled_ = params.at("enabled_rb").b;
-	mass_ = params.at("mass").f;
-	radius_ = params.at("radius").f;
-	colliderHalfExtent_ = Ogre::Vector3(params.at("scale_rb_x").f / 2.2f, params.at("scale_rb_y").f / 2.2f, params.at("scale_rb_z").f / 2.2f);
+	auto it = params.begin();
+	it = params.find("enabled_rb"); if (it != params.end()) enabled_ = params.at("enabled_rb").b;
+	it = params.find("mass"); if (it != params.end()) mass_ = params.at("mass").f;
+	it = params.find("radius"); if (it != params.end()) radius_ = params.at("radius").f;
+	it = params.find("scale_rb_x"); if (it != params.end())
+	{
+		it = params.find("scale_rb_y"); if (it != params.end())
+		{
+			it = params.find("scale_rb_z"); if (it != params.end())
+			{
+				colliderHalfExtent_ = Ogre::Vector3(params.at("scale_rb_x").f, params.at("scale_rb_y").f, params.at("scale_rb_z").f);
+			}
+		}
+	}
 }
 
 Component * RigidBody::clone()
@@ -70,10 +78,10 @@ void RigidBody::onDisable()
 	rigidBody_ = nullptr;
 }
 
-void RigidBody::onCollision(GameObject * gameObject)
+void RigidBody::onCollision(GameObject * other)
 {
-	if (this->gameObject()->getName() != "mouse" && gameObject->getName() != "mouse") {
-		std::cout << this->gameObject()->getName() << " has collided with ";
-		std::cout << gameObject->getName() << std::endl;
+	if (other->getTag() == "bullet" && gameObject()->getTag() != "enemy")
+	{
+		EntityComponentManager::Instance()->destroy(other);
 	}
 }
