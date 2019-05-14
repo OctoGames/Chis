@@ -92,7 +92,8 @@ bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 	
 	
 	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
-	
+	rb->rigidbody()->activate();
+
 	btTransform tr;
 	Ogre::Vector3 position = gameObject()->transform()->getPosition();
 	btVector3 pos(position.x, position.y, position.z);

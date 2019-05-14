@@ -26,6 +26,7 @@ private:
 	static std::string name_;
 
 	int life_;
+	int bullets_;
 	bool invulnerable_;
 	Ogre::Timer* invulnerabilityTimer_;
 };

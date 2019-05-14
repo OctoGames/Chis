@@ -2,11 +2,13 @@
 
 #include "GameManager.h"
 #include "Canvas.h"
+#include "Ammo.h"
 
 std::string Player::name_ = "Player";
 
 Player::Player() :
 	life_(100),
+	bullets_(20),
 	invulnerable_(false),
 	invulnerabilityTimer_(nullptr)
 {
@@ -49,6 +51,15 @@ void Player::onCollision(GameObject * other)
 
 		invulnerable_ = true;
 		invulnerabilityTimer_->reset();
+	}
+	else if (other->getTag() == "ammo")
+	{
+		Ammo* ammo = static_cast<Ammo*>(EntityComponentManager::Instance()->getComponent(other, "Ammo"));
+		if (ammo)
+		{
+			bullets_ += ammo->getNumBullets();
+			std::cout << "Picked up bullets. You have " << bullets_ << " bullets.\n";
+		}
 	}
 }
 

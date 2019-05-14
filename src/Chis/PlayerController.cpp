@@ -68,6 +68,7 @@ void PlayerController::fixedUpdate()
 {
 	float deltaTime = RenderManager::Instance()->time()->deltaTime();
 	setPlayerAcceleration(deltaTime);
+	rigidbody_->activate();
 
 	if (velocity_ != Ogre::Vector3::ZERO)
 	{

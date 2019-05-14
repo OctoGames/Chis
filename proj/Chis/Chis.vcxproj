@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Chis\Ammo.cpp" />
     <ClCompile Include="..\..\src\Chis\AudioSource.cpp" />
     <ClCompile Include="..\..\src\Chis\Camera.cpp" />
     <ClCompile Include="..\..\src\Chis\Canvas.cpp" />
@@ -36,6 +37,7 @@
     <ClCompile Include="..\..\src\Chis\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Chis\Ammo.h" />
     <ClInclude Include="..\..\src\Chis\AudioSource.h" />
     <ClInclude Include="..\..\src\Chis\Camera.h" />
     <ClInclude Include="..\..\src\Chis\Canvas.h" />

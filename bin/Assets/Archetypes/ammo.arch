@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+	<entity name="Ammo" parent="" tag="ammo" active="1" >
+      	<component name="MeshRenderer" >
+			<user_data value="1" type="bool" name="enabled_mr" />
+      		<user_data value="Bala4.mesh" type="str" name="mesh_name" />
+      	</component>
+        <component name="AudioSource" >
+            <user_data value="1" type="bool" name="enabled_as" />
+            <user_data value="shoot.wav" type="str" name="filename" />
+            <user_data value="ShootSFX" type="str" name="audio_id" />
+            <user_data value="1.0" type="float" name="volume" />
+            <user_data value="1.0" type="float" name="pitch" />
+        </component>
+        <component name="RigidBody" >
+            <user_data value="1" type="bool" name="enabled_rb" />
+            <user_data value="0.0" type="float" name="mass" />
+            <user_data value="0.0" type="float" name="radius" />
+            <user_data value="5.0" type="float" name="scale_rb_x" />
+            <user_data value="5.0" type="float" name="scale_rb_y" />
+            <user_data value="5.0" type="float" name="scale_rb_z" />
+        </component>
+        <component name="Ammo" >
+            <user_data value="1" type="bool" name="enabled_a" />
+        </component>
+    </entity>
+</archetype>
