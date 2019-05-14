@@ -14,5 +14,11 @@
             <user_data value="30.0" type="float" name="scale_rb_y" />
             <user_data value="30.0" type="float" name="scale_rb_z" />
         </component>
+        <component name="Enemy" >
+            <user_data value="1" type="bool" name="enabled_e" />
+            <user_data value="100.0" type="float" name="health" />
+            <user_data value="10.0" type="float" name="damage" />
+            <user_data value="100.0" type="float" name="score" />
+        </component>
     </entity>
 </archetype>

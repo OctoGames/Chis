@@ -1,13 +1,13 @@
-#ifndef __PLAYER_H__
-#define __PLAYER_H__
+#ifndef __ENEMY_H__
+#define __ENEMY_H__
 
 #include <Engine.h>
 
-class Player : public Component
+class Enemy : public Component
 {
 public:
-	Player();
-	virtual ~Player();
+	Enemy();
+	virtual ~Enemy();
 
 	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
@@ -17,23 +17,24 @@ public:
 	virtual void onCollision(GameObject* other);
 	virtual void update();
 
+	inline float getDamage() const { return damage_; }
 	void damage(float dmg) { health_ -= dmg; }
 
 private:
 	static std::string name_;
 
 	float health_;
-	bool invulnerable_;
-	Ogre::Timer* invulnerabilityTimer_;
+	float damage_;
+	float score_;
 };
 
-class PlayerFactory : public BaseFactory
+class EnemyFactory : public BaseFactory
 {
 public:
-	PlayerFactory() {}
-	virtual ~PlayerFactory() {}
+	EnemyFactory() {}
+	virtual ~EnemyFactory() {}
 
-	virtual Component* create() { return new Player(); }
+	virtual Component* create() { return new Enemy(); }
 };
 
-#endif // !__PLAYER_H__
+#endif // !__ENEMY_H__

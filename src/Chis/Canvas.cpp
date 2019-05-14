@@ -13,7 +13,7 @@ Canvas::Canvas() :
 	mainmenuLayout_("MainMenu.layout"),
 	gameLayout_("Game.layout"),
 	endmenuLayout_("EndMenu.layout"),
-	score_(0)
+	score_(0.0f)
 {
 }
 
@@ -88,12 +88,6 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 	if (e.key == OIS::KC_O) Physics::Instance()->toggleDebugMode();
 	else if (e.key == OIS::KC_P) Physics::Instance()->toggleDebug();
 	else if (e.key == OIS::KC_F) RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
-	else if (e.key == OIS::KC_SPACE)
-	{
-		score_++;
-		std::string s = std::to_string(score_);
-		roots_[GUIContext::GAME]->getChild("Score")->setText("Score: " + s);
-	}
 #endif
 
 	if (e.key == OIS::KC_ESCAPE)
@@ -201,10 +195,17 @@ void Canvas::restart()
 	RenderManager::Instance()->setRunning(false);
 }
 
-void Canvas::updateLife(int life)
+void Canvas::updateLife(float life)
 {
 	if (life < 75) roots_[GUIContext::GAME]->getChild("Life4")->hide();
 	if (life < 50) roots_[GUIContext::GAME]->getChild("Life3")->hide();
 	if (life < 25) roots_[GUIContext::GAME]->getChild("Life2")->hide();
 	if (life <= 0) toEndMenu();
+}
+
+void Canvas::updateScore(float score)
+{
+	score_ += score;
+	std::string s = std::to_string(score_);
+	roots_[GUIContext::GAME]->getChild("Score")->setText("Score: " + s);
 }

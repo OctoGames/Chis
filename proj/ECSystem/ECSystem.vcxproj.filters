@@ -21,10 +21,10 @@
     <ClCompile Include="..\..\src\ECSystem\EntityComponentManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ECSystem\GameObejct.cpp">
+    <ClCompile Include="..\..\src\ECSystem\Prototype.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ECSystem\Prototype.cpp">
+    <ClCompile Include="..\..\src\ECSystem\GameObject.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

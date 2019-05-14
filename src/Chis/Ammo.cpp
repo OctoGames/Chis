@@ -2,6 +2,7 @@
 
 #include "AudioSource.h"
 #include "RigidBody.h"
+#include "GunController.h"
 
 std::string Ammo::name_ = "Ammo";
 
@@ -38,10 +39,18 @@ void Ammo::onCollision(GameObject * other)
 {
 	if (other->getTag() == "player")
 	{
+		//GunController* gc = static_cast<GunController*>(EntityComponentManager::Instance()->getComponent("gun", "GunController"));
+		//if (gc) gc->addBullets(numBullets_);
+
 		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
-		as->play();
+		if (as) as->play();
+
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
+}
+
+void Ammo::start()
+{
 }
 
 void Ammo::update()

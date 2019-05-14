@@ -26,10 +26,11 @@ public:
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
 	void toMainMenu();
-	void updateLife(int life);
+
+	void updateLife(float life);
+	void updateScore(float score);
 
 private:
-	// Button callbacks
 	void quit();
 	void toGame();
 	void toEndMenu();
@@ -46,7 +47,7 @@ private:
 	std::string gameLayout_;
 	std::string endmenuLayout_;
 
-	int score_;
+	float score_;
 };
 
 class CanvasFactory : public BaseFactory

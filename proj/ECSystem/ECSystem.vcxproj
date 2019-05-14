@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\ECSystem\Component.cpp" />
     <ClCompile Include="..\..\src\ECSystem\EntityComponentManager.cpp" />
-    <ClCompile Include="..\..\src\ECSystem\GameObejct.cpp" />
+    <ClCompile Include="..\..\src\ECSystem\GameObject.cpp" />
     <ClCompile Include="..\..\src\ECSystem\Prototype.cpp" />
   </ItemGroup>
   <ItemGroup>

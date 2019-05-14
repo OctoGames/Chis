@@ -77,12 +77,3 @@ void RigidBody::onDestroy()
 	Physics::Instance()->removeRigidbody(rigidBody_);
 	rigidBody_ = nullptr;
 }
-
-void RigidBody::onCollision(GameObject * other)
-{
-	if (other->getTag() == "bullet" && gameObject()->getTag() != "player")
-	{
-		EntityComponentManager::Instance()->destroy(other);
-		if (gameObject()->getTag() == "enemy") EntityComponentManager::Instance()->destroy(gameObject());
-	}
-}

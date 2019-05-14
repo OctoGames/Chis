@@ -16,7 +16,6 @@ public:
 	virtual void init();
 
 	virtual void onDestroy();
-	virtual void onCollision(GameObject* other);
 
 	inline btRigidBody* rigidbody() { return rigidBody_; }
 

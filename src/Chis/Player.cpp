@@ -1,14 +1,14 @@
 #include "Player.h"
 
+#include "AudioSource.h"
 #include "GameManager.h"
 #include "Canvas.h"
-#include "Ammo.h"
+#include "Enemy.h"
 
 std::string Player::name_ = "Player";
 
 Player::Player() :
-	life_(100),
-	bullets_(20),
+	health_(100.0f),
 	invulnerable_(false),
 	invulnerabilityTimer_(nullptr)
 {
@@ -22,6 +22,7 @@ void Player::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
 	it = params.find("enabled_p"); if (it != params.end()) enabled_ = params.at("enabled_p").b;
+	it = params.find("health"); if (it != params.end()) health_ = params.at("health").f;
 }
 
 Component * Player::clone()
@@ -29,6 +30,7 @@ Component * Player::clone()
 	Player* clonedComponent = new Player();
 
 	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->health_  = this->health_;
 
 	return clonedComponent;
 }
@@ -44,22 +46,19 @@ void Player::onCollision(GameObject * other)
 {
 	if (!invulnerable_ && other->getTag() == "enemy")
 	{
-		damage(10);
-		std::cout << "DAMAGE: 10\t LIFE: " << life_ << "\n";
+		Enemy* enemy = static_cast<Enemy*>(EntityComponentManager::Instance()->getComponent(other, "Enemy"));
+		if (enemy) damage(enemy->getDamage());
+
 		Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
-		if (canvas) canvas->updateLife(life_);
+		if (canvas) canvas->updateLife(health_);
+
+		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+		if (as) as->play();
+		
+		// play compositor
 
 		invulnerable_ = true;
 		invulnerabilityTimer_->reset();
-	}
-	else if (other->getTag() == "ammo")
-	{
-		Ammo* ammo = static_cast<Ammo*>(EntityComponentManager::Instance()->getComponent(other, "Ammo"));
-		if (ammo)
-		{
-			bullets_ += ammo->getNumBullets();
-			std::cout << "Picked up bullets. You have " << bullets_ << " bullets.\n";
-		}
 	}
 }
 

@@ -14,6 +14,7 @@
 #include "PlayerController.h"
 #include "Player.h"
 #include "Ammo.h"
+#include "Enemy.h"
 
 bool ChisApp::reset_ = false;
 
@@ -43,6 +44,7 @@ void ChisApp::init()
 	EntityComponentManager::Instance()->registerFactory("PlayerController", new PlayerControllerFactory());
 	EntityComponentManager::Instance()->registerFactory("Player", new PlayerFactory());
 	EntityComponentManager::Instance()->registerFactory("Ammo", new AmmoFactory());
+	EntityComponentManager::Instance()->registerFactory("Enemy", new EnemyFactory());
 
 	ArchetypeLoader::Instance()->loadArchetypes();
 	EntityComponentManager::Instance()->instantiate("GameManager", { 200.0, 100.0, 400.0 });

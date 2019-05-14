@@ -15,6 +15,7 @@ public:
 	virtual void init();
 
 	virtual void onCollision(GameObject* other);
+	virtual void start();
 	virtual void update();
 
 	inline int getNumBullets() const { return numBullets_; }
