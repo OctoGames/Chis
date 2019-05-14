@@ -17,6 +17,7 @@ public:
 	virtual void init();
 
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
 private:
 	static std::string name_;

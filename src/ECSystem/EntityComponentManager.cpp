@@ -223,6 +223,24 @@ Component* EntityComponentManager::getComponent(GameObject* gameObject, const st
 	else return nullptr;
 }
 
+Component * EntityComponentManager::getComponent(const std::string & gameObjectTag, const std::string & componentName)
+{
+	GameObject* o = findGameObjectWithTag(gameObjectTag);
+	std::string id = ""; if (o) id = o->getGameObjectID();
+	else return nullptr;
+
+	auto it = containers_.find(id);
+	if (it == containers_.end())
+	{
+		std::cout << "[ECSystem]: Cannot find " << id << " entity!\n";
+		return nullptr;
+	}
+	auto iter = containers_[id].begin();
+	while (iter != containers_[id].end() && (*iter)->getName() != componentName) iter++;
+	if (iter != containers_[id].end()) return (*iter);
+	else return nullptr;
+}
+
 std::list<Component*> EntityComponentManager::getComponents(const std::string & gameObjectID)
 {
 	auto it = containers_.find(gameObjectID);

@@ -15,7 +15,7 @@ MeshRenderer::~MeshRenderer()
 
 void MeshRenderer::onDisable()
 {
-	RenderManager::Instance()->getSceneManager()->destroyEntity(entity_);
+	if (entity_) RenderManager::Instance()->getSceneManager()->destroyEntity(entity_);
 	entity_ = nullptr;
 }
 

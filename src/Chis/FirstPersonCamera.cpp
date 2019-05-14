@@ -1,5 +1,5 @@
 #include "FirstPersonCamera.h"
-
+#include "RigidBody.h"
 
 std::string FirstPersonCamera::name_ = "FirstPersonCamera";
 
@@ -72,6 +72,14 @@ void FirstPersonCamera::init()
 }
 
 
+bool FirstPersonCamera::keyPressed(const OIS::KeyEvent & e)
+{
+	if (e.key == OIS::KC_K) camera_->setPolygonMode(Ogre::PolygonMode::PM_WIREFRAME);
+	else if (e.key == OIS::KC_L) camera_->setPolygonMode(Ogre::PolygonMode::PM_SOLID);
+	else if (e.key == OIS::KC_J) camera_->setPolygonMode(Ogre::PolygonMode::PM_POINTS);
+	return true;
+}
+
 bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 {
 	float relY = -e.state.Y.rel;
@@ -81,9 +89,10 @@ bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 
 	if (nextCameraPitch < pitchLimit_ && nextCameraPitch > -pitchLimit_) gameObject()->transform()->pitch(Ogre::Degree(relY * 0.15f));
 	gameObject()->transform()->yaw(Ogre::Degree(relX * 0.15f), Ogre::Node::TS_PARENT);
-
+	
+	
 	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
-
+	
 	btTransform tr;
 	Ogre::Vector3 position = gameObject()->transform()->getPosition();
 	btVector3 pos(position.x, position.y, position.z);
@@ -92,8 +101,6 @@ bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 	btQuaternion quat(orientation.x, orientation.y, orientation.z, orientation.w);
 	tr.setRotation(quat);
 	rb->rigidbody()->setCenterOfMassTransform(tr);
-
-	
 
 	return true;
 }

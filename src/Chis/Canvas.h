@@ -17,6 +17,7 @@ public:
 	virtual void init();
 
 	virtual void start();
+	virtual void update();
 
 	virtual bool keyPressed(const OIS::KeyEvent &e);
 	virtual bool keyReleased(const OIS::KeyEvent &e);
@@ -25,6 +26,7 @@ public:
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
 	void toMainMenu();
+	void updateLife(int life);
 
 private:
 	// Button callbacks
@@ -32,8 +34,6 @@ private:
 	void toGame();
 	void toEndMenu();
 	void restart();
-
-	void hitPlayer();
 
 	static std::string name_;
 
@@ -46,8 +46,7 @@ private:
 	std::string gameLayout_;
 	std::string endmenuLayout_;
 
-	int lives_;
-
+	int score_;
 };
 
 class CanvasFactory : public BaseFactory

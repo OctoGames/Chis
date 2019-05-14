@@ -14,10 +14,6 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
-	// Scene functions
-	void createMenuScene();
-	void createGameScene();
-
 private:
 	static std::string name_;
 };

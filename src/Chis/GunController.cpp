@@ -44,7 +44,6 @@ Component * GunController::clone()
 void GunController::init()
 {
 	InputManager::Instance()->addMouseListener(this, "GunController");
-
 	setEnabled(enabled_);
 }
 
@@ -60,6 +59,7 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		Ogre::Vector3 f = cam->getRealPosition();
 		Ogre::Vector3 n = cam->getRealDirection();
 		Ogre::Quaternion q = cam->getRealOrientation();
+		f = f + n * 10;
 		btVector3 from(f.x, f.y, f.z);
 		btVector3 normal(n.x, n.y, n.z);		
 		
@@ -75,5 +75,10 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		//}
 	}
 
+	return true;
+}
+
+bool GunController::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)
+{
 	return true;
 }

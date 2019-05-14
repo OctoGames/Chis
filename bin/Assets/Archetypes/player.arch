@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <archetype >
 	<entity name="Player" parent="" tag="player" active="1" >
+        <component name="RigidBody" >
+            <user_data value="1" type="bool" name="enabled_rb" />
+            <user_data value="1.0" type="float" name="mass" />
+            <user_data value="0.0" type="float" name="radius" />
+            <user_data value="30.0" type="float" name="scale_rb_x" />
+            <user_data value="50.0" type="float" name="scale_rb_y" />
+            <user_data value="30.0" type="float" name="scale_rb_z" />
+        </component>
       	<component name="FirstPersonCamera" >
 			<user_data value="1" type="bool" name="enabled_fpc" />
             <user_data value="10000.0" type="float" name="far_clip" />
@@ -11,17 +19,12 @@
 			<user_data value="200.0" type="float" name="max_speed" />
             <user_data value="180.0" type="float" name="pitch_limit" />
         </component>
-        <component name="FirstPersonMovement" >
-            <user_data value="1" type="bool" name="enabled_fpm" />
+        <component name="PlayerController" >
+            <user_data value="1" type="bool" name="enabled_pc" />
             <user_data value="200.0" type="float" name="max_speed" />
         </component>
-        <component name="RigidBody" >
-            <user_data value="1" type="bool" name="enabled_rb" />
-            <user_data value="1.0" type="float" name="mass" />
-            <user_data value="0.0" type="float" name="radius" />
-            <user_data value="30.0" type="float" name="scale_rb_x" />
-            <user_data value="80.0" type="float" name="scale_rb_y" />
-            <user_data value="30.0" type="float" name="scale_rb_z" />
+        <component name="Player" >
+            <user_data value="1" type="bool" name="enabled_p" />
         </component>
     </entity>
 </archetype>

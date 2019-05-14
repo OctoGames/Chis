@@ -20,8 +20,6 @@ public:
 
 	inline btRigidBody* rigidbody() { return rigidBody_; }
 
-	void movement();
-
 private:
 	static std::string name_;
 	

@@ -32,6 +32,7 @@ public:
 
 	BaseFactory* getFactory(const std::string& factoryName);
 	Prototype* getPrototype(const std::string& prototypeName);	
+	Component* getComponent(const std::string& gameObjectTag, const std::string& componentName);
 	Component* getComponent(GameObject* gameObject, const std::string& componentName);
 	std::list<Component*> getComponents(const std::string& gameObjectID);
 	std::list<GameObject*> findGameObjectsWithTag(const std::string& gameObjectTag);

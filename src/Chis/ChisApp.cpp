@@ -11,6 +11,8 @@
 #include "Camera.h"
 #include "Canvas.h"
 #include "SceneManager.h"
+#include "PlayerController.h"
+#include "Player.h"
 
 bool ChisApp::reset_ = false;
 
@@ -37,6 +39,8 @@ void ChisApp::init()
 	EntityComponentManager::Instance()->registerFactory("Canvas", new CanvasFactory());
 	EntityComponentManager::Instance()->registerFactory("SceneManager", new SceneManagerFactory());
 	EntityComponentManager::Instance()->registerFactory("FirstPersonMovement", new FirstPersonMovementFactory());
+	EntityComponentManager::Instance()->registerFactory("PlayerController", new PlayerControllerFactory());
+	EntityComponentManager::Instance()->registerFactory("Player", new PlayerFactory());
 
 	ArchetypeLoader::Instance()->loadArchetypes();
 	EntityComponentManager::Instance()->instantiate("GameManager", { 200.0, 100.0, 400.0 });

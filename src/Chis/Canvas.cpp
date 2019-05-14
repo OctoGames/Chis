@@ -3,7 +3,6 @@
 #include "SceneManager.h"
 #include "ChisApp.h"
 
-
 std::string Canvas::name_ = "Canvas";
 
 // COMPONENT FUNCTIONS --------------------------------------------------------
@@ -14,7 +13,7 @@ Canvas::Canvas() :
 	mainmenuLayout_("MainMenu.layout"),
 	gameLayout_("Game.layout"),
 	endmenuLayout_("EndMenu.layout"),
-	lives_(4)
+	score_(0)
 {
 }
 
@@ -31,7 +30,6 @@ void Canvas::load(const std::map<std::string, ValueType>& params)
 	it = params.find("menu_layout"); if (it != params.end()) mainmenuLayout_ = params.at("menu_layout").s;
 	it = params.find("game_layout"); if (it != params.end()) gameLayout_ = params.at("game_layout").s;
 	it = params.find("end_layout"); if (it != params.end()) endmenuLayout_ = params.at("end_layout").s;
-	it = params.find("lives"); if (it != params.end()) lives_ = params.at("lives").f;
 }
 
 Component * Canvas::clone()
@@ -44,7 +42,6 @@ Component * Canvas::clone()
 	clonedComponent->mainmenuLayout_ = this->mainmenuLayout_;
 	clonedComponent->gameLayout_ = this->gameLayout_;
 	clonedComponent->endmenuLayout_ = this->endmenuLayout_;
-	clonedComponent->lives_ = this->lives_;
 
 	return clonedComponent;
 }
@@ -53,6 +50,7 @@ void Canvas::init()
 {
 	// Set default GUI resources
 	CEGUI::SchemeManager::getSingleton().createFromFile(defaultScheme_);
+	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage(defaultCursor_);
 
 	// Create a root for every game state
@@ -76,6 +74,10 @@ void Canvas::start()
 {
 }
 
+void Canvas::update()
+{
+}
+
 
 // INPUT FUNCTIONS ------------------------------------------------------------
 bool Canvas::keyPressed(const OIS::KeyEvent & e)
@@ -86,6 +88,12 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 	if (e.key == OIS::KC_O) Physics::Instance()->toggleDebugMode();
 	else if (e.key == OIS::KC_P) Physics::Instance()->toggleDebug();
 	else if (e.key == OIS::KC_F) RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
+	else if (e.key == OIS::KC_SPACE)
+	{
+		score_++;
+		std::string s = std::to_string(score_);
+		roots_[GUIContext::GAME]->getChild("Score")->setText("Score: " + s);
+	}
 #endif
 
 	if (e.key == OIS::KC_ESCAPE)
@@ -97,11 +105,6 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 	{
 		if (currentGUIContext_ == GUIContext::MAIN_MENU) toGame();
 		if (currentGUIContext_ == GUIContext::END_MENU) restart();
-	}
-	else if (e.key == OIS::KC_SPACE)
-	{
-		lives_--;
-		hitPlayer();
 	}
 
 	return true;
@@ -198,10 +201,10 @@ void Canvas::restart()
 	RenderManager::Instance()->setRunning(false);
 }
 
-void Canvas::hitPlayer()
+void Canvas::updateLife(int life)
 {
-	if (lives_ == 3) roots_[GUIContext::GAME]->getChild("Life4")->hide();
-	else if (lives_ == 2) roots_[GUIContext::GAME]->getChild("Life3")->hide();
-	else if (lives_ == 1) roots_[GUIContext::GAME]->getChild("Life2")->hide();
-	else toEndMenu();
+	if (life < 75) roots_[GUIContext::GAME]->getChild("Life4")->hide();
+	if (life < 50) roots_[GUIContext::GAME]->getChild("Life3")->hide();
+	if (life < 25) roots_[GUIContext::GAME]->getChild("Life2")->hide();
+	if (life <= 0) toEndMenu();
 }

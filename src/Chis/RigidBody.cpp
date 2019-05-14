@@ -80,18 +80,9 @@ void RigidBody::onDestroy()
 
 void RigidBody::onCollision(GameObject * other)
 {
-	std::cout << this->gameObject()->getGameObjectID() << " has collided with ";
-	std::cout << other->getGameObjectID() << std::endl;
-
-	if (other->getTag() == "bullet")
+	if (other->getTag() == "bullet" && gameObject()->getTag() != "player")
 	{
 		EntityComponentManager::Instance()->destroy(other);
-		if (gameObject()->getTag() == "enemy") 
-			EntityComponentManager::Instance()->destroy(gameObject());
+		if (gameObject()->getTag() == "enemy") EntityComponentManager::Instance()->destroy(gameObject());
 	}
-}
-
-void RigidBody::movement()
-{
-	std::cout << "Hey yo lets go" << std::endl;
 }

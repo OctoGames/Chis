@@ -1,10 +1,12 @@
-#include "FirstPersonMovement.h"
+#include "PlayerController.h"
 
+#include "RigidBody.h"
 
-std::string FirstPersonMovement::name_ = "FirstPersonMovement";
+std::string PlayerController::name_ = "PlayerController";
 
-
-FirstPersonMovement::FirstPersonMovement() :
+PlayerController::PlayerController() :
+	rigidbody_(nullptr),
+	maxSpeed_(0.0f),
 	velocity_(Ogre::Vector3::ZERO),
 	moveForwardsKey_(OIS::KC_W),
 	moveBackwardsKey_(OIS::KC_S),
@@ -19,23 +21,23 @@ FirstPersonMovement::FirstPersonMovement() :
 {
 }
 
-FirstPersonMovement::~FirstPersonMovement()
+PlayerController::~PlayerController()
 {
 }
 
-void FirstPersonMovement::load(const std::map<std::string, ValueType>& params)
+void PlayerController::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
-	it = params.find("enabled_fpm"); if (it != params.end()) enabled_ = params.at("enabled_fpm").b;
+	it = params.find("enabled_pc"); if (it != params.end()) enabled_ = params.at("enabled_pc").b;
 	it = params.find("max_speed"); if (it != params.end()) maxSpeed_ = params.at("max_speed").f;
 }
 
-Component * FirstPersonMovement::clone()
+Component * PlayerController::clone()
 {
-	FirstPersonMovement* clonedComponent = new FirstPersonMovement();
+	PlayerController* clonedComponent = new PlayerController();
 
 	clonedComponent->enabled_ = this->enabled_;
-
+	clonedComponent->maxSpeed_ = this->maxSpeed_;
 
 	clonedComponent->moveForwardsKey_ = this->moveForwardsKey_;
 	clonedComponent->moveBackwardsKey_ = this->moveBackwardsKey_;
@@ -46,25 +48,44 @@ Component * FirstPersonMovement::clone()
 	return clonedComponent;
 }
 
-void FirstPersonMovement::init()
+void PlayerController::init()
 {
-	InputManager::Instance()->addKeyListener(this, "FirstPersonCamera");
+	InputManager::Instance()->addKeyListener(this, "PlayerController");
+	InputManager::Instance()->addMouseListener(this, "PlayerController");
+
 	setEnabled(enabled_);
 }
 
-void FirstPersonMovement::update()
+void PlayerController::start()
+{
+	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+	rigidbody_ = rb->rigidbody();
+	rigidbody_->setLinearFactor(btVector3(1, 0, 1));
+	rigidbody_->setAngularFactor(btVector3(0, 1, 0));
+}
+
+void PlayerController::fixedUpdate()
 {
 	float deltaTime = RenderManager::Instance()->time()->deltaTime();
-	setMovementAcceleration(deltaTime);
+	setPlayerAcceleration(deltaTime);
 
 	if (velocity_ != Ogre::Vector3::ZERO)
 	{
-		gameObject()->transform()->translate(velocity_ * deltaTime);
+		btVector3 v(velocity_.x, velocity_.y, velocity_.z);
+		rigidbody_->setLinearVelocity(v * deltaTime);
 	}
 }
 
-//Custom methods for this component
-bool FirstPersonMovement::keyPressed(const OIS::KeyEvent & e)
+void PlayerController::onCollision(GameObject* other)
+{
+	if (other->getName() != "mesa")
+	{
+		rigidbody_->setLinearVelocity(btVector3(0, 0, 0));
+		rigidbody_->setAngularVelocity(btVector3(0, 0, 0));
+	}
+}
+
+bool PlayerController::keyPressed(const OIS::KeyEvent & e)
 {
 	if (e.key == moveForwardsKey_) goingForward_ = true;
 	else if (e.key == moveBackwardsKey_) goingBack_ = true;
@@ -74,7 +95,7 @@ bool FirstPersonMovement::keyPressed(const OIS::KeyEvent & e)
 	return true;
 }
 
-bool FirstPersonMovement::keyReleased(const OIS::KeyEvent & e)
+bool PlayerController::keyReleased(const OIS::KeyEvent & e)
 {
 	if (e.key == moveForwardsKey_) goingForward_ = false;
 	else if (e.key == moveBackwardsKey_) goingBack_ = false;
@@ -84,7 +105,7 @@ bool FirstPersonMovement::keyReleased(const OIS::KeyEvent & e)
 	return true;
 }
 
-void FirstPersonMovement::setMovementAcceleration(float deltaTime)
+void PlayerController::setPlayerAcceleration(float deltaTime)
 {
 	Ogre::Vector3 accel = Ogre::Vector3::ZERO;
 	Ogre::Matrix3 axes = gameObject()->transform()->getLocalAxes();
@@ -104,10 +125,10 @@ void FirstPersonMovement::setMovementAcceleration(float deltaTime)
 		velocity_ -= velocity_ * deltaTime * 10;
 	}
 
-	setMovementVelocity(topSpeed);
+	setPlayerVelocity(topSpeed);
 }
 
-void FirstPersonMovement::setMovementVelocity(Ogre::Real topSpeed)
+void PlayerController::setPlayerVelocity(Ogre::Real topSpeed)
 {
 	Ogre::Real tooSmall = std::numeric_limits<Ogre::Real>::epsilon();
 

@@ -15,6 +15,7 @@
 #include <OgreCamera.h>
 #include <OgreViewport.h>
 #include <OgreSkeleton.h>
+#include <OgreParticleSystem.h>
 
 #include "TimeManager.h"
 #include "Window.h"

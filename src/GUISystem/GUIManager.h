@@ -21,6 +21,7 @@ public:
 	bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
+	CEGUI::WindowManager& getWindowManager() { return CEGUI::WindowManager::getSingleton(); }
 	CEGUI::GUIContext& getContext() { return CEGUI::System::getSingleton().getDefaultGUIContext(); }
 	inline CEGUI::OgreRenderer* getOgreRenderer() { return renderer_; }
 	inline CEGUI::Window* getCurrentRoot() { return currentRoot_; }

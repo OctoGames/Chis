@@ -2,7 +2,6 @@
 #define __FIRST_PERSON_MOVEMENT_H__
 
 #include <Engine.h>
-#include "RigidBody.h"
 
 class FirstPersonMovement : public Component
 {
@@ -40,8 +39,6 @@ private:
 
 	Ogre::Vector3 velocity_;
 	Ogre::Real maxSpeed_;
-
-	RigidBody* rb_;
 };
 
 class FirstPersonMovementFactory : public BaseFactory

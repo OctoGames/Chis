@@ -2,7 +2,6 @@
 #define __FIRST_PERSON_CAMERA_H__
 
 #include <Engine.h>
-#include "RigidBody.h"
 
 class FirstPersonCamera : public Component
 {
@@ -15,6 +14,7 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
+	virtual bool keyPressed(const OIS::KeyEvent &e);
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
 
 	inline Ogre::Camera* getCamera() { return camera_; }

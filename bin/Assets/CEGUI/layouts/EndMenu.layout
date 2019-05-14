@@ -1,6 +1,20 @@
 <?xml version="1.0" ?>
 <GUILayout version="4">
     <Window type="DefaultWindow" name="EndMenu">
+        <Window type="Chis/StaticImage" name="Logo">
+            <Property name="Position" value="{ {0.2, 0}, {0.15, 0} }" />
+            <Property name="Size" value="{ {0.6, 0}, {0.2, 0} }" />
+            <Property name="Image" value="Chis/Logo" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
+        <Window type="TaharezLook/StaticText" name="Score">
+            <Property name="Position" value="{ {0.5, -100}, {0.35, 0} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 200}, {0, 32} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Text" value="THANKS FOR PLAYING!" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
         <Window type="Chis/Button" name="ReplayButton">
             <Property name="Position" value="{ {0.43, 0}, {0.5, 0} }" />
             <Property name="Size" value="{ {0.15, 0}, {0.05, 0} }" />

@@ -30,6 +30,8 @@
     <ClCompile Include="..\..\src\Chis\Main.cpp" />
     <ClCompile Include="..\..\src\Chis\DirectionalLight.cpp" />
     <ClCompile Include="..\..\src\Chis\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\Chis\Player.cpp" />
+    <ClCompile Include="..\..\src\Chis\PlayerController.cpp" />
     <ClCompile Include="..\..\src\Chis\RigidBody.cpp" />
     <ClCompile Include="..\..\src\Chis\SceneManager.cpp" />
   </ItemGroup>
@@ -44,6 +46,8 @@
     <ClInclude Include="..\..\src\Chis\GameManager.h" />
     <ClInclude Include="..\..\src\Chis\GunController.h" />
     <ClInclude Include="..\..\src\Chis\MeshRenderer.h" />
+    <ClInclude Include="..\..\src\Chis\Player.h" />
+    <ClInclude Include="..\..\src\Chis\PlayerController.h" />
     <ClInclude Include="..\..\src\Chis\RigidBody.h" />
     <ClInclude Include="..\..\src\Chis\SceneManager.h" />
   </ItemGroup>
