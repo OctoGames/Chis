@@ -82,5 +82,18 @@ bool FirstPersonCamera::mouseMoved(const OIS::MouseEvent & e)
 	if (nextCameraPitch < pitchLimit_ && nextCameraPitch > -pitchLimit_) gameObject()->transform()->pitch(Ogre::Degree(relY * 0.15f));
 	gameObject()->transform()->yaw(Ogre::Degree(relX * 0.15f), Ogre::Node::TS_PARENT);
 
+	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+
+	btTransform tr;
+	Ogre::Vector3 position = gameObject()->transform()->getPosition();
+	btVector3 pos(position.x, position.y, position.z);
+	tr.setOrigin(pos);
+	Ogre::Quaternion orientation = gameObject()->transform()->getOrientation();
+	btQuaternion quat(orientation.x, orientation.y, orientation.z, orientation.w);
+	tr.setRotation(quat);
+	rb->rigidbody()->setCenterOfMassTransform(tr);
+
+	
+
 	return true;
 }

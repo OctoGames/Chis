@@ -49,6 +49,7 @@ Component * FirstPersonMovement::clone()
 void FirstPersonMovement::init()
 {
 	InputManager::Instance()->addKeyListener(this, "FirstPersonCamera");
+
 	setEnabled(enabled_);
 }
 
@@ -57,10 +58,26 @@ void FirstPersonMovement::update()
 	float deltaTime = RenderManager::Instance()->time()->deltaTime();
 	setMovementAcceleration(deltaTime);
 
+	//if (velocity_ != Ogre::Vector3::ZERO)
+		//gameObject()->transform()->translate(velocity_ * deltaTime);
+
+	rb_ = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+	
+	rb_->rigidbody()->setLinearFactor(btVector3(1, 0, 1));
+
 	if (velocity_ != Ogre::Vector3::ZERO)
 	{
-		gameObject()->transform()->translate(velocity_ * deltaTime);
+		rb_->rigidbody()->setLinearVelocity(btVector3(velocity_.x, velocity_.y, velocity_.z) * deltaTime * 500);
 	}
+
+	else
+	{		
+		rb_->rigidbody()->setLinearFactor(btVector3(0, 0, 0));
+		
+	}
+
+	rb_->rigidbody()->setAngularFactor(btVector3(0, 0, 0));
+	rb_->rigidbody()->setLinearFactor(btVector3(1, 0, 1));
 }
 
 //Custom methods for this component

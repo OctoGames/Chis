@@ -530,6 +530,12 @@
 	  <user_data value="200.0" type="float" name="max_speed" />
 	  <user_data value="180.0" type="float" name="pitch_limit" />
     <user_data value="1" type="bool" name="enabled_fpm" />
+    <user_data value="1" type="bool" name="enabled_rb" />
+    <user_data value="1.0" type="float" name="mass" />
+    <user_data value="0.0" type="float" name="radius" />
+    <user_data value="30.0" type="float" name="scale_rb_x" />
+    <user_data value="80.0" type="float" name="scale_rb_y" />
+    <user_data value="30.0" type="float" name="scale_rb_z" />
     </node>
 	<node name="arms" >
       <user_data name="prototype_name" type="str" value="arms" />

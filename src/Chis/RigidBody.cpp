@@ -90,3 +90,8 @@ void RigidBody::onCollision(GameObject * other)
 			EntityComponentManager::Instance()->destroy(gameObject());
 	}
 }
+
+void RigidBody::movement()
+{
+	std::cout << "Hey yo lets go" << std::endl;
+}

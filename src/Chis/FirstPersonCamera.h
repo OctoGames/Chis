@@ -2,6 +2,7 @@
 #define __FIRST_PERSON_CAMERA_H__
 
 #include <Engine.h>
+#include "RigidBody.h"
 
 class FirstPersonCamera : public Component
 {
