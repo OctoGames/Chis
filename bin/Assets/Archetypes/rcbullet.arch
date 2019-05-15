@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+      <entity name="RaycastBullet" parent="" tag="bullet" active="1" >
+            <component name="RaycastBullet" >
+                  <user_data value="1" type="bool" name="enabled_rbb" />
+                  <user_data value="1000.0" type="float" name="range" />
+                  <user_data value="25.0" type="float" name="damage" />
+            </component>
+    </entity>
+</archetype>

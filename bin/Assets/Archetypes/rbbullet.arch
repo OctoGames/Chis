@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+      <entity name="RigidbodyBullet" parent="" tag="bullet" active="1" >
+      	<component name="MeshRenderer" >
+		      <user_data value="1" type="bool" name="enabled_mr" />
+      	      <user_data value="Bala2.mesh" type="str" name="mesh_name" />
+            </component>
+            <component name="RigidBody" >
+                  <user_data value="1" type="bool" name="enabled_rb" />
+                  <user_data value="1.0" type="float" name="mass" />
+                  <user_data value="1.0" type="float" name="radius" />
+                  <user_data value="0.0" type="float" name="scale_rb_x" />
+                  <user_data value="0.0" type="float" name="scale_rb_y" />
+                  <user_data value="0.0" type="float" name="scale_rb_z" />
+            </component>
+            <component name="RigidbodyBullet" >
+                  <user_data value="1" type="bool" name="enabled_rbb" />
+                  <user_data value="1000.0" type="float" name="range" />
+                  <user_data value="50.0" type="float" name="damage" />
+                  <user_data value="1000.0" type="float" name="speed" />
+            </component>
+    </entity>
+</archetype>
