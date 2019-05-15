@@ -39,8 +39,8 @@ void Ammo::onCollision(GameObject * other)
 {
 	if (other->getTag() == "player")
 	{
-		//GunController* gc = static_cast<GunController*>(EntityComponentManager::Instance()->getComponent("gun", "GunController"));
-		//if (gc) gc->addBullets(numBullets_);
+		GunController* gc = static_cast<GunController*>(EntityComponentManager::Instance()->getComponent("gun", "GunController"));
+		if (gc) gc->addBullets(numBullets_);
 
 		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
 		if (as) as->play();

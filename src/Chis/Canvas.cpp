@@ -216,14 +216,14 @@ void Canvas::updateHealth(float health)
 {
 	if (health <= 0) toEndMenu();
 	std::string s = std::to_string(static_cast<int>(health));
-	roots_[GUIContext::GAME]->getChild("Health")->setText("HEALTH: " + s);
+	roots_[GUIContext::GAME]->getChild("Health")->setText("Health: " + s);
 }
 
 void Canvas::updateScore(float score)
 {
 	score_ += score;
 	std::string s = std::to_string(static_cast<int>(score_));
-	roots_[GUIContext::GAME]->getChild("Score")->setText("SCORE: " + s);
+	roots_[GUIContext::GAME]->getChild("Score")->setText("Score: " + s);
 }
 
 void Canvas::updateCheese(float cheesyness)
@@ -232,4 +232,11 @@ void Canvas::updateCheese(float cheesyness)
 	if (cheesyness < 50) roots_[GUIContext::GAME]->getChild("Life3")->hide();
 	if (cheesyness < 25) roots_[GUIContext::GAME]->getChild("Life2")->hide();
 	if (cheesyness <= 0) toEndMenu();
+}
+
+void Canvas::updateBullets(float remaining, float total)
+{
+	std::string r = std::to_string(static_cast<int>(remaining));
+	std::string t = std::to_string(static_cast<int>(total));
+	roots_[GUIContext::GAME]->getChild("Bullets")->setText("Bullets: " + r + "/" + t);
 }

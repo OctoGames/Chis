@@ -10,18 +10,18 @@ std::string GunController::name_ = "GunController";
 
 GunController::GunController() :
 	isFiring_(false),
+	totalBullets_(40),
+	remainingBullets_(20),
 	fireButton_(OIS::MouseButtonID::MB_Left),
-	currentGun_(GunController::GunType::LASER)
+	currentGun_(GunController::GunType::LASER),
+	magazineSize_(20),
+	numBulletsLaser_(1),
+	numBulletsShotgun_(5)
 {
 }
 
 GunController::~GunController()
 {
-}
-
-void GunController::update()
-{
-
 }
 
 void GunController::load(const std::map<std::string, ValueType>& params)
@@ -61,6 +61,16 @@ void GunController::init()
 	setEnabled(enabled_);
 }
 
+bool GunController::keyPressed(const OIS::KeyEvent & e)
+{
+	if (e.key == OIS::KC_R)
+	{
+		reloadGun();
+	}
+
+	return true;
+}
+
 bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
 	if (id == OIS::MouseButtonID::MB_Left) shoot();
@@ -74,8 +84,24 @@ bool GunController::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID 
 	return true;
 }
 
+void GunController::start()
+{
+	Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
+	if (canvas) canvas->updateBullets(remainingBullets_, totalBullets_);
+
+}
+
+
 void GunController::shoot()
 {
+	if (remainingBullets_ == 0 && totalBullets_ == 0) return;
+
+	if (remainingBullets_ == 0)
+	{
+		reloadGun();
+		return;
+	}
+
 	Ogre::Camera* cam = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent("Player", "FirstPersonCamera"))->getCamera();
 
 	if (cam)
@@ -91,25 +117,40 @@ void GunController::shoot()
 		{
 		case GunController::LASER:
 			EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
+			remainingBullets_ -= numBulletsLaser_;
 			break;
 		case GunController::SHOTGUN:
 			EntityComponentManager::Instance()->instantiate("RigidbodyBullet", f, q);
+			remainingBullets_ -= numBulletsShotgun_;
 			break;
 		case GunController::WATERGUN:
 			EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
+			remainingBullets_--;
 			break;
 		}
+
+		Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
+		if (canvas) canvas->updateBullets(remainingBullets_, totalBullets_);
 	}
 }
 
 void GunController::reloadGun()
 {
+	int bulletsToReload = magazineSize_ - remainingBullets_;
+	if (totalBullets_ < bulletsToReload) bulletsToReload = totalBullets_;
+	remainingBullets_ += bulletsToReload;
+	totalBullets_ -= bulletsToReload;
+
+	AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	if (as) as->play();
+
+	Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
+	if (canvas) canvas->updateBullets(remainingBullets_, totalBullets_);
 }
 
 void GunController::changeGun()
 {
-	AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
-	if (as) as->play();
+	reloadGun();
 
 	switch (currentGun_)
 	{
@@ -130,3 +171,15 @@ void GunController::changeGun()
 	MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gameObject(), "MeshRenderer"));
 	if (mr) mr->changeMesh(gunMeshes_[currentGun_], "");
 }
+
+void GunController::addBullets(int numBullets)
+{
+	totalBullets_ += numBullets;
+
+	AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	if (as) as->play();
+
+	Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
+	if (canvas) canvas->updateBullets(remainingBullets_, totalBullets_);
+}
+

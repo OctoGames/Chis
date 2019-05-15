@@ -15,7 +15,6 @@ public:
 	virtual void init(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
 
-	virtual bool keyPressed(const OIS::KeyEvent &e);
 	virtual bool keyReleased(const OIS::KeyEvent &e);
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);

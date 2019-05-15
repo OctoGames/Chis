@@ -31,6 +31,7 @@ public:
 	void updateScore(float score);
 	void updateHealth(float health);
 	void updateCheese(float cheesyness);
+	void updateBullets(float remaining, float total);
 
 private:
 	void quit();

@@ -12,16 +12,18 @@ public:
 	GunController();
 	virtual ~GunController();
 
-	virtual void update();
+	virtual void start();
 
 	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
 	virtual Component* clone();
 	virtual void init();
 
+	virtual bool keyPressed(const OIS::KeyEvent &e);
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
+	void addBullets(int numBullets);
 	inline GunController::GunType getGunType() const { return currentGun_; }
 
 private:
@@ -30,6 +32,12 @@ private:
 	void reloadGun();
 
 	static std::string name_;
+
+	int totalBullets_;
+	int remainingBullets_;
+	int magazineSize_; 
+	int numBulletsLaser_; 
+	int numBulletsShotgun_;
 
 	bool isFiring_;
 	OIS::MouseButtonID fireButton_;
