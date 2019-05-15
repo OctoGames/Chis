@@ -546,6 +546,11 @@
     <user_data value="30.0" type="float" name="scale_rb_x" />
     <user_data value="50.0" type="float" name="scale_rb_y" />
     <user_data value="1.0" type="float" name="scale_rb_z" />
+    <user_data value="1" type="bool" name="enabled_as" />
+    <user_data value="hurt.mp3" type="str" name="filename" />
+    <user_data value="HurtSFX" type="str" name="audio_id" />
+    <user_data value="1.0" type="float" name="volume" />
+    <user_data value="1.0" type="float" name="pitch" />
     </node>
 	<node name="arms" >
     <user_data name="prototype_name" type="str" value="arms" />
@@ -584,7 +589,7 @@
       <user_data name="rot_z" type="float" value="0.0" />
       <user_data name="rot_w" type="float" value="1.0" />
       <user_data value="1" type="bool" name="enabled_mr" />
-      <user_data value="Bala4.mesh" type="str" name="mesh_name" />
+      <user_data value="AmmoBox.mesh" type="str" name="mesh_name" />
       <user_data value="1" type="bool" name="enabled_rb" />
       <user_data value="0.0" type="float" name="mass" />
       <user_data value="10.0" type="float" name="radius" />

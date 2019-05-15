@@ -19,6 +19,13 @@
 			<user_data value="200.0" type="float" name="max_speed" />
             <user_data value="180.0" type="float" name="pitch_limit" />
         </component>
+        <component name="AudioSource" >
+            <user_data value="1" type="bool" name="enabled_as" />
+            <user_data value="hurt.mp3" type="str" name="filename" />
+            <user_data value="HurtSFX" type="str" name="audio_id" />
+            <user_data value="1.0" type="float" name="volume" />
+            <user_data value="1.0" type="float" name="pitch" />
+        </component>
         <component name="PlayerController" >
             <user_data value="1" type="bool" name="enabled_pc" />
             <user_data value="200.0" type="float" name="max_speed" />

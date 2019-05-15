@@ -1,0 +1,42 @@
+vertex_program LuminanceVS glsl
+{
+	source ShaderVS.glsl
+	default_params
+	{
+		param_named_auto modelViewProjMat worldviewproj_matrix
+		param_named_auto timerSin sintime_0_2pi 10
+	}
+}
+
+fragment_program LuminanceFS glsl
+{
+	source LuminanceFS.glsl
+	default_params
+	{
+		param_named RTT0 int 0
+	}
+}
+
+material LuminanceM
+{
+	technique
+	{
+		pass
+		{
+			depth_check off
+			depth_write off
+			vertex_program_ref LuminanceVS
+			{
+
+			}
+			fragment_program_ref LuminanceFS
+			{
+
+			}
+			texture_unit RTT0
+			{
+				filtering none
+			}
+		}
+	}
+}

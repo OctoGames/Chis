@@ -63,12 +63,26 @@ void RigidBody::init()
 
 	// Sphere Shape
 	if (radius_ > 0.0)
+	{
 		rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, radius_);
+	}
 	// Box Shape
 	else
-		rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_,
-			btVector3(colliderHalfExtent_.x, colliderHalfExtent_.y, colliderHalfExtent_.z));
-
+	{
+		MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gameObject(), "MeshRenderer"));
+		if (mr)
+		{
+			Ogre::Vector3 scale = gameObject()->transform()->getScale();
+			Ogre::Vector3 half = mr->getEntity()->getBoundingBox().getHalfSize();
+			half = Ogre::Vector3(scale.x * half.x, scale.y * half.y, scale.z * half.z);
+			rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, btVector3(half.x, half.y, half.z));
+		}
+		else
+		{
+			rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_,
+				btVector3(colliderHalfExtent_.x, colliderHalfExtent_.y, colliderHalfExtent_.z));
+		}
+	}
 	setEnabled(enabled_);
 }
 
