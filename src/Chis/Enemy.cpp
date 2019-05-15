@@ -51,8 +51,6 @@ void Enemy::onCollision(GameObject * other)
 
 		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
 		if (as) as->play();
-
-		EntityComponentManager::Instance()->destroy(other);
 	}
 }
 

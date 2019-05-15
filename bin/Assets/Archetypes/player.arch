@@ -25,6 +25,7 @@
         </component>
         <component name="Player" >
             <user_data value="1" type="bool" name="enabled_p" />
+            <user_data value="100.0" type="float" name="health" />
         </component>
     </entity>
 </archetype>

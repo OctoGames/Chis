@@ -195,17 +195,24 @@ void Canvas::restart()
 	RenderManager::Instance()->setRunning(false);
 }
 
-void Canvas::updateLife(float life)
+void Canvas::updateHealth(float health)
 {
-	if (life < 75) roots_[GUIContext::GAME]->getChild("Life4")->hide();
-	if (life < 50) roots_[GUIContext::GAME]->getChild("Life3")->hide();
-	if (life < 25) roots_[GUIContext::GAME]->getChild("Life2")->hide();
-	if (life <= 0) toEndMenu();
+	if (health <= 0) toEndMenu();
+	std::string s = std::to_string(static_cast<int>(health));
+	roots_[GUIContext::GAME]->getChild("Health")->setText("HEALTH: " + s);
 }
 
 void Canvas::updateScore(float score)
 {
 	score_ += score;
-	std::string s = std::to_string(score_);
-	roots_[GUIContext::GAME]->getChild("Score")->setText("Score: " + s);
+	std::string s = std::to_string(static_cast<int>(score_));
+	roots_[GUIContext::GAME]->getChild("Score")->setText("SCORE: " + s);
+}
+
+void Canvas::updateCheese(float cheesyness)
+{
+	if (cheesyness < 75) roots_[GUIContext::GAME]->getChild("Life4")->hide();
+	if (cheesyness < 50) roots_[GUIContext::GAME]->getChild("Life3")->hide();
+	if (cheesyness < 25) roots_[GUIContext::GAME]->getChild("Life2")->hide();
+	if (cheesyness <= 0) toEndMenu();
 }

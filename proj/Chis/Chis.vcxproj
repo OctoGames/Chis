@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\src\Chis\AudioSource.cpp" />
     <ClCompile Include="..\..\src\Chis\Camera.cpp" />
     <ClCompile Include="..\..\src\Chis\Canvas.cpp" />
+    <ClCompile Include="..\..\src\Chis\Cheese.cpp" />
     <ClCompile Include="..\..\src\Chis\ChisApp.cpp" />
     <ClCompile Include="..\..\src\Chis\Enemy.cpp" />
     <ClCompile Include="..\..\src\Chis\FirstPersonCamera.cpp" />
@@ -34,7 +35,9 @@
     <ClCompile Include="..\..\src\Chis\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\Chis\Player.cpp" />
     <ClCompile Include="..\..\src\Chis\PlayerController.cpp" />
+    <ClCompile Include="..\..\src\Chis\RaycastBullet.cpp" />
     <ClCompile Include="..\..\src\Chis\RigidBody.cpp" />
+    <ClCompile Include="..\..\src\Chis\RigidbodyBullet.cpp" />
     <ClCompile Include="..\..\src\Chis\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +45,7 @@
     <ClInclude Include="..\..\src\Chis\AudioSource.h" />
     <ClInclude Include="..\..\src\Chis\Camera.h" />
     <ClInclude Include="..\..\src\Chis\Canvas.h" />
+    <ClInclude Include="..\..\src\Chis\Cheese.h" />
     <ClInclude Include="..\..\src\Chis\ChisApp.h" />
     <ClInclude Include="..\..\src\Chis\Enemy.h" />
     <ClInclude Include="..\..\src\Chis\FirstPersonCamera.h" />
@@ -52,7 +56,9 @@
     <ClInclude Include="..\..\src\Chis\MeshRenderer.h" />
     <ClInclude Include="..\..\src\Chis\Player.h" />
     <ClInclude Include="..\..\src\Chis\PlayerController.h" />
+    <ClInclude Include="..\..\src\Chis\RaycastBullet.h" />
     <ClInclude Include="..\..\src\Chis\RigidBody.h" />
+    <ClInclude Include="..\..\src\Chis\RigidbodyBullet.h" />
     <ClInclude Include="..\..\src\Chis\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>

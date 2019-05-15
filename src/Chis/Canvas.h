@@ -27,8 +27,9 @@ public:
 
 	void toMainMenu();
 
-	void updateLife(float life);
 	void updateScore(float score);
+	void updateHealth(float health);
+	void updateCheese(float cheesyness);
 
 private:
 	void quit();

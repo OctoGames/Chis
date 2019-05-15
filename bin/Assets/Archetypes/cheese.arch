@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<archetype >
+    <entity name="Cheese" parent="" tag="cheese" active="1" >
+        <component name="RigidBody" >
+            <user_data value="1" type="bool" name="enabled_rb" />
+            <user_data value="0.0" type="float" name="mass" />
+            <user_data value="0.0" type="float" name="radius" />
+            <user_data value="30.0" type="float" name="scale_rb_x" />
+            <user_data value="50.0" type="float" name="scale_rb_y" />
+            <user_data value="30.0" type="float" name="scale_rb_z" />
+        </component>
+        <component name="Cheese" >
+            <user_data value="1" type="bool" name="enabled_ch" />
+            <user_data value="100.0" type="float" name="health" />
+        </component>
+    </entity>
+</archetype>

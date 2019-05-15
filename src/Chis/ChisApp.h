@@ -13,6 +13,7 @@ public:
 	virtual void run();
 	virtual void close();
 
+	void registerFactories();
 	void reset();
 
 	static bool reset_;

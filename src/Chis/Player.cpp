@@ -50,7 +50,7 @@ void Player::onCollision(GameObject * other)
 		if (enemy) damage(enemy->getDamage());
 
 		Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
-		if (canvas) canvas->updateLife(health_);
+		if (canvas) canvas->updateHealth(health_);
 
 		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
 		if (as) as->play();
