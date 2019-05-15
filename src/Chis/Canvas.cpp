@@ -125,7 +125,7 @@ bool Canvas::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 	if (id == OIS::MB_Right)
 	{
 		roots_[GUIContext::GAME]->getChild("Reticle")->hide();
-		roots_[GUIContext::GAME]->getChild("ReticleShotgun")->show();
+		roots_[GUIContext::GAME]->getChild("ReticleWatergun")->show();
 	}
 
 	return true;
@@ -136,6 +136,28 @@ bool Canvas::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 	GUIManager::Instance()->mouseReleased(e, id);
 
 	return true;
+}
+
+void Canvas::changeReticle()
+{
+	if (roots_[currentGUIContext_]->getActiveChild() == roots_[currentGUIContext_]->getChild("ReticleWatergun"))
+	{
+		roots_[currentGUIContext_]->getChild("Reticle")->show();
+		roots_[currentGUIContext_]->getChild("ReticleShotgun")->hide();
+		roots_[currentGUIContext_]->getChild("ReticleWatergun")->hide();
+	}
+	else if (roots_[currentGUIContext_]->getActiveChild() == roots_[currentGUIContext_]->getChild("Reticle"))
+	{
+		roots_[currentGUIContext_]->getChild("Reticle")->hide();
+		roots_[currentGUIContext_]->getChild("ReticleShotgun")->show();
+		roots_[currentGUIContext_]->getChild("ReticleWatergun")->hide();
+	}
+	else if (roots_[currentGUIContext_]->getActiveChild() == roots_[currentGUIContext_]->getChild("ReticleShotgun"))
+	{
+		roots_[currentGUIContext_]->getChild("Reticle")->hide();
+		roots_[currentGUIContext_]->getChild("ReticleShotgun")->hide();
+		roots_[currentGUIContext_]->getChild("ReticleWatergun")->show();
+	}
 }
 
 
@@ -170,6 +192,7 @@ void Canvas::toGame()
 	GUIManager::Instance()->setRootWidget(roots_[currentGUIContext_]);
 	roots_[currentGUIContext_]->getChild("Reticle")->show();
 	roots_[currentGUIContext_]->getChild("ReticleShotgun")->hide();
+	roots_[currentGUIContext_]->getChild("ReticleWatergun")->hide();
 
 	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
 	sceneManager_->createGameScene();

@@ -15,6 +15,13 @@
             <Property name="BackgroundEnabled" value="false" />
             <Property name="FrameEnabled" value="false" />
         </Window>
+        <Window type="Chis/StaticImage" name="ReticleWatergun">
+            <Property name="Position" value="{ {0.5, -16}, {0.5, -16} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
+            <Property name="Size" value="{ {0, 32}, {0, 32} }" /> <!-- {escala en eje, posicion en eje} -->
+            <Property name="Image" value="Chis/ReticleWatergun" />
+            <Property name="BackgroundEnabled" value="false" />
+            <Property name="FrameEnabled" value="false" />
+        </Window>
         <Window type="Chis/StaticImage" name="Life4">
             <Property name="Position" value="{ {0.01, 0}, {0.01, 0} }" /> <!-- {posicion relativa, pixeles desplazamiento} -->
             <Property name="Size" value="{ {0, 114}, {0, 64} }" /> <!-- {escala en eje, posicion en eje} -->

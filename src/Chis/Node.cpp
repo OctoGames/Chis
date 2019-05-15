@@ -28,7 +28,7 @@ Component * Node::clone()
 
 	numNode_++;
 	clonedComponent->id_ = numNode_;
-	nodes_[numNode_] = clonedComponent;
+	nodes_.push_back(clonedComponent);
 
 	return clonedComponent;
 }

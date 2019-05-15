@@ -24,6 +24,7 @@ public:
 	virtual bool mouseMoved(const OIS::MouseEvent &e);
 	virtual bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &e, OIS::MouseButtonID id);
+	virtual void changeReticle();
 
 	void toMainMenu();
 
@@ -49,6 +50,8 @@ private:
 	std::string endmenuLayout_;
 
 	float score_;
+
+	std::string currentReticle_;
 };
 
 class CanvasFactory : public BaseFactory
