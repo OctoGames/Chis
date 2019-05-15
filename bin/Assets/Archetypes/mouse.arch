@@ -4,7 +4,6 @@
       	<component name="MeshRenderer" >
 			      <user_data value="1" type="bool" name="enabled_mr" />
       		  <user_data value="mouse.mesh" type="str" name="mesh_name" />
-      		  <user_data value="mouseMaterial" type="str" name="material_name" />
       	</component>
         <component name="RigidBody" >
             <user_data value="1" type="bool" name="enabled_rb" />

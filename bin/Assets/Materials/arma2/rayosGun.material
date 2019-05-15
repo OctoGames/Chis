@@ -1,0 +1,448 @@
+// Material_44 genrated by blender2ogre 0.6.0
+
+material Material_44 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_44
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 13.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 16.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// Material_43 genrated by blender2ogre 0.6.0
+
+material Material_43 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_43
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 13.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 14.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// Material_42 genrated by blender2ogre 0.6.0
+
+material Material_42 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_42
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 11.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 12.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// Material_41 genrated by blender2ogre 0.6.0
+
+material Material_41 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_41
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 9.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 10.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// Material_40 genrated by blender2ogre 0.6.0
+
+material Material_40 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_40
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 7.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 8.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// Material_39 genrated by blender2ogre 0.6.0
+
+material Material_39 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_39
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 5.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 6.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// Material_38 genrated by blender2ogre 0.6.0
+
+material Material_38 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_38
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 3.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 4.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// mangas_rayos genrated by blender2ogre 0.6.0
+
+material mangas_rayos 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass mangas_rayos
+        {
+            ambient 0.47757720947265625 1.0 0.4563409984111786 1.0
+            diffuse 0.382061773271289 0.800000011920929 0.3650728041689515 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// guantes_rayos genrated by blender2ogre 0.6.0
+
+material guantes_rayos 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass guantes_rayos
+        {
+            ambient 0.8362507224082947 1.0 0.10372617095708847 1.0
+            diffuse 0.6690005878955212 0.800000011920929 0.08298093800218309 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// piel_rayos genrated by blender2ogre 0.6.0
+
+material piel_rayos 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass piel_rayos
+        {
+            ambient 1.0 0.6183851361274719 0.9576335549354553 1.0
+            diffuse 0.800000011920929 0.4947081162737028 0.7661068553642458 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}

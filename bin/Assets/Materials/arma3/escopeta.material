@@ -1,0 +1,219 @@
+
+material _missing_material_
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+// Material_53.002 genrated by blender2ogre 0.6.0
+
+material Material_53.002 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_53.002
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 7.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 8.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// Material_52.001 genrated by blender2ogre 0.6.0
+
+material Material_52.001 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material_52.001
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.5 0.5 0.5 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 5.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 6.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// mangas_escopeta genrated by blender2ogre 0.6.0
+
+material mangas_escopeta 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass mangas_escopeta
+        {
+            ambient 0.47757720947265625 1.0 0.4563409984111786 1.0
+            diffuse 0.382061773271289 0.800000011920929 0.3650728041689515 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// guantes_escopeta genrated by blender2ogre 0.6.0
+
+material guantes_escopeta 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass guantes_escopeta
+        {
+            ambient 0.8362507224082947 1.0 0.10372617095708847 1.0
+            diffuse 0.6690005878955212 0.800000011920929 0.08298093800218309 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// piel_escopeta genrated by blender2ogre 0.6.0
+
+material piel_escopeta 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass piel_escopeta
+        {
+            ambient 1.0 0.6183851361274719 0.9576335549354553 1.0
+            diffuse 0.800000011920929 0.4947081162737028 0.7661068553642458 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}

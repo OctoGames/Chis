@@ -45,3 +45,16 @@ void MeshRenderer::init()
 	gameObject()->transform()->attachObject(entity_);
 	setEnabled(enabled_);
 }
+
+void MeshRenderer::changeMesh(std::string meshName, std::string materialName)
+{
+	if (entity_) {
+		RenderManager::Instance()->getSceneManager()->destroyEntity(entity_);
+		entity_ = nullptr;
+	}
+	entity_ = RenderManager::Instance()->getSceneManager()->createEntity(meshName);
+	if (materialName_ != "") entity_->setMaterialName(materialName_);
+	gameObject()->transform()->attachObject(entity_);
+	//gameObject()->transform()->scale(30, 30, 30);
+	//gameObject()->transform()->rotate(Ogre::Quaternion(Ogre::Radian(180.0f), Ogre::Vector3(0, 1, 0)));
+}

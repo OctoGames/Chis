@@ -17,6 +17,7 @@ public:
 	virtual void init();
 	inline Ogre::Entity* getEntity(){ return entity_; }
 	Ogre::MeshPtr getMesh() { return entity_->getMesh(); }
+	void changeMesh(std::string meshName, std::string materialName);
 
 private:
 	static std::string name_;

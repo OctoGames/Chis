@@ -1,0 +1,330 @@
+
+// Material.010 genrated by blender2ogre 0.6.0
+
+material Material.010 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material.010
+        {
+            ambient 0.8000000715255737 0.6677665710449219 0.014869294129312038 1.0
+            diffuse 0.640000066757203 0.5342132647963354 0.01189543548070543 1.0
+            specular 0.0 0.0 0.0 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// Material.009 genrated by blender2ogre 0.6.0
+
+material Material.009 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material.009
+        {
+            ambient 0.8000000715255737 0.6677665710449219 0.014869294129312038 1.0
+            diffuse 0.640000066757203 0.5342132647963354 0.01189543548070543 1.0
+            specular 0.0 0.0 0.0 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// Material.008 genrated by blender2ogre 0.6.0
+
+material Material.008 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material.008
+        {
+            ambient 0.8000000715255737 0.6677665710449219 0.014869294129312038 1.0
+            diffuse 0.640000066757203 0.5342132647963354 0.01189543548070543 1.0
+            specular 0.0 0.0 0.0 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// Material.006 genrated by blender2ogre 0.6.0
+
+material Material.006 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material.006
+        {
+            ambient 0.8000000715255737 0.532647430896759 0.014059715904295444 1.0
+            diffuse 0.640000066757203 0.4261179510670594 0.01124777289104123 1.0
+            specular 0.0 0.0 0.0 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// Material.007 genrated by blender2ogre 0.6.0
+
+material Material.007 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass Material.007
+        {
+            ambient 0.8000000715255737 0.6677665710449219 0.014869294129312038 1.0
+            diffuse 0.640000066757203 0.5342132647963354 0.01189543548070543 1.0
+            specular 0.0 0.0 0.0 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// platanoGun genrated by blender2ogre 0.6.0
+
+material platanoGun 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass platanoGun
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 1.0 1.0 1.0 1.0
+            specular 1.0 1.0 1.0 1.0 17.5
+            emissive 0.34999996423721313 0.34999996423721313 0.34999996423721313 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture 154.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+            texture_unit 
+            {
+                texture 158.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// mangas.001 genrated by blender2ogre 0.6.0
+
+material mangas.001 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass mangas.001
+        {
+            ambient 0.47757720947265625 1.0 0.4563409984111786 1.0
+            diffuse 0.382061773271289 0.800000011920929 0.3650728041689515 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// guantes.001 genrated by blender2ogre 0.6.0
+
+material guantes.001 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass guantes.001
+        {
+            ambient 0.8362507224082947 1.0 0.10372617095708847 1.0
+            diffuse 0.6690005878955212 0.800000011920929 0.08298093800218309 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+// piel.001 genrated by blender2ogre 0.6.0
+
+material piel.001 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass piel.001
+        {
+            ambient 1.0 0.6183851361274719 0.9576335549354553 1.0
+            diffuse 0.800000011920929 0.4947081162737028 0.7661068553642458 1.0
+            specular 0.5 0.5 0.5 1.0 12.25
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
