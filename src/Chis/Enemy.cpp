@@ -3,13 +3,19 @@
 #include "AudioSource.h"
 #include "GameManager.h"
 #include "Canvas.h"
+#include "RigidBody.h"
+#include "Node.h"
 
 std::string Enemy::name_ = "Enemy";
 
 Enemy::Enemy() :
 	health_(100.0f),
 	damage_(10.0f),
-	score_(100.0f)
+	score_(100.0f),
+	speed_(1000.0f),
+	currentNode_(0),
+	numNodes_(0),
+	destination_(nullptr)
 {
 }
 
@@ -54,6 +60,14 @@ void Enemy::onCollision(GameObject * other)
 	}
 }
 
+void Enemy::start()
+{
+	// Pedir camino al motor de IA
+	// Nos devuelve una lista de int n
+	// Rellenamos el vector path con Node::nodes_[n]
+	// Asignamos destination_
+}
+
 void Enemy::update()
 {
 	if (health_ <= 0)
@@ -64,9 +78,23 @@ void Enemy::update()
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
 	
-	// The enemy has a list of int numbers representing nodes (check AISystem)
-	// In each tick, we set the orientation of the transform to the next node
-	// and with the direction, we can set the linear velocity of the enemy's rigidbody
-	// If we reach a node, we'll set as a destination the next one, and so on
-	// If we collide with the Cheese (last node), we destroy the gameObject
+	//if (gameObject()->transform()->getPosition() != destination_->getPosition()) 
+	//{
+	//	gameObject()->transform()->lookAt(destination_->getPosition(), Ogre::Node::TS_WORLD);
+	//	Ogre::Vector3 dir = destination_->getPosition() - gameObject()->transform()->getPosition();
+	//	dir.normalise();
+
+	//	btVector3 direction(dir.x, dir.y, dir.z);
+
+	//	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(bullet, "RigidBody"));
+	//	if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
+	//}
+	//else
+	//{
+	//	currentNode_++;
+	//	if (currentNode_ > numNodes_)
+	//	{
+	//		destination_ = Node::nodes_[path_[currentNode_]]->gameObject()->transform();
+	//	}
+	//}
 }

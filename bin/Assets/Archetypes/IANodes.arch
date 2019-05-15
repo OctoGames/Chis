@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <archetype >
-      <entity name="node" parent="" tag="IANode" active="1" >
-            <component >
-            </component>
+    <entity name="Node" parent="" tag="node" active="1" >
+    	<component name="Node" >
+            <user_data value="1" type="bool" name="enabled_n" />
+        </component>
     </entity>
 </archetype>

@@ -15,6 +15,7 @@ public:
 	virtual void init();
 
 	virtual void onCollision(GameObject* other);
+	virtual void start();
 	virtual void update();
 
 	inline float getDamage() const { return damage_; }
@@ -26,6 +27,12 @@ private:
 	float health_;
 	float damage_;
 	float score_;
+	float speed_;
+
+	std::vector<int> path_;
+	int currentNode_;
+	int numNodes_;
+	Ogre::Node* destination_;
 };
 
 class EnemyFactory : public BaseFactory

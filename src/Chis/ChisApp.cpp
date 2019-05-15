@@ -18,6 +18,7 @@
 #include "Cheese.h"
 #include "RaycastBullet.h"
 #include "RigidbodyBullet.h"
+#include "Node.h"
 
 bool ChisApp::reset_ = false;
 
@@ -74,6 +75,7 @@ void ChisApp::registerFactories()
 	EntityComponentManager::Instance()->registerFactory("Cheese", new CheeseFactory());
 	EntityComponentManager::Instance()->registerFactory("RaycastBullet", new RaycastBulletFactory());
 	EntityComponentManager::Instance()->registerFactory("RigidbodyBullet", new RigidbodyBulletFactory());
+	EntityComponentManager::Instance()->registerFactory("Node", new NodeFactory());
 }
 
 void ChisApp::reset()
