@@ -11,7 +11,8 @@ RigidbodyBullet::RigidbodyBullet() :
 	range_(1000.0f),
 	speed_(1000.0f),
 	damage_(20.0f),
-	initialPosition_(Ogre::Vector3::ZERO)
+	initialPosition_(Ogre::Vector3::ZERO),
+	particles_(nullptr)
 {
 }
 
@@ -42,6 +43,10 @@ Component * RigidbodyBullet::clone()
 
 void RigidbodyBullet::init()
 {
+	particles_ = RenderManager::Instance()->getSceneManager()->createParticleSystem(gameObject()->getGameObjectID(), "Explosion");
+	gameObject()->transform()->attachObject(particles_);
+	particles_->setEmitting(false);
+
 	initialPosition_ = gameObject()->transform()->getPosition();
 	setEnabled(enabled_);
 }
@@ -50,6 +55,21 @@ void RigidbodyBullet::onCollision(GameObject * other)
 {
 	if (other->getTag() != "player")
 	{
+		if (other->getTag() == "enemy")
+		{
+			Enemy* enemy = static_cast<Enemy*>(EntityComponentManager::Instance()->getComponent(other, "Enemy"));
+			if (enemy) enemy->damage(damage_);
+		}
+
+		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+		if (as)
+		{
+			as->changeSource("PUM.mp3");
+			as->play();
+		}
+
+		particles_->setEmitting(true);
+
 		static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"))->play();
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
@@ -69,5 +89,12 @@ void RigidbodyBullet::start()
 
 		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
 		if (rb) rb->rigidbody()->applyCentralImpulse(normal * speed_);
+
+		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+		if (as)
+		{
+			as->changeSource("shoot2.ogg");
+			as->play();
+		}
 	}	
 }

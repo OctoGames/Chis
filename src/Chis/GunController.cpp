@@ -3,14 +3,15 @@
 #include "RigidBody.h"
 #include "AudioSource.h"
 #include "FirstPersonCamera.h"
-#include "RigidbodyBullet.h"
+#include "Canvas.h"
+
 
 std::string GunController::name_ = "GunController";
 
 GunController::GunController() :
 	isFiring_(false),
 	fireButton_(OIS::MouseButtonID::MB_Left),
-	gunChangeButton_(OIS::KeyCode::KC_C)
+	currentGun_(GunController::GunType::LASER)
 {
 }
 
@@ -20,16 +21,12 @@ GunController::~GunController()
 
 void GunController::update()
 {
-	if (isFiring_)
-	{
-		static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"))->play();
-		isFiring_ = false;
-	}
+
 }
 
 void GunController::load(const std::map<std::string, ValueType>& params)
 {
- 	auto it = params.begin();
+	auto it = params.begin();
 	it = params.find("enabled_gc");
 	if (it != params.end()) enabled_ = params.at("enabled_gc").b;
 
@@ -37,8 +34,9 @@ void GunController::load(const std::map<std::string, ValueType>& params)
 	std::stringstream s;
 	s << "mesh_name" << i;
 	it = params.find(s.str());
-	while (it != params.end()) {
-		listGunsMeshes_.push_back((*it).second.s);
+	while (it != params.end())
+	{
+		gunMeshes_.push_back((*it).second.s);
 		i++;
 		std::stringstream s1;
 		s1 << "mesh_name" << i;
@@ -52,9 +50,6 @@ Component * GunController::clone()
 
 	clonedComponent->enabled_ = this->enabled_;
 	clonedComponent->fireButton_ = this->fireButton_;
-	clonedComponent->gunChangeButton_ = this->gunChangeButton_;
-	clonedComponent->listGunsMeshes_ = this->listGunsMeshes_;
-
 
 	return clonedComponent;
 }
@@ -68,42 +63,70 @@ void GunController::init()
 
 bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
-	if (id == OIS::MouseButtonID::MB_Left)
-	{
-		isFiring_ = true;
-
-		GameObject* player = EntityComponentManager::Instance()->findGameObjectWithTag("Player");
-		Ogre::Camera* cam = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent(player, "FirstPersonCamera"))->getCamera();
-
-		Ogre::Vector3 f = cam->getRealPosition();
-		Ogre::Vector3 n = cam->getRealDirection();
-		Ogre::Quaternion q = cam->getRealOrientation();
-		f = f + n * 10;
-		btVector3 from(f.x, f.y, f.z);
-		btVector3 normal(n.x, n.y, n.z);
-
-		GameObject* bullet = EntityComponentManager::Instance()->instantiate("RigidbodyBullet", f, q);
-	}
-
-	return true;
-}
-
-bool GunController::keyPressed(const OIS::KeyEvent &e) {
-	if (e.key == gunChangeButton_)
-	{
-		if (listGunsMeshes_.size() > 1) {
-			std::string gunActive = listGunsMeshes_.front();
-			listGunsMeshes_.pop_front();
-			static_cast<MeshRenderer*>(EntityComponentManager::Instance()->
-				getComponent(this->container_, "MeshRenderer"))->changeMesh(listGunsMeshes_.front(), "");
-			listGunsMeshes_.push_back(gunActive);
-			std::cout << "Gun changed: " << listGunsMeshes_.back() << " to " << listGunsMeshes_.front();
-		}
-	}
+	if (id == OIS::MouseButtonID::MB_Left) shoot();
+	else if (id == OIS::MouseButtonID::MB_Right) changeGun();
 	return true;
 }
 
 bool GunController::mouseReleased(const OIS::MouseEvent & e, OIS::MouseButtonID id)
 {
+	if (id == OIS::MouseButtonID::MB_Left) isFiring_ = false;
 	return true;
+}
+
+void GunController::shoot()
+{
+	Ogre::Camera* cam = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent("Player", "FirstPersonCamera"))->getCamera();
+
+	if (cam)
+	{
+		isFiring_ = true;
+
+		Ogre::Vector3 f = cam->getRealPosition();
+		Ogre::Vector3 n = cam->getRealDirection();
+		Ogre::Quaternion q = cam->getRealOrientation();
+		f = f + n * 10;
+
+		switch (currentGun_)
+		{
+		case GunController::LASER:
+			EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
+			break;
+		case GunController::SHOTGUN:
+			EntityComponentManager::Instance()->instantiate("RigidbodyBullet", f, q);
+			break;
+		case GunController::WATERGUN:
+			EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
+			break;
+		}
+	}
+}
+
+void GunController::reloadGun()
+{
+}
+
+void GunController::changeGun()
+{
+	AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+	if (as) as->play();
+
+	switch (currentGun_)
+	{
+	case GunController::LASER:
+		currentGun_ = GunController::SHOTGUN;
+		break;
+	case GunController::SHOTGUN:
+		currentGun_ = GunController::WATERGUN;
+		break;
+	case GunController::WATERGUN:
+		currentGun_ = GunController::LASER;
+		break;
+	}
+
+	Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
+	if (canvas) canvas->changeReticle();
+
+	MeshRenderer* mr = static_cast<MeshRenderer*>(EntityComponentManager::Instance()->getComponent(gameObject(), "MeshRenderer"));
+	if (mr) mr->changeMesh(gunMeshes_[currentGun_], "");
 }

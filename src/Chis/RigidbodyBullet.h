@@ -24,6 +24,7 @@ private:
 	float speed_;
 	float damage_;
 	Ogre::Vector3 initialPosition_;
+	Ogre::ParticleSystem* particles_;
 };
 
 class RigidbodyBulletFactory : public BaseFactory

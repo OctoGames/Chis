@@ -51,13 +51,6 @@ void Enemy::init()
 
 void Enemy::onCollision(GameObject * other)
 {
-	if (other->getTag() == "bullet")
-	{
-		damage(25);	// damage attribute from bullet
-
-		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
-		if (as) as->play();
-	}
 }
 
 void Enemy::start()

@@ -1,6 +1,7 @@
 #include "RaycastBullet.h"
 
 #include "Enemy.h"
+#include "AudioSource.h"
 #include "FirstPersonCamera.h"
 
 std::string RaycastBullet::name_ = "RaycastBullet";
@@ -53,6 +54,13 @@ void RaycastBullet::start()
 		from += (normal * 10);
 		from_ = btVector3(from.x, from.y, from.z);
 		normal_ = btVector3(normal.x, normal.y, normal.z);
+
+		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+		if (as)
+		{
+			as->changeSource("shoot.ogg");
+			as->play();
+		}
 	}
 
 	if (Physics::Instance()->raycast(from_, normal_, range_, &hit_))
@@ -61,6 +69,13 @@ void RaycastBullet::start()
 
 		if (hit_.gameObject->getTag() == "enemy")
 		{
+			AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
+			if (as)
+			{
+				as->changeSource("hit.ogg");
+				as->play();
+			}
+
 			Enemy* enemy = static_cast<Enemy*>(EntityComponentManager::Instance()->getComponent(hit_.gameObject, "Enemy"));
 			if (enemy) enemy->damage(damage_);
 		}

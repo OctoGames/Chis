@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <archetype >
       <entity name="RaycastBullet" parent="" tag="bullet" active="1" >
+            <component name="AudioSource" >
+                  <user_data value="1" type="bool" name="enabled_as" />
+                  <user_data value="hit.ogg" type="str" name="filename" />
+                  <user_data value="GunRC" type="str" name="audio_id" />
+                  <user_data value="1.0" type="float" name="volume" />
+                  <user_data value="1.0" type="float" name="pitch" />
+            </component>
             <component name="RaycastBullet" >
                   <user_data value="1" type="bool" name="enabled_rbb" />
                   <user_data value="1000.0" type="float" name="range" />

@@ -560,13 +560,13 @@
     <user_data name="rot_z" type="float" value="0.0" />
     <user_data name="rot_w" type="float" value="0.7071068" />
 	  <user_data value="1" type="bool" name="enabled_mr" />
-    <user_data value="escopeta.mesh" type="str" name="mesh_name" />
+    <user_data value="platanoGun.mesh" type="str" name="mesh_name" />
     <user_data value="platanoGun.mesh" type="str" name="mesh_name0" />
-	  <user_data value="rayosGun.mesh" type="str" name="mesh_name1" />
-    <user_data value="escopeta.mesh" type="str" name="mesh_name2" />
+    <user_data value="escopeta.mesh" type="str" name="mesh_name1" />
+	  <user_data value="rayosGun.mesh" type="str" name="mesh_name2" />
 	  <user_data value="1" type="bool" name="enabled_as" />
-	  <user_data value="shoot.wav" type="str" name="filename" />
-	  <user_data value="ShootSFX" type="str" name="audio_id" />
+	  <user_data value="reload.mp3" type="str" name="filename" />
+	  <user_data value="ReloadSFX" type="str" name="audio_id" />
 	  <user_data value="1.0" type="float" name="volume" />
 	  <user_data value="1.0" type="float" name="pitch" />
 	  <user_data value="1" type="bool" name="enabled_gc" />
@@ -576,9 +576,9 @@
       <user_data name="pos_x" type="float" value="0.0" />
       <user_data name="pos_y" type="float" value="60.0" />
       <user_data name="pos_z" type="float" value="200.0" />
-      <user_data name="scale_x" type="float" value="20.0" />
-      <user_data name="scale_y" type="float" value="20.0" />
-      <user_data name="scale_z" type="float" value="20.0" />
+      <user_data name="scale_x" type="float" value="1.0" />
+      <user_data name="scale_y" type="float" value="1.0" />
+      <user_data name="scale_z" type="float" value="1.0" />
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
