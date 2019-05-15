@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 #include "RigidBody.h"
+#include "AudioSource.h"
 #include "FirstPersonCamera.h"
 
 std::string RigidbodyBullet::name_ = "RigidbodyBullet";
@@ -47,7 +48,11 @@ void RigidbodyBullet::init()
 
 void RigidbodyBullet::onCollision(GameObject * other)
 {
-	EntityComponentManager::Instance()->destroy(gameObject());
+	if (other->getTag() != "player")
+	{
+		static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"))->play();
+		EntityComponentManager::Instance()->destroy(gameObject());
+	}
 }
 
 void RigidbodyBullet::start()

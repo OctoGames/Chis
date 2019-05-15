@@ -3,6 +3,7 @@
 #include "RigidBody.h"
 #include "AudioSource.h"
 #include "FirstPersonCamera.h"
+#include "RigidbodyBullet.h"
 
 std::string GunController::name_ = "GunController";
 
@@ -81,16 +82,7 @@ bool GunController::mousePressed(const OIS::MouseEvent & e, OIS::MouseButtonID i
 		btVector3 from(f.x, f.y, f.z);
 		btVector3 normal(n.x, n.y, n.z);
 
-		GameObject* bullet = EntityComponentManager::Instance()->instantiate("Bullet", f, q);
-
-		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(bullet, "RigidBody"));
-		rb->rigidbody()->applyCentralImpulse(normal * 1000.0f);
-
-		//RaycastHit hit;
-		//if (Physics::Instance()->raycast(from, normal, 1000.0f, &hit))
-		//{
-		//	std::cout << hit.gameObject->getName() << std::endl;
-		//}
+		GameObject* bullet = EntityComponentManager::Instance()->instantiate("RigidbodyBullet", f, q);
 	}
 
 	return true;
