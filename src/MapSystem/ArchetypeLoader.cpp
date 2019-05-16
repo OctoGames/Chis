@@ -58,6 +58,7 @@ void ArchetypeLoader::readArchetypeFile(const std::string& file, Ogre::String &m
 	delete scene;
 }
 
+//Reads the information for each entity headland in the Archetypes (.arch) file
 void ArchetypeLoader::processArchetypes(rapidxml::xml_node<>* XMLRoot, Ogre::String &messageError)
 {
 	rapidxml::xml_node<>* pElement;
@@ -71,6 +72,7 @@ void ArchetypeLoader::processArchetypes(rapidxml::xml_node<>* XMLRoot, Ogre::Str
 	}
 }
 
+//Reads each field of the "entity" field
 void ArchetypeLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError) 
 {
 	// Get the gameobject name
@@ -97,6 +99,7 @@ void ArchetypeLoader::processEntity(rapidxml::xml_node<>* XMLNode, Ogre::String 
 	}
 }
 
+//Reads every field inside the "component" one
 void ArchetypeLoader::processComponents(rapidxml::xml_node<>* XMLNode, std::list<Component*>& components, Ogre::String &messageError) {
 	rapidxml::xml_node<>* pElement;
 
@@ -109,6 +112,7 @@ void ArchetypeLoader::processComponents(rapidxml::xml_node<>* XMLNode, std::list
 	}
 }
 
+//Reads the information of the component, is int the "user_data" fields
 void ArchetypeLoader::processComponent(rapidxml::xml_node<>* XMLNode, std::list<Component*>& components, Ogre::String &messageError) {
 	Ogre::String componentName = getAttrib(XMLNode, "name", "");
 	if (componentName == "")

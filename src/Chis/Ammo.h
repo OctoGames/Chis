@@ -3,6 +3,7 @@
 
 #include <Engine.h>
 
+//Behaviour of the ammunition of the map
 class Ammo : public Component
 {
 public:
