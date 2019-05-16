@@ -74,13 +74,16 @@ void Enemy::update()
 			path_.pop();
 		}
 
-		gameObject()->transform()->lookAt(currentDestination_->getPosition(), Ogre::Node::TS_WORLD);
-		Ogre::Vector3 dir = currentDestination_->getPosition() - gameObject()->transform()->getPosition();
-		dir.normalise();
+		if (currentDestination_)
+		{
+			gameObject()->transform()->lookAt(currentDestination_->getPosition(), Ogre::Node::TS_WORLD);
+			Ogre::Vector3 dir = currentDestination_->getPosition() - gameObject()->transform()->getPosition();
+			dir.normalise();
 
-		btVector3 direction(dir.x, dir.y, dir.z);
-		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
-		if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
+			btVector3 direction(dir.x, dir.y, dir.z);
+			RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+			if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
+		}
 	}
 }
 
