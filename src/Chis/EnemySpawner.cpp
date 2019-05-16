@@ -8,7 +8,7 @@ std::string EnemySpawner::name_ = "EnemySpawner";
 
 
 EnemySpawner::EnemySpawner() :
-	spawnTime_(3000),
+	spawnTime_(30000),
 	spawnTimer_(nullptr)
 {
 }
@@ -50,7 +50,7 @@ void EnemySpawner::spawnEnemy()
 {
 	std::cout << "Spawning beginning...\n";
 	std::list<GameObject*> nodeObjects = EntityComponentManager::Instance()->findGameObjectsWithTag("node");
-	int nodeIndex = rand() % (AIManager::Instance()->getNumNodes() + 1) + 35;
+	int nodeIndex = 35 + rand() % 12;
 
 	std::cout << "Spawn node:" << nodeIndex << "\n";
 	Node* node = nullptr;

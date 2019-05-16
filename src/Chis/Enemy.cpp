@@ -44,11 +44,24 @@ Component * Enemy::clone()
 
 void Enemy::init()
 {
+	gameObject()->transform()->setScale(gameObject()->transform()->getScale() * 100);
+	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+	if (rb)
+	{
+		rb->rigidbody()->setLinearFactor(btVector3(1, 0, 1));
+		rb->rigidbody()->setAngularFactor(btVector3(0, 1, 0));
+	}
 	setEnabled(enabled_);
 }
 
 void Enemy::onCollision(GameObject * other)
 {
+	if (other->getName() != "mesa")
+	{
+		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+		if (rb) rb->rigidbody()->setLinearVelocity(btVector3(0, 0, 0));
+		if (rb) rb->rigidbody()->setAngularVelocity(btVector3(0, 0, 0));
+	}
 }
 
 void Enemy::start()
@@ -65,25 +78,32 @@ void Enemy::update()
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
 
-	if (currentDestination_ == nullptr ||
-		currentDestination_->getPosition() == gameObject()->transform()->getPosition())
+	if (currentDestination_ == nullptr)
 	{
 		if (!path_.empty())
 		{
 			currentDestination_ = path_.front();
 			path_.pop();
 		}
+	}
 
-		if (currentDestination_)
+	if (currentDestination_)
+	{
+		if (currentDestination_->getPosition() == gameObject()->transform()->getPosition())
 		{
-			gameObject()->transform()->lookAt(currentDestination_->getPosition(), Ogre::Node::TS_WORLD);
-			Ogre::Vector3 dir = currentDestination_->getPosition() - gameObject()->transform()->getPosition();
-			dir.normalise();
-
-			btVector3 direction(dir.x, dir.y, dir.z);
-			RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
-			if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
+			if (!path_.empty())
+			{
+				currentDestination_ = path_.front();
+				path_.pop();
+			}
 		}
+
+		Ogre::Vector3 dir = currentDestination_->getPosition() - gameObject()->transform()->getPosition();
+		dir.normalise();
+
+		btVector3 direction(dir.x, dir.y, dir.z);
+		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+		if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
 	}
 }
 
