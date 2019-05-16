@@ -61,7 +61,7 @@ void ChisApp::registerFactories()
 {
 	EntityComponentManager::Instance()->registerFactory("MeshRenderer", new MeshRendererFactory());
 	EntityComponentManager::Instance()->registerFactory("FirstPersonCamera", new FirstPersonCameraFactory());
-	EntityComponentManager::Instance()->registerFactory("DirectionalLight", new DirectionalLightFactory());
+	//EntityComponentManager::Instance()->registerFactory("DirectionalLight", new DirectionalLightFactory());
 	EntityComponentManager::Instance()->registerFactory("AudioSource", new AudioSourceFactory());
 	EntityComponentManager::Instance()->registerFactory("RigidBody", new RigidBodyFactory());
 	EntityComponentManager::Instance()->registerFactory("GunController", new GunControllerFactory());

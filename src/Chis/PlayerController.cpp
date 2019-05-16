@@ -30,6 +30,16 @@ void PlayerController::load(const std::map<std::string, ValueType>& params)
 	auto it = params.begin();
 	it = params.find("enabled_pc"); if (it != params.end()) enabled_ = params.at("enabled_pc").b;
 	it = params.find("max_speed"); if (it != params.end()) maxSpeed_ = params.at("max_speed").f;
+	it = params.find("moveForwardsKey"); if (it != params.end()) moveForwardsKey_ = (OIS::KeyCode)(int)params.at("moveForwardsKey").f;
+	it = params.find("moveBackwardsKey"); if (it != params.end()) moveBackwardsKey_ = (OIS::KeyCode)(int)params.at("moveBackwardsKey").f;
+	it = params.find("moveLeftKey"); if (it != params.end()) moveLeftKey_ = (OIS::KeyCode)(int)params.at("moveLeftKey").f;
+	it = params.find("moveRightKey"); if (it != params.end()) moveRightKey_ = (OIS::KeyCode)(int)params.at("moveRightKey").f;
+	it = params.find("fastMoveKey"); if (it != params.end()) fastMoveKey_ = (OIS::KeyCode)(int)params.at("fastMoveKey").f;
+	it = params.find("goingBack"); if (it != params.end()) goingForward_ = params.at("goingForward").b;
+	it = params.find("goingBack"); if (it != params.end()) goingBack_ = params.at("goingBack").b;
+	it = params.find("goingLeft"); if (it != params.end()) goingLeft_ = params.at("goingLeft").b;
+	it = params.find("goingRight"); if (it != params.end()) goingRight_ = params.at("goingRight").b;
+	it = params.find("fastMove"); if (it != params.end()) fastMove_ = params.at("fastMove").b;
 }
 
 Component * PlayerController::clone()
@@ -44,6 +54,12 @@ Component * PlayerController::clone()
 	clonedComponent->moveLeftKey_ = this->moveLeftKey_;
 	clonedComponent->moveRightKey_ = this->moveRightKey_;
 	clonedComponent->fastMoveKey_ = this->fastMoveKey_;
+
+	clonedComponent->goingForward_ = this->goingForward_;
+	clonedComponent->goingBack_ = this->goingBack_;
+	clonedComponent->goingLeft_ = this->goingLeft_;
+	clonedComponent->goingRight_ = this->goingRight_;
+	clonedComponent->fastMove_ = this->fastMove_;
 
 	return clonedComponent;
 }

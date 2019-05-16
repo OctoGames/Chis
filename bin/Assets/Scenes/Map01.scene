@@ -18,7 +18,9 @@
       <user_data name="rot_w" type="float" value="1.0" />
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
-      <user_data name="rot_z" type="float" value="0.0" />           
+      <user_data name="rot_z" type="float" value="0.0" />  
+
+      <user_data name="id" type="float" value="00" />         
     </node>
     <node name="Pancakes" >
       <position z="8.136377" x="-0.155391" y="4.066458" />
@@ -1094,7 +1096,9 @@
       <user_data name="enabled_rb" type="bool" value="1" />
       <user_data name="mesh_name" type="str" value="Cheese.mesh" />
       <user_data name="radius" type="float" value="0.0" />
-      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <user_data name="prototype_name" type="str" value="cheese" />
+      <user_data value="1" type="bool" name="enabled_ch" />
+      <user_data value="150.0" type="float" name="health" />
       <game >
         <sensors />
         <actuators />
@@ -1325,6 +1329,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="01" />
       <game >
         <sensors />
         <actuators />
@@ -1350,6 +1356,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="03" />
       <game >
         <sensors />
         <actuators />
@@ -1375,6 +1383,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="06" />
       <game >
         <sensors />
         <actuators />
@@ -1400,6 +1410,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="09" />
       <game >
         <sensors />
         <actuators />
@@ -1425,6 +1437,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="05" />
       <game >
         <sensors />
         <actuators />
@@ -1450,6 +1464,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="02" />
       <game >
         <sensors />
         <actuators />
@@ -1475,6 +1491,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="07" />
       <game >
         <sensors />
         <actuators />
@@ -1500,6 +1518,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="08" />
       <game >
         <sensors />
         <actuators />
@@ -1525,6 +1545,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="17" />
       <game >
         <sensors />
         <actuators />
@@ -1550,6 +1572,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="04" />
       <game >
         <sensors />
         <actuators />
@@ -1575,6 +1599,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="15" />
       <game >
         <sensors />
         <actuators />
@@ -1600,6 +1626,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="25" />
       <game >
         <sensors />
         <actuators />
@@ -1625,6 +1653,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="24" />
       <game >
         <sensors />
         <actuators />
@@ -1650,6 +1680,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="27" />
       <game >
         <sensors />
         <actuators />
@@ -1675,6 +1707,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="32" />
       <game >
         <sensors />
         <actuators />
@@ -1700,6 +1734,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="37" />
       <game >
         <sensors />
         <actuators />
@@ -1725,6 +1761,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="36" />
       <game >
         <sensors />
         <actuators />
@@ -1750,6 +1788,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="10" />
       <game >
         <sensors />
         <actuators />
@@ -1775,6 +1815,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="14" />
       <game >
         <sensors />
         <actuators />
@@ -1800,6 +1842,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="21" />
       <game >
         <sensors />
         <actuators />
@@ -1825,6 +1869,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="29" />
       <game >
         <sensors />
         <actuators />
@@ -1850,6 +1896,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="34" />
       <game >
         <sensors />
         <actuators />
@@ -1875,6 +1923,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="43" />
       <game >
         <sensors />
         <actuators />
@@ -1900,6 +1950,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="41" />
       <game >
         <sensors />
         <actuators />
@@ -1925,6 +1977,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="45" />
       <game >
         <sensors />
         <actuators />
@@ -1950,6 +2004,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="46" />
       <game >
         <sensors />
         <actuators />
@@ -1975,6 +2031,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="40" />
       <game >
         <sensors />
         <actuators />
@@ -2000,6 +2058,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="44" />
       <game >
         <sensors />
         <actuators />
@@ -2025,6 +2085,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="12" />
       <game >
         <sensors />
         <actuators />
@@ -2050,6 +2112,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="18" />
       <game >
         <sensors />
         <actuators />
@@ -2075,6 +2139,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="20" />
       <game >
         <sensors />
         <actuators />
@@ -2100,6 +2166,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="28" />
       <game >
         <sensors />
         <actuators />
@@ -2125,6 +2193,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="13" />
       <game >
         <sensors />
         <actuators />
@@ -2150,6 +2220,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="19" />
       <game >
         <sensors />
         <actuators />
@@ -2175,6 +2247,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="11" />
       <game >
         <sensors />
         <actuators />
@@ -2200,6 +2274,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="16" />
       <game >
         <sensors />
         <actuators />
@@ -2225,6 +2301,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="22" />
       <game >
         <sensors />
         <actuators />
@@ -2250,6 +2328,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="30" />
       <game >
         <sensors />
         <actuators />
@@ -2275,6 +2355,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="33" />
       <game >
         <sensors />
         <actuators />
@@ -2300,6 +2382,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="39" />
       <game >
         <sensors />
         <actuators />
@@ -2325,6 +2409,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="31" />
       <game >
         <sensors />
         <actuators />
@@ -2350,6 +2436,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="38" />
       <game >
         <sensors />
         <actuators />
@@ -2375,6 +2463,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="23" />
       <game >
         <sensors />
         <actuators />
@@ -2400,6 +2490,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="26" />
       <game >
         <sensors />
         <actuators />
@@ -2425,6 +2517,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="35" />
       <game >
         <sensors />
         <actuators />
@@ -2450,6 +2544,8 @@
       <user_data name="rot_x" type="float" value="0.0" />
       <user_data name="rot_y" type="float" value="0.0" />
       <user_data name="rot_z" type="float" value="0.0" />
+
+      <user_data name="id" type="float" value="42" />
       <game >
         <sensors />
         <actuators />
@@ -2470,14 +2566,12 @@
       <user_data name="rot_w" type="float" value="1.0" />
     <user_data value="1" type="bool" name="enabled_fpc" />
     <user_data value="1" type="bool" name="enabled_fpm" />
-    <user_data value="1" type="bool" name="enabled_pc" />
     <user_data value="1" type="bool" name="enabled_p" />
     <user_data value="10000.0" type="float" name="far_clip" />
     <user_data value="0.5" type="float" name="near_clip" />
     <user_data value="1.0" type="float" name="color_r" />
     <user_data value="0.0" type="float" name="color_g" />
     <user_data value="1.0" type="float" name="color_b" />
-    <user_data value="20000.0" type="float" name="max_speed" />
     <user_data value="180.0" type="float" name="pitch_limit" />
     <user_data value="1" type="bool" name="enabled_rb" />
     <user_data value="1000.0" type="float" name="mass" />
@@ -2485,6 +2579,18 @@
     <user_data value="30.0" type="float" name="scale_rb_x" />
     <user_data value="50.0" type="float" name="scale_rb_y" />
     <user_data value="1.0" type="float" name="scale_rb_z" />
+	<user_data value="1" type="bool" name="enabled_pc" />
+	<user_data value="20000.0" type="float" name="max_speed" />
+	<user_data value="17" type="float" name="moveForwardsKey" />
+	<user_data value="31" type="float" name="moveBackwardsKey" />
+	<user_data value="30" type="float" name="moveLeftKey" />
+	<user_data value="32" type="float" name="moveRightKey" />
+	<user_data value="42" type="float" name="fastMoveKey" />
+	<user_data value="1" type="bool" name="goingForward" />
+	<user_data value="1" type="bool" name="goingBack" />
+	<user_data value="1" type="bool" name="goingLeft" />
+	<user_data value="1" type="bool" name="goingRight" />
+	<user_data value="1" type="bool" name="fastMove" />
     </node>
   <node name="arms" >
     <user_data name="prototype_name" type="str" value="arms" />
@@ -2508,8 +2614,16 @@
     <user_data value="ReloadSFX" type="str" name="audio_id" />
     <user_data value="1.0" type="float" name="volume" />
     <user_data value="1.0" type="float" name="pitch" />
-    <user_data value="1" type="bool" name="enabled_gc" />
-    </node>
+	<user_data value="1" type="bool" name="enabled_gc" />
+	<user_data value="1" type="bool" name="isFiring" />
+	<user_data value="40" type="float" name="totalBullets" />
+	<user_data value="20" type="float" name="remainingBullets" />
+	<user_data value="0" type="float" name="fireButton" />
+	<user_data value="0" type="float" name="currentGun" />
+	<user_data value="20" type="float" name="magazineSize" />
+	<user_data value="1" type="float" name="numBulletsLaser" />
+	<user_data value="5" type="float" name="numBulletsShotgun" />
+  </node>
     <node name="ammo" >
       <user_data name="prototype_name" type="str" value="ammo" />
       <user_data name="pos_x" type="float" value="-22.1084" />
@@ -2536,6 +2650,7 @@
       <user_data value="1.0" type="float" name="volume" />
       <user_data value="1.0" type="float" name="pitch" />
       <user_data value="1" type="bool" name="enabled_a" />
+      <user_data value="30" type="float" name="num_bullets" />
     </node>
   </nodes>
 </scene>

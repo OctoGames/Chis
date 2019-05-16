@@ -22,6 +22,7 @@
         </component>
         <component name="Ammo" >
             <user_data value="1" type="bool" name="enabled_a" />
+            <user_data value="25" type="float" name="num_bullets" />
         </component>
     </entity>
 </archetype>

@@ -22,7 +22,8 @@ void Player::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
 	it = params.find("enabled_p"); if (it != params.end()) enabled_ = params.at("enabled_p").b;
-	it = params.find("health"); if (it != params.end()) health_ = params.at("health").f;
+	it = params.find("health"); if (it != params.end()) health_ = params.at("health").f; 
+	it = params.find("invulnerable"); if (it != params.end()) invulnerable_ = params.at("invulnerable").b;
 }
 
 Component * Player::clone()

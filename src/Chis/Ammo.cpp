@@ -20,6 +20,7 @@ void Ammo::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
 	it = params.find("enabled_a"); if (it != params.end()) enabled_ = params.at("enabled_a").b;
+	it = params.find("num_bullets"); if (it != params.end()) numBullets_ = params.at("num_bullets").f;
 }
 
 Component * Ammo::clone()
@@ -27,6 +28,7 @@ Component * Ammo::clone()
 	Ammo* clonedComponent = new Ammo();
 
 	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->numBullets_ = this->numBullets_;
 
 	return clonedComponent;
 }

@@ -13,7 +13,15 @@
               <user_data value="1.0" type="float" name="pitch" />
         </component>
 		    <component name="GunController" >
-		          <user_data value="1" type="bool" name="enabled_gc" />
+              <user_data value="1" type="bool" name="enabled_gc" />
+              <user_data value="1" type="bool" name="isFiring" />
+              <user_data value="40" type="float" name="totalBullets" />
+              <user_data value="20" type="float" name="remainingBullets" />
+              <user_data value="0" type="float" name="fireButton" />
+              <user_data value="0" type="float" name="currentGun" />
+              <user_data value="20" type="float" name="magazineSize" />
+              <user_data value="1" type="float" name="numBulletsLaser" />
+		          <user_data value="5" type="float" name="numBulletsShotgun" />
         </component>
     </entity>
 </archetype>

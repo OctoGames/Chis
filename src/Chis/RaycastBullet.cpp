@@ -25,6 +25,17 @@ void RaycastBullet::load(const std::map<std::string, ValueType>& params)
 	it = params.find("enabled_rcb"); if (it != params.end()) enabled_ = params.at("enabled_rcb").b;
 	it = params.find("range"); if (it != params.end()) range_ = params.at("range").f;
 	it = params.find("damage"); if (it != params.end()) damage_ = params.at("damage").f;
+
+	float x, y, z;
+	it = params.find("from_x"); if (it != params.end()) x = params.at("from_x").f;
+	it = params.find("from_y"); if (it != params.end()) y = params.at("from_y").f;
+	it = params.find("from_z"); if (it != params.end()) z = params.at("from_z").f;
+	from_ = btVector3(x, y, z);
+
+	it = params.find("normal_x"); if (it != params.end()) x = params.at("normal_x").f;
+	it = params.find("normal_y"); if (it != params.end()) y = params.at("normal_y").f;
+	it = params.find("normal_z"); if (it != params.end()) z = params.at("normal_z").f;
+	normal_ = btVector3(x, y, z);
 }
 
 Component * RaycastBullet::clone()
@@ -34,6 +45,9 @@ Component * RaycastBullet::clone()
 	clonedComponent->enabled_ = this->enabled_;
 	clonedComponent->range_ = this->range_;
 	clonedComponent->damage_ = this->damage_;
+	clonedComponent->from_ = this->from_;
+	clonedComponent->normal_ = this->normal_;
+
 
 	return clonedComponent;
 }
@@ -46,7 +60,7 @@ void RaycastBullet::init()
 void RaycastBullet::start()
 {
 	Ogre::Camera* cam = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent("Player", "FirstPersonCamera"))->getCamera();
-	
+
 	if (cam)
 	{
 		Ogre::Vector3 from = cam->getRealPosition();

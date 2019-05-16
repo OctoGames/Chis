@@ -27,12 +27,14 @@ Canvas::~Canvas()
 void Canvas::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
-	it = params.find("enabled_c"); if (it != params.end()) enabled_ = params.at("enabled_c").b;
+	it = params.find("enabled_cv"); if (it != params.end()) enabled_ = params.at("enabled_cv").b;
 	it = params.find("scheme"); if (it != params.end()) defaultScheme_ = params.at("scheme").s;
 	it = params.find("cursor"); if (it != params.end()) defaultCursor_ = params.at("cursor").s;
 	it = params.find("menu_layout"); if (it != params.end()) mainmenuLayout_ = params.at("menu_layout").s;
 	it = params.find("game_layout"); if (it != params.end()) gameLayout_ = params.at("game_layout").s;
 	it = params.find("end_layout"); if (it != params.end()) endmenuLayout_ = params.at("end_layout").s;
+	it = params.find("score_cv"); if (it != params.end()) score_ = params.at("score_cv").f;
+	it = params.find("currentGUIContext"); if (it != params.end()) currentGUIContext_ = (GUIContext)(int)params.at("currentGUIContext").f;
 }
 
 Component * Canvas::clone()
@@ -45,6 +47,8 @@ Component * Canvas::clone()
 	clonedComponent->mainmenuLayout_ = this->mainmenuLayout_;
 	clonedComponent->gameLayout_ = this->gameLayout_;
 	clonedComponent->endmenuLayout_ = this->endmenuLayout_;
+	clonedComponent->score_ = this->score_;
+	clonedComponent->currentGUIContext_= this->currentGUIContext_;
 
 	return clonedComponent;
 }

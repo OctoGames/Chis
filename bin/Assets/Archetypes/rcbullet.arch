@@ -12,6 +12,12 @@
                   <user_data value="1" type="bool" name="enabled_rbb" />
                   <user_data value="1000.0" type="float" name="range" />
                   <user_data value="25.0" type="float" name="damage" />
+                  <user_data value="0" type="float" name="from_x" />
+                  <user_data value="0" type="float" name="from_y" />
+                  <user_data value="0" type="float" name="from_z" />
+                  <user_data value="0" type="float" name="normal_x" />
+                  <user_data value="0" type="float" name="normal_y" />
+                  <user_data value="0" type="float" name="normal_z" />
             </component>
     </entity>
 </archetype>

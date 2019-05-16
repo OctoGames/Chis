@@ -29,9 +29,21 @@
         <component name="PlayerController" >
             <user_data value="1" type="bool" name="enabled_pc" />
             <user_data value="200.0" type="float" name="max_speed" />
+            <user_data value="17" type="float" name="moveForwardsKey" />
+            <user_data value="31" type="float" name="moveBackwardsKey" />
+            <user_data value="30" type="float" name="moveLeftKey" />
+            <user_data value="32" type="float" name="moveRightKey" />
+            <user_data value="42" type="float" name="fastMoveKey" />
+            <user_data value="1" type="bool" name="goingForward" />
+            <user_data value="1" type="bool" name="goingBack" />
+            <user_data value="1" type="bool" name="goingLeft" />
+            <user_data value="1" type="bool" name="goingRight" />
+            <user_data value="1" type="bool" name="fastMove" />
+            
         </component>
         <component name="Player" >
             <user_data value="1" type="bool" name="enabled_p" />
+            <user_data value="1" type="bool" name="invulnerable" />
             <user_data value="100.0" type="float" name="health" />
         </component>
     </entity>

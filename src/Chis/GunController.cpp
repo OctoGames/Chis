@@ -27,8 +27,15 @@ GunController::~GunController()
 void GunController::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
-	it = params.find("enabled_gc");
-	if (it != params.end()) enabled_ = params.at("enabled_gc").b;
+	it = params.find("enabled_gc"); if (it != params.end()) enabled_ = params.at("enabled_gc").b;
+	it = params.find("isFiring"); if (it != params.end()) isFiring_ = params.at("isFiring").b;
+	it = params.find("totalBullets"); if (it != params.end()) totalBullets_ = params.at("totalBullets").f;
+	it = params.find("remainingBullets"); if (it != params.end()) remainingBullets_ = params.at("remainingBullets").f;
+	it = params.find("fireButton"); if (it != params.end()) fireButton_ = (OIS::MouseButtonID)(int)params.at("fireButton").f;
+	it = params.find("enabled_gc"); if (it != params.end()) currentGun_ = (GunController::GunType)(int)params.at("enabled_gc").f;
+	it = params.find("magazineSize"); if (it != params.end()) magazineSize_ = params.at("magazineSize").f;
+	it = params.find("numBulletsLaser"); if (it != params.end()) numBulletsLaser_ = params.at("numBulletsLaser").f;
+	it = params.find("numBulletsShotgun"); if (it != params.end()) numBulletsShotgun_ = params.at("numBulletsShotgun").f;
 
 	int i = 0;
 	std::stringstream s;
@@ -49,7 +56,14 @@ Component * GunController::clone()
 	GunController* clonedComponent = new GunController();
 
 	clonedComponent->enabled_ = this->enabled_;
+	clonedComponent->isFiring_ = this->isFiring_;
+	clonedComponent->totalBullets_ = this->totalBullets_;
+	clonedComponent->remainingBullets_ = this->remainingBullets_;
 	clonedComponent->fireButton_ = this->fireButton_;
+	clonedComponent->currentGun_ = this->currentGun_;
+	clonedComponent->magazineSize_ = this->magazineSize_;
+	clonedComponent->numBulletsLaser_ = this->numBulletsLaser_;
+	clonedComponent->numBulletsShotgun_ = this->numBulletsShotgun_;
 
 	return clonedComponent;
 }

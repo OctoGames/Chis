@@ -26,6 +26,7 @@ void Enemy::load(const std::map<std::string, ValueType>& params)
 	it = params.find("health"); if (it != params.end()) health_ = params.at("health").f;
 	it = params.find("damage"); if (it != params.end()) damage_ = params.at("damage").f;
 	it = params.find("score"); if (it != params.end()) score_ = params.at("score").f;
+	it = params.find("speed"); if (it != params.end()) speed_ = params.at("speed").f;
 }
 
 Component * Enemy::clone()
@@ -35,7 +36,8 @@ Component * Enemy::clone()
 	clonedComponent->enabled_ = this->enabled_;
 	clonedComponent->health_ = this->health_;
 	clonedComponent->damage_ = this->damage_;
-	clonedComponent->score_ = this->score_;
+	clonedComponent->score_  = this->score_;
+	clonedComponent->speed_ = this->speed_;
 
 	return clonedComponent;
 }

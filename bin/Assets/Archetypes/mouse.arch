@@ -19,6 +19,7 @@
             <user_data value="100.0" type="float" name="health" />
             <user_data value="10.0" type="float" name="damage" />
             <user_data value="100.0" type="float" name="score" />
+            <user_data value="1000.0" type="float" name="speed" />
         </component>
     </entity>
 </archetype>

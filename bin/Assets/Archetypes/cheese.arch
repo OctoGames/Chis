@@ -13,5 +13,9 @@
             <user_data value="1" type="bool" name="enabled_ch" />
             <user_data value="100.0" type="float" name="health" />
         </component>
+        <component name="MeshRenderer" >
+            <user_data value="1" type="bool" name="enabled_mr" />
+            <user_data value="arms.mesh" type="str" name="mesh_name" />
+        </component>
     </entity>
 </archetype>
