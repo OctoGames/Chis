@@ -38,7 +38,7 @@ Component * Player::clone()
 void Player::init()
 {
 	Ogre::Viewport* vp = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent(gameObject(), "FirstPersonCamera"))->getCamera()->getViewport();
-	Ogre::CompositorManager::getSingleton().addCompositor(vp, "Luminance");
+	if (vp) Ogre::CompositorManager::getSingleton().addCompositor(vp, "Luminance");
 	invulnerabilityTimer_ = new Ogre::Timer();
 	invulnerabilityTimer_->reset();
 	setEnabled(enabled_);
@@ -55,10 +55,15 @@ void Player::onCollision(GameObject * other)
 		if (canvas) canvas->updateHealth(health_);
 
 		AudioSource* as = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
-		if (as) as->play();
+		if (as)
+		{
+			std::string i = std::to_string(rand() % 5);
+			as->changeSource("hurt" + i + ".ogg");
+			as->play();
+		}
 		
 		Ogre::Viewport* vp = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent(gameObject(), "FirstPersonCamera"))->getCamera()->getViewport();
-		Ogre::CompositorManager::getSingleton().setCompositorEnabled(vp, "Luminance", true);
+		if (vp && health_ > 0.0) Ogre::CompositorManager::getSingleton().setCompositorEnabled(vp, "Luminance", true);
 
 		invulnerable_ = true;
 		invulnerabilityTimer_->reset();
@@ -70,7 +75,7 @@ void Player::update()
 	if (invulnerable_ && invulnerabilityTimer_->getMilliseconds() > 2000)
 	{
 		Ogre::Viewport* vp = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent(gameObject(), "FirstPersonCamera"))->getCamera()->getViewport();
-		Ogre::CompositorManager::getSingleton().setCompositorEnabled(vp, "Luminance", false);
+		if (vp) Ogre::CompositorManager::getSingleton().setCompositorEnabled(vp, "Luminance", false);
 		invulnerable_ = false;
 	}
 }

@@ -49,10 +49,11 @@ private:
 	std::string mainmenuLayout_;
 	std::string gameLayout_;
 	std::string endmenuLayout_;
+	std::string currentReticle_;
 
 	float score_;
-
-	std::string currentReticle_;
+	bool loadingMenu_;
+	Ogre::Timer* loadTimer_;
 };
 
 class CanvasFactory : public BaseFactory

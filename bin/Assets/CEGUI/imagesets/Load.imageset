@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Imageset name="Load" imagefile="LoadScreen.png" autoScaled="vertical" nativeHorzRes="1280" nativeVertRes="720" version="2" >
+	<Image name="LoadingScreen" xPos="0" yPos="0"  width="1980" height="1080" />
+	<Image name="Loading" xPos="0" yPos="1080"  width="1980" height="1080" />
+</Imageset>

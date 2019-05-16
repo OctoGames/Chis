@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <GUIScheme version="5" name="Chis">
 	<Imageset filename="Chis.imageset" />
+	<Imageset filename="Load.imageset" />
 	<Imageset filename="TaharezLook.imageset" />
 	<Font filename="Jura-18.font" />
 	<LookNFeel filename="TaharezLook.looknfeel" />

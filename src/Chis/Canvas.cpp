@@ -14,7 +14,9 @@ Canvas::Canvas() :
 	mainmenuLayout_("MainMenu.layout"),
 	gameLayout_("Game.layout"),
 	endmenuLayout_("EndMenu.layout"),
-	score_(0.0f)
+	score_(0.0f),
+	loadTimer_(nullptr),
+	loadingMenu_(true)
 {
 }
 
@@ -49,6 +51,8 @@ Component * Canvas::clone()
 
 void Canvas::init()
 {
+	loadTimer_ = new Ogre::Timer();
+
 	// Set default GUI resources
 	CEGUI::SchemeManager::getSingleton().createFromFile(defaultScheme_);
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
@@ -77,6 +81,15 @@ void Canvas::start()
 
 void Canvas::update()
 {
+	if (loadingMenu_ && loadTimer_->getMilliseconds() > 3000)
+	{
+		SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
+		sceneManager_->createMenuScene();
+
+		GUIManager::Instance()->getContext().getMouseCursor().setVisible(true);
+		roots_[GUIContext::MAIN_MENU]->getChild("LoadingScreen")->hide();
+		loadingMenu_ = false;
+	}
 }
 
 
@@ -91,15 +104,18 @@ bool Canvas::keyPressed(const OIS::KeyEvent & e)
 	else if (e.key == OIS::KC_F) RenderManager::Instance()->getSceneManager()->setFog(Ogre::FOG_EXP2, Ogre::ColourValue::White, 0.001);
 #endif
 
-	if (e.key == OIS::KC_ESCAPE)
+	if (!loadingMenu_)
 	{
-		if (GUIManager::Instance()->getContext().getMouseCursor().isVisible()) quit();
-		else toEndMenu();
-	}
-	else if (e.key == OIS::KC_NUMPADENTER)
-	{
-		if (currentGUIContext_ == GUIContext::MAIN_MENU) toGame();
-		if (currentGUIContext_ == GUIContext::END_MENU) restart();
+		if (e.key == OIS::KC_ESCAPE)
+		{
+			if (GUIManager::Instance()->getContext().getMouseCursor().isVisible()) quit();
+			else toEndMenu();
+		}
+		else if (e.key == OIS::KC_NUMPADENTER)
+		{
+			if (currentGUIContext_ == GUIContext::MAIN_MENU) toGame();
+			if (currentGUIContext_ == GUIContext::END_MENU) restart();
+		}
 	}
 
 	return true;
@@ -167,30 +183,31 @@ void Canvas::toMainMenu()
 	roots_[GUIContext::GAME]->hide();
 	roots_[GUIContext::END_MENU]->hide();
 	roots_[GUIContext::MAIN_MENU]->show();
-	GUIManager::Instance()->getContext().getMouseCursor().setVisible(true);
+	GUIManager::Instance()->getContext().getMouseCursor().setVisible(false);
 
 	currentGUIContext_ = GUIContext::MAIN_MENU;
 	GUIManager::Instance()->setRootWidget(roots_[currentGUIContext_]);
-
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
-	sceneManager_->createMenuScene();
+	roots_[GUIContext::MAIN_MENU]->getChild("Loading")->hide();
+	loadTimer_->reset();
 }
 
 void Canvas::toGame()
 {
+	roots_[GUIContext::MAIN_MENU]->getChild("Loading")->show();
+	GUIManager::Instance()->getContext().getMouseCursor().setVisible(false);
+	RenderManager::Instance()->update(RenderManager::Instance()->time()->deltaTime());
+
+	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
+	sceneManager_->createGameScene();
+
 	roots_[GUIContext::GAME]->show();
 	roots_[GUIContext::END_MENU]->hide();
 	roots_[GUIContext::MAIN_MENU]->hide();
-	GUIManager::Instance()->getContext().getMouseCursor().setVisible(false);
-
 	currentGUIContext_ = GUIContext::GAME;
 	GUIManager::Instance()->setRootWidget(roots_[currentGUIContext_]);
 	roots_[currentGUIContext_]->getChild("Reticle")->show();
 	roots_[currentGUIContext_]->getChild("ReticleShotgun")->hide();
 	roots_[currentGUIContext_]->getChild("ReticleWatergun")->hide();
-
-	SceneManager* sceneManager_ = static_cast<SceneManager*>(EntityComponentManager::Instance()->getComponent(gameObject(), "SceneManager"));
-	sceneManager_->createGameScene();
 }
 
 void Canvas::toEndMenu()

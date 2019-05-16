@@ -5,7 +5,7 @@
               <user_data value="1" type="bool" name="enabled_as" />
               <user_data value="22-The Mouse's House.mp3" type="str" name="filename" />
               <user_data value="MouseMusic" type="str" name="audio_id" />
-              <user_data value="1.0" type="float" name="volume" />
+              <user_data value="0.5" type="float" name="volume" />
               <user_data value="1.0" type="float" name="pitch" />
               <user_data value="1" type="bool" name="loop" />
         </component>

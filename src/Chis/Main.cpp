@@ -1,7 +1,13 @@
+#include <time.h>
+#include <stdlib.h> 
+
 #include "ChisApp.h"
+
 
 int main(int argc, char* argv[])
 {
+	srand(time(NULL));
+
 #ifndef _DEBUG
 	HWND hwnd = GetConsoleWindow();
 	ShowWindow(hwnd, 0);
