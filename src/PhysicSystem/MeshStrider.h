@@ -5,6 +5,8 @@
 
 #include "RenderManager.h"
 
+
+//Creates triangled meshes instead of boxes for the map objects 
 class MeshStrider : public btStridingMeshInterface 
 {
 public:

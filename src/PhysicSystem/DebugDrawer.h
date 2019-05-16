@@ -3,6 +3,7 @@
 
 #include <btBulletDynamicsCommon.h>
 
+//Shows the collider of the object
 class DebugDrawer : public btIDebugDraw 
 {
 public:

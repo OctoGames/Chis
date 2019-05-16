@@ -45,33 +45,20 @@ void SceneLoader::loadScene(const Ogre::String& SceneName)
 	delete scene;
 }
 
+//Reads each "nodes" field and the scale they'll have
 void SceneLoader::processScene(rapidxml::xml_node<>* XMLRoot, Ogre::String &messageError)
 {
 	bool processControl = false;
-	// Process the scene parameters
-	//Ogre::String version = getAttrib(XMLRoot, "formatVersion", "unknown");
-
-	//Ogre::String message = "[DotSceneLoader] Parsing dotScene file with version " + version;
-	//if (XMLRoot->first_attribute("ID"))
-	//	message += ", id " + Ogre::String(XMLRoot->first_attribute("ID")->value());
-	//if (XMLRoot->first_attribute("sceneManager"))
-	//	message += ", scene manager " + Ogre::String(XMLRoot->first_attribute("sceneManager")->value());
-	//if (XMLRoot->first_attribute("minOgreVersion"))
-	//	message += ", min. Ogre version " + Ogre::String(XMLRoot->first_attribute("minOgreVersion")->value());
-	//if (XMLRoot->first_attribute("author"))
-	//	message += ", author " + Ogre::String(XMLRoot->first_attribute("author")->value());
-
-	//Ogre::LogManager::getSingleton().logMessage(message);
 
 	rapidxml::xml_node<>* pElement;
 
-	// Process nodes (?)
 	pElement = XMLRoot->first_node("nodes");
 	factor_escala = getAttribReal(pElement, "factor");
 	if (pElement)
 		processGameObjects(pElement, messageError);
 }
 
+//Reads each field of the node
 void SceneLoader::processGameObjects(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError)
 {
 	rapidxml::xml_node<>* pElement;
@@ -85,6 +72,7 @@ void SceneLoader::processGameObjects(rapidxml::xml_node<>* XMLNode, Ogre::String
 	}
 }
 
+//Reads the Game Object's position, scale and orientation and clones it
 void SceneLoader::processGameObject(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError) {
 
 	// Get the gameobject name
@@ -113,6 +101,7 @@ void SceneLoader::processGameObject(rapidxml::xml_node<>* XMLNode, Ogre::String 
 	}
 }
 
+//Reads the information of the Game Object's components in each "user_data" field
 void SceneLoader::processComponentsData(rapidxml::xml_node<>* XMLNode, Ogre::String &messageError) {
 
 	rapidxml::xml_node<>* pElement;

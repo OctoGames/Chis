@@ -21,6 +21,7 @@ struct RaycastHit
 	btScalar distance;
 };
 
+//Collider shape, created by the DebugDrawer
 struct DebugObject
 {
 	enum DebugObjectType { DEBUG_BOX, DEBUG_SPHERE, DEBUG_LINE };
