@@ -116,7 +116,7 @@ void GunController::shoot()
 		f = f + n * 10;
 
 		switch (currentGun_)
-		{
+		{	
 		case GunController::LASER:
 			if (remainingBullets_ >= numBulletsLaser_)
 			{

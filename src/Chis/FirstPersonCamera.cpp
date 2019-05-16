@@ -1,4 +1,5 @@
 #include "FirstPersonCamera.h"
+
 #include "RigidBody.h"
 
 std::string FirstPersonCamera::name_ = "FirstPersonCamera";

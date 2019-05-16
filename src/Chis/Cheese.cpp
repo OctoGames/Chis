@@ -1,9 +1,9 @@
 #include "Cheese.h"
 
 #include "AudioSource.h"
-#include "GameManager.h"
 #include "Canvas.h"
 #include "Enemy.h"
+
 
 std::string Cheese::name_ = "Cheese";
 

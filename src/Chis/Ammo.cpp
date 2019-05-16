@@ -4,6 +4,7 @@
 #include "RigidBody.h"
 #include "GunController.h"
 
+
 std::string Ammo::name_ = "Ammo";
 
 Ammo::Ammo() :

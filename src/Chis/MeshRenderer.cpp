@@ -1,5 +1,6 @@
 #include "MeshRenderer.h"
 
+
 std::string MeshRenderer::name_ = "MeshRenderer";
 
 MeshRenderer::MeshRenderer() :

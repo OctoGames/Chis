@@ -1,9 +1,8 @@
 #include "Enemy.h"
 
 #include "AudioSource.h"
-#include "GameManager.h"
-#include "Canvas.h"
 #include "RigidBody.h"
+#include "Canvas.h"
 #include "Node.h"
 
 std::string Enemy::name_ = "Enemy";

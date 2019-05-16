@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "ChisApp.h"
 
+
 std::string Canvas::name_ = "Canvas";
 
 // COMPONENT FUNCTIONS --------------------------------------------------------

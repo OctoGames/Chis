@@ -1,9 +1,9 @@
 #include "Player.h"
 
+#include "FirstPersonCamera.h"
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "Enemy.h"
-#include "FirstPersonCamera.h"
 
 std::string Player::name_ = "Player";
 
