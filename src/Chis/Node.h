@@ -14,11 +14,10 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
-	static std::vector<Node*> nodes_;
+	static std::vector<Ogre::SceneNode*> nodes_;
 
 private:
 	static std::string name_;
-	static int numNode_;
 
 	int id_;
 };

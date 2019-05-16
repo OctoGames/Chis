@@ -11,10 +11,7 @@ Enemy::Enemy() :
 	health_(100.0f),
 	damage_(10.0f),
 	score_(100.0f),
-	speed_(1000.0f),
-	currentNode_(0),
-	numNodes_(0),
-	destination_(nullptr)
+	speed_(1000.0f)
 {
 }
 
@@ -38,7 +35,7 @@ Component * Enemy::clone()
 	clonedComponent->enabled_ = this->enabled_;
 	clonedComponent->health_ = this->health_;
 	clonedComponent->damage_ = this->damage_;
-	clonedComponent->score_  = this->score_;
+	clonedComponent->score_ = this->score_;
 
 	return clonedComponent;
 }
@@ -54,10 +51,6 @@ void Enemy::onCollision(GameObject * other)
 
 void Enemy::start()
 {
-	// Pedir camino al motor de IA
-	// Nos devuelve una lista de int n
-	// Rellenamos el vector path con Node::nodes_[n]
-	// Asignamos destination_
 }
 
 void Enemy::update()
@@ -69,24 +62,31 @@ void Enemy::update()
 
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
-	
-	//if (gameObject()->transform()->getPosition() != destination_->getPosition()) 
-	//{
-	//	gameObject()->transform()->lookAt(destination_->getPosition(), Ogre::Node::TS_WORLD);
-	//	Ogre::Vector3 dir = destination_->getPosition() - gameObject()->transform()->getPosition();
-	//	dir.normalise();
 
-	//	btVector3 direction(dir.x, dir.y, dir.z);
+	if (!path_.empty())
+	{
+		if (currentDestination_ == nullptr ||
+			currentDestination_->getPosition() == gameObject()->transform()->getPosition())
+		{
+			currentDestination_ = path_.front();
+			path_.pop();
+		}
 
-	//	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(bullet, "RigidBody"));
-	//	if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
-	//}
-	//else
-	//{
-	//	currentNode_++;
-	//	if (currentNode_ > numNodes_)
-	//	{
-	//		destination_ = Node::nodes_[path_[currentNode_]]->gameObject()->transform();
-	//	}
-	//}
+		gameObject()->transform()->lookAt(currentDestination_->getPosition(), Ogre::Node::TS_WORLD);
+		Ogre::Vector3 dir = currentDestination_->getPosition() - gameObject()->transform()->getPosition();
+		dir.normalise();
+
+		btVector3 direction(dir.x, dir.y, dir.z);
+		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+		if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
+
+	}
+}
+
+void Enemy::receivePath(const std::list<int>& path)
+{
+	for (int i : path)
+	{
+		path_.push(Node::nodes_[i]);
+	}
 }

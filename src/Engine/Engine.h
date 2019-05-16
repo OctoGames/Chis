@@ -10,7 +10,7 @@
 #include "Physics.h"
 #include "SceneLoader.h"
 #include "ArchetypeLoader.h"
-#include "GraphGenerator.h"
+#include "AIManager.h"
 #include "AudioManager.h"
 
 #endif // !__ENGINE_H__

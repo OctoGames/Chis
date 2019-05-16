@@ -6,7 +6,6 @@
 
 GraphSolver::GraphSolver(Graph const& G, int source) : 
 	marked_(G.V(), false), 
-	distTo_(G.V(), -1),
 	edgeTo_(G.V(), -1)
 {
 	bfs(G, source);
@@ -17,7 +16,6 @@ void GraphSolver::bfs(Graph const& G, int source)
 	std::queue<int> queue;
 	queue.push(source);
 	marked_[source] = true;
-	distTo_[source] = 0;
 
 	while (!queue.empty())
 	{
@@ -26,7 +24,6 @@ void GraphSolver::bfs(Graph const& G, int source)
 		{
 			if (!marked_[w])
 			{
-				distTo_[w] = distTo_[source] + 1;
 				edgeTo_[w] = source;
 				queue.push(w);
 				marked_[w] = true;
@@ -35,16 +32,18 @@ void GraphSolver::bfs(Graph const& G, int source)
 	}
 }
 
-std::vector<int> GraphSolver::getPath(int source, int destination)
+std::list<int> GraphSolver::getPath(int source, int destination)
 {
-	if (!hasPath(destination)) return std::vector<int>();
+	std::list<int> path;
+	
+	if (hasPath(source))
+	{
+		std::stack<int> stack;
+		stack.push(source);
 
-	std::vector<int> path;
-	std::stack<int> stack;
-	stack.push(destination);
-
-	while (stack.top() != source) stack.push(edgeTo_[stack.top()]);
-	while (!stack.empty()) { path.push_back(stack.top()); stack.pop(); }
+		while (stack.top() != destination) stack.push(edgeTo_[stack.top()]);
+		while (!stack.empty()) { path.push_front(stack.top()); stack.pop(); }
+	}
 
 	return path;
 }

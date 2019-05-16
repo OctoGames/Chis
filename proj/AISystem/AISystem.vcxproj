@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\AISystem\AIManager.cpp" />
     <ClCompile Include="..\..\src\AISystem\GraphSolver.cpp" />
-    <ClCompile Include="..\..\src\AISystem\GraphGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\AISystem\AIManager.h" />
     <ClInclude Include="..\..\src\AISystem\GraphSolver.h" />
     <ClInclude Include="..\..\src\AISystem\Graph.h" />
-    <ClInclude Include="..\..\src\AISystem\GraphGenerator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

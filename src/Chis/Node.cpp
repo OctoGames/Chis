@@ -1,12 +1,11 @@
 #include "Node.h"
 
 
+std::vector<Ogre::SceneNode*> Node::nodes_ = std::vector<Ogre::SceneNode*>(AIManager::Instance()->getNumNodes(), nullptr);
 std::string Node::name_ = "Node";
-int Node::numNode_ = 0;
-std::vector<Node*> Node::nodes_ = std::vector<Node*>();
 
 Node::Node() :
-	id_(0)
+	id_(-1)
 {
 }
 
@@ -18,6 +17,7 @@ void Node::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
 	it = params.find("enabled_n"); if (it != params.end()) enabled_ = params.at("enabled_n").b;
+	it = params.find("id"); if (it != params.end()) id_ = static_cast<int>(params.at("id").f);
 }
 
 Component * Node::clone()
@@ -26,14 +26,11 @@ Component * Node::clone()
 
 	clonedComponent->enabled_ = this->enabled_;
 
-	numNode_++;
-	clonedComponent->id_ = numNode_;
-	nodes_.push_back(clonedComponent);
-
 	return clonedComponent;
 }
 
 void Node::init()
 {
+	nodes_[id_] = gameObject()->transform();
 	setEnabled(enabled_);
 }

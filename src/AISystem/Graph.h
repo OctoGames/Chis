@@ -10,7 +10,7 @@ using Adjs = std::vector<int>;
 class Graph
 {
 public:
-	Graph(int v) : V_(v), E_(0), adjacents_(V_) {}
+	Graph(int v = 0) : V_(v), E_(0), adjacents_(V_) {}
 
 	inline int V() const { return V_; }
 	inline int E() const { return E_; }

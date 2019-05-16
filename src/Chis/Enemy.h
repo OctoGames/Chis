@@ -21,6 +21,8 @@ public:
 	inline float getDamage() const { return damage_; }
 	void damage(float dmg) { health_ -= dmg; }
 
+	void receivePath(const std::list<int>& path);
+
 private:
 	static std::string name_;
 
@@ -29,10 +31,8 @@ private:
 	float score_;
 	float speed_;
 
-	std::vector<int> path_;
-	int currentNode_;
-	int numNodes_;
-	Ogre::Node* destination_;
+	std::queue<Ogre::SceneNode*> path_;
+	Ogre::SceneNode* currentDestination_;
 };
 
 class EnemyFactory : public BaseFactory
