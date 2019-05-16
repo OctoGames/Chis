@@ -11,7 +11,7 @@ material Examples/Robot {
 			texture_unit 
 			{
 				texture cheker.jpg
-				colour_op modulate
+				colour_op alpha_blend
 			}
 		}
 	}
@@ -50,7 +50,7 @@ material Examples/Fish
 				texture Water.jpg
 				//scroll_anim 0.1 0.0
                 tex_address_mode wrap
-				colour_op modulate
+				colour_op alpha_blend
 			}
 		}
 	}
@@ -79,7 +79,7 @@ material skyPlane
 			{
 				texture clouds.jpg
 				scroll_anim 0.1 0.0
-				colour_op modulate
+				colour_op alpha_blend
 			}
 		}
 	}
@@ -157,7 +157,7 @@ material mouse_mat
                 texture mouse_tex1.png 
                 tex_address_mode wrap 
                 scale 1.0 1.0 
-                colour_op modulate 
+                colour_op alpha_blend 
             }
 
             texture_unit  
@@ -165,7 +165,7 @@ material mouse_mat
                 texture mouse_tex2.png 
                 tex_address_mode wrap 
                 scale 1.0 1.0 
-                colour_op modulate 
+                colour_op alpha_blend 
             }
         }
     }
@@ -205,7 +205,7 @@ material gun_mat
                 texture gun_tex1.png 
                 tex_address_mode wrap 
                 scale 1.0 1.0 
-                colour_op modulate 
+                colour_op alpha_blend 
             }
 
             texture_unit  
@@ -213,7 +213,7 @@ material gun_mat
                 texture gun_tex2.png 
                 tex_address_mode wrap 
                 scale 1.0 1.0 
-                colour_op modulate 
+                colour_op alpha_blend 
             }
         }
     }
@@ -228,7 +228,7 @@ material ground_mat
 			texture_unit 
 			{
 				texture ground.jpg
-				colour_op modulate
+				colour_op alpha_blend
 			}
 		}
 	}

@@ -34,6 +34,7 @@ void ChisApp::init()
 {
 	Application::init();
 	AIManager::Instance()->init("Assets/AIFiles/graphMap01.txt");
+	Node::nodes_ = std::vector<Ogre::SceneNode*>(AIManager::Instance()->getNumNodes(), nullptr);
 
 	registerFactories();
 

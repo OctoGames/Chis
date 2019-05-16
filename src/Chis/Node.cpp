@@ -1,7 +1,7 @@
 #include "Node.h"
 
 
-std::vector<Ogre::SceneNode*> Node::nodes_ = std::vector<Ogre::SceneNode*>(AIManager::Instance()->getNumNodes(), nullptr);
+std::vector<Ogre::SceneNode*> Node::nodes_ = std::vector<Ogre::SceneNode*>();
 std::string Node::name_ = "Node";
 
 Node::Node() :

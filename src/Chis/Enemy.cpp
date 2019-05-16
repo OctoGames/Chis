@@ -36,7 +36,7 @@ Component * Enemy::clone()
 	clonedComponent->enabled_ = this->enabled_;
 	clonedComponent->health_ = this->health_;
 	clonedComponent->damage_ = this->damage_;
-	clonedComponent->score_  = this->score_;
+	clonedComponent->score_ = this->score_;
 	clonedComponent->speed_ = this->speed_;
 
 	return clonedComponent;
@@ -65,10 +65,11 @@ void Enemy::update()
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
 
-	if (!path_.empty())
+
+	if (currentDestination_ == nullptr ||
+		currentDestination_->getPosition() == gameObject()->transform()->getPosition())
 	{
-		if (currentDestination_ == nullptr ||
-			currentDestination_->getPosition() == gameObject()->transform()->getPosition())
+		if (!path_.empty())
 		{
 			currentDestination_ = path_.front();
 			path_.pop();
@@ -81,7 +82,6 @@ void Enemy::update()
 		btVector3 direction(dir.x, dir.y, dir.z);
 		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
 		if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
-
 	}
 }
 
