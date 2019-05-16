@@ -67,6 +67,7 @@ void SceneLoader::processScene(rapidxml::xml_node<>* XMLRoot, Ogre::String &mess
 
 	// Process nodes (?)
 	pElement = XMLRoot->first_node("nodes");
+	factor_escala = getAttribReal(pElement, "factor");
 	if (pElement)
 		processGameObjects(pElement, messageError);
 }
@@ -98,8 +99,9 @@ void SceneLoader::processGameObject(rapidxml::xml_node<>* XMLNode, Ogre::String 
 		Prototype* prototype = EntityComponentManager::Instance()->getPrototype(params_.at("prototype_name").s);
 		GameObject* clonedObject = prototype->getEntity()->clone();
 		clonedObject->setName(gameObjectName);
-		clonedObject->transform()->setPosition(params_.at("pos_x").f, params_.at("pos_y").f, params_.at("pos_z").f);
-		clonedObject->transform()->setScale(params_.at("scale_x").f, params_.at("scale_y").f, params_.at("scale_z").f);
+
+		clonedObject->transform()->setPosition(params_.at("pos_x").f * factor_escala, params_.at("pos_y").f * factor_escala, params_.at("pos_z").f * factor_escala);
+		clonedObject->transform()->setScale(params_.at("scale_x").f*factor_escala, params_.at("scale_y").f * factor_escala, params_.at("scale_z").f * factor_escala);
 		clonedObject->transform()->setOrientation(params_.at("rot_w").f, params_.at("rot_x").f, params_.at("rot_y").f, params_.at("rot_z").f);
 		
 		for (Component* c : prototype->getComponents()) {

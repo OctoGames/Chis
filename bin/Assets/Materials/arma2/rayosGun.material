@@ -32,14 +32,14 @@ material Material_44
 
             texture_unit 
             {
-                texture 13.png
+                texture 13_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 16.png
+                texture 16_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
@@ -81,14 +81,14 @@ material Material_43
 
             texture_unit 
             {
-                texture 13.png
+                texture 13_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 14.png
+                texture 14_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
@@ -130,14 +130,14 @@ material Material_42
 
             texture_unit 
             {
-                texture 11.png
+                texture 11_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 12.png
+                texture 12_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
@@ -179,14 +179,14 @@ material Material_41
 
             texture_unit 
             {
-                texture 9.png
+                texture 9_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 10.png
+                texture 10_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
@@ -228,14 +228,14 @@ material Material_40
 
             texture_unit 
             {
-                texture 7.png
+                texture 7_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 8.png
+                texture 8_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
@@ -277,14 +277,14 @@ material Material_39
 
             texture_unit 
             {
-                texture 5.png
+                texture 5_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 6.png
+                texture 6_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
@@ -326,14 +326,14 @@ material Material_38
 
             texture_unit 
             {
-                texture 3.png
+                texture 3_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 4.png
+                texture 4_rayos.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend

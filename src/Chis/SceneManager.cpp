@@ -59,7 +59,8 @@ void SceneManager::createGameScene()
 	clearScene();
 	RenderManager::Instance()->getSceneManager()->setSkyDome(true, "skyPlane");
 
-	SceneLoader::Instance()->loadScene("Scene1.scene");
+	//SceneLoader::Instance()->loadScene("Scene1.scene");
+	SceneLoader::Instance()->loadScene("Map01.scene");
 
 	AudioSource* song = static_cast<AudioSource*>(EntityComponentManager::Instance()->getComponent(gameObject(), "AudioSource"));
 	song->stop();

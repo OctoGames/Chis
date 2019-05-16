@@ -1,0 +1,2541 @@
+<scene exported_by="Celia" formatVersion="1.0.1" export_time="1557918722.7478242" previous_export_time="0" >
+  <nodes factor="100">
+    <node name="V00" >
+      <position z="-5.837393" x="-11.284195" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-5.837393" />
+      <user_data name="pos_x" type="float" value="-11.284195" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />           
+    </node>
+    <node name="Pancakes" >
+      <position z="8.136377" x="-0.155391" y="4.066458" />
+      <rotation qy="0.364946" qw="0.604972" qx="0.606952" qz="-0.363914" />
+      <scale z="0.400000" x="0.400000" y="0.400000" />
+
+      <user_data name="pos_x" type="float" value="-0.155391" />
+      <user_data name="pos_y" type="float" value="4.066458" />
+      <user_data name="pos_z" type="float" value="8.136377" />
+      <user_data name="scale_x" type="float" value="0.4" />
+      <user_data name="scale_y" type="float" value="0.4" />
+      <user_data name="scale_z" type="float" value="0.400000" />
+      <user_data name="scale_rb_x" type="float" value="80.7588" />
+      <user_data name="scale_rb_y" type="float" value="29.0" />
+      <user_data name="scale_rb_z" type="float" value="80.0" />
+      <user_data name="rot_x" type="float" value="0.606952" />
+      <user_data name="rot_y" type="float" value="0.364946" />
+      <user_data name="rot_z" type="float" value="-0.363914" />
+      <user_data name="rot_w" type="float" value="0.604972" />
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Pancakes.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Pancakes" meshFile="Pancakes.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Teapot" >
+      <position z="0.175317" x="-28.526306" y="5.737532" />
+      <rotation qy="0.007841" qw="0.707063" qx="-0.707063" qz="0.007841" />
+      <scale z="0.003684" x="0.005824" y="0.006516" />
+
+      <user_data name="pos_x" type="float" value="-28.526306" />
+      <user_data name="pos_y" type="float" value="5.737532" />
+      <user_data name="pos_z" type="float" value="0.175317" />
+
+      <user_data name="rot_x" type="float" value="-0.707063" />
+      <user_data name="rot_y" type="float" value="0.007841" />
+      <user_data name="rot_z" type="float" value="0.007841" />
+      <user_data name="rot_w" type="float" value="0.707063" />
+
+      <user_data name="scale_x" type="float" value="0.005824" />
+      <user_data name="scale_y" type="float" value="0.006516" />
+      <user_data name="scale_z" type="float" value="0.003684" />
+
+      <user_data name="scale_rb_x" type="float" value="3.500" />
+      <user_data name="scale_rb_y" type="float" value="3.500" />
+      <user_data name="scale_rb_z" type="float" value="3.500" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Teapot.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Teapot" meshFile="Teapot.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Chocolate" >
+      <position z="5.675366" x="-4.103576" y="3.954968" />
+      <rotation qy="0.220752" qw="0.671765" qx="0.671765" qz="-0.220752" />
+      <scale z="0.150000" x="0.150000" y="0.150000" />
+      
+      <user_data name="pos_z" type="float" value="5.675366" />
+      <user_data name="pos_x" type="float" value="-4.103576" />
+      <user_data name="pos_y" type="float" value="3.954968" />
+
+      <user_data name="rot_y" type="float" value="0.220752" />
+      <user_data name="rot_w" type="float" value="0.671765" />
+      <user_data name="rot_x" type="float" value="0.671765" />
+      <user_data name="rot_z" type="float" value="-0.220752" />
+
+      <user_data name="scale_z" type="float" value="0.150000" />
+      <user_data name="scale_x" type="float" value="0.150000" />
+      <user_data name="scale_y" type="float" value="0.150000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Chocolate.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Chocolate" meshFile="Chocolate.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="PaperBag" >
+      <position z="-21.308109" x="-10.388605" y="12.729156" />
+      <rotation qy="-0.652363" qw="0.273335" qx="0.273178" qz="0.651986" />
+      <scale z="0.140888" x="0.611801" y="0.024263" />
+
+      <user_data name="pos_z" type="float" value="-21.308109" />
+      <user_data name="pos_x" type="float" value="-10.388605" />
+      <user_data name="pos_y" type="float" value="12.729156" />
+
+      <user_data name="rot_y" type="float" value="-0.652363" />
+      <user_data name="rot_w" type="float" value="0.273335" />
+      <user_data name="rot_x" type="float" value="0.273178" />
+      <user_data name="rot_z" type="float" value="0.651986" />
+
+      <user_data name="scale_z" type="float" value="0.140888" />
+      <user_data name="scale_x" type="float" value="0.611801" />
+      <user_data name="scale_y" type="float" value="0.024263" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="PaperBag.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="PaperBag" meshFile="PaperBag.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="IceCream" >
+      <position z="-17.585135" x="-28.773718" y="4.030425" />
+      <rotation qy="-0.559791" qw="0.828634" qx="0.000000" qz="-0.000000" />
+      <scale z="0.483929" x="0.483929" y="0.483929" />
+
+      <user_data name="pos_z" type="float" value="-17.585135" />
+      <user_data name="pos_x" type="float" value="-28.773718" />
+      <user_data name="pos_y" type="float" value="4.030425" />
+
+      <user_data name="rot_y" type="float" value="-0.559791" />
+      <user_data name="rot_w" type="float" value="0.828634" />
+      <user_data name="rot_x" type="float" value="0.000000" />
+      <user_data name="rot_z" type="float" value="-0.000000" />
+
+      <user_data name="scale_z" type="float" value="0.483929" />
+      <user_data name="scale_x" type="float" value="0.483929" />
+      <user_data name="scale_y" type="float" value="0.483929" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="IceCream.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="IceCream" meshFile="IceCream.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Airplane" >
+      <position z="-14.030317" x="5.723927" y="4.220735" />
+      <rotation qy="-0.043904" qw="0.705742" qx="0.628443" qz="-0.324128" />
+      <scale z="30.000000" x="30.000002" y="30.000000" />
+
+      <user_data name="pos_z" type="float" value="-14.030317" />
+      <user_data name="pos_x" type="float" value="5.723927" />
+      <user_data name="pos_y" type="float" value="4.220735" />
+
+      <user_data name="rot_y" type="float" value="-0.043904" />
+      <user_data name="rot_w" type="float" value="0.705742" />
+      <user_data name="rot_x" type="float" value="0.628443" />
+      <user_data name="rot_z" type="float" value="-0.324128" />
+
+      <user_data name="scale_z" type="float" value="30" />
+      <user_data name="scale_x" type="float" value="30" />
+      <user_data name="scale_y" type="float" value="30" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Airplane.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Airplane" meshFile="Airplane.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Bread" >
+      <position z="-7.704681" x="-7.007660" y="3.630454" />
+      <rotation qy="-0.039591" qw="0.705998" qx="0.705998" qz="0.039591" />
+      <scale z="3.000000" x="3.000000" y="3.000000" />
+
+      <user_data name="pos_z" type="float" value="-7.704681" />
+      <user_data name="pos_x" type="float" value="-7.007660" />
+      <user_data name="pos_y" type="float" value="3.630454" />
+
+      <user_data name="rot_y" type="float" value="-0.039591" />
+      <user_data name="rot_w" type="float" value="0.705998" />
+      <user_data name="rot_x" type="float" value="0.705998" />
+      <user_data name="rot_z" type="float" value="-0.039591" />
+
+      <user_data name="scale_z" type="float" value="3" />
+      <user_data name="scale_x" type="float" value="3" />
+      <user_data name="scale_y" type="float" value="3" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Bread.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Bread" meshFile="Bread.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Pencil" >
+      <position z="-18.808849" x="4.691256" y="4.134131" />
+      <rotation qy="-0.331763" qw="0.372912" qx="-0.571155" qz="0.651653" />
+      <scale z="0.000147" x="0.001241" y="0.001241" />
+
+      <user_data name="pos_z" type="float" value="-18.808849" />
+      <user_data name="pos_x" type="float" value="4.691256" />
+      <user_data name="pos_y" type="float" value="4.134131" />
+
+      <user_data name="rot_y" type="float" value="-0.331763" />
+      <user_data name="rot_w" type="float" value="0.372912" />
+      <user_data name="rot_x" type="float" value="-0.571155" />
+      <user_data name="rot_z" type="float" value="0.651653" />
+
+      <user_data name="scale_z" type="float" value="0.000147" />
+      <user_data name="scale_x" type="float" value="0.001241" />
+      <user_data name="scale_y" type="float" value="0.001241" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Pencil.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Pencil" meshFile="Pencil.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Pen" >
+      <position z="-20.847982" x="0.516569" y="4.352061" />
+      <rotation qy="0.000000" qw="0.761538" qx="0.648120" qz="-0.000000" />
+      <scale z="0.400000" x="0.400000" y="0.400000" />
+
+      <user_data name="pos_z" type="float" value="-20.847982" />
+      <user_data name="pos_x" type="float" value="0.516569" />
+      <user_data name="pos_y" type="float" value="4.352061" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="0.761538" />
+      <user_data name="rot_x" type="float" value="0.648120" />
+      <user_data name="rot_z" type="float" value="0.000000" />
+
+      <user_data name="scale_z" type="float" value="0.4" />
+      <user_data name="scale_x" type="float" value="0.4" />
+      <user_data name="scale_y" type="float" value="0.4" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Pen.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Pen" meshFile="Pen.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="NoteBook" >
+      <position z="-23.424776" x="2.496680" y="4.161560" />
+      <rotation qy="-0.000200" qw="0.000023" qx="0.993214" qz="0.116304" />
+      <scale z="0.816032" x="0.816032" y="0.816032" />
+
+      <user_data name="pos_z" type="float" value="-23.424776" />
+      <user_data name="pos_x" type="float" value="2.496680" />
+      <user_data name="pos_y" type="float" value="4.161560" />
+
+      <user_data name="rot_y" type="float" value="0.000200" />
+      <user_data name="rot_w" type="float" value="0.000023" />
+      <user_data name="rot_x" type="float" value="0.993214" />
+      <user_data name="rot_z" type="float" value="0.116304" />
+
+      <user_data name="scale_z" type="float" value="0.816032" />
+      <user_data name="scale_x" type="float" value="0.816032" />
+      <user_data name="scale_y" type="float" value="0.816032" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="NoteBook.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="NoteBook" meshFile="NoteBook.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="TissuesBox" >
+      <position z="-13.837533" x="-34.424252" y="5.097159" />
+      <rotation qy="-0.362891" qw="0.606886" qx="0.606886" qz="0.362890" />
+      <scale z="2.758083" x="2.777239" y="0.009820" />
+
+      <user_data name="pos_z" type="float" value="-13.837533" />
+      <user_data name="pos_x" type="float" value="-34.424252" />
+      <user_data name="pos_y" type="float" value="5.097159" />
+
+      <user_data name="rot_y" type="float" value="-0.362891" />
+      <user_data name="rot_w" type="float" value="0.606886" />
+      <user_data name="rot_x" type="float" value="0.606886" />
+      <user_data name="rot_z" type="float" value="0.362890" />
+
+      <user_data name="scale_z" type="float" value="2.758083" />
+      <user_data name="scale_x" type="float" value="2.777239" />
+      <user_data name="scale_y" type="float" value="0.009820" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="TissuesBox.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="TissuesBox" meshFile="TissuesBox.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Fork" >
+      <position z="10.732203" x="-16.061886" y="4.059241" />
+      <rotation qy="0.315516" qw="0.632376" qx="0.634936" qz="-0.312099" />
+      <scale z="0.401389" x="0.401389" y="0.401389" />
+
+      <user_data name="pos_z" type="float" value="10.732203" />
+      <user_data name="pos_x" type="float" value="-16.061886" />
+      <user_data name="pos_y" type="float" value="4.059241" />
+
+      <user_data name="rot_y" type="float" value="0.315516" />
+      <user_data name="rot_w" type="float" value="0.632376" />
+      <user_data name="rot_x" type="float" value="0.634936" />
+      <user_data name="rot_z" type="float" value="-0.312099" />
+
+      <user_data name="scale_z" type="float" value="0.401389" />
+      <user_data name="scale_x" type="float" value="0.401389" />
+      <user_data name="scale_y" type="float" value="0.401389" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Fork.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Fork" meshFile="Fork.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Juice" >
+      <position z="-2.965178" x="5.698467" y="5.442291" />
+      <rotation qy="-0.446627" qw="0.669857" qx="0.441377" qz="0.396234" />
+      <scale z="0.006285" x="0.000258" y="0.000258" />
+
+      <user_data name="pos_z" type="float" value="-2.965178" />
+      <user_data name="pos_x" type="float" value="5.698467" />
+      <user_data name="pos_y" type="float" value="5.442291" />
+
+      <user_data name="rot_y" type="float" value="-0.446627" />
+      <user_data name="rot_w" type="float" value="0.669857" />
+      <user_data name="rot_x" type="float" value="0.441377" />
+      <user_data name="rot_z" type="float" value="0.396234" />
+
+      <user_data name="scale_z" type="float" value="0.006285" />
+      <user_data name="scale_x" type="float" value="0.000258" />
+      <user_data name="scale_y" type="float" value="0.000258" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Juice.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Juice" meshFile="Juice.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Pills.001" >
+      <position z="7.822792" x="-8.705805" y="4.303290" />
+      <rotation qy="0.315938" qw="0.632600" qx="0.632600" qz="-0.315938" />
+      <scale z="0.033144" x="0.033144" y="0.033144" />
+
+      <user_data name="pos_z" type="float" value="-2.965178" />
+      <user_data name="pos_x" type="float" value="5.698467" />
+      <user_data name="pos_y" type="float" value="5.442291" />
+
+      <user_data name="rot_y" type="float" value="-0.446627" />
+      <user_data name="rot_w" type="float" value="0.669857" />
+      <user_data name="rot_x" type="float" value="0.441377" />
+      <user_data name="rot_z" type="float" value="0.396234" />
+
+      <user_data name="scale_z" type="float" value="0.006285" />
+      <user_data name="scale_x" type="float" value="0.000258" />
+      <user_data name="scale_y" type="float" value="0.000258" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Juice.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Pills" meshFile="Pills.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Pills" >
+      <position z="7.333236" x="-9.771539" y="4.019441" />
+      <rotation qy="0.000000" qw="0.707107" qx="0.707107" qz="-0.000000" />
+      <scale z="0.315149" x="0.315149" y="0.315149" />
+
+      <user_data name="pos_z" type="float" value="7.333236" />
+      <user_data name="pos_x" type="float" value="-9.771539" />
+      <user_data name="pos_y" type="float" value="4.019441" />
+
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_w" type="float" value="0.707107" />
+      <user_data name="rot_x" type="float" value="0.707107" />
+      <user_data name="rot_z" type="float" value="0.000000" />
+
+      <user_data name="scale_z" type="float" value="0.315149" />
+      <user_data name="scale_x" type="float" value="0.315149" />
+      <user_data name="scale_y" type="float" value="0.315149" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Pills.001.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Pills.001" meshFile="Pills.001.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Pot" >
+      <position z="13.095288" x="-22.463861" y="6.241569" />
+      <rotation qy="-0.342649" qw="0.618540" qx="0.701331" qz="-0.090193" />
+      <scale z="0.012463" x="0.012463" y="0.012463" />
+
+      <user_data name="pos_z" type="float" value="13.095288" />
+      <user_data name="pos_x" type="float" value="-22.463861" />
+      <user_data name="pos_y" type="float" value="6.241569" />
+
+      <user_data name="rot_y" type="float" value="-0.342649" />
+      <user_data name="rot_w" type="float" value="0.618540" />
+      <user_data name="rot_x" type="float" value="0.701331" />
+      <user_data name="rot_z" type="float" value="-0.090193" />
+
+      <user_data name="scale_z" type="float" value="0.012463" />
+      <user_data name="scale_x" type="float" value="0.012463" />
+      <user_data name="scale_y" type="float" value="0.012463" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Pot.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Pot" meshFile="Pot.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="KitchenPaper" >
+      <position z="2.156941" x="-15.636416" y="6.622986" />
+      <rotation qy="0.606484" qw="0.363562" qx="0.363562" qz="-0.606484" />
+      <scale z="0.025600" x="0.009329" y="0.009329" />
+
+      <user_data name="pos_z" type="float" value="2.156941" />
+      <user_data name="pos_x" type="float" value="-15.636416" />
+      <user_data name="pos_y" type="float" value="6.622986" />
+
+      <user_data name="rot_y" type="float" value="0.606484" />
+      <user_data name="rot_w" type="float" value="0.363562" />
+      <user_data name="rot_x" type="float" value="0.363562" />
+      <user_data name="rot_z" type="float" value="-0.606484" />
+
+      <user_data name="scale_z" type="float" value="0.025600" />
+      <user_data name="scale_x" type="float" value="0.009329" />
+      <user_data name="scale_y" type="float" value="0.009329" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="KitchenPaper.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="KitchenPaper" meshFile="KitchenPaper.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="CerealBox" >
+      <position z="-3.810553" x="-22.446030" y="7.242159" />
+      <rotation qy="-0.309436" qw="0.644850" qx="0.635416" qz="0.290969" />
+      <scale z="0.033003" x="0.022005" y="0.010038" />
+
+      <user_data name="pos_z" type="float" value="-3.810553" />
+      <user_data name="pos_x" type="float" value="-22.446030" />
+      <user_data name="pos_y" type="float" value="7.242159" />
+
+      <user_data name="rot_y" type="float" value="-0.309436" />
+      <user_data name="rot_w" type="float" value="0.644850" />
+      <user_data name="rot_x" type="float" value="0.635416" />
+      <user_data name="rot_z" type="float" value="-0.290969" />
+
+      <user_data name="scale_z" type="float" value="0.033003" />
+      <user_data name="scale_x" type="float" value="0.022005" />
+      <user_data name="scale_y" type="float" value="0.010038" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="CerealBox.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="CerealBox" meshFile="CerealBox.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Books" >
+      <position z="-11.090258" x="0.791753" y="4.038659" />
+      <rotation qy="0.000000" qw="0.707107" qx="0.707107" qz="-0.000000" />
+      <scale z="0.200000" x="0.200000" y="0.200000" />
+
+      <user_data name="pos_z" type="float" value="-11.090258" />
+      <user_data name="pos_x" type="float" value="0.791753" />
+      <user_data name="pos_y" type="float" value="4.038659" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="0.707107" />
+      <user_data name="rot_x" type="float" value="0.707107" />
+      <user_data name="rot_z" type="float" value="-0.0" />
+
+      <user_data name="scale_z" type="float" value="0.200000" />
+      <user_data name="scale_x" type="float" value="0.200000" />
+      <user_data name="scale_y" type="float" value="0.200000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Books.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Books" meshFile="Books.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Duff" >
+      <position z="-24.009039" x="-3.944032" y="4.990696" />
+      <rotation qy="0.000000" qw="1.000000" qx="-0.000000" qz="-0.000000" />
+      <scale z="0.500000" x="0.500000" y="0.500000" />
+
+      <user_data name="pos_z" type="float" value="-24.009039" />
+      <user_data name="pos_x" type="float" value="-3.944032" />
+      <user_data name="pos_y" type="float" value="4.990696" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="-0.0" />
+
+      <user_data name="scale_z" type="float" value="0.500000" />
+      <user_data name="scale_x" type="float" value="0.500000" />
+      <user_data name="scale_y" type="float" value="0.500000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Cylinder.003.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cylinder.003" meshFile="Cylinder.003.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Can" >
+      <position z="3.392594" x="-19.021389" y="4.834520" />
+      <rotation qy="0.000000" qw="1.000000" qx="-0.000000" qz="-0.000000" />
+      <scale z="0.500000" x="0.500000" y="0.500000" />
+
+      <user_data name="pos_z" type="float" value="3.392594" />
+      <user_data name="pos_x" type="float" value="-19.021389" />
+      <user_data name="pos_y" type="float" value="4.834520" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="-0.0" />
+
+      <user_data name="scale_z" type="float" value="0.500000" />
+      <user_data name="scale_x" type="float" value="0.500000" />
+      <user_data name="scale_y" type="float" value="0.500000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Cylinder.000.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cylinder.000" meshFile="Cylinder.000.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Banana" >
+      <position z="-23.992764" x="-12.672520" y="4.040656" />
+      <rotation qy="0.000000" qw="0.707107" qx="0.707107" qz="-0.000000" />
+      <scale z="0.003405" x="0.003405" y="0.003405" />
+
+      <user_data name="pos_z" type="float" value="3.392594" />
+      <user_data name="pos_x" type="float" value="-19.021389" />
+      <user_data name="pos_y" type="float" value="4.834520" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="-0.0" />
+
+      <user_data name="scale_z" type="float" value="0.500000" />
+      <user_data name="scale_x" type="float" value="0.500000" />
+      <user_data name="scale_y" type="float" value="0.500000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Cylinder.000.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Banana" meshFile="Banana.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Beer2" >
+      <position z="-15.241608" x="-23.219601" y="4.451393" />
+      <rotation qy="-0.000000" qw="-0.000000" qx="0.342037" qz="-0.939687" />
+      <scale z="0.351839" x="0.351839" y="0.351839" />
+
+      <user_data name="pos_z" type="float" value="-15.241608" />
+      <user_data name="pos_x" type="float" value="-23.2196019" />
+      <user_data name="pos_y" type="float" value="4.451393" />
+
+      <user_data name="rot_y" type="float" value="-0.000000" />
+      <user_data name="rot_w" type="float" value="-0.000000" />
+      <user_data name="rot_x" type="float" value="0.342037" />
+      <user_data name="rot_z" type="float" value="-0.939687" />
+
+      <user_data name="scale_z" type="float" value="0.351839" />
+      <user_data name="scale_x" type="float" value="0.351839" />
+      <user_data name="scale_y" type="float" value="0.351839" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Beer.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Beer" meshFile="Beer.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Beer" >
+      <position z="-16.670330" x="-23.425293" y="4.034716" />
+      <rotation qy="0.000000" qw="0.707107" qx="0.707107" qz="-0.000000" />
+      <scale z="0.351839" x="0.351839" y="0.351839" />
+
+      <user_data name="pos_z" type="float" value="-16.670330" />
+      <user_data name="pos_x" type="float" value="-23.425293" />
+      <user_data name="pos_y" type="float" value="4.034716" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="0.707107" />
+      <user_data name="rot_x" type="float" value="0.707107" />
+      <user_data name="rot_z" type="float" value="-0.000000" />
+
+      <user_data name="scale_z" type="float" value="0.351839" />
+      <user_data name="scale_x" type="float" value="0.351839" />
+      <user_data name="scale_y" type="float" value="0.351839" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Beer.001.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Beer.001" meshFile="Beer.001.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Beer3" >
+      <position z="2.531800" x="-20.644684" y="4.022071" />
+      <rotation qy="0.000000" qw="0.707107" qx="0.707107" qz="-0.000000" />
+      <scale z="0.301576" x="0.301576" y="0.301576" />
+
+      <user_data name="pos_z" type="float" value="2.531800" />
+      <user_data name="pos_x" type="float" value="-20.644684" />
+      <user_data name="pos_y" type="float" value="4.022071" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="0.707107" />
+      <user_data name="rot_x" type="float" value="0.707107" />
+      <user_data name="rot_z" type="float" value="-0.000000" />
+
+      <user_data name="scale_z" type="float" value="0.301576" />
+      <user_data name="scale_x" type="float" value="0.301576" />
+      <user_data name="scale_y" type="float" value="0.301576" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Beer.002.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Beer.002" meshFile="Beer.002.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="XBox" >
+      <position z="15.261559" x="-7.656554" y="3.390065" />
+      <rotation qy="-0.425191" qw="0.567576" qx="0.074355" qz="0.701100" />
+      <scale z="0.228230" x="0.215674" y="0.215674" />
+
+      <user_data name="pos_z" type="float" value="15.261559" />
+      <user_data name="pos_x" type="float" value="-7.656554" />
+      <user_data name="pos_y" type="float" value="3.390065" />
+
+      <user_data name="rot_y" type="float" value="-0.425191" />
+      <user_data name="rot_w" type="float" value="0.567576" />
+      <user_data name="rot_x" type="float" value="0.074355" />
+      <user_data name="rot_z" type="float" value="0.701100" />
+
+      <user_data name="scale_z" type="float" value="0.215674" />
+      <user_data name="scale_x" type="float" value="0.215674" />
+      <user_data name="scale_y" type="float" value="0.215674" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="XBox.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="XBox" meshFile="XBox.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="CheeseKnife" >
+      <position z="-6.099374" x="-13.852310" y="4.421603" />
+      <rotation qy="0.476799" qw="0.522171" qx="0.522171" qz="-0.476799" />
+      <scale z="0.177554" x="0.177554" y="0.177554" />
+
+      <user_data name="pos_z" type="float" value="-6.0993749" />
+      <user_data name="pos_x" type="float" value="-13.852310" />
+      <user_data name="pos_y" type="float" value="4.421603" />
+
+      <user_data name="rot_y" type="float" value="0.476799" />
+      <user_data name="rot_w" type="float" value="0.522171" />
+      <user_data name="rot_x" type="float" value="0.522171" />
+      <user_data name="rot_z" type="float" value="-0.476799" />
+
+      <user_data name="scale_z" type="float" value="0.177554" />
+      <user_data name="scale_x" type="float" value="0.177554" />
+      <user_data name="scale_y" type="float" value="0.177554" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="CheeseKnife.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="CheeseKnife" meshFile="CheeseKnife.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="CuttingBoard" >
+      <position z="-6.266541" x="-12.799498" y="4.244687" />
+      <rotation qy="0.046429" qw="0.705581" qx="0.705581" qz="-0.046429" />
+      <scale z="0.001104" x="0.000823" y="0.000836" />
+
+      <user_data name="pos_z" type="float" value="-6.266541" />
+      <user_data name="pos_x" type="float" value="-12.799498" />
+      <user_data name="pos_y" type="float" value="4.244687" />
+
+      <user_data name="rot_y" type="float" value="0.046429" />
+      <user_data name="rot_w" type="float" value="0.705581" />
+      <user_data name="rot_x" type="float" value="0.705581" />
+      <user_data name="rot_z" type="float" value="-0.046429" />
+
+      <user_data name="scale_z" type="float" value="0.000836" />
+      <user_data name="scale_x" type="float" value="0.000836" />
+      <user_data name="scale_y" type="float" value="0.000836" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="CuttingBoard.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="CuttingBoard" meshFile="CuttingBoard.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="DonutBox" >
+      <position z="-22.509834" x="-18.640228" y="4.909829" />
+      <rotation qy="-0.126116" qw="0.582486" qx="-0.784813" qz="-0.169922" />
+      <scale z="0.001020" x="0.000575" y="0.025491" />
+
+      <user_data name="pos_z" type="float" value="-22.509834" />
+      <user_data name="pos_x" type="float" value="-18.640228" />
+      <user_data name="pos_y" type="float" value="4.909829" />
+
+      <user_data name="rot_y" type="float" value="-0.126116" />
+      <user_data name="rot_w" type="float" value="0.582486" />
+      <user_data name="rot_x" type="float" value="-0.784813" />
+      <user_data name="rot_z" type="float" value="-0.169922" />
+
+      <user_data name="scale_z" type="float" value="0.001020" />
+      <user_data name="scale_x" type="float" value="0.000575" />
+      <user_data name="scale_y" type="float" value="0.025491" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="DonutBox.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="DonutBox" meshFile="DonutBox.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="DonutBiten" >
+      <position z="-23.605879" x="-22.012566" y="4.604512" />
+      <rotation qy="-0.422164" qw="0.906474" qx="-0.009134" qz="0.000272" />
+      <scale z="0.003857" x="0.003857" y="0.003857" />
+
+      <user_data name="pos_z" type="float" value="-23.605879" />
+      <user_data name="pos_x" type="float" value="-22.012566" />
+      <user_data name="pos_y" type="float" value="4.604512" />
+
+      <user_data name="rot_y" type="float" value="-0.422164" />
+      <user_data name="rot_w" type="float" value="0.906474" />
+      <user_data name="rot_x" type="float" value="-0.009134" />
+      <user_data name="rot_z" type="float" value="0.000272" />
+
+      <user_data name="scale_z" type="float" value="0.003857" />
+      <user_data name="scale_x" type="float" value="0.003857" />
+      <user_data name="scale_y" type="float" value="0.003857" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="DonutBiten.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="DonutBiten" meshFile="DonutBiten.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Mug" >
+      <position z="-6.241320" x="-31.475420" y="4.039809" />
+      <rotation qy="0.000000" qw="1.000000" qx="-0.000000" qz="-0.000000" />
+      <scale z="0.500000" x="0.500000" y="0.500000" />
+
+      <user_data name="pos_z" type="float" value="-6.241320" />
+      <user_data name="pos_x" type="float" value="-31.475420" />
+      <user_data name="pos_y" type="float" value="4.039809" />
+
+      <user_data name="rot_y" type="float" value="0.000000" />
+      <user_data name="rot_w" type="float" value="1.000000" />
+      <user_data name="rot_x" type="float" value="-0.000000" />
+      <user_data name="rot_z" type="float" value="-0.000000" />
+
+      <user_data name="scale_z" type="float" value="0.500000" />
+      <user_data name="scale_x" type="float" value="0.500000" />
+      <user_data name="scale_y" type="float" value="0.500000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Mug.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Mug" meshFile="Mug.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Cheese" >
+      <position z="-6.283067" x="-12.217961" y="4.264688" />
+      <rotation qy="-0.197240" qw="0.679041" qx="0.679041" qz="0.197240" />
+      <scale z="1.613111" x="1.613111" y="1.613111" />
+
+      <user_data name="pos_z" type="float" value="-6.283067" />
+      <user_data name="pos_x" type="float" value="-12.217961" />
+      <user_data name="pos_y" type="float" value="4.264688" />
+
+      <user_data name="rot_y" type="float" value="-0.197240" />
+      <user_data name="rot_w" type="float" value="0.679041" />
+      <user_data name="rot_x" type="float" value="0.679041" />
+      <user_data name="rot_z" type="float" value="0.197240" />
+
+      <user_data name="scale_z" type="float" value="1.613111" />
+      <user_data name="scale_x" type="float" value="1.613111" />
+      <user_data name="scale_y" type="float" value="1.613111" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Cheese.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cheese" meshFile="Cheese.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Apple" >
+      <position z="-19.784037" x="-4.043536" y="4.819277" />
+      <rotation qy="0.087035" qw="0.740582" qx="-0.659090" qz="-0.097796" />
+      <scale z="0.001000" x="0.001000" y="0.001000" />
+
+      <user_data name="pos_z" type="float" value="-19.784037" />
+      <user_data name="pos_x" type="float" value="-4.043536" />
+      <user_data name="pos_y" type="float" value="4.819277" />
+
+      <user_data name="rot_y" type="float" value="0.087035" />
+      <user_data name="rot_w" type="float" value="0.740582" />
+      <user_data name="rot_x" type="float" value="-0.659090" />
+      <user_data name="rot_z" type="float" value="-0.097796" />
+
+      <user_data name="scale_z" type="float" value="0.001000" />
+      <user_data name="scale_x" type="float" value="0.001000" />
+      <user_data name="scale_y" type="float" value="0.001000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Apple.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Apple" meshFile="Apple.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Grapes" >
+      <position z="-0.994362" x="-4.781161" y="4.216471" />
+      <rotation qy="-0.303964" qw="0.638009" qx="0.639123" qz="0.303434" />
+      <scale z="0.066748" x="0.066748" y="0.066748" />
+      
+      <user_data name="pos_z" type="float" value="-0.994362" />
+      <user_data name="pos_x" type="float" value="-4.781161" />
+      <user_data name="pos_y" type="float" value="4.216471" />
+
+      <user_data name="rot_y" type="float" value="-0.303964" />
+      <user_data name="rot_w" type="float" value="0.638009" />
+      <user_data name="rot_x" type="float" value="0.639123" />
+      <user_data name="rot_z" type="float" value="0.303434" />
+
+      <user_data name="scale_z" type="float" value="0.066748" />
+      <user_data name="scale_x" type="float" value="0.066748" />
+      <user_data name="scale_y" type="float" value="0.066748" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Grapes.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Grapes" meshFile="Grapes.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Spaguetti" >
+      <position z="11.174129" x="-15.284694" y="3.931701" />
+      <rotation qy="0.000000" qw="0.706489" qx="0.707724" qz="-0.000000" />
+      <scale z="0.150000" x="0.150000" y="0.150000" />
+
+      <user_data name="pos_z" type="float" value="11.174129" />
+      <user_data name="pos_x" type="float" value="-15.284694" />
+      <user_data name="pos_y" type="float" value="3.931701" />
+
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_w" type="float" value="0.706489" />
+      <user_data name="rot_x" type="float" value="0.707724" />
+      <user_data name="rot_z" type="float" value="-0.0" />
+
+      <user_data name="scale_z" type="float" value="0.150000" />
+      <user_data name="scale_x" type="float" value="0.150000" />
+      <user_data name="scale_y" type="float" value="0.150000" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Spaguetti.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Spaguetti" meshFile="Spaguetti.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Milk" >
+      <position z="-3.889128" x="-34.239319" y="3.968017" />
+      <rotation qy="-0.066773" qw="0.703328" qx="0.704546" qz="0.066974" />
+      <scale z="0.444306" x="0.257858" y="0.432492" />
+
+      <user_data name="pos_z" type="float" value="-3.889128" />
+      <user_data name="pos_x" type="float" value="-34.239319" />
+      <user_data name="pos_y" type="float" value="3.968017" />
+
+      <user_data name="rot_y" type="float" value="-0.066773" />
+      <user_data name="rot_w" type="float" value="0.703328" />
+      <user_data name="rot_x" type="float" value="0.704546" />
+      <user_data name="rot_z" type="float" value="0.066974" />
+
+      <user_data name="scale_z" type="float" value="0.444306" />
+      <user_data name="scale_x" type="float" value="0.257858" />
+      <user_data name="scale_y" type="float" value="0.432492" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Milk.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Milk" meshFile="Milk.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="Mesa" >
+      <position z="-4.217018" x="-14.030660" y="3.282140" />
+      <rotation qy="0.000096" qw="0.000194" qx="1.000000" qz="0.000180" />
+      <scale z="0.234281" x="0.232829" y="0.007781" />
+
+      <user_data name="pos_z" type="float" value="-4.217018" />
+      <user_data name="pos_x" type="float" value="-14.03066" />
+      <user_data name="pos_y" type="float" value="3.282140" />
+
+      <user_data name="rot_y" type="float" value="0.000096" />
+      <user_data name="rot_w" type="float" value="0.000194" />
+      <user_data name="rot_x" type="float" value="1.000000" />
+      <user_data name="rot_z" type="float" value="0.000180" />
+
+      <user_data name="scale_z" type="float" value="0.234281" />
+      <user_data name="scale_x" type="float" value="0.232829" />
+      <user_data name="scale_y" type="float" value="0.007781" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="Mesa.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Mesa" meshFile="Mesa.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="DonutBiten.001" >
+      <position z="-11.463140" x="-20.968332" y="4.604512" />
+      <rotation qy="0.020324" qw="0.999752" qx="-0.008080" qz="0.004268" />
+      <scale z="0.003857" x="0.003857" y="0.003857" />
+
+      <user_data name="pos_z" type="float" value="-11.463140" />
+      <user_data name="pos_x" type="float" value="-20.968332" />
+      <user_data name="pos_y" type="float" value="4.604512" />
+
+      <user_data name="rot_y" type="float" value="0.020324" />
+      <user_data name="rot_w" type="float" value="0.999752" />
+      <user_data name="rot_x" type="float" value="-0.008080" />
+      <user_data name="rot_z" type="float" value="0.004268" />
+
+      <user_data name="scale_z" type="float" value="0.003857" />
+      <user_data name="scale_x" type="float" value="0.003857" />
+      <user_data name="scale_y" type="float" value="0.003857" />
+
+      <user_data name="scale_rb_x" type="float" value="50" />
+      <user_data name="scale_rb_y" type="float" value="100" />
+      <user_data name="scale_rb_z" type="float" value="50" />
+      
+      <user_data name="mass" type="float" value="0.0" />
+      <user_data name="enabled_mr" type="bool" value="1" />
+      <user_data name="enabled_rb" type="bool" value="1" />
+      <user_data name="mesh_name" type="str" value="DonutBiten.001.mesh" />
+      <user_data name="radius" type="float" value="0.0" />
+      <user_data name="prototype_name" type="str" value="obstaculo" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="DonutBiten.001" meshFile="DonutBiten.001.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V01" >
+      <position z="-0.142715" x="-11.284195" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-0.142715" />
+      <user_data name="pos_x" type="float" value="-11.284195" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.001" meshFile="Cone.001.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V03" >
+      <position z="2.641932" x="-11.284195" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="2.641932" />
+      <user_data name="pos_x" type="float" value="-11.284195" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.002" meshFile="Cone.002.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V06" >
+      <position z="6.639247" x="-11.284195" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="6.639247" />
+      <user_data name="pos_x" type="float" value="-11.284195" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.003" meshFile="Cone.003.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V09" >
+      <position z="6.639247" x="-22.108387" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="6.639247" />
+      <user_data name="pos_x" type="float" value="-22.108387" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.004" meshFile="Cone.004.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V05" >
+      <position z="2.641932" x="3.761881" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="2.641932" />
+      <user_data name="pos_x" type="float" value="3.761881" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.005" meshFile="Cone.005.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V02" >
+      <position z="-0.142715" x="-17.603298" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-0.142715" />
+      <user_data name="pos_x" type="float" value="-17.603298" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.007" meshFile="Cone.007.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V07" >
+      <position z="-0.142715" x="-23.186316" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-0.142715" />
+      <user_data name="pos_x" type="float" value="-23.186316" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.008" meshFile="Cone.008.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V08" >
+      <position z="2.911414" x="-23.186316" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="2.911414" />
+      <user_data name="pos_x" type="float" value="-23.186316" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.009" meshFile="Cone.009.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V17" >
+      <position z="2.911414" x="-32.483444" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="2.911414" />
+      <user_data name="pos_x" type="float" value="-32.483444" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.010" meshFile="Cone.010.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V04" >
+      <position z="-8.668823" x="-17.603300" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-8.668823" />
+      <user_data name="pos_x" type="float" value="-17.603300" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.011" meshFile="Cone.011.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V15" >
+      <position z="-8.631395" x="-27.498028" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-8.668823" />
+      <user_data name="pos_x" type="float" value="-27.498028" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.012" meshFile="Cone.012.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V25" >
+      <position z="-8.631395" x="-34.953693" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-8.668823" />
+      <user_data name="pos_x" type="float" value="-34.953693" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.013" meshFile="Cone.013.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V24" >
+      <position z="-13.482070" x="-27.498028" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-13.482070" />
+      <user_data name="pos_x" type="float" value="-27.498028" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.014" meshFile="Cone.014.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V27" >
+      <position z="-13.482070" x="-28.980179" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-13.482070" />
+      <user_data name="pos_x" type="float" value="-28.980179" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.015" meshFile="Cone.015.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V32" >
+      <position z="-20.758083" x="-28.980179" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-20.758083" />
+      <user_data name="pos_x" type="float" value="-28.980179" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.016" meshFile="Cone.016.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V37" >
+      <position z="-25.716551" x="-28.980179" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-25.716551" />
+      <user_data name="pos_x" type="float" value="-28.980179" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.017" meshFile="Cone.017.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V36" >
+      <position z="-20.758083" x="-35.286057" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-20.758083" />
+      <user_data name="pos_x" type="float" value="-35.286057" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.018" meshFile="Cone.018.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V10" >
+      <position z="-10.841100" x="-17.603300" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-10.84110" />
+      <user_data name="pos_x" type="float" value="-17.603300" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.019" meshFile="Cone.019.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V14" >
+      <position z="-10.841100" x="-14.015444" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-10.84110" />
+      <user_data name="pos_x" type="float" value="-14.015444" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.020" meshFile="Cone.020.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V21" >
+      <position z="-10.841100" x="-9.658322" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-10.84110" />
+      <user_data name="pos_x" type="float" value="-9.658322" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.021" meshFile="Cone.021.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V29" >
+      <position z="-13.266483" x="-9.658322" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-13.26648" />
+      <user_data name="pos_x" type="float" value="-9.658322" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.022" meshFile="Cone.022.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V34" >
+      <position z="-13.266483" x="-6.316747" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-13.26648" />
+      <user_data name="pos_x" type="float" value="-6.316747" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.023" meshFile="Cone.023.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V43" >
+      <position z="-24.800308" x="-6.316747" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-24.80030" />
+      <user_data name="pos_x" type="float" value="-6.316747" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.024" meshFile="Cone.024.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V41" >
+      <position z="-13.266483" x="-4.053099" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-13.26648" />
+      <user_data name="pos_x" type="float" value="-4.053099" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.025" meshFile="Cone.025.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V45" >
+      <position z="-5.128130" x="-4.053099" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-5.128130" />
+      <user_data name="pos_x" type="float" value="-4.053099" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.026" meshFile="Cone.026.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V46" >
+      <position z="-5.128130" x="4.139153" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-5.128130" />
+      <user_data name="pos_x" type="float" value="4.139153" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.027" meshFile="Cone.027.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V40" >
+      <position z="-16.661955" x="-6.316747" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-16.66195" />
+      <user_data name="pos_x" type="float" value="-6.316747" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.028" meshFile="Cone.028.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V44" >
+      <position z="-16.661955" x="2.899535" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-16.66195" />
+      <user_data name="pos_x" type="float" value="2.899535" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.029" meshFile="Cone.029.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V12" >
+      <position z="11.166544" x="-11.284195" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="11.166544" />
+      <user_data name="pos_x" type="float" value="-11.284195" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.031" meshFile="Cone.031.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V18" >
+      <position z="11.166544" x="-4.008183" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="11.166544" />
+      <user_data name="pos_x" type="float" value="-4.00818" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.032" meshFile="Cone.032.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V20" >
+      <position z="15.586047" x="-4.008183" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="15.586047" />
+      <user_data name="pos_x" type="float" value="-4.00818" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.033" meshFile="Cone.033.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V28" >
+      <position z="15.586047" x="2.674969" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="15.586047" />
+      <user_data name="pos_x" type="float" value="2.674969" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.034" meshFile="Cone.034.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V13" >
+      <position z="15.639944" x="-11.284195" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="15.639944" />
+      <user_data name="pos_x" type="float" value="-11.2841" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.035" meshFile="Cone.035.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V19" >
+      <position z="15.639944" x="-16.404352" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="15.639944" />
+      <user_data name="pos_x" type="float" value="-16.4043" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.036" meshFile="Cone.036.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V11" >
+      <position z="-8.631395" x="-22.108389" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-8.631395" />
+      <user_data name="pos_x" type="float" value="-22.1083" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.037" meshFile="Cone.037.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V16" >
+      <position z="-13.050899" x="-22.108389" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-13.05089" />
+      <user_data name="pos_x" type="float" value="-22.1083" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.039" meshFile="Cone.039.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V22" >
+      <position z="-13.050899" x="-18.335642" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-13.05089" />
+      <user_data name="pos_x" type="float" value="-18.3356" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.040" meshFile="Cone.040.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V30" >
+      <position z="-17.793779" x="-18.335642" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-17.79377" />
+      <user_data name="pos_x" type="float" value="-18.3356" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.041" meshFile="Cone.041.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V33" >
+      <position z="-17.793779" x="-15.748615" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-17.79377" />
+      <user_data name="pos_x" type="float" value="-15.7486" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.042" meshFile="Cone.042.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V39" >
+      <position z="-23.776278" x="-15.748615" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-23.77627" />
+      <user_data name="pos_x" type="float" value="-15.7486" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.043" meshFile="Cone.043.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V31" >
+      <position z="-17.793779" x="-25.611654" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-17.79377" />
+      <user_data name="pos_x" type="float" value="-25.6116" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.045" meshFile="Cone.045.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V38" >
+      <position z="-24.315243" x="-25.611654" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-24.31524" />
+      <user_data name="pos_x" type="float" value="-25.6116" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.046" meshFile="Cone.046.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V23" >
+      <position z="-3.586694" x="-27.498028" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-3.586694" />
+      <user_data name="pos_x" type="float" value="-27.4980" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.047" meshFile="Cone.047.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V26" >
+      <position z="-3.586694" x="-31.507919" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-3.586694" />
+      <user_data name="pos_x" type="float" value="-31.5079" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.048" meshFile="Cone.048.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V35" >
+      <position z="-0.546938" x="-31.507919" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-0.546938" />
+      <user_data name="pos_x" type="float" value="-31.5079" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.049" meshFile="Cone.049.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="V42" >
+      <position z="-0.546938" x="-35.647163" y="4.009807" />
+      <rotation qy="0.000000" qw="1.000000" qx="0.000000" qz="-0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+
+      <user_data name="prototype_name" type="str" value="node" />
+      
+      <user_data name="pos_z" type="float" value="-0.546938" />
+      <user_data name="pos_x" type="float" value="-35.6471" />
+      <user_data name="pos_y" type="float" value="4.009807" />
+
+      <user_data name="scale_x" type="float" value="0.0" />
+      <user_data name="scale_y" type="float" value="0.0" />
+      <user_data name="scale_z" type="float" value="0.0" />
+
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity inertia_tensor="0.4000000059604645" lock_rot_y="False" ghost="False" lock_trans_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" actor="False" anisotropic_friction="False" mass="1.0" physics_type="STATIC" friction_y="1.0" lock_trans_z="False" name="Cone.050" meshFile="Cone.050.mesh" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" damping_trans="0.03999999910593033" velocity_min="0.0" velocity_max="0.0" lock_rot_z="False" friction_x="1.0" />
+    </node>
+    <node name="player" >
+      <user_data name="prototype_name" type="str" value="player" />
+      <user_data name="pos_x" type="float" value="-14.0154" />
+    <user_data name="pos_y" type="float" value="5.60981" />
+      <user_data name="pos_z" type="float" value="-10.8411" />
+      <user_data name="scale_x" type="float" value="1.0" />
+      <user_data name="scale_y" type="float" value="1.0" />
+      <user_data name="scale_z" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <user_data name="rot_w" type="float" value="1.0" />
+    <user_data value="1" type="bool" name="enabled_fpc" />
+    <user_data value="1" type="bool" name="enabled_fpm" />
+    <user_data value="1" type="bool" name="enabled_pc" />
+    <user_data value="1" type="bool" name="enabled_p" />
+    <user_data value="10000.0" type="float" name="far_clip" />
+    <user_data value="0.5" type="float" name="near_clip" />
+    <user_data value="1.0" type="float" name="color_r" />
+    <user_data value="0.0" type="float" name="color_g" />
+    <user_data value="1.0" type="float" name="color_b" />
+    <user_data value="20000.0" type="float" name="max_speed" />
+    <user_data value="180.0" type="float" name="pitch_limit" />
+    <user_data value="1" type="bool" name="enabled_rb" />
+    <user_data value="1000.0" type="float" name="mass" />
+    <user_data value="0.0" type="float" name="radius" />
+    <user_data value="30.0" type="float" name="scale_rb_x" />
+    <user_data value="50.0" type="float" name="scale_rb_y" />
+    <user_data value="1.0" type="float" name="scale_rb_z" />
+    </node>
+  <node name="arms" >
+    <user_data name="prototype_name" type="str" value="arms" />
+    <user_data name="pos_x" type="float" value="-0.0030" />
+    <user_data name="pos_y" type="float" value="-0.0040" />
+    <user_data name="pos_z" type="float" value="0.0" />
+    <user_data name="scale_x" type="float" value="0.0001" />
+    <user_data name="scale_y" type="float" value="0.0001" />
+    <user_data name="scale_z" type="float" value="0.0001" />
+    <user_data name="rot_x" type="float" value="0.0" />
+    <user_data name="rot_y" type="float" value="0.7071068" />
+    <user_data name="rot_z" type="float" value="0.0" />
+    <user_data name="rot_w" type="float" value="0.7071068" />
+    <user_data value="1" type="bool" name="enabled_mr" />
+    <user_data value="platanoGun.mesh" type="str" name="mesh_name" />
+    <user_data value="platanoGun.mesh" type="str" name="mesh_name0" />
+    <user_data value="escopeta.mesh" type="str" name="mesh_name1" />
+    <user_data value="rayosGun.mesh" type="str" name="mesh_name2" />
+    <user_data value="1" type="bool" name="enabled_as" />
+    <user_data value="reload.mp3" type="str" name="filename" />
+    <user_data value="ReloadSFX" type="str" name="audio_id" />
+    <user_data value="1.0" type="float" name="volume" />
+    <user_data value="1.0" type="float" name="pitch" />
+    <user_data value="1" type="bool" name="enabled_gc" />
+    </node>
+    <node name="ammo" >
+      <user_data name="prototype_name" type="str" value="ammo" />
+      <user_data name="pos_x" type="float" value="-22.1084" />
+      <user_data name="pos_y" type="float" value="6.0509" />
+      <user_data name="pos_z" type="float" value="4.00981" />
+      <user_data name="scale_x" type="float" value="1.0" />
+      <user_data name="scale_y" type="float" value="1.0" />
+      <user_data name="scale_z" type="float" value="1.0" />
+      <user_data name="rot_x" type="float" value="0.0" />
+      <user_data name="rot_y" type="float" value="0.0" />
+      <user_data name="rot_z" type="float" value="0.0" />
+      <user_data name="rot_w" type="float" value="1.0" />
+      <user_data value="1" type="bool" name="enabled_mr" />
+      <user_data value="Bala4.mesh" type="str" name="mesh_name" />
+      <user_data value="1" type="bool" name="enabled_rb" />
+      <user_data value="0.0" type="float" name="mass" />
+      <user_data value="10.0" type="float" name="radius" />
+      <user_data value="0.0" type="float" name="scale_rb_x" />
+      <user_data value="0.0" type="float" name="scale_rb_y" />
+      <user_data value="0.0" type="float" name="scale_rb_z" />
+      <user_data value="1" type="bool" name="enabled_as" />
+      <user_data value="shoot.wav" type="str" name="filename" />
+      <user_data value="ShootSFX" type="str" name="audio_id" />
+      <user_data value="1.0" type="float" name="volume" />
+      <user_data value="1.0" type="float" name="pitch" />
+      <user_data value="1" type="bool" name="enabled_a" />
+    </node>
+  </nodes>
+</scene>

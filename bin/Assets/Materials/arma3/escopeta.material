@@ -48,14 +48,14 @@ material Material_53.002
 
             texture_unit 
             {
-                texture 7.png
+                texture 7_arma.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 8.png
+                texture 8_arma.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
@@ -97,14 +97,14 @@ material Material_52.001
 
             texture_unit 
             {
-                texture 5.png
+                texture 5_arma.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend
             }
             texture_unit 
             {
-                texture 6.png
+                texture 6_arma.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op alpha_blend

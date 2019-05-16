@@ -10,6 +10,7 @@ public:
 	static SceneLoader* Instance();
 
 	void loadScene(const Ogre::String& SceneName);
+	Ogre::Real factor_escala;
 
 private:
 	SceneLoader();
