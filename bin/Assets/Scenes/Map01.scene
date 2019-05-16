@@ -2652,31 +2652,5 @@
       <user_data value="1" type="bool" name="enabled_a" />
       <user_data value="30" type="float" name="num_bullets" />
     </node>
-    <node name="mouse" >
-      <user_data name="prototype_name" type="str" value="mouse" />
-      <user_data name="pos_x" type="float" value="0.0" />
-    <user_data name="pos_y" type="float" value="10.0" />
-      <user_data name="pos_z" type="float" value="0.0" />
-      <user_data name="scale_x" type="float" value="1.0" />
-      <user_data name="scale_y" type="float" value="1.0" />
-      <user_data name="scale_z" type="float" value="1.0" />
-      <user_data name="rot_x" type="float" value="0.0" />
-      <user_data name="rot_y" type="float" value="0.0" />
-      <user_data name="rot_z" type="float" value="0.0" />
-      <user_data name="rot_w" type="float" value="1.0" />
-    <user_data value="1" type="bool" name="enabled_mr" />
-    <user_data value="mouse.mesh" type="str" name="mesh_name" />
-    <user_data value="mouse_mat" type="str" name="material_name" />
-    <user_data value="1" type="bool" name="enabled_rb" />
-    <user_data value="1.0" type="float" name="mass" />
-    <user_data value="0.0" type="float" name="radius" />
-    <user_data value="30.0" type="float" name="scale_rb_x" />
-    <user_data value="30.0" type="float" name="scale_rb_y" />
-    <user_data value="30.0" type="float" name="scale_rb_z" />
-    <user_data value="1" type="bool" name="enabled_e" />
-    <user_data value="100.0" type="float" name="health" />
-    <user_data value="10.0" type="float" name="damage" />
-    <user_data value="100.0" type="float" name="score" />
-    </node>
   </nodes>
 </scene>
