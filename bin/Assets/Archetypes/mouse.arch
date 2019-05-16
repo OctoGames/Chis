@@ -2,9 +2,9 @@
 <archetype >
 	<entity name="Mouse" parent="" tag="enemy" active="1" >
       	<component name="MeshRenderer" >
-			      <user_data value="1" type="bool" name="enabled_mr" />
+			  <user_data value="1" type="bool" name="enabled_mr" />
       		  <user_data value="mouse.mesh" type="str" name="mesh_name" />
-      		  <user_data value="mouseMaterial" type="str" name="material_name" />
+      		  <user_data value="mouse_material" type="str" name="material_name" />
       	</component>
         <component name="RigidBody" >
             <user_data value="1" type="bool" name="enabled_rb" />
@@ -17,7 +17,7 @@
         <component name="Enemy" >
             <user_data value="1" type="bool" name="enabled_e" />
             <user_data value="100.0" type="float" name="health" />
-            <user_data value="10.0" type="float" name="damage" />
+            <user_data value="30.0" type="float" name="damage" />
             <user_data value="100.0" type="float" name="score" />
             <user_data value="1000.0" type="float" name="speed" />
         </component>

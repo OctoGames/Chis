@@ -14,6 +14,8 @@ public:
 	virtual Component* clone();
 	virtual void init();
 
+	inline int getID() const { return id_; }
+
 	static std::vector<Ogre::SceneNode*> nodes_;
 
 private:

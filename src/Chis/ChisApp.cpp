@@ -19,6 +19,7 @@
 #include "RaycastBullet.h"
 #include "RigidbodyBullet.h"
 #include "Node.h"
+#include "EnemySpawner.h"
 
 bool ChisApp::reset_ = false;
 
@@ -79,6 +80,7 @@ void ChisApp::registerFactories()
 	EntityComponentManager::Instance()->registerFactory("RaycastBullet", new RaycastBulletFactory());
 	EntityComponentManager::Instance()->registerFactory("RigidbodyBullet", new RigidbodyBulletFactory());
 	EntityComponentManager::Instance()->registerFactory("Node", new NodeFactory());
+	EntityComponentManager::Instance()->registerFactory("EnemySpawner", new EnemySpawnerFactory());
 }
 
 void ChisApp::reset()

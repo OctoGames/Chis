@@ -65,7 +65,6 @@ void Enemy::update()
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
 
-
 	if (currentDestination_ == nullptr ||
 		currentDestination_->getPosition() == gameObject()->transform()->getPosition())
 	{
