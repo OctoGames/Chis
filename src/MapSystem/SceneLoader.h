@@ -10,7 +10,6 @@ public:
 	static SceneLoader* Instance();
 
 	void loadScene(const Ogre::String& SceneName);
-	Ogre::Real factor_escala;
 
 private:
 	SceneLoader();
@@ -23,5 +22,6 @@ private:
 	static SceneLoader* instance_;
 
 	const char* PATH_ = "Assets/Scenes/";
+	Ogre::Real factor_escala;
 };
 #endif SCENELOADER_H_
