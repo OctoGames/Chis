@@ -36,5 +36,8 @@
         <component name="EnemySpawner" >
             <user_data value="1" type="bool" name="enabled_es" />
         </component>
+        <component name="AmmoSpawner" >
+            <user_data value="1" type="bool" name="enabled_es" />
+        </component>
     </entity>
 </archetype>

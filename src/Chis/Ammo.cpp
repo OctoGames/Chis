@@ -50,6 +50,14 @@ void Ammo::onCollision(GameObject * other)
 
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
+	else if (other->getTag() == "ammo")
+	{
+		EntityComponentManager::Instance()->destroy(other);
+	}
+	else if (other->getTag() == "enemy")
+	{
+		EntityComponentManager::Instance()->destroy(gameObject());
+	}
 }
 
 void Ammo::start()

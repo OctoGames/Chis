@@ -75,6 +75,7 @@ void RigidBody::init()
 			Ogre::Vector3 scale = gameObject()->transform()->getScale();
 			Ogre::Vector3 half = mr->getEntity()->getBoundingBox().getHalfSize();
 			half = Ogre::Vector3(scale.x * half.x, scale.y * half.y, scale.z * half.z);
+			if (gameObject()->getTag() == "enemy") half *= 50;
 			rigidBody_ = Physics::Instance()->createRigidBody(gameObject(), mass_, btVector3(half.x, half.y, half.z));
 		}
 		else

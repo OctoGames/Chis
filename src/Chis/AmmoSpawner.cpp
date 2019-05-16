@@ -1,32 +1,31 @@
-#include "EnemySpawner.h"
+#include "AmmoSpawner.h"
 
 #include "Node.h"
-#include "Enemy.h"
+#include "Ammo.h"
 
 
-std::string EnemySpawner::name_ = "EnemySpawner";
-int EnemySpawner::numEnemies_ = 0;
+std::string AmmoSpawner::name_ = "AmmoSpawner";
 
-EnemySpawner::EnemySpawner() :
-	spawnTime_(5000),
+AmmoSpawner::AmmoSpawner() :
+	spawnTime_(15000),
 	spawnTimer_(nullptr)
 {
 }
 
-EnemySpawner::~EnemySpawner()
+AmmoSpawner::~AmmoSpawner()
 {
 }
 
-void EnemySpawner::load(const std::map<std::string, ValueType>& params)
+void AmmoSpawner::load(const std::map<std::string, ValueType>& params)
 {
 	auto it = params.begin();
 	it = params.find("enabled_es"); if (it != params.end()) enabled_ = params.at("enabled_es").b;
 	it = params.find("spawn_time"); if (it != params.end()) spawnTime_ = params.at("spawn_time").b;
 }
 
-Component * EnemySpawner::clone()
+Component * AmmoSpawner::clone()
 {
-	EnemySpawner* clonedComponent = new EnemySpawner();
+	AmmoSpawner* clonedComponent = new AmmoSpawner();
 
 	clonedComponent->enabled_ = this->enabled_;
 	clonedComponent->spawnTime_= this->spawnTime_;
@@ -34,19 +33,19 @@ Component * EnemySpawner::clone()
 	return clonedComponent;
 }
 
-void EnemySpawner::init()
+void AmmoSpawner::init()
 {
 	spawnTimer_ = new Ogre::Timer(); 
 	spawnTimer_->reset();
 	setEnabled(enabled_);
 }
 
-void EnemySpawner::update()
+void AmmoSpawner::update()
 {
-	if (spawnTimer_->getMilliseconds() >= spawnTime_) spawnEnemy();
+	if (spawnTimer_->getMilliseconds() >= spawnTime_) spawnAmmo();
 }
 
-void EnemySpawner::spawnEnemy()
+void AmmoSpawner::spawnAmmo()
 {
 	std::cout << "Spawning beginning...\n";
 	std::list<GameObject*> nodeObjects = EntityComponentManager::Instance()->findGameObjectsWithTag("node");
@@ -62,14 +61,9 @@ void EnemySpawner::spawnEnemy()
 
 	if (node)
 	{
-		std::cout << "Spawning enemy...\n";
+		std::cout << "Spawning ammo...\n";
 		Ogre::Vector3 incr = node->gameObject()->transform()->getPosition() + Ogre::Vector3(0, 50, 0);
-		GameObject* enemy = EntityComponentManager::Instance()->instantiate("Mouse", incr);
-		numEnemies_++;
-
-		std::list<int> path = AIManager::Instance()->getPath(nodeIndex, 0);
-		Enemy* enemyComponent = static_cast<Enemy*>(EntityComponentManager::Instance()->getComponent(enemy, "Enemy"));
-		if (enemyComponent) enemyComponent->receivePath(path);
+		GameObject* box = EntityComponentManager::Instance()->instantiate("Ammo", incr);
 
 		spawnTimer_->reset();
 	}

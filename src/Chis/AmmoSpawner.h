@@ -1,13 +1,13 @@
-#ifndef __ENEMY_SPAWNER_H__
-#define __ENEMY_SPAWNER_H__
+#ifndef __AMMO_SPAWNER_H__
+#define __AMMO_SPAWNER_H__
 
 #include <Engine.h>
 
-class EnemySpawner : public Component
+class AmmoSpawner : public Component
 {
 public:
-	EnemySpawner();
-	virtual ~EnemySpawner();
+	AmmoSpawner();
+	virtual ~AmmoSpawner();
 
 	virtual void load(const std::map<std::string, ValueType>& params);
 	virtual std::string getName() const { return name_; }
@@ -16,10 +16,8 @@ public:
 
 	virtual void update();
 
-	static int numEnemies_;
-
 private:
-	void spawnEnemy();
+	void spawnAmmo();
 	
 	static std::string name_;
 
@@ -27,13 +25,13 @@ private:
 	float spawnTime_;
 };
 
-class EnemySpawnerFactory : public BaseFactory
+class AmmoSpawnerFactory : public BaseFactory
 {
 public:
-	EnemySpawnerFactory() {}
-	virtual ~EnemySpawnerFactory() {}
+	AmmoSpawnerFactory() {}
+	virtual ~AmmoSpawnerFactory() {}
 
-	virtual Component* create() { return new EnemySpawner(); }
+	virtual Component* create() { return new AmmoSpawner(); }
 };
 
 #endif // !__ENEMY_SPAWNER_H__

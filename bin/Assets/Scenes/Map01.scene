@@ -2576,9 +2576,9 @@
     <user_data value="1" type="bool" name="enabled_rb" />
     <user_data value="1000.0" type="float" name="mass" />
     <user_data value="0.0" type="float" name="radius" />
-    <user_data value="30.0" type="float" name="scale_rb_x" />
-    <user_data value="50.0" type="float" name="scale_rb_y" />
-    <user_data value="1.0" type="float" name="scale_rb_z" />
+    <user_data value="60.0" type="float" name="scale_rb_x" />
+    <user_data value="100.0" type="float" name="scale_rb_y" />
+    <user_data value="5.0" type="float" name="scale_rb_z" />
 	<user_data value="1" type="bool" name="enabled_pc" />
 	<user_data value="20000.0" type="float" name="max_speed" />
 	<user_data value="17" type="float" name="moveForwardsKey" />
@@ -2624,33 +2624,5 @@
 	<user_data value="1" type="float" name="numBulletsLaser" />
 	<user_data value="5" type="float" name="numBulletsShotgun" />
   </node>
-    <node name="ammo" >
-      <user_data name="prototype_name" type="str" value="ammo" />
-      <user_data name="pos_x" type="float" value="-22.1084" />
-      <user_data name="pos_y" type="float" value="6.0509" />
-      <user_data name="pos_z" type="float" value="4.00981" />
-      <user_data name="scale_x" type="float" value="1.0" />
-      <user_data name="scale_y" type="float" value="1.0" />
-      <user_data name="scale_z" type="float" value="1.0" />
-      <user_data name="rot_x" type="float" value="0.0" />
-      <user_data name="rot_y" type="float" value="0.0" />
-      <user_data name="rot_z" type="float" value="0.0" />
-      <user_data name="rot_w" type="float" value="1.0" />
-      <user_data value="1" type="bool" name="enabled_mr" />
-      <user_data value="AmmoBox.mesh" type="str" name="mesh_name" />
-      <user_data value="1" type="bool" name="enabled_rb" />
-      <user_data value="0.0" type="float" name="mass" />
-      <user_data value="10.0" type="float" name="radius" />
-      <user_data value="0.0" type="float" name="scale_rb_x" />
-      <user_data value="0.0" type="float" name="scale_rb_y" />
-      <user_data value="0.0" type="float" name="scale_rb_z" />
-      <user_data value="1" type="bool" name="enabled_as" />
-      <user_data value="reload.mp3" type="str" name="filename" />
-      <user_data value="ReloadSFX" type="str" name="audio_id" />
-      <user_data value="1.0" type="float" name="volume" />
-      <user_data value="1.0" type="float" name="pitch" />
-      <user_data value="1" type="bool" name="enabled_a" />
-      <user_data value="30" type="float" name="num_bullets" />
-    </node>
   </nodes>
 </scene>

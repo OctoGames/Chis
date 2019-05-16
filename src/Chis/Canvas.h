@@ -53,6 +53,7 @@ private:
 
 	float score_;
 	bool loadingMenu_;
+	float cheesyness_;
 	Ogre::Timer* loadTimer_;
 };
 

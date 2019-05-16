@@ -50,7 +50,8 @@ void Player::onCollision(GameObject * other)
 	if (!invulnerable_ && other->getTag() == "enemy")
 	{
 		Enemy* enemy = static_cast<Enemy*>(EntityComponentManager::Instance()->getComponent(other, "Enemy"));
-		if (enemy) damage(enemy->getDamage());
+		if (enemy) 
+			damage(enemy->getDamage());
 
 		Canvas* canvas = static_cast<Canvas*>(EntityComponentManager::Instance()->getComponent("GameManager", "Canvas"));
 		if (canvas) canvas->updateHealth(health_);

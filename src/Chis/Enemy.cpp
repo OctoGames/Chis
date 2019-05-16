@@ -62,6 +62,11 @@ void Enemy::onCollision(GameObject * other)
 		if (rb) rb->rigidbody()->setLinearVelocity(btVector3(0, 0, 0));
 		if (rb) rb->rigidbody()->setAngularVelocity(btVector3(0, 0, 0));
 	}
+	else if (other->getName() == "enemy")
+	{
+		EntityComponentManager::Instance()->destroy(other);
+	}
+
 }
 
 void Enemy::start()
@@ -78,33 +83,31 @@ void Enemy::update()
 		EntityComponentManager::Instance()->destroy(gameObject());
 	}
 
-	if (currentDestination_ == nullptr)
-	{
-		if (!path_.empty())
-		{
-			currentDestination_ = path_.front();
-			path_.pop();
-		}
-	}
-
-	if (currentDestination_)
-	{
-		if (currentDestination_->getPosition() == gameObject()->transform()->getPosition())
-		{
-			if (!path_.empty())
-			{
-				currentDestination_ = path_.front();
-				path_.pop();
-			}
-		}
-
-		Ogre::Vector3 dir = currentDestination_->getPosition() - gameObject()->transform()->getPosition();
-		dir.normalise();
-
-		btVector3 direction(dir.x, dir.y, dir.z);
-		RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
-		if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
-	}
+	// PATHFINDING (doesn't work)
+	//if (currentDestination_ == nullptr)
+	//{
+	//	if (!path_.empty())
+	//	{
+	//		currentDestination_ = path_.front();
+	//		path_.pop();
+	//	}
+	//}
+	//if (currentDestination_)
+	//{
+	//	if (currentDestination_->getPosition() == gameObject()->transform()->getPosition())
+	//	{
+	//		if (!path_.empty())
+	//		{
+	//			currentDestination_ = path_.front();
+	//			path_.pop();
+	//		}
+	//	}
+	//	Ogre::Vector3 dir = currentDestination_->getPosition() - gameObject()->transform()->getPosition();
+	//	dir.normalise();
+	//	btVector3 direction(dir.x, dir.y, dir.z);
+	//	RigidBody* rb = static_cast<RigidBody*>(EntityComponentManager::Instance()->getComponent(gameObject(), "RigidBody"));
+	//	if (rb) rb->rigidbody()->setLinearVelocity(direction * speed_);
+	//}
 }
 
 void Enemy::receivePath(const std::list<int>& path)

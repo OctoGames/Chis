@@ -2,7 +2,7 @@
 
 #include "SceneManager.h"
 #include "ChisApp.h"
-
+#include "EnemySpawner.h"
 
 std::string Canvas::name_ = "Canvas";
 
@@ -16,7 +16,8 @@ Canvas::Canvas() :
 	endmenuLayout_("EndMenu.layout"),
 	score_(0.0f),
 	loadTimer_(nullptr),
-	loadingMenu_(true)
+	loadingMenu_(true),
+	cheesyness_(100.0f)
 {
 }
 
@@ -94,6 +95,10 @@ void Canvas::update()
 		roots_[GUIContext::MAIN_MENU]->getChild("LoadingScreen")->hide();
 		loadingMenu_ = false;
 	}
+
+	if (EnemySpawner::numEnemies_ > 0 && EnemySpawner::numEnemies_ < 15) updateCheese(0.005);
+	else if (EnemySpawner::numEnemies_ >= 15 && EnemySpawner::numEnemies_ < 30) updateCheese(0.01);
+	else if (EnemySpawner::numEnemies_ >= 30) updateCheese(0.02);
 }
 
 
@@ -250,10 +255,11 @@ void Canvas::updateScore(float score)
 
 void Canvas::updateCheese(float cheesyness)
 {
-	if (cheesyness < 75) roots_[GUIContext::GAME]->getChild("Life4")->hide();
-	if (cheesyness < 50) roots_[GUIContext::GAME]->getChild("Life3")->hide();
-	if (cheesyness < 25) roots_[GUIContext::GAME]->getChild("Life2")->hide();
-	if (cheesyness <= 0) toEndMenu();
+	cheesyness_ -= cheesyness;
+	if (cheesyness_ < 75) roots_[GUIContext::GAME]->getChild("Life4")->hide();
+	if (cheesyness_ < 50) roots_[GUIContext::GAME]->getChild("Life3")->hide();
+	if (cheesyness_ < 25) roots_[GUIContext::GAME]->getChild("Life2")->hide();
+	if (cheesyness_ <= 0) toEndMenu();
 }
 
 void Canvas::updateBullets(float remaining, float total)
