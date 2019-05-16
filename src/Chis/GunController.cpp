@@ -94,12 +94,14 @@ void GunController::start()
 
 void GunController::shoot()
 {
-	if (remainingBullets_ == 0 && totalBullets_ == 0) return;
-
 	if (remainingBullets_ == 0)
 	{
-		reloadGun();
-		return;
+		if (totalBullets_ == 0) return;
+		else
+		{
+			reloadGun();
+			return;
+		}
 	}
 
 	Ogre::Camera* cam = static_cast<FirstPersonCamera*>(EntityComponentManager::Instance()->getComponent("Player", "FirstPersonCamera"))->getCamera();
@@ -116,16 +118,27 @@ void GunController::shoot()
 		switch (currentGun_)
 		{
 		case GunController::LASER:
-			EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
-			remainingBullets_ -= numBulletsLaser_;
+			if (remainingBullets_ >= numBulletsLaser_)
+			{
+				EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
+				remainingBullets_ -= numBulletsLaser_;
+			}
 			break;
+
 		case GunController::SHOTGUN:
-			EntityComponentManager::Instance()->instantiate("RigidbodyBullet", f, q);
-			remainingBullets_ -= numBulletsShotgun_;
+			if (remainingBullets_ >= numBulletsShotgun_)
+			{
+				EntityComponentManager::Instance()->instantiate("RigidbodyBullet", f, q);
+				remainingBullets_ -= numBulletsShotgun_;
+			}
 			break;
+
 		case GunController::WATERGUN:
-			EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
-			remainingBullets_--;
+			if (remainingBullets_ >= numBulletsLaser_)
+			{
+				EntityComponentManager::Instance()->instantiate("RaycastBullet", f, q);
+				remainingBullets_ -= numBulletsLaser_;
+			}
 			break;
 		}
 
